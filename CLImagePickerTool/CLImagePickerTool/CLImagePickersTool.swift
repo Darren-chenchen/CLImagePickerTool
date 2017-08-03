@@ -14,7 +14,7 @@ typealias CLPickerToolClouse = (Array<PHAsset>)->()
 
 public class CLImagePickersTool: NSObject {
     
-    static let share = CLImagePickersTool()
+    public static let share = CLImagePickersTool()
     
     var cameraPicker: UIImagePickerController!
     
