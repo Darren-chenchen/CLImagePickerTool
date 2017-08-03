@@ -36,7 +36,7 @@ class CLImagePickerListCell: UITableViewCell {
             if assetModel?.phAsset == nil {
                 return
             }
-            CLImagePickersTools.instence.getAssetThumbnail(targetSize:CGSize(width:60*UIScreen.main.scale,height:60*UIScreen.main.scale),asset: (assetModel?.phAsset!)!) { (image, info) in
+            CLPickersTools.instence.getAssetThumbnail(targetSize:CGSize(width:60*UIScreen.main.scale,height:60*UIScreen.main.scale),asset: (assetModel?.phAsset!)!) { (image, info) in
                 self.iconView.image = image
             }
         }

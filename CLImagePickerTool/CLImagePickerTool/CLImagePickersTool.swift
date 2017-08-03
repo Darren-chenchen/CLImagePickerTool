@@ -12,9 +12,9 @@ import PhotosUI
 
 typealias CLPickerToolClouse = (Array<PHAsset>)->()
 
-class CLPickerTool: NSObject {
+public class CLImagePickersTool: NSObject {
     
-    static let share = CLPickerTool()
+    static let share = CLImagePickersTool()
     
     var cameraPicker: UIImagePickerController!
     
@@ -39,7 +39,7 @@ class CLPickerTool: NSObject {
             let choseAction = UIAlertAction(title: "从手机相册选择", style: UIAlertActionStyle.default){ (action:UIAlertAction)in
                 
                 // 判断用户是否开启访问相册功能
-                if CLImagePickersTools.instence.authorize() == false {
+                if CLPickersTools.instence.authorize() == false {
                     return
                 }
                 
@@ -58,7 +58,7 @@ class CLPickerTool: NSObject {
 
         } else {
             // 判断用户是否开启访问相册功能
-            if CLImagePickersTools.instence.authorize() == false {
+            if CLPickersTools.instence.authorize() == false {
                 return
             }
             let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,cameraOut:cameraOut) { (assetArr) in
@@ -69,7 +69,7 @@ class CLPickerTool: NSObject {
     }
     
     func camera(superVC:UIViewController) {
-        if CLImagePickersTools.instence.authorizeCamaro() == false {
+        if CLPickersTools.instence.authorizeCamaro() == false {
             return
         }
         self.cameraPicker = UIImagePickerController()
@@ -85,7 +85,7 @@ class CLPickerTool: NSObject {
         var imageArr = [UIImage]()
         for item in assetArr {
             if item.mediaType == .image {  // 如果是图片
-                CLPickerTool.share.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
+                CLImagePickersTool.share.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
                     if img != nil {
                         
                         // 对图片压缩
@@ -132,8 +132,8 @@ class CLPickerTool: NSObject {
 
 }
 
-extension CLPickerTool:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+extension CLImagePickersTool:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         self.superVC?.dismiss(animated: true) {}
         
@@ -141,10 +141,10 @@ extension CLPickerTool:UIImagePickerControllerDelegate,UINavigationControllerDel
         let type = info[UIImagePickerControllerMediaType] as? String
         if type == "public.image" {
             let photo = info[UIImagePickerControllerOriginalImage]
-            UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLPickerTool.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLImagePickersTool.image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
     }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.superVC?.dismiss(animated: true, completion: nil)
     }
     
@@ -154,7 +154,7 @@ extension CLPickerTool:UIImagePickerControllerDelegate,UINavigationControllerDel
             UIAlertView(title: "错误", message: err.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
         } else {
             
-            let dataArr = CLImagePickersTools.instence.loadData()
+            let dataArr = CLPickersTools.instence.loadData()
             let newModel = dataArr.first?.values.first?.last
             
             if self.clPickerToolClouse != nil {

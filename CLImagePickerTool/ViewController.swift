@@ -21,13 +21,13 @@ class ViewController: UIViewController {
 
     // 相机在内部
     @IBAction func clickBtn1(_ sender: Any) {
-        CLPickerTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: false, superVC: self) { (asset) in
+        CLImagePickersTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: false, superVC: self) { (asset) in
             print("返回的asset数组是\(asset)")
             
-            let imageArr = CLPickerTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
+            let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
             self.img.image = imageArr.first
             
-            let imageArr2 = CLPickerTool.convertAssetArrToImage(assetArr: asset, scale: 1)
+            let imageArr2 = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 1)
             self.img2.image = imageArr2.first
             
             if imageArr.first == nil {
@@ -45,13 +45,13 @@ class ViewController: UIViewController {
     }
     // 相机在外部
     @IBAction func clickBtn2(_ sender: Any) {
-        CLPickerTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: true, superVC: self) { (asset) in
+        CLImagePickersTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: true, superVC: self) { (asset) in
             print("返回的asset数组是\(asset)")
             
-            let imageArr = CLPickerTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
+            let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
             self.img.image = imageArr.first
             
-            let imageArr2 = CLPickerTool.convertAssetArrToImage(assetArr: asset, scale: 1)
+            let imageArr2 = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 1)
             self.img2.image = imageArr2.first
             
             if imageArr.first == nil {

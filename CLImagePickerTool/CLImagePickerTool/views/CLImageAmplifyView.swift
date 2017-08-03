@@ -45,7 +45,7 @@ class CLImageAmplifyView: UIView {
         
         self.addSubview(bgView)
         
-        CLImagePickersTools.instence.getAssetOrigin(asset: originImageAsset) { (img, info) in
+        CLPickersTools.instence.getAssetOrigin(asset: originImageAsset) { (img, info) in
             imageView.image = img!
         }
         

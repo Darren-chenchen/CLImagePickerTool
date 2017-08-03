@@ -6,6 +6,13 @@
 
 
 # 使用方式
+
+pod 'CLImagePickerTool'
+
+
+
+# 简介
+
 		MaxImagesCount 最大选择的照片数量
 		cameraOut 相机的选择是放外面还是放在内部
 		superVC 当前的控制器CLPickerTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: false, superVC: self) { (asset) in

@@ -28,7 +28,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     var model: CLImagePickerPhotoModel? {
         didSet{
             if model?.phAsset != nil {
-                CLImagePickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: (model?.phAsset)!) { (image, info) in
+                CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: (model?.phAsset)!) { (image, info) in
                     self.iconView.image = image
                 }
             }
@@ -57,7 +57,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        CLImagePickersTools.instence.setupBottomViewGradient(superView: self.bottomView)
+        CLPickersTools.instence.setupBottomViewGradient(superView: self.bottomView)
         self.bottomView.bringSubview(toFront: self.timerLable) // 防止渐变色同化label
         self.bottomView.bringSubview(toFront: self.vedioImageView)
         
@@ -72,7 +72,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     }
     
     func clickIconView(ges:UITapGestureRecognizer) {
-        if CLImagePickersTools.instence.testImageInLocal(asset: (self.model?.phAsset)!) == true {
+        if CLPickersTools.instence.testImageInLocal(asset: (self.model?.phAsset)!) == true {
             PopViewUtil.alert(message: "请前往系统相册下载iCloud照片后重试", leftTitle: "确定", rightTitle: "", leftHandler: {
                 
             }, rightHandler: {
@@ -96,7 +96,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             return
         }
         
-        if CLImagePickersTools.instence.testImageInLocal(asset: (self.model?.phAsset)!) == true {
+        if CLPickersTools.instence.testImageInLocal(asset: (self.model?.phAsset)!) == true {
             PopViewUtil.alert(message: "请前往系统相册下载iCloud照片后重试", leftTitle: "知道了", rightTitle: "", leftHandler: {
                 
             }, rightHandler: { 
@@ -107,7 +107,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             if self.chooseImageBtn.isSelected == false {
                 // 判断是否超过限制
                 let maxCount = UserDefaults.standard.integer(forKey: "CLImagePickerMaxImagesCount")
-                if CLImagePickersTools.instence.getSavePictureCount() >= maxCount {
+                if CLPickersTools.instence.getSavePictureCount() >= maxCount {
                     PopViewUtil.alert(message: "您最多只能选择\(maxCount)张照片", leftTitle: "", rightTitle: "知道了", leftHandler: {
                         
                     }, rightHandler: {
@@ -123,16 +123,16 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             self.model?.isSelect = self.chooseImageBtn.isSelected
             
             if self.chooseImageBtn.isSelected {
-                CLImagePickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: true)
+                CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: true)
                 if imagePickerChooseImage != nil {
                     imagePickerChooseImage!()
                 }
                 
                 self.chooseImageBtn.backgroundColor = mainColor
-                self.chooseImageBtn.setTitle("\(CLImagePickersTools.instence.getSavePictureCount())", for: .normal)
-                self.model?.pictureNum = CLImagePickersTools.instence.getSavePictureCount()
+                self.chooseImageBtn.setTitle("\(CLPickersTools.instence.getSavePictureCount())", for: .normal)
+                self.model?.pictureNum = CLPickersTools.instence.getSavePictureCount()
             } else {
-                CLImagePickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
+                CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
                 if imagePickerChooseImage != nil {
                     imagePickerChooseImage!()
                 }

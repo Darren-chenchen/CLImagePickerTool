@@ -40,7 +40,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.initView()
         
         // 判断用户是否开启访问相册功能
-        if CLImagePickersTools.instence.authorize() == false {
+        if CLPickersTools.instence.authorize() == false {
             return
         }
     }
@@ -49,7 +49,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     @IBAction func clickSureBtn(_ sender: Any) {
 
         if self.singleChooseImageCompleteClouse != nil {
-            self.singleChooseImageCompleteClouse!(CLImagePickersTools.instence.getChoosePictureArray())
+            self.singleChooseImageCompleteClouse!(CLPickersTools.instence.getChoosePictureArray())
         }
         
         self.dismiss(animated: true) {
@@ -60,8 +60,8 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         
         self.rightBtn.setTitle("取消", for: .normal)
         
-        if CLImagePickersTools.instence.getSavePictureCount() > 0 {
-            let title = "(\(CLImagePickersTools.instence.getSavePictureCount()))确定"
+        if CLPickersTools.instence.getSavePictureCount() > 0 {
+            let title = "(\(CLPickersTools.instence.getSavePictureCount()))确定"
             self.sureBtn.setTitle(title, for: .normal)
         }
         
@@ -111,7 +111,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CLImagePickerCamaroCell", for: indexPath) as! CLImagePickerCamaroCell
             cell.clickCamaroCell = {[weak self]() in
                 
-                if CLImagePickersTools.instence.authorizeCamaro() == false {
+                if CLPickersTools.instence.authorizeCamaro() == false {
                     return
                 }
                 self?.cameraPicker = UIImagePickerController()
@@ -126,7 +126,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellID, for: indexPath) as! ImagePickerChooseImageCell
         cell.model = model
         cell.imagePickerChooseImage = {[weak self] () in
-            let chooseCount = CLImagePickersTools.instence.getSavePictureCount()
+            let chooseCount = CLPickersTools.instence.getSavePictureCount()
             if chooseCount == 0 {
                 self?.sureBtn.setTitle("确定", for: .normal)
             } else {
@@ -161,7 +161,7 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
             UIAlertView(title: "错误", message: err.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
         } else {
         
-            var dataArr = CLImagePickersTools.instence.loadData()
+            var dataArr = CLPickersTools.instence.loadData()
             let newModel = dataArr.first?.values.first?.last
             
             self.photoArr?.insert(newModel!, at: (self.photoArr?.count ?? 1)-1)

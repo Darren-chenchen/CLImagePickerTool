@@ -30,9 +30,9 @@ class CLImagePickersViewController: UINavigationController {
         CLNotificationCenter.addObserver(self, selector: #selector(CLPhotoListRefreshNoticMethod(notic:)), name: NSNotification.Name(rawValue:CLPhotoListRefreshNotic), object: nil)
         
         // 清除保存的数据
-        CLImagePickersTools.instence.clearPicture()
+        CLPickersTools.instence.clearPicture()
         
-        let dataArr = CLImagePickersTools.instence.loadData()
+        let dataArr = CLPickersTools.instence.loadData()
         
         albumVC.dataArr = dataArr
         albumVC.cameraOut = cameraOut
@@ -100,7 +100,7 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         self.initView()
         
         // 判断用户是否开启访问相册功能
-        if CLImagePickersTools.instence.authorize() == true {
+        if CLPickersTools.instence.authorize() == true {
             self.tableView.reloadData()
         }
     }

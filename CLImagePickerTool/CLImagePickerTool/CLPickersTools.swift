@@ -10,9 +10,9 @@ import UIKit
 import Photos
 import PhotosUI
 
-class CLImagePickersTools {
+class CLPickersTools {
     
-    static let instence = CLImagePickersTools()
+    static let instence = CLPickersTools()
         
     fileprivate var dataArr = [[String:[CLImagePickerPhotoModel]]]()
     
