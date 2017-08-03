@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name = 'CLImagePickerTool'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.license = 'MIT'
   s.summary = 'This is a picture selector'
   s.homepage = 'https://github.com/Darren-chenchen/CLImagePickerTool'
-  s.authors = { 'chenliang' => '1597887620@qq.com' }
+  s.authors = { 'Darren-chenchen' => '1597887620@qq.com' }
   s.source = { :git => 'https://github.com/Darren-chenchen/CLImagePickerTool.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
