@@ -26,7 +26,7 @@ class NomalStyleView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     
     static func show() -> NomalStyleView {
-        return Bundle.main.loadNibNamed("NomalStyleView", owner: nil, options: nil)?.last as! NomalStyleView
+        return BundleUtil.getCurrentBundle().loadNibNamed("NomalStyleView", owner: nil, options: nil)?.last as! NomalStyleView
     }
     
     override func awakeFromNib() {

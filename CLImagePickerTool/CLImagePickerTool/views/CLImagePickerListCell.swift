@@ -43,7 +43,7 @@ class CLImagePickerListCell: UITableViewCell {
     }
     
     static func cellWithTableView(tableView:UITableView) -> CLImagePickerListCell{
-        let bundle = Bundle.main
+        let bundle = BundleUtil.getCurrentBundle()
         let ID = "ImagePickerListCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: ID)
         if cell == nil {

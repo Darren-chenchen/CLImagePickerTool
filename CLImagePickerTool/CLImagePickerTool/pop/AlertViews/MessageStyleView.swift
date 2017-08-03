@@ -21,7 +21,7 @@ class MessageStyleView: UIView {
     @IBOutlet weak var contentLabel: UILabel!
     
     static func show() -> MessageStyleView {
-        return Bundle.main.loadNibNamed("MessageStyleView", owner: nil, options: nil)?.last as! MessageStyleView
+        return BundleUtil.getCurrentBundle().loadNibNamed("MessageStyleView", owner: nil, options: nil)?.last as! MessageStyleView
     }
     
     override func awakeFromNib() {

@@ -46,7 +46,7 @@ class CLImagePickersViewController: UINavigationController {
         self.imageCompleteClouse = didChooseImageSuccess
 
         let rowData = array.first
-        let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: nil)
+        let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
         if singleVC.navTitle == "所有照片" {
@@ -141,7 +141,7 @@ extension CLImageAlbumPickerController:UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let rowData = self.dataArr?[indexPath.row]
-        let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: nil)
+        let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
         if singleVC.navTitle == "所有照片" {

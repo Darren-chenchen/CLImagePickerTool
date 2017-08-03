@@ -42,6 +42,7 @@
 		95304F111F3324C0001F76B6 /* CLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF41F3324BF001F76B6 /* CLConfig.swift */; };
 		95304F121F3324C0001F76B6 /* CLImagePickersTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */; };
 		95304F321F334187001F76B6 /* CLImagePickerTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 95304F311F334187001F76B6 /* CLImagePickerTool.podspec */; };
+		95304F341F334867001F76B6 /* BundleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F331F334867001F76B6 /* BundleUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		95304EF41F3324BF001F76B6 /* CLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLConfig.swift; sourceTree = "<group>"; };
 		95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickersTool.swift; sourceTree = "<group>"; };
 		95304F311F334187001F76B6 /* CLImagePickerTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CLImagePickerTool.podspec; sourceTree = "<group>"; };
+		95304F331F334867001F76B6 /* BundleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				95304EF31F3324BF001F76B6 /* CLPickersTools.swift */,
 				95304EF41F3324BF001F76B6 /* CLConfig.swift */,
 				95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */,
+				95304F331F334867001F76B6 /* BundleUtil.swift */,
 			);
 			path = CLImagePickerTool;
 			sourceTree = "<group>";
@@ -211,9 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				95304EE51F3324BF001F76B6 /* CLBaseImagePickerViewController.swift */,
+				95304EE81F3324BF001F76B6 /* CLImagePickersViewController.swift */,
 				95304EE61F3324BF001F76B6 /* CLImagePickerSingleViewController.swift */,
 				95304EE71F3324BF001F76B6 /* CLImagePickerSingleViewController.xib */,
-				95304EE81F3324BF001F76B6 /* CLImagePickersViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				95304E7C1F32F036001F76B6 /* AppDelegate.swift in Sources */,
 				95304EFA1F3324BF001F76B6 /* HDAlertViewController.swift in Sources */,
 				95304F091F3324BF001F76B6 /* CLImagePickerCamaroCell.swift in Sources */,
+				95304F341F334867001F76B6 /* BundleUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

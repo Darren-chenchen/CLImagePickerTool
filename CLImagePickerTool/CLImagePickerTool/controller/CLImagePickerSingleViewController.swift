@@ -71,7 +71,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.flowout.minimumInteritemSpacing = 0
         self.flowout.itemSize = CGSize(width: cellH, height:cellH)
         
-        self.collectionView.register(UINib.init(nibName: "ImagePickerChooseImageCell", bundle: nil), forCellWithReuseIdentifier: imageCellID)
+        self.collectionView.register(UINib.init(nibName: "ImagePickerChooseImageCell", bundle: BundleUtil.getCurrentBundle()), forCellWithReuseIdentifier: imageCellID)
         self.collectionView.register(CLImagePickerCamaroCell.self, forCellWithReuseIdentifier: "CLImagePickerCamaroCell")
         
         self.collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 44, right: 0)
