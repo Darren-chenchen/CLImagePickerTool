@@ -12,6 +12,35 @@
 		95304E811F32F036001F76B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95304E7F1F32F036001F76B6 /* Main.storyboard */; };
 		95304E831F32F036001F76B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95304E821F32F036001F76B6 /* Assets.xcassets */; };
 		95304E861F32F036001F76B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95304E841F32F036001F76B6 /* LaunchScreen.storyboard */; };
+		95304EF61F3324BF001F76B6 /* MessageStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED31F3324BF001F76B6 /* MessageStyleView.swift */; };
+		95304EF71F3324BF001F76B6 /* MessageStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304ED41F3324BF001F76B6 /* MessageStyleView.xib */; };
+		95304EF81F3324BF001F76B6 /* NomalStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED51F3324BF001F76B6 /* NomalStyleView.swift */; };
+		95304EF91F3324BF001F76B6 /* NomalStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304ED61F3324BF001F76B6 /* NomalStyleView.xib */; };
+		95304EFA1F3324BF001F76B6 /* HDAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED71F3324BF001F76B6 /* HDAlertViewController.swift */; };
+		95304EFB1F3324BF001F76B6 /* HDAlertWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED81F3324BF001F76B6 /* HDAlertWindowView.swift */; };
+		95304EFC1F3324BF001F76B6 /* PopViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED91F3324BF001F76B6 /* PopViewUtil.swift */; };
+		95304EFD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EDD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift */; };
+		95304EFE1F3324BF001F76B6 /* btn_back2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304EDF1F3324BF001F76B6 /* btn_back2@2x.png */; };
+		95304EFF1F3324BF001F76B6 /* btn_back2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304EE01F3324BF001F76B6 /* btn_back2@3x.png */; };
+		95304F001F3324BF001F76B6 /* cl_imagepickervedio.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304EE11F3324BF001F76B6 /* cl_imagepickervedio.png */; };
+		95304F011F3324BF001F76B6 /* clvedioplaybtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304EE21F3324BF001F76B6 /* clvedioplaybtn.png */; };
+		95304F021F3324BF001F76B6 /* takePicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304EE31F3324BF001F76B6 /* takePicture.png */; };
+		95304F031F3324BF001F76B6 /* CLBaseImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EE51F3324BF001F76B6 /* CLBaseImagePickerViewController.swift */; };
+		95304F041F3324BF001F76B6 /* CLImagePickerSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EE61F3324BF001F76B6 /* CLImagePickerSingleViewController.swift */; };
+		95304F051F3324BF001F76B6 /* CLImagePickerSingleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304EE71F3324BF001F76B6 /* CLImagePickerSingleViewController.xib */; };
+		95304F061F3324BF001F76B6 /* CLImagePickersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EE81F3324BF001F76B6 /* CLImagePickersViewController.swift */; };
+		95304F071F3324BF001F76B6 /* CLCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEA1F3324BF001F76B6 /* CLCircleView.swift */; };
+		95304F081F3324BF001F76B6 /* CLImageAmplifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEB1F3324BF001F76B6 /* CLImageAmplifyView.swift */; };
+		95304F091F3324BF001F76B6 /* CLImagePickerCamaroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEC1F3324BF001F76B6 /* CLImagePickerCamaroCell.swift */; };
+		95304F0A1F3324BF001F76B6 /* CLImagePickerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EED1F3324BF001F76B6 /* CLImagePickerListCell.swift */; };
+		95304F0B1F3324BF001F76B6 /* CLImagePickerListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304EEE1F3324BF001F76B6 /* CLImagePickerListCell.xib */; };
+		95304F0C1F3324C0001F76B6 /* CLVideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEF1F3324BF001F76B6 /* CLVideoPlayView.swift */; };
+		95304F0D1F3324C0001F76B6 /* CustomNavgationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF01F3324BF001F76B6 /* CustomNavgationView.swift */; };
+		95304F0E1F3324C0001F76B6 /* ImagePickerChooseImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF11F3324BF001F76B6 /* ImagePickerChooseImageCell.swift */; };
+		95304F0F1F3324C0001F76B6 /* ImagePickerChooseImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */; };
+		95304F101F3324C0001F76B6 /* CLImagePickersTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF31F3324BF001F76B6 /* CLImagePickersTools.swift */; };
+		95304F111F3324C0001F76B6 /* CLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF41F3324BF001F76B6 /* CLConfig.swift */; };
+		95304F121F3324C0001F76B6 /* CLPickerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLPickerTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +51,35 @@
 		95304E821F32F036001F76B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95304E851F32F036001F76B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95304E871F32F036001F76B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95304ED31F3324BF001F76B6 /* MessageStyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStyleView.swift; sourceTree = "<group>"; };
+		95304ED41F3324BF001F76B6 /* MessageStyleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageStyleView.xib; sourceTree = "<group>"; };
+		95304ED51F3324BF001F76B6 /* NomalStyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NomalStyleView.swift; sourceTree = "<group>"; };
+		95304ED61F3324BF001F76B6 /* NomalStyleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NomalStyleView.xib; sourceTree = "<group>"; };
+		95304ED71F3324BF001F76B6 /* HDAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDAlertViewController.swift; sourceTree = "<group>"; };
+		95304ED81F3324BF001F76B6 /* HDAlertWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDAlertWindowView.swift; sourceTree = "<group>"; };
+		95304ED91F3324BF001F76B6 /* PopViewUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopViewUtil.swift; sourceTree = "<group>"; };
+		95304EDD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickerPhotoModel.swift; sourceTree = "<group>"; };
+		95304EDF1F3324BF001F76B6 /* btn_back2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back2@2x.png"; sourceTree = "<group>"; };
+		95304EE01F3324BF001F76B6 /* btn_back2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back2@3x.png"; sourceTree = "<group>"; };
+		95304EE11F3324BF001F76B6 /* cl_imagepickervedio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cl_imagepickervedio.png; sourceTree = "<group>"; };
+		95304EE21F3324BF001F76B6 /* clvedioplaybtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clvedioplaybtn.png; sourceTree = "<group>"; };
+		95304EE31F3324BF001F76B6 /* takePicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takePicture.png; sourceTree = "<group>"; };
+		95304EE51F3324BF001F76B6 /* CLBaseImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLBaseImagePickerViewController.swift; sourceTree = "<group>"; };
+		95304EE61F3324BF001F76B6 /* CLImagePickerSingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickerSingleViewController.swift; sourceTree = "<group>"; };
+		95304EE71F3324BF001F76B6 /* CLImagePickerSingleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLImagePickerSingleViewController.xib; sourceTree = "<group>"; };
+		95304EE81F3324BF001F76B6 /* CLImagePickersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickersViewController.swift; sourceTree = "<group>"; };
+		95304EEA1F3324BF001F76B6 /* CLCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLCircleView.swift; sourceTree = "<group>"; };
+		95304EEB1F3324BF001F76B6 /* CLImageAmplifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImageAmplifyView.swift; sourceTree = "<group>"; };
+		95304EEC1F3324BF001F76B6 /* CLImagePickerCamaroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickerCamaroCell.swift; sourceTree = "<group>"; };
+		95304EED1F3324BF001F76B6 /* CLImagePickerListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickerListCell.swift; sourceTree = "<group>"; };
+		95304EEE1F3324BF001F76B6 /* CLImagePickerListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLImagePickerListCell.xib; sourceTree = "<group>"; };
+		95304EEF1F3324BF001F76B6 /* CLVideoPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLVideoPlayView.swift; sourceTree = "<group>"; };
+		95304EF01F3324BF001F76B6 /* CustomNavgationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavgationView.swift; sourceTree = "<group>"; };
+		95304EF11F3324BF001F76B6 /* ImagePickerChooseImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerChooseImageCell.swift; sourceTree = "<group>"; };
+		95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePickerChooseImageCell.xib; sourceTree = "<group>"; };
+		95304EF31F3324BF001F76B6 /* CLImagePickersTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickersTools.swift; sourceTree = "<group>"; };
+		95304EF41F3324BF001F76B6 /* CLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLConfig.swift; sourceTree = "<group>"; };
+		95304EF51F3324BF001F76B6 /* CLPickerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPickerTool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +112,15 @@
 		95304E7A1F32F036001F76B6 /* CLImagePickerTool */ = {
 			isa = PBXGroup;
 			children = (
+				95304E8E1F32F131001F76B6 /* CLImagePickerTool */,
+				95304E8D1F32F0A8001F76B6 /* other */,
+			);
+			path = CLImagePickerTool;
+			sourceTree = "<group>";
+		};
+		95304E8D1F32F0A8001F76B6 /* other */ = {
+			isa = PBXGroup;
+			children = (
 				95304E7B1F32F036001F76B6 /* AppDelegate.swift */,
 				95304E7D1F32F036001F76B6 /* ViewController.swift */,
 				95304E7F1F32F036001F76B6 /* Main.storyboard */,
@@ -61,7 +128,107 @@
 				95304E841F32F036001F76B6 /* LaunchScreen.storyboard */,
 				95304E871F32F036001F76B6 /* Info.plist */,
 			);
+			name = other;
+			sourceTree = "<group>";
+		};
+		95304E8E1F32F131001F76B6 /* CLImagePickerTool */ = {
+			isa = PBXGroup;
+			children = (
+				95304ED11F3324BF001F76B6 /* pop */,
+				95304EDC1F3324BF001F76B6 /* model */,
+				95304EDE1F3324BF001F76B6 /* images */,
+				95304EE41F3324BF001F76B6 /* controller */,
+				95304EE91F3324BF001F76B6 /* views */,
+				95304EF31F3324BF001F76B6 /* CLImagePickersTools.swift */,
+				95304EF41F3324BF001F76B6 /* CLConfig.swift */,
+				95304EF51F3324BF001F76B6 /* CLPickerTool.swift */,
+			);
 			path = CLImagePickerTool;
+			sourceTree = "<group>";
+		};
+		95304ED11F3324BF001F76B6 /* pop */ = {
+			isa = PBXGroup;
+			children = (
+				95304ED21F3324BF001F76B6 /* AlertViews */,
+				95304ED71F3324BF001F76B6 /* HDAlertViewController.swift */,
+				95304ED81F3324BF001F76B6 /* HDAlertWindowView.swift */,
+				95304ED91F3324BF001F76B6 /* PopViewUtil.swift */,
+				95304EDA1F3324BF001F76B6 /* Resources */,
+				95304EDB1F3324BF001F76B6 /* ToastViews */,
+			);
+			path = pop;
+			sourceTree = "<group>";
+		};
+		95304ED21F3324BF001F76B6 /* AlertViews */ = {
+			isa = PBXGroup;
+			children = (
+				95304ED31F3324BF001F76B6 /* MessageStyleView.swift */,
+				95304ED41F3324BF001F76B6 /* MessageStyleView.xib */,
+				95304ED51F3324BF001F76B6 /* NomalStyleView.swift */,
+				95304ED61F3324BF001F76B6 /* NomalStyleView.xib */,
+			);
+			path = AlertViews;
+			sourceTree = "<group>";
+		};
+		95304EDA1F3324BF001F76B6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		95304EDB1F3324BF001F76B6 /* ToastViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ToastViews;
+			sourceTree = "<group>";
+		};
+		95304EDC1F3324BF001F76B6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				95304EDD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		95304EDE1F3324BF001F76B6 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				95304EDF1F3324BF001F76B6 /* btn_back2@2x.png */,
+				95304EE01F3324BF001F76B6 /* btn_back2@3x.png */,
+				95304EE11F3324BF001F76B6 /* cl_imagepickervedio.png */,
+				95304EE21F3324BF001F76B6 /* clvedioplaybtn.png */,
+				95304EE31F3324BF001F76B6 /* takePicture.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		95304EE41F3324BF001F76B6 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				95304EE51F3324BF001F76B6 /* CLBaseImagePickerViewController.swift */,
+				95304EE61F3324BF001F76B6 /* CLImagePickerSingleViewController.swift */,
+				95304EE71F3324BF001F76B6 /* CLImagePickerSingleViewController.xib */,
+				95304EE81F3324BF001F76B6 /* CLImagePickersViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		95304EE91F3324BF001F76B6 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				95304EEA1F3324BF001F76B6 /* CLCircleView.swift */,
+				95304EEB1F3324BF001F76B6 /* CLImageAmplifyView.swift */,
+				95304EEC1F3324BF001F76B6 /* CLImagePickerCamaroCell.swift */,
+				95304EED1F3324BF001F76B6 /* CLImagePickerListCell.swift */,
+				95304EEE1F3324BF001F76B6 /* CLImagePickerListCell.xib */,
+				95304EEF1F3324BF001F76B6 /* CLVideoPlayView.swift */,
+				95304EF01F3324BF001F76B6 /* CustomNavgationView.swift */,
+				95304EF11F3324BF001F76B6 /* ImagePickerChooseImageCell.swift */,
+				95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,9 +290,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95304F001F3324BF001F76B6 /* cl_imagepickervedio.png in Resources */,
+				95304F021F3324BF001F76B6 /* takePicture.png in Resources */,
+				95304F0B1F3324BF001F76B6 /* CLImagePickerListCell.xib in Resources */,
 				95304E861F32F036001F76B6 /* LaunchScreen.storyboard in Resources */,
+				95304EFE1F3324BF001F76B6 /* btn_back2@2x.png in Resources */,
 				95304E831F32F036001F76B6 /* Assets.xcassets in Resources */,
+				95304EF91F3324BF001F76B6 /* NomalStyleView.xib in Resources */,
+				95304F011F3324BF001F76B6 /* clvedioplaybtn.png in Resources */,
+				95304EF71F3324BF001F76B6 /* MessageStyleView.xib in Resources */,
+				95304F051F3324BF001F76B6 /* CLImagePickerSingleViewController.xib in Resources */,
+				95304EFF1F3324BF001F76B6 /* btn_back2@3x.png in Resources */,
 				95304E811F32F036001F76B6 /* Main.storyboard in Resources */,
+				95304F0F1F3324C0001F76B6 /* ImagePickerChooseImageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +314,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */,
+				95304EF61F3324BF001F76B6 /* MessageStyleView.swift in Sources */,
+				95304F121F3324C0001F76B6 /* CLPickerTool.swift in Sources */,
+				95304EF81F3324BF001F76B6 /* NomalStyleView.swift in Sources */,
+				95304F0D1F3324C0001F76B6 /* CustomNavgationView.swift in Sources */,
+				95304F0A1F3324BF001F76B6 /* CLImagePickerListCell.swift in Sources */,
+				95304F041F3324BF001F76B6 /* CLImagePickerSingleViewController.swift in Sources */,
+				95304F111F3324C0001F76B6 /* CLConfig.swift in Sources */,
+				95304EFD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift in Sources */,
+				95304EFB1F3324BF001F76B6 /* HDAlertWindowView.swift in Sources */,
+				95304F0E1F3324C0001F76B6 /* ImagePickerChooseImageCell.swift in Sources */,
+				95304F0C1F3324C0001F76B6 /* CLVideoPlayView.swift in Sources */,
+				95304F101F3324C0001F76B6 /* CLImagePickersTools.swift in Sources */,
+				95304F081F3324BF001F76B6 /* CLImageAmplifyView.swift in Sources */,
+				95304F031F3324BF001F76B6 /* CLBaseImagePickerViewController.swift in Sources */,
+				95304F061F3324BF001F76B6 /* CLImagePickersViewController.swift in Sources */,
+				95304EFC1F3324BF001F76B6 /* PopViewUtil.swift in Sources */,
+				95304F071F3324BF001F76B6 /* CLCircleView.swift in Sources */,
 				95304E7C1F32F036001F76B6 /* AppDelegate.swift in Sources */,
+				95304EFA1F3324BF001F76B6 /* HDAlertViewController.swift in Sources */,
+				95304F091F3324BF001F76B6 /* CLImagePickerCamaroCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CLImagePickerTool/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hd.CLImagePickerTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -273,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CLImagePickerTool/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hd.CLImagePickerTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,6 +497,7 @@
 				95304E8C1F32F036001F76B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
