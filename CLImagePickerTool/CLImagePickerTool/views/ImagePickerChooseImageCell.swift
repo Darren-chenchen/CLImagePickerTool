@@ -45,7 +45,8 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             self.chooseImageBtn.isSelected = self.model?.isSelect ?? false
             self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
             if self.chooseImageBtn.isSelected {
-                self.chooseImageBtn.setBackgroundImage(UIImage(named:"photo_sel_photoPickerVc"), for: .normal)
+
+                self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
             } else {
                 self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
             }
@@ -125,7 +126,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
                     imagePickerChooseImage!()
                 }
                 
-                self.chooseImageBtn.setBackgroundImage(UIImage(named:"photo_sel_photoPickerVc"), for: .normal)
+                self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
             } else {
                 CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
                 if imagePickerChooseImage != nil {

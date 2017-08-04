@@ -16,7 +16,8 @@ class CLImagePickerCamaroCell: UICollectionViewCell {
     
     lazy var iconView: UIImageView = {
         let img = UIImageView.init(frame:  CGRect(x: 0, y: 0, width: cellH, height: cellH))
-        img.image = UIImage(named:"takePicture")
+        
+        img.image = UIImage(named: "takePicture", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)
         img.isUserInteractionEnabled = true
         return img
     }()

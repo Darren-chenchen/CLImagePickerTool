@@ -22,7 +22,8 @@ class CLVideoPlayView: UIView {
     
     lazy var playBtn: UIButton = {
         let btn = UIButton.init(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        btn.setBackgroundImage(UIImage(named:"clvedioplaybtn"), for: .normal)
+        
+        btn.setBackgroundImage(UIImage(named: "clvedioplaybtn", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
         btn.center = self.center
         return btn
     }()

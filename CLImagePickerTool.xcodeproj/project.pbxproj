@@ -43,7 +43,7 @@
 		95304F121F3324C0001F76B6 /* CLImagePickersTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */; };
 		95304F321F334187001F76B6 /* CLImagePickerTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 95304F311F334187001F76B6 /* CLImagePickerTool.podspec */; };
 		95304F341F334867001F76B6 /* BundleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F331F334867001F76B6 /* BundleUtil.swift */; };
-		95304F3E1F34025B001F76B6 /* photo_sel_photoPickerVc.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304F3D1F34025B001F76B6 /* photo_sel_photoPickerVc.png */; };
+		95304F401F3419A5001F76B6 /* photo_sel_photoPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,7 +85,7 @@
 		95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickersTool.swift; sourceTree = "<group>"; };
 		95304F311F334187001F76B6 /* CLImagePickerTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CLImagePickerTool.podspec; sourceTree = "<group>"; };
 		95304F331F334867001F76B6 /* BundleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleUtil.swift; sourceTree = "<group>"; };
-		95304F3D1F34025B001F76B6 /* photo_sel_photoPickerVc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_sel_photoPickerVc.png; sourceTree = "<group>"; };
+		95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_sel_photoPicker.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +203,7 @@
 		95304EDE1F3324BF001F76B6 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				95304F3D1F34025B001F76B6 /* photo_sel_photoPickerVc.png */,
+				95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */,
 				95304EDF1F3324BF001F76B6 /* btn_back2@2x.png */,
 				95304EE01F3324BF001F76B6 /* btn_back2@3x.png */,
 				95304EE11F3324BF001F76B6 /* cl_imagepickervedio.png */,
@@ -310,9 +310,9 @@
 				95304F011F3324BF001F76B6 /* clvedioplaybtn.png in Resources */,
 				95304EF71F3324BF001F76B6 /* MessageStyleView.xib in Resources */,
 				95304F051F3324BF001F76B6 /* CLImagePickerSingleViewController.xib in Resources */,
-				95304F3E1F34025B001F76B6 /* photo_sel_photoPickerVc.png in Resources */,
 				95304EFF1F3324BF001F76B6 /* btn_back2@3x.png in Resources */,
 				95304E811F32F036001F76B6 /* Main.storyboard in Resources */,
+				95304F401F3419A5001F76B6 /* photo_sel_photoPicker.png in Resources */,
 				95304F0F1F3324C0001F76B6 /* ImagePickerChooseImageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
