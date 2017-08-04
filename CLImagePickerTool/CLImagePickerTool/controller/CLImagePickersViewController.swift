@@ -116,6 +116,10 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
     
     deinit {
         print("CLImageAlbumPickerController释放")
+        
+        // 在选择完毕将是否允许选择视频设置成默认值
+        UserDefaults.standard.set(false, forKey: CLIsHiddenVideo)
+        UserDefaults.standard.synchronize()
     }
 }
 

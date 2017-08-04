@@ -27,29 +27,34 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     
     var model: CLImagePickerPhotoModel? {
         didSet{
+            
+            // 图片
             if model?.phAsset != nil {
                 CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: (model?.phAsset)!) { (image, info) in
                     self.iconView.image = image
                 }
             }
-            
+    
+            // 视频时长
             self.timerLable.text = model?.videoLength
             
+            // 视频底部阴影
             if model?.phAsset?.mediaType == .video {
                 self.bottomView.isHidden = false
             } else {
                 self.bottomView.isHidden = true
             }
             
+            // 是否选中
             self.chooseBtn.isSelected = self.model?.isSelect ?? false
             self.chooseImageBtn.isSelected = self.model?.isSelect ?? false
             self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
             if self.chooseImageBtn.isSelected {
-
                 self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
             } else {
                 self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
             }
+            
         }
     }
     

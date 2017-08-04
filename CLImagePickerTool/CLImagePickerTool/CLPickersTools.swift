@@ -62,10 +62,22 @@ class CLPickersTools {
                 
                 var array = [CLImagePickerPhotoModel]()
                 assetsFetchResults.enumerateObjects({ (asset, i, nil) in
-                    //获取每一个资源(PHAsset)
-                    let model = CLImagePickerPhotoModel()
-                    model.phAsset = asset
-                    array.append(model)
+                    
+                    // 是否允许选择视频
+                    if UserDefaults.standard.bool(forKey: CLIsHiddenVideo) {
+                        if asset.mediaType != .video {
+                            //获取每一个资源(PHAsset)
+                            let model = CLImagePickerPhotoModel()
+                            model.phAsset = asset
+                            array.append(model)
+                        }
+                    } else {
+                        //获取每一个资源(PHAsset)
+                        let model = CLImagePickerPhotoModel()
+                        model.phAsset = asset
+                        array.append(model)
+                    }
+                    
                 })
                 
                 if assetCollection.localizedTitle == nil || array.count == 0 {
@@ -76,7 +88,12 @@ class CLPickersTools {
                 if assetCollection.localizedTitle == "Favorites" {
                     titleStr = "收藏"
                 } else if assetCollection.localizedTitle == "Videos" {
-                    titleStr = "视频"
+                    // 是否允许选择视频
+                    if UserDefaults.standard.bool(forKey: CLIsHiddenVideo) {
+                        continue
+                    } else {
+                        titleStr = "视频"
+                    }
                 } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" {
                     titleStr = "所有照片"
                 } else if assetCollection.localizedTitle == "Recently Added" {
@@ -119,10 +136,20 @@ class CLPickersTools {
                 
                 var array = [CLImagePickerPhotoModel]()
                 assetsFetchResults.enumerateObjects({ (asset, i, nil) in
-                    //获取每一个资源(PHAsset)
-                    let model = CLImagePickerPhotoModel()
-                    model.phAsset = asset
-                    array.append(model)
+                    // 是否允许选择视频
+                    if UserDefaults.standard.bool(forKey: CLIsHiddenVideo) {
+                        if asset.mediaType != .video {
+                            //获取每一个资源(PHAsset)
+                            let model = CLImagePickerPhotoModel()
+                            model.phAsset = asset
+                            array.append(model)
+                        }
+                    } else {
+                        //获取每一个资源(PHAsset)
+                        let model = CLImagePickerPhotoModel()
+                        model.phAsset = asset
+                        array.append(model)
+                    }
                 })
                 
                 if assetCollection.localizedTitle == nil || array.count == 0 {

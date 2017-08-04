@@ -27,6 +27,9 @@ let CLChooseImageAssetLocalIdentifierKey = "CLChooseImageAssetLocalIdentifierKey
 // 更新列表的通知
 let CLPhotoListRefreshNotic = "CLPhotoListRefreshNotic"
 
+// 是够允许选择视频的key
+let CLIsHiddenVideo = "CLIsHiddenVideo"
+
 // MARK:- 设置圆角
 func CLViewsBorder(_ view:UIView, borderWidth:CGFloat, borderColor:UIColor?=nil,cornerRadius:CGFloat){
     view.layer.borderWidth = borderWidth;

@@ -21,6 +21,9 @@ class ViewController: UIViewController {
 
     // 相机在内部
     @IBAction func clickBtn1(_ sender: Any) {
+        // 是否允许选择视频,默认允许
+        CLImagePickersTool.share.isHiddenVideo = true
+
         CLImagePickersTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: false, superVC: self) { (asset) in
             print("返回的asset数组是\(asset)")
             
@@ -45,6 +48,7 @@ class ViewController: UIViewController {
     }
     // 相机在外部
     @IBAction func clickBtn2(_ sender: Any) {
+        
         CLImagePickersTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: true, superVC: self) { (asset) in
             print("返回的asset数组是\(asset)")
             
@@ -66,6 +70,8 @@ class ViewController: UIViewController {
             self.label1.text = "压缩后\(String(describing: imageData))"
             self.label2.text = "压缩前\(String(describing: imageData2))"
         }
+        
+
     }
 }
 

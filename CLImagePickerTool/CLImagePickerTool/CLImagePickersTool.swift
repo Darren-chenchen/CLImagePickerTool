@@ -21,6 +21,14 @@ public class CLImagePickersTool: NSObject {
     var superVC: UIViewController?
     
     var clPickerToolClouse: CLPickerToolClouse?
+    
+    // 是否允许选择视频
+    public var isHiddenVideo: Bool? {
+        didSet{
+            UserDefaults.standard.set(self.isHiddenVideo, forKey: CLIsHiddenVideo)
+            UserDefaults.standard.synchronize()
+        }
+    }
 
     // 判断相机是放在外面还是内部
     public func setupImagePickerWith(MaxImagesCount: Int,cameraOut:Bool,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>)->()) {
@@ -129,6 +137,7 @@ public class CLImagePickersTool: NSObject {
             dealImageSuccess(originImage,info)
         }
     }
+    
 
 }
 
@@ -165,6 +174,7 @@ extension CLImagePickersTool:UIImagePickerControllerDelegate,UINavigationControl
         }
 
     }
+    
     
 }
 

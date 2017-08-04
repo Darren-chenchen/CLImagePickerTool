@@ -52,8 +52,11 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
             self.singleChooseImageCompleteClouse!(CLPickersTools.instence.getChoosePictureArray())
         }
         
+        // 记得pop，不然控制器释放不掉
         self.dismiss(animated: true) {
+            self.navigationController?.popViewController(animated: true)
         }
+
     }
     func initView() {
         self.backBtn.isHidden = false
@@ -90,7 +93,11 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     }
     
     override func rightBtnClick() {
-        self.dismiss(animated: true, completion: nil)
+        
+        // 记得pop，不然控制器释放不掉
+        self.dismiss(animated: true) { 
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     deinit {
