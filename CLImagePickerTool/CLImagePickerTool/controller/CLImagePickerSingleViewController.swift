@@ -61,7 +61,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.rightBtn.setTitle("取消", for: .normal)
         
         if CLPickersTools.instence.getSavePictureCount() > 0 {
-            let title = "(\(CLPickersTools.instence.getSavePictureCount()))确定"
+            let title = "确定(\(CLPickersTools.instence.getSavePictureCount()))"
             self.sureBtn.setTitle(title, for: .normal)
         }
         
@@ -130,7 +130,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             if chooseCount == 0 {
                 self?.sureBtn.setTitle("确定", for: .normal)
             } else {
-                self?.sureBtn.setTitle("(\(chooseCount))确定", for: .normal)
+                self?.sureBtn.setTitle("确定(\(chooseCount))", for: .normal)
             }
         }
         return cell

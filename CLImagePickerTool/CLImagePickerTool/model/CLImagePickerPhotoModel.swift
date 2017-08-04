@@ -26,9 +26,6 @@ class CLImagePickerPhotoModel: NSObject {
     var isSelect: Bool? = false
     var videoLength: String?
     var progressValue: CGFloat = 0
-    // 照片上数字
-    var pictureNum: Int = 0
-    
         
     func getNewTimeFromDurationSecond(duration:Double) -> String{
         

@@ -45,12 +45,9 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             self.chooseImageBtn.isSelected = self.model?.isSelect ?? false
             self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
             if self.chooseImageBtn.isSelected {
-                self.chooseImageBtn.backgroundColor = mainColor
-                let num = String(format: "%d", arguments: [(self.model?.pictureNum)!])
-                self.chooseImageBtn.setTitle(num, for: .normal)
+                self.chooseImageBtn.setBackgroundImage(UIImage(named:"photo_sel_photoPickerVc"), for: .normal)
             } else {
-                self.chooseImageBtn.backgroundColor = self.btnBackColor
-                self.chooseImageBtn.setTitle("", for: .normal)
+                self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
             }
         }
     }
@@ -128,18 +125,14 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
                     imagePickerChooseImage!()
                 }
                 
-                self.chooseImageBtn.backgroundColor = mainColor
-                self.chooseImageBtn.setTitle("\(CLPickersTools.instence.getSavePictureCount())", for: .normal)
-                self.model?.pictureNum = CLPickersTools.instence.getSavePictureCount()
+                self.chooseImageBtn.setBackgroundImage(UIImage(named:"photo_sel_photoPickerVc"), for: .normal)
             } else {
                 CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
                 if imagePickerChooseImage != nil {
                     imagePickerChooseImage!()
                 }
                 
-                self.chooseImageBtn.backgroundColor = self.btnBackColor
-                self.chooseImageBtn.setTitle("", for: .normal)
-                self.model?.pictureNum = 0
+                self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
             }
             
             // 动画

@@ -10,6 +10,11 @@
 pod 'CLImagePickerTool'
 
 
+建议使用下面的方式及时下载最新版
+pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePickerTool.git'
+
+
+
 
 # 简介
 
