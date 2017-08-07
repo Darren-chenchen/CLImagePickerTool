@@ -170,11 +170,7 @@ extension CLCropViewController: UIScrollViewDelegate {
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.centerContent()
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
-    }
-    
+        
     func centerContent() {
         
         guard var imageViewFrame =  self.imageView?.frame else {
