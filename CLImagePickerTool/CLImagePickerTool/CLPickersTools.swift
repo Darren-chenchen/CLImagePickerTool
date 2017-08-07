@@ -9,10 +9,14 @@
 import UIKit
 import Photos
 import PhotosUI
+import AVFoundation
 
 class CLPickersTools {
     
     static let instence = CLPickersTools()
+    
+    // 是否隐藏视频文件
+    var isHiddenVideo: Bool = false
         
     fileprivate var dataArr = [[String:[CLImagePickerPhotoModel]]]()
     
@@ -64,7 +68,7 @@ class CLPickersTools {
                 assetsFetchResults.enumerateObjects({ (asset, i, nil) in
                     
                     // 是否允许选择视频
-                    if UserDefaults.standard.bool(forKey: CLIsHiddenVideo) {
+                    if self.isHiddenVideo {
                         if asset.mediaType != .video {
                             //获取每一个资源(PHAsset)
                             let model = CLImagePickerPhotoModel()
@@ -89,7 +93,7 @@ class CLPickersTools {
                     titleStr = "收藏"
                 } else if assetCollection.localizedTitle == "Videos" {
                     // 是否允许选择视频
-                    if UserDefaults.standard.bool(forKey: CLIsHiddenVideo) {
+                    if self.isHiddenVideo {
                         continue
                     } else {
                         titleStr = "视频"
@@ -137,7 +141,7 @@ class CLPickersTools {
                 var array = [CLImagePickerPhotoModel]()
                 assetsFetchResults.enumerateObjects({ (asset, i, nil) in
                     // 是否允许选择视频
-                    if UserDefaults.standard.bool(forKey: CLIsHiddenVideo) {
+                    if self.isHiddenVideo {
                         if asset.mediaType != .video {
                             //获取每一个资源(PHAsset)
                             let model = CLImagePickerPhotoModel()
@@ -232,12 +236,12 @@ class CLPickersTools {
         
         var isInLocalAblum: Bool?
         manager.requestImageData(for: asset, options: option, resultHandler: { (imageData, dataUTI, orientation, info) in
-            isInLocalAblum = imageData == nil ? true:false
+            isInLocalAblum = imageData == nil ? false:true
         })
         
         return isInLocalAblum!
     }
-    
+        
     // 存储用户选择的照片
     func savePicture(asset: PHAsset,isAdd: Bool){
         // 如果是添加
@@ -310,24 +314,22 @@ class CLPickersTools {
         //  添加渐变色到创建的 UIView 上去
         superView.layer.addSublayer(gradientLayer)
     }
-
     
     // 用户是否开启权限
-    func authorize()->Bool{
+    func authorize(authorizeClouse:@escaping (PHAuthorizationStatus)->()){
         let status = PHPhotoLibrary.authorizationStatus()
-        switch status {
-        case .authorized:
-            return true
-        case .notDetermined:
-            // 请求授权
-            PHPhotoLibrary.requestAuthorization({ (status) -> Void in
-                DispatchQueue.main.async(execute: { () -> Void in
-                    _ = self.authorize()
+        
+        if status == .authorized{
+            authorizeClouse(status)
+        } else if status == .notDetermined { // 未授权，请求授权
+            PHPhotoLibrary.requestAuthorization({ (state) in
+                DispatchQueue.main.async(execute: { 
+                    authorizeClouse(state)
                 })
             })
-        default: ()
-        DispatchQueue.main.async(execute: { () -> Void in
             
+            authorizeClouse(status)
+        } else {
             PopViewUtil.alert(title: "照片访问受限", message: "点击“设置”，允许访问您的照片", leftTitle: "取消", rightTitle: "设置", leftHandler: {
                 
             }, rightHandler: {
@@ -343,27 +345,25 @@ class CLPickersTools {
                     }
                 }
             })
-        })
+            
+            authorizeClouse(status)
         }
-        return false
     }
     
     // 用户是否开启相机权限
-    func authorizeCamaro()->Bool{
+    func authorizeCamaro(authorizeClouse:@escaping (AVAuthorizationStatus)->()){
         let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
-        switch status {
-        case .authorized:
-            return true
-        case .notDetermined:
-            // 请求授权
-            PHPhotoLibrary.requestAuthorization({ (status) -> Void in
-                DispatchQueue.main.async(execute: { () -> Void in
-                    _ = self.authorize()
-                })
+        
+        if status == .authorized{
+           authorizeClouse(status)
+        } else if status == .notDetermined {
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted) in
+              
+                if granted {  // 允许
+                    authorizeClouse(.authorized)
+                }
             })
-        default: ()
-        DispatchQueue.main.async(execute: { () -> Void in
-            
+        } else {
             PopViewUtil.alert(title: "相机访问受限", message: "点击“设置”，允许访问您的相机", leftTitle: "取消", rightTitle: "设置", leftHandler: {
                 
             }, rightHandler: {
@@ -379,9 +379,12 @@ class CLPickersTools {
                     }
                 }
             })
-        })
-        }
-        return false
-    }
 
+            authorizeClouse(status)
+        }
+    }
+    
+    deinit {
+        print("clpickertool释放")
+    }
 }

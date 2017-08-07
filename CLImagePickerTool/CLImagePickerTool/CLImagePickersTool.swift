@@ -10,33 +10,37 @@ import UIKit
 import Photos
 import PhotosUI
 
-typealias CLPickerToolClouse = (Array<PHAsset>)->()
+public enum CLImagePickersToolType {
+    case singlePicture
+    case singlePictureCrop
+}
 
-public class CLImagePickersTool: NSObject {
-    
-    public static let share = CLImagePickersTool()
-    
+typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
+
+public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+        
     var cameraPicker: UIImagePickerController!
     
-    var superVC: UIViewController?
+    var  superVC: UIViewController?
     
     var clPickerToolClouse: CLPickerToolClouse?
     
-    // 是否允许选择视频
-    public var isHiddenVideo: Bool? {
-        didSet{
-            UserDefaults.standard.set(self.isHiddenVideo, forKey: CLIsHiddenVideo)
-            UserDefaults.standard.synchronize()
-        }
-    }
-
+    // 是否隐藏视频文件，默认不隐藏
+    public var isHiddenVideo: Bool = false
+    // 设置单选图片，单选图片并裁剪属性，默认多选
+    public var singleImageChooseType: CLImagePickersToolType?
+    // 设置相机在外部，默认不在外部
+    public var cameraOut: Bool = false
+    // 单选模式下图片并且可裁剪。默认裁剪比例是1：1，也可以设置如下参数
+    public var singlePictureCropScale: CGFloat?
+    
     // 判断相机是放在外面还是内部
-    public func setupImagePickerWith(MaxImagesCount: Int,cameraOut:Bool,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>)->()) {
+    public func setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.superVC = superVC
         self.clPickerToolClouse = didChooseImageSuccess
         
-        if cameraOut {  // 拍照功能在外面
+        if self.cameraOut == true {  // 拍照功能在外面
             var alert: UIAlertController!
             alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
             let cleanAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel,handler:nil)
@@ -47,16 +51,16 @@ public class CLImagePickersTool: NSObject {
             let choseAction = UIAlertAction(title: "从手机相册选择", style: UIAlertActionStyle.default){ (action:UIAlertAction)in
                 
                 // 判断用户是否开启访问相册功能
-                if CLPickersTools.instence.authorize() == false {
-                    return
-                }
-                
-                let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,cameraOut:cameraOut) { (assetArr) in
-                    if self.clPickerToolClouse != nil {
-                        self.clPickerToolClouse!(assetArr)
+                CLPickersTools.instence.authorize(authorizeClouse: { (state) in
+                    if state == .authorized {
+                        let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale) { (assetArr,cutImage) in
+                            if self.clPickerToolClouse != nil {
+                                self.clPickerToolClouse!(assetArr,cutImage)
+                            }
+                        }
+                        superVC.present(photo, animated: true, completion: nil)
                     }
-                }
-                superVC.present(photo, animated: true, completion: nil)
+                })
             }
             
             alert.addAction(cleanAction)
@@ -66,24 +70,28 @@ public class CLImagePickersTool: NSObject {
 
         } else {
             // 判断用户是否开启访问相册功能
-            if CLPickersTools.instence.authorize() == false {
-                return
-            }
-            let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,cameraOut:cameraOut) { (assetArr) in
-                didChooseImageSuccess(assetArr)
-            }
-            superVC.present(photo, animated: true, completion: nil)
+            CLPickersTools.instence.authorize(authorizeClouse: { (state) in
+                if state == .authorized {
+                    let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale) { (assetArr,cutImage) in
+                        didChooseImageSuccess(assetArr,cutImage)
+                    }
+                    superVC.present(photo, animated: true, completion: nil)
+                }
+            })
+            
         }
     }
     
     func camera(superVC:UIViewController) {
-        if CLPickersTools.instence.authorizeCamaro() == false {
-            return
+        
+        CLPickersTools.instence.authorizeCamaro { (state) in
+            if state == .authorized {
+                self.cameraPicker = UIImagePickerController()
+                self.cameraPicker.delegate = self
+                self.cameraPicker.sourceType = .camera
+                superVC.present((self.cameraPicker)!, animated: true, completion: nil)
+            }
         }
-        self.cameraPicker = UIImagePickerController()
-        self.cameraPicker.delegate = self
-        self.cameraPicker.sourceType = .camera
-        superVC.present((self.cameraPicker)!, animated: true, completion: nil)
     }
     
     
@@ -93,7 +101,7 @@ public class CLImagePickersTool: NSObject {
         var imageArr = [UIImage]()
         for item in assetArr {
             if item.mediaType == .image {  // 如果是图片
-                CLImagePickersTool.share.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
+                CLImagePickersTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
                     if img != nil {
                         
                         // 对图片压缩
@@ -128,7 +136,7 @@ public class CLImagePickersTool: NSObject {
     }
     
     // 获取原图的方法  同步
-    func getAssetOrigin(asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> ()) -> Void {
+    static func getAssetOrigin(asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> ()) -> Void {
         //获取原图
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions() //可以设置图像的质量、版本、也会有参数控制图像的裁剪
@@ -137,14 +145,11 @@ public class CLImagePickersTool: NSObject {
             dealImageSuccess(originImage,info)
         }
     }
+   
     
-
-}
-
-extension CLImagePickersTool:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        self.superVC?.dismiss(animated: true) {}
+        picker.dismiss(animated: true) {}
         
         // 保存到相册
         let type = info[UIImagePickerControllerMediaType] as? String
@@ -154,7 +159,7 @@ extension CLImagePickersTool:UIImagePickerControllerDelegate,UINavigationControl
         }
     }
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.superVC?.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
     // 保存图片的结果
@@ -168,13 +173,11 @@ extension CLImagePickersTool:UIImagePickerControllerDelegate,UINavigationControl
             
             if self.clPickerToolClouse != nil {
                 if newModel?.phAsset != nil {
-                    self.clPickerToolClouse!([(newModel?.phAsset)!])
+                    self.clPickerToolClouse!([(newModel?.phAsset)!],image)
                 }
             }
         }
-
     }
-    
-    
+
 }
 

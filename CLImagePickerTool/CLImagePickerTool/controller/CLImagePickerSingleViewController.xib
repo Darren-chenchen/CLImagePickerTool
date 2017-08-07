@@ -9,8 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CLImagePickerSingleViewController" customModule="ImageDeal" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CLImagePickerSingleViewController" customModule="CLImagePickerTool" customModuleProvider="target">
             <connections>
+                <outlet property="bottomView" destination="1yk-T1-MHP" id="pIr-uC-pEB"/>
                 <outlet property="collectionView" destination="5op-LS-FlK" id="pDd-la-rNE"/>
                 <outlet property="flowout" destination="hYb-Uh-0QK" id="Njd-cP-7gC"/>
                 <outlet property="sureBtn" destination="FbQ-MS-Ji4" id="iNg-cR-wWA"/>

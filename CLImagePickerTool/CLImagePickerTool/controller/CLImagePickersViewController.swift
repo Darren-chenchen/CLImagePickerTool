@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import PhotosUI
 
-typealias CLChooseImageCompleteClouse = (Array<PHAsset>)->()
+typealias CLChooseImageCompleteClouse = (Array<PHAsset>,UIImage?)->()
 
 //MARK: - 导航控制器
 class CLImagePickersViewController: UINavigationController {
@@ -21,10 +21,10 @@ class CLImagePickersViewController: UINavigationController {
     
     let albumVC =  CLImageAlbumPickerController()
 
-    func initWith(MaxImagesCount: Int,cameraOut:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>)->()) -> CLImagePickersViewController {
+    func initWith(MaxImagesCount: Int,isHiddenVideo:Bool,cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
         
         // 存储用户设置的最多图片数量
-        UserDefaults.standard.set(MaxImagesCount, forKey: "CLImagePickerMaxImagesCount")
+        UserDefaults.standard.set(MaxImagesCount, forKey: CLImagePickerMaxImagesCount)
         UserDefaults.standard.synchronize()
         
         CLNotificationCenter.addObserver(self, selector: #selector(CLPhotoListRefreshNoticMethod(notic:)), name: NSNotification.Name(rawValue:CLPhotoListRefreshNotic), object: nil)
@@ -32,16 +32,20 @@ class CLImagePickersViewController: UINavigationController {
         // 清除保存的数据
         CLPickersTools.instence.clearPicture()
         
+        CLPickersTools.instence.isHiddenVideo = isHiddenVideo  // 是否隐藏视频文件赋值
         let dataArr = CLPickersTools.instence.loadData()
         
         albumVC.dataArr = dataArr
         albumVC.cameraOut = cameraOut
         albumVC.imageCompleteClouse = didChooseImageSuccess
+        albumVC.singleType = singleType
+        albumVC.singlePictureCropScale = singlePictureCropScale
+        
         let vc = CLImagePickersViewController.init(rootViewController: albumVC)
-        vc.setupOnce(array: dataArr,cameraOut:cameraOut,didChooseImageSuccess:didChooseImageSuccess)
+        vc.setupOnce(array: dataArr,cameraOut:cameraOut,singleType:singleType,singlePictureCropScale:singlePictureCropScale,didChooseImageSuccess:didChooseImageSuccess)
         return vc
     }
-    func setupOnce(array:[[String:[CLImagePickerPhotoModel]]],cameraOut:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>)->()) {
+    func setupOnce(array:[[String:[CLImagePickerPhotoModel]]],cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.imageCompleteClouse = didChooseImageSuccess
 
@@ -54,8 +58,10 @@ class CLImagePickersViewController: UINavigationController {
                 singleVC.isAllPhoto = true
             }
         }
-        singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>) in
-            self.imageCompleteClouse!(assetArr)
+        singleVC.singlePictureCropScale = singlePictureCropScale
+        singleVC.singleType = singleType
+        singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
+            self.imageCompleteClouse!(assetArr,image)
         }
         self.pushViewController(singleVC, animated: true)        
     }
@@ -73,6 +79,17 @@ class CLImagePickersViewController: UINavigationController {
 
 //MARK: - 相册列表控制器
 class CLImageAlbumPickerController: CLBaseImagePickerViewController {
+    
+    var imageCompleteClouse: CLChooseImageCompleteClouse?
+    
+    // 相机是否放在内部
+    var cameraOut: Bool = false
+    
+    // 单选状态的类型
+    var singleType: CLImagePickersToolType?
+    // 图片裁剪比例
+    var singlePictureCropScale: CGFloat?
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView.init(frame: CGRect(x:0,y:64,width:KScreenWidth,height:KScreenHeight-64), style: .plain)
         tableView.tableFooterView = UIView()
@@ -89,10 +106,6 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         }
     }
     
-    var imageCompleteClouse: CLChooseImageCompleteClouse?
-    
-    var cameraOut: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,9 +113,15 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         self.initView()
         
         // 判断用户是否开启访问相册功能
-        if CLPickersTools.instence.authorize() == true {
-            self.tableView.reloadData()
-        }
+        CLPickersTools.instence.authorize(authorizeClouse: { (state) in
+            if state == .authorized {
+                self.tableView.reloadData()
+
+            } else {
+                return
+            }
+        })
+
     }
     
     override func rightBtnClick() {
@@ -115,11 +134,7 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
     }
     
     deinit {
-        print("CLImageAlbumPickerController释放")
-        
-        // 在选择完毕将是否允许选择视频设置成默认值
-        UserDefaults.standard.set(false, forKey: CLIsHiddenVideo)
-        UserDefaults.standard.synchronize()
+        print("CLImageAlbumPickerController释放")        
     }
 }
 
@@ -153,8 +168,10 @@ extension CLImageAlbumPickerController:UITableViewDelegate,UITableViewDataSource
                 singleVC.isAllPhoto = true
             }
         }
-        singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>) in
-            self.imageCompleteClouse!(assetArr)
+        singleVC.singleType = singleType
+        singleVC.singlePictureCropScale = singlePictureCropScale
+        singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
+            self.imageCompleteClouse!(assetArr,image)
         }
         self.navigationController?.pushViewController(singleVC, animated: true)
     }

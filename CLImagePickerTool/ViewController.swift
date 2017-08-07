@@ -21,10 +21,10 @@ class ViewController: UIViewController {
 
     // 相机在内部
     @IBAction func clickBtn1(_ sender: Any) {
-        // 是否允许选择视频,默认允许
-        CLImagePickersTool.share.isHiddenVideo = true
-
-        CLImagePickersTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: false, superVC: self) { (asset) in
+        
+        let imagePickTool = CLImagePickersTool()
+        
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
             
             let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
@@ -49,7 +49,11 @@ class ViewController: UIViewController {
     // 相机在外部
     @IBAction func clickBtn2(_ sender: Any) {
         
-        CLImagePickersTool.share.setupImagePickerWith(MaxImagesCount: 6, cameraOut: true, superVC: self) { (asset) in
+        let imagePickTool = CLImagePickersTool()
+        
+        imagePickTool.cameraOut = true
+
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
             
             let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
@@ -72,6 +76,37 @@ class ViewController: UIViewController {
         }
         
 
+    }
+    @IBAction func clickSingleBtn(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+
+        imagePickTool.singleImageChooseType = .singlePicture
+        imagePickTool.isHiddenVideo = true
+        
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
+            
+        }
+    }
+    @IBAction func clickSinglebtn2(_ sender: Any) {
+        
+        let imagePickTool = CLImagePickersTool()
+        
+        imagePickTool.singleImageChooseType = .singlePictureCrop
+
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
+            
+        }
+
+    }
+    @IBAction func clickJumpBtn(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        
+        imagePickTool.singleImageChooseType = .singlePictureCrop
+        imagePickTool.singlePictureCropScale = 2  // 宽/高
+        
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
+            
+        }
     }
 }
 

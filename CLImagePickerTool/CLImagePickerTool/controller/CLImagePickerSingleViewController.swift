@@ -10,7 +10,7 @@ import UIKit
 import PhotosUI
 import Photos
 
-typealias  CLImagePickerSingleChooseImageCompleteClouse = (Array<PHAsset>)->()
+typealias  CLImagePickerSingleChooseImageCompleteClouse = (Array<PHAsset>,UIImage?)->()
 
 class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
 
@@ -25,6 +25,13 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     // 标记是不是所有照片。如果是所有照片再添加拍照图片
     var isAllPhoto: Bool = false
     
+    // 单选状态的类型
+    var singleType: CLImagePickersToolType?
+    
+    // 图片裁剪比例
+    var singlePictureCropScale: CGFloat?
+    
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var flowout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -40,16 +47,25 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.initView()
         
         // 判断用户是否开启访问相册功能
-        if CLPickersTools.instence.authorize() == false {
-            return
-        }
+        CLPickersTools.instence.authorize(authorizeClouse: { (state) in
+            if state == .authorized {
+                
+            } else {
+                return
+            }
+        })
+
     }
-        
+    
     // 点击确定
     @IBAction func clickSureBtn(_ sender: Any) {
 
+        self.choosePictureComplete(assetArr: CLPickersTools.instence.getChoosePictureArray(), img: nil)
+    }
+    
+    func choosePictureComplete(assetArr:Array<PHAsset>,img:UIImage?) {
         if self.singleChooseImageCompleteClouse != nil {
-            self.singleChooseImageCompleteClouse!(CLPickersTools.instence.getChoosePictureArray())
+            self.singleChooseImageCompleteClouse!(assetArr,img)
         }
         
         // 记得pop，不然控制器释放不掉
@@ -58,6 +74,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         }
 
     }
+    
     func initView() {
         self.backBtn.isHidden = false
         
@@ -76,6 +93,8 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         
         self.collectionView.register(UINib.init(nibName: "ImagePickerChooseImageCell", bundle: BundleUtil.getCurrentBundle()), forCellWithReuseIdentifier: imageCellID)
         self.collectionView.register(CLImagePickerCamaroCell.self, forCellWithReuseIdentifier: "CLImagePickerCamaroCell")
+        self.collectionView.register(UINib.init(nibName: "CLSingleTypeCell", bundle: BundleUtil.getCurrentBundle()), forCellWithReuseIdentifier: "CLSingleTypeCell")
+
         
         self.collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 44, right: 0)
         self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 64, left: 0, bottom: 44, right: 0)
@@ -86,6 +105,13 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         }
         let lastItemIndex = IndexPath.init(item: item, section: 0)
         self.collectionView?.scrollToItem(at: lastItemIndex, at: .top, animated: false)
+        
+        // 单选隐藏下面的确定
+        if self.singleType == nil {  // 说明不是单选
+            self.bottomView.isHidden = false
+        } else {
+            self.bottomView.isHidden = true
+        }
     }
     
     override func backBtnclick() {
@@ -118,29 +144,55 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CLImagePickerCamaroCell", for: indexPath) as! CLImagePickerCamaroCell
             cell.clickCamaroCell = {[weak self]() in
                 
-                if CLPickersTools.instence.authorizeCamaro() == false {
-                    return
+                CLPickersTools.instence.authorizeCamaro { (state) in
+                    if state == .authorized {
+                        self?.cameraPicker = UIImagePickerController()
+                        self?.cameraPicker.delegate = self
+                        self?.cameraPicker.sourceType = .camera
+                        self?.present((self?.cameraPicker)!, animated: true, completion: nil)
+                    }
                 }
-                self?.cameraPicker = UIImagePickerController()
-                self?.cameraPicker.delegate = self
-                self?.cameraPicker.sourceType = .camera
-                self?.present((self?.cameraPicker)!, animated: true, completion: nil)
+                
             }
             return cell
         }
         
-        let model = self.photoArr?[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellID, for: indexPath) as! ImagePickerChooseImageCell
-        cell.model = model
-        cell.imagePickerChooseImage = {[weak self] () in
-            let chooseCount = CLPickersTools.instence.getSavePictureCount()
-            if chooseCount == 0 {
-                self?.sureBtn.setTitle("确定", for: .normal)
-            } else {
-                self?.sureBtn.setTitle("确定(\(chooseCount))", for: .normal)
+        
+        if self.singleType == nil {  // 说明不是单选
+            let model = self.photoArr?[indexPath.row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellID, for: indexPath) as! ImagePickerChooseImageCell
+            cell.model = model
+            cell.imagePickerChooseImage = {[weak self] () in
+                let chooseCount = CLPickersTools.instence.getSavePictureCount()
+                if chooseCount == 0 {
+                    self?.sureBtn.setTitle("确定", for: .normal)
+                } else {
+                    self?.sureBtn.setTitle("确定(\(chooseCount))", for: .normal)
+                }
             }
+            return cell
+        } else {  // 是单选
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CLSingleTypeCell", for: indexPath) as! CLSingleTypeCell
+            cell.model = self.photoArr?[indexPath.row]
+            cell.singleChoosePicture = { [weak self] (assetArr,img) in
+                
+                if self?.singleType == .singlePictureCrop {  // 单选裁剪
+                    let cutVC = CLCropViewController()
+                    if self?.singlePictureCropScale != nil {
+                        cutVC.scale = (self?.singlePictureCropScale)!
+                    }
+                    cutVC.originalImage = img
+                    cutVC.clCropClouse = {(cutImg) in
+                        self?.choosePictureComplete(assetArr: assetArr, img: cutImg)
+                    }
+                    cutVC.asset = assetArr.first
+                    self?.navigationController?.pushViewController(cutVC, animated: true)
+                } else {
+                    self?.choosePictureComplete(assetArr: assetArr, img: img)
+                }
+            }
+            return cell
         }
-        return cell
     }
 }
 

@@ -75,21 +75,16 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     }
     
     func clickIconView(ges:UITapGestureRecognizer) {
-        if CLPickersTools.instence.testImageInLocal(asset: (self.model?.phAsset)!) == true {
-            PopViewUtil.alert(message: "请前往系统相册下载iCloud照片后重试", leftTitle: "确定", rightTitle: "", leftHandler: {
-                
-            }, rightHandler: {
-                
-            })
-        } else {
-            // 相册
-            if self.model?.phAsset?.mediaType == .image {
-                CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!)
-            }
-            // 视频
-            if self.model?.phAsset?.mediaType == .video {
-                CLVideoPlayView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!)
-            }
+        if self.model?.phAsset == nil {
+            return
+        }
+        // 相册
+        if self.model?.phAsset?.mediaType == .image {
+            _ = CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:false)
+        }
+        // 视频
+        if self.model?.phAsset?.mediaType == .video {
+            _ = CLVideoPlayView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!, isSingleChoose: false)
         }
     }
     
@@ -99,71 +94,46 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             return
         }
         
-        if CLPickersTools.instence.testImageInLocal(asset: (self.model?.phAsset)!) == true {
-            PopViewUtil.alert(message: "请前往系统相册下载iCloud照片后重试", leftTitle: "知道了", rightTitle: "", leftHandler: {
-                
-            }, rightHandler: { 
-                
-            })
-        } else {
-            
-            if self.chooseImageBtn.isSelected == false {
-                // 判断是否超过限制
-                let maxCount = UserDefaults.standard.integer(forKey: "CLImagePickerMaxImagesCount")
-                if CLPickersTools.instence.getSavePictureCount() >= maxCount {
-                    PopViewUtil.alert(message: "您最多只能选择\(maxCount)张照片", leftTitle: "", rightTitle: "知道了", leftHandler: {
-                        
-                    }, rightHandler: {
-                        
-                    })
-                    return
-                }
+        if self.chooseImageBtn.isSelected == false {
+            // 判断是否超过限制
+            let maxCount = UserDefaults.standard.integer(forKey: CLImagePickerMaxImagesCount)
+            if CLPickersTools.instence.getSavePictureCount() >= maxCount {
+                PopViewUtil.alert(message: "您最多只能选择\(maxCount)张照片", leftTitle: "", rightTitle: "知道了", leftHandler: {
+                    
+                }, rightHandler: {
+                    
+                })
+                return
             }
-            
-            self.chooseBtn.isSelected = !self.chooseBtn.isSelected
-            self.chooseImageBtn.isSelected = self.chooseBtn.isSelected
-            self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
-            self.model?.isSelect = self.chooseImageBtn.isSelected
-            
-            if self.chooseImageBtn.isSelected {
-                CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: true)
-                if imagePickerChooseImage != nil {
-                    imagePickerChooseImage!()
-                }
-                
-                self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
-            } else {
-                CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
-                if imagePickerChooseImage != nil {
-                    imagePickerChooseImage!()
-                }
-                
-                self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
-            }
-            
-            // 动画
-            let shakeAnimation = CABasicAnimation.init(keyPath: "transform.scale")
-            shakeAnimation.duration = 0.1
-            shakeAnimation.fromValue = 0.8
-            shakeAnimation.toValue = 1
-            shakeAnimation.autoreverses = true
-            self.chooseImageBtn?.layer.add(shakeAnimation, forKey: nil)
         }
-    }
-    
         
-//    option.progressHandler = {
-//    (progress, error, stop, info) in
-//    
-    // 当cell滚动时会影响到进度 ，二期开发吧
-//    DispatchQueue.main.async(execute: {
-    //                print(progress, info ?? "0000")
-    //                self.chooseImageBtn.value = CGFloat(progress*100)
-    //                self.model?.progressValue = self.chooseImageBtn.value
-    //                if progress == 1 {
-    //                    self.chooseImageBtn.isSelected = true
-    //                    self.model?.progressValue = 0
-    //                }
-//    })
-//    }
+        self.chooseBtn.isSelected = !self.chooseBtn.isSelected
+        self.chooseImageBtn.isSelected = self.chooseBtn.isSelected
+        self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
+        self.model?.isSelect = self.chooseImageBtn.isSelected
+        
+        if self.chooseImageBtn.isSelected {
+            CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: true)
+            if imagePickerChooseImage != nil {
+                imagePickerChooseImage!()
+            }
+            
+            self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+        } else {
+            CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
+            if imagePickerChooseImage != nil {
+                imagePickerChooseImage!()
+            }
+            
+            self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
+        }
+        
+        // 动画
+        let shakeAnimation = CABasicAnimation.init(keyPath: "transform.scale")
+        shakeAnimation.duration = 0.1
+        shakeAnimation.fromValue = 0.8
+        shakeAnimation.toValue = 1
+        shakeAnimation.autoreverses = true
+        self.chooseImageBtn?.layer.add(shakeAnimation, forKey: nil)
+    }
 }

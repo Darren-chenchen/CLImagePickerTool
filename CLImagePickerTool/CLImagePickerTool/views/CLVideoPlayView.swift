@@ -10,6 +10,10 @@ import UIKit
 import Photos
 import PassKit
 
+
+typealias singleVideoClickSureBtnClouse = ()->()
+
+
 class CLVideoPlayView: UIView {
 
     var lastImageView = UIImageView()
@@ -20,6 +24,22 @@ class CLVideoPlayView: UIView {
     var playerItem: AVPlayerItem?
     var player: AVPlayer?
     
+    
+    var singleVideoClickSureBtn: singleVideoClickSureBtnClouse?
+    
+    lazy var bottomView: UIView = {
+        let bottom = UIView.init(frame: CGRect(x: 0, y: KScreenHeight-44, width: KScreenWidth, height: 44))
+        bottom.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        let btn = UIButton.init(frame: CGRect(x: KScreenWidth-80, y: 0, width: 80, height: 44))
+        btn.setTitle("确定", for: .normal)
+        btn.setTitleColor(mainColor, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        bottom.addSubview(btn)
+        btn.addTarget(self, action: #selector(clickSureBtn), for: .touchUpInside)
+        return bottom
+    }()
+
+    
     lazy var playBtn: UIButton = {
         let btn = UIButton.init(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         
@@ -28,16 +48,18 @@ class CLVideoPlayView: UIView {
         return btn
     }()
     
-    public static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset) {
+    public static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset,isSingleChoose:Bool) -> CLVideoPlayView{
         
         let amplifyView = CLVideoPlayView.init(frame: (UIApplication.shared.keyWindow?.bounds)!)
         
-        amplifyView.setupUIWithUITapGestureRecognizer(tap: tap, superView: superView,originImageAsset:originImageAsset)
+        amplifyView.setupUIWithUITapGestureRecognizer(tap: tap, superView: superView,originImageAsset:originImageAsset,isSingleChoose:isSingleChoose)
         
         UIApplication.shared.keyWindow?.addSubview(amplifyView)
+        
+        return amplifyView
     }
     
-    private func setupUIWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset: PHAsset) {
+    private func setupUIWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset: PHAsset,isSingleChoose:Bool) {
         
         self.asset = originImageAsset
         
@@ -55,7 +77,9 @@ class CLVideoPlayView: UIView {
         self.addSubview(imageView)
         
         CLPickersTools.instence.getAssetOrigin(asset: originImageAsset) { (img, info) in
-            imageView.image = img!
+            if img != nil {
+                imageView.image = img!
+            }
         }
         
         self.lastImageView = imageView;
@@ -172,6 +196,20 @@ class CLVideoPlayView: UIView {
             self.removeFromSuperview()
             self.playBtn.removeFromSuperview()
         }
+    }
+    
+    func setupBottomView() {
+        self.addSubview(self.bottomView)
+    }
+    
+    func clickSureBtn() {
+        
+        self.removeFromSuperview()
+        
+        if self.singleVideoClickSureBtn != nil {
+            self.singleVideoClickSureBtn!()
+        }
+        
     }
 
 }

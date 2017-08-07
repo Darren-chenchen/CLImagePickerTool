@@ -26,7 +26,8 @@ var cellH = (KScreenWidth-15)/4.0
 let CLChooseImageAssetLocalIdentifierKey = "CLChooseImageAssetLocalIdentifierKey"
 // 更新列表的通知
 let CLPhotoListRefreshNotic = "CLPhotoListRefreshNotic"
-
+// 选择的最大图片数量
+let CLImagePickerMaxImagesCount = "CLImagePickerMaxImagesCount"
 // 是够允许选择视频的key
 let CLIsHiddenVideo = "CLIsHiddenVideo"
 

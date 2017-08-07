@@ -44,6 +44,11 @@
 		95304F321F334187001F76B6 /* CLImagePickerTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 95304F311F334187001F76B6 /* CLImagePickerTool.podspec */; };
 		95304F341F334867001F76B6 /* BundleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F331F334867001F76B6 /* BundleUtil.swift */; };
 		95304F401F3419A5001F76B6 /* photo_sel_photoPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */; };
+		95304F8B1F346E07001F76B6 /* CLSingleTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */; };
+		95304F8C1F346E07001F76B6 /* CLSingleTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304F8A1F346E07001F76B6 /* CLSingleTypeCell.xib */; };
+		95304F8F1F34C3E1001F76B6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F8D1F34C3E1001F76B6 /* TestViewController.swift */; };
+		95304F901F34C3E1001F76B6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304F8E1F34C3E1001F76B6 /* TestViewController.xib */; };
+		9583FDE21F384CF400C1A320 /* CLCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583FDE11F384CF400C1A320 /* CLCropViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +91,11 @@
 		95304F311F334187001F76B6 /* CLImagePickerTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CLImagePickerTool.podspec; sourceTree = "<group>"; };
 		95304F331F334867001F76B6 /* BundleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleUtil.swift; sourceTree = "<group>"; };
 		95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_sel_photoPicker.png; sourceTree = "<group>"; };
+		95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLSingleTypeCell.swift; sourceTree = "<group>"; };
+		95304F8A1F346E07001F76B6 /* CLSingleTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLSingleTypeCell.xib; sourceTree = "<group>"; };
+		95304F8D1F34C3E1001F76B6 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		95304F8E1F34C3E1001F76B6 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		9583FDE11F384CF400C1A320 /* CLCropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLCropViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +144,8 @@
 				95304E821F32F036001F76B6 /* Assets.xcassets */,
 				95304E841F32F036001F76B6 /* LaunchScreen.storyboard */,
 				95304E871F32F036001F76B6 /* Info.plist */,
+				95304F8D1F34C3E1001F76B6 /* TestViewController.swift */,
+				95304F8E1F34C3E1001F76B6 /* TestViewController.xib */,
 			);
 			name = other;
 			sourceTree = "<group>";
@@ -220,6 +232,7 @@
 				95304EE81F3324BF001F76B6 /* CLImagePickersViewController.swift */,
 				95304EE61F3324BF001F76B6 /* CLImagePickerSingleViewController.swift */,
 				95304EE71F3324BF001F76B6 /* CLImagePickerSingleViewController.xib */,
+				9583FDE11F384CF400C1A320 /* CLCropViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -229,13 +242,15 @@
 			children = (
 				95304EEA1F3324BF001F76B6 /* CLCircleView.swift */,
 				95304EEB1F3324BF001F76B6 /* CLImageAmplifyView.swift */,
+				95304EEF1F3324BF001F76B6 /* CLVideoPlayView.swift */,
 				95304EEC1F3324BF001F76B6 /* CLImagePickerCamaroCell.swift */,
 				95304EED1F3324BF001F76B6 /* CLImagePickerListCell.swift */,
 				95304EEE1F3324BF001F76B6 /* CLImagePickerListCell.xib */,
-				95304EEF1F3324BF001F76B6 /* CLVideoPlayView.swift */,
 				95304EF01F3324BF001F76B6 /* CustomNavgationView.swift */,
 				95304EF11F3324BF001F76B6 /* ImagePickerChooseImageCell.swift */,
 				95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */,
+				95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */,
+				95304F8A1F346E07001F76B6 /* CLSingleTypeCell.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -308,7 +323,9 @@
 				95304EFE1F3324BF001F76B6 /* btn_back2@2x.png in Resources */,
 				95304E831F32F036001F76B6 /* Assets.xcassets in Resources */,
 				95304EF91F3324BF001F76B6 /* NomalStyleView.xib in Resources */,
+				95304F8C1F346E07001F76B6 /* CLSingleTypeCell.xib in Resources */,
 				95304F011F3324BF001F76B6 /* clvedioplaybtn.png in Resources */,
+				95304F901F34C3E1001F76B6 /* TestViewController.xib in Resources */,
 				95304EF71F3324BF001F76B6 /* MessageStyleView.xib in Resources */,
 				95304F051F3324BF001F76B6 /* CLImagePickerSingleViewController.xib in Resources */,
 				95304EFF1F3324BF001F76B6 /* btn_back2@3x.png in Resources */,
@@ -333,8 +350,11 @@
 				95304F0A1F3324BF001F76B6 /* CLImagePickerListCell.swift in Sources */,
 				95304F041F3324BF001F76B6 /* CLImagePickerSingleViewController.swift in Sources */,
 				95304F111F3324C0001F76B6 /* CLConfig.swift in Sources */,
+				9583FDE21F384CF400C1A320 /* CLCropViewController.swift in Sources */,
 				95304EFD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift in Sources */,
 				95304EFB1F3324BF001F76B6 /* HDAlertWindowView.swift in Sources */,
+				95304F8F1F34C3E1001F76B6 /* TestViewController.swift in Sources */,
+				95304F8B1F346E07001F76B6 /* CLSingleTypeCell.swift in Sources */,
 				95304F0E1F3324C0001F76B6 /* ImagePickerChooseImageCell.swift in Sources */,
 				95304F0C1F3324C0001F76B6 /* CLVideoPlayView.swift in Sources */,
 				95304F101F3324C0001F76B6 /* CLPickersTools.swift in Sources */,

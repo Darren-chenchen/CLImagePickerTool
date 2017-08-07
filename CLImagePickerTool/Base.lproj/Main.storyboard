@@ -42,8 +42,32 @@
                                     <action selector="clickBtn1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4XQ-OB-gM2"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-gv-tVh">
+                                <rect key="frame" x="119" y="198" width="184" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="kRy-ff-lQC"/>
+                                </constraints>
+                                <state key="normal" title="图片单选并且屏蔽视频文件"/>
+                                <connections>
+                                    <action selector="clickSingleBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ED3-rA-Zeb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwF-fc-z12">
+                                <rect key="frame" x="128" y="249" width="123" height="30"/>
+                                <state key="normal" title="图片单选并且裁剪"/>
+                                <connections>
+                                    <action selector="clickSinglebtn2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7SW-2H-7Pn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-hl-bUs">
+                                <rect key="frame" x="96" y="303" width="215" height="30"/>
+                                <state key="normal" title="图片单选并且裁剪并指定宽高比"/>
+                                <connections>
+                                    <action selector="clickJumpBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vyu-ar-bBb"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kxa-7S-xM7">
-                                <rect key="frame" x="16" y="328" width="114" height="110"/>
+                                <rect key="frame" x="26" y="557" width="114" height="110"/>
                                 <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="3tk-0i-42m"/>
@@ -51,13 +75,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图片压缩0.2倍后的图片大小是：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHy-Bw-xuM">
-                                <rect key="frame" x="140" y="373" width="225" height="21"/>
+                                <rect key="frame" x="150" y="602" width="225" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="STJ-th-vi4">
-                                <rect key="frame" x="16" y="193" width="114" height="110"/>
+                                <rect key="frame" x="26" y="422" width="114" height="110"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="P7i-TH-4K8"/>
@@ -65,7 +89,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图片压缩0.2倍后的图片大小是：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jy0-9a-d2B">
-                                <rect key="frame" x="140" y="238" width="225" height="21"/>
+                                <rect key="frame" x="150" y="467" width="225" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -73,21 +97,28 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kxa-7S-xM7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1rz-fy-K5f"/>
-                            <constraint firstAttribute="trailing" secondItem="oHy-Bw-xuM" secondAttribute="trailing" constant="10" id="CNt-hz-ran"/>
+                            <constraint firstItem="kxa-7S-xM7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="1rz-fy-K5f"/>
+                            <constraint firstItem="YAv-hl-bUs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="80" id="2b4-Bg-aLQ"/>
+                            <constraint firstAttribute="trailing" secondItem="oHy-Bw-xuM" secondAttribute="trailing" id="CNt-hz-ran"/>
                             <constraint firstItem="jzK-xs-xQJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ch3-Up-Qs7"/>
                             <constraint firstItem="9nJ-Jx-1WI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="F5p-j0-Awe"/>
-                            <constraint firstItem="STJ-th-vi4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Fiu-jS-jZx"/>
-                            <constraint firstItem="STJ-th-vi4" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="32" id="Jyd-8V-EAp"/>
-                            <constraint firstAttribute="trailing" secondItem="Jy0-9a-d2B" secondAttribute="trailing" constant="10" id="T6E-An-zVT"/>
+                            <constraint firstItem="STJ-th-vi4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="26" id="Fiu-jS-jZx"/>
+                            <constraint firstItem="lwF-fc-z12" firstAttribute="top" secondItem="qZE-gv-tVh" secondAttribute="bottom" constant="21" id="GH7-hU-z7k"/>
+                            <constraint firstItem="STJ-th-vi4" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="261" id="Jyd-8V-EAp"/>
+                            <constraint firstAttribute="trailing" secondItem="Jy0-9a-d2B" secondAttribute="trailing" id="T6E-An-zVT"/>
                             <constraint firstItem="9nJ-Jx-1WI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="VsD-Ea-u53"/>
                             <constraint firstItem="oHy-Bw-xuM" firstAttribute="leading" secondItem="kxa-7S-xM7" secondAttribute="trailing" constant="10" id="WJE-MB-kxL"/>
                             <constraint firstItem="kxa-7S-xM7" firstAttribute="top" secondItem="STJ-th-vi4" secondAttribute="bottom" constant="25" id="afa-rs-4qn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lwF-fc-z12" secondAttribute="trailing" constant="108" id="bRv-Zj-XfH"/>
+                            <constraint firstItem="qZE-gv-tVh" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="37" id="db4-Os-9u6"/>
                             <constraint firstItem="oHy-Bw-xuM" firstAttribute="top" secondItem="Jy0-9a-d2B" secondAttribute="bottom" constant="114" id="iAa-PP-Yzw"/>
                             <constraint firstItem="jzK-xs-xQJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="jO6-u8-HLo"/>
+                            <constraint firstItem="YAv-hl-bUs" firstAttribute="top" secondItem="lwF-fc-z12" secondAttribute="bottom" constant="24" id="m53-fJ-fBg"/>
+                            <constraint firstItem="lwF-fc-z12" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="112" id="nfN-6a-oPa"/>
                             <constraint firstItem="9nJ-Jx-1WI" firstAttribute="top" secondItem="jzK-xs-xQJ" secondAttribute="bottom" constant="41" id="pd4-tu-Wt8"/>
                             <constraint firstItem="jzK-xs-xQJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tte-sM-UMT"/>
-                            <constraint firstItem="Jy0-9a-d2B" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="77" id="v5S-sN-bjY"/>
+                            <constraint firstItem="Jy0-9a-d2B" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="306" id="v5S-sN-bjY"/>
+                            <constraint firstItem="qZE-gv-tVh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="103" id="xDr-We-H0d"/>
                             <constraint firstItem="Jy0-9a-d2B" firstAttribute="leading" secondItem="STJ-th-vi4" secondAttribute="trailing" constant="10" id="yB4-xJ-cvV"/>
                         </constraints>
                     </view>
@@ -100,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20" y="148.87556221889056"/>
+            <point key="canvasLocation" x="-348" y="107"/>
         </scene>
     </scenes>
 </document>

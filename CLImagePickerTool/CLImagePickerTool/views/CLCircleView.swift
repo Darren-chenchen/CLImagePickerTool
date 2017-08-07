@@ -14,7 +14,7 @@ class CLCircleView: UIButton {
     var value: CGFloat = 0 {
         didSet {
             if value >= 100 {
-               self.value = 0
+               self.value = 100
             }
             self.setNeedsDisplay()
         }
@@ -36,6 +36,7 @@ class CLCircleView: UIButton {
     func setupUI() {
         self.backgroundColor = UIColor.clear
         self.isOpaque = false
+       
     }
     
     override func draw(_ rect: CGRect) {
@@ -43,9 +44,9 @@ class CLCircleView: UIButton {
         super.draw(rect)
         
         //线宽度
-        let lineWidth: CGFloat = 2
+        let lineWidth: CGFloat = 10
         //半径
-        let radius:CGFloat = (25-2*lineWidth)*0.5
+        let radius:CGFloat = rect.width/2-lineWidth
         //中心点x
         let centerX = rect.midX
         //中心点y
@@ -59,7 +60,8 @@ class CLCircleView: UIButton {
         let context = UIGraphicsGetCurrentContext()
         
         //画笔颜色
-        context!.setStrokeColor(mainColor.cgColor)
+        context!.setStrokeColor(UIColor.white.cgColor)
+        context?.setFillColor(UIColor.white.cgColor)
         //画笔宽度
         context!.setLineWidth(lineWidth)
         
@@ -69,13 +71,5 @@ class CLCircleView: UIButton {
         //绘制路径
         context!.strokePath()
         
-        //画笔颜色
-//        context!.setStrokeColor(UIColor.darkGray.cgColor)
-        
-        //（1）画布 （2）中心点x（3）中心点y（4）圆弧起点（5）圆弧结束点（6） 0顺时针 1逆时针
-//        context?.addArc(center: CGPoint(x:centerX,y:centerY), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-        
-        //绘制路径
-//        context!.strokePath()
     }
 }
