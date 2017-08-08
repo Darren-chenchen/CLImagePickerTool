@@ -15,9 +15,9 @@ typealias singlePictureClickSureBtnClouse = ()->()
 
 class CLImageAmplifyView: UIView {
     
-    var lastImageView = UIImageView()
+    var lastImageView: UIImageView?
     var originalFrame:CGRect!
-    var scrollView = UIScrollView()
+    var scrollView: UIScrollView?
     var circleBtn: CLCircleView?
     
     let manager = PHImageManager.default()
@@ -50,29 +50,32 @@ class CLImageAmplifyView: UIView {
     
     private func setupUIWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset: PHAsset,isSingleChoose:Bool) {
         //scrollView作为背景
-        let bgView = UIScrollView()
-        bgView.frame = (UIApplication.shared.keyWindow?.bounds)!
-        bgView.backgroundColor = UIColor.black
+        self.scrollView = UIScrollView()
+        self.scrollView?.frame = (UIApplication.shared.keyWindow?.bounds)!
+        self.scrollView?.backgroundColor = UIColor.black
         
-        bgView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.clickBgView(tapBgView:))))
+        self.scrollView?.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.clickBgView(tapBgView:))))
         
         // 点击的图片
         let picView = tap.view
         
-        let imageView = UIImageView()
-        imageView.image = (tap.view as! UIImageView).image
-        imageView.frame = bgView.convert((picView?.frame)!, from: superView)
-        bgView.addSubview(imageView)
+        self.lastImageView = UIImageView()
+        self.lastImageView?.image = (tap.view as! UIImageView).image
+        self.lastImageView?.frame = (self.scrollView?.convert((picView?.frame)!, from: superView))!
+        self.scrollView?.addSubview((self.lastImageView)!)
         
-        self.addSubview(bgView)
+        self.addSubview(self.scrollView!)
         
         CLPickersTools.instence.getAssetOrigin(asset: originImageAsset) { (img, info) in
             if img != nil {
-                imageView.image = img!
+                // 等界面加载出来再复制，放置卡顿效果
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    self.lastImageView?.image = img!
+                }
             } else {  // 说明本地没有需要到iCloud下载
                 
-                self.circleBtn = CLCircleView.init(frame: CGRect(x: imageView.cl_width-40, y: imageView.cl_height-40, width: 30, height: 30))
-                imageView.addSubview(self.circleBtn!)
+                self.circleBtn = CLCircleView.init(frame: CGRect(x: (self.lastImageView?.cl_width)!-40, y: (self.lastImageView?.cl_height)!-40, width: 30, height: 30))
+                self.lastImageView?.addSubview(self.circleBtn!)
                 
                 let option = PHImageRequestOptions()
                 option.isNetworkAccessAllowed = true
@@ -80,7 +83,7 @@ class CLImageAmplifyView: UIView {
                 option.progressHandler = {
                 (progress, error, stop, info) in
                     DispatchQueue.main.async(execute: {
-                        print(progress, info ?? "0000")
+                        print(progress, info ?? "0000",error ?? "error")
                         if progress*100 < 10 {
                             self.circleBtn?.value = 10
                         } else {
@@ -92,7 +95,7 @@ class CLImageAmplifyView: UIView {
                 
                 self.imageRequestID = self.manager.requestImageData(for: originImageAsset, options: option, resultHandler: { (imageData, string, imageOrientation, info) in
                     if imageData != nil {
-                        imageView.image = UIImage.init(data: imageData!)
+                        self.lastImageView?.image = UIImage.init(data: imageData!)
                         self.circleBtn?.removeFromSuperview()
                         self.circleBtn = nil
                     }
@@ -100,30 +103,26 @@ class CLImageAmplifyView: UIView {
             }
         }
         
-        self.lastImageView = imageView;
-        
-        self.originalFrame = imageView.frame;
-        
-        self.scrollView = bgView;
+        self.originalFrame = self.lastImageView?.frame
         
         //最大放大比例
-        self.scrollView.maximumZoomScale = 1.5;
-        self.scrollView.delegate = self;
+        self.scrollView?.maximumZoomScale = 1.5;
+        self.scrollView?.delegate = self;
         
         
         UIView.animate(withDuration: 0.5) {
-            var frame = imageView.frame
-            frame.size.width = bgView.frame.size.width
-            let bili = ((imageView.image?.size.height)! / (imageView.image?.size.width)!)
-            frame.size.height = frame.size.width * bili
-            frame.origin.x = 0
-            frame.origin.y = (bgView.frame.size.height - frame.size.height) * 0.5
-            imageView.frame = frame
+            var frame = self.lastImageView?.frame
+            frame?.size.width = (self.scrollView?.frame.size.width)!
+            let bili = ((self.lastImageView?.image?.size.height)! / (self.lastImageView?.image?.size.width)!)
+            frame?.size.height = (frame?.size.width)! * bili
+            frame?.origin.x = 0
+            frame?.origin.y = ((self.scrollView?.frame.size.height)! - (frame?.size.height)!) * 0.5
+            self.lastImageView?.frame = frame!
             
-            if frame.size.height > UIScreen.main.bounds.height {
-                frame.origin.y = 0
-                imageView.frame = frame
-                self.scrollView.contentSize = CGSize(width: 0, height: frame.size.height)
+            if (frame?.size.height)! > UIScreen.main.bounds.height {
+                frame?.origin.y = 0
+                self.lastImageView?.frame = frame!
+                self.scrollView?.contentSize = CGSize(width: 0, height: (frame?.size.height)!)
             }
         }
         
@@ -133,11 +132,11 @@ class CLImageAmplifyView: UIView {
     }
     
      func clickBgView(tapBgView:UITapGestureRecognizer){
-        self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        self.scrollView?.contentOffset = CGPoint(x: 0, y: 0)
         
         UIView.animate(withDuration: 0.5, animations: {
-            self.lastImageView.frame = self.originalFrame
-            self.lastImageView.alpha = 0
+            self.lastImageView?.frame = self.originalFrame
+            self.lastImageView?.alpha = 0
             tapBgView.view?.backgroundColor = UIColor.clear
             self.circleBtn?.removeFromSuperview()
             self.circleBtn = nil
@@ -149,6 +148,10 @@ class CLImageAmplifyView: UIView {
         }) { (true:Bool) in
             tapBgView.view?.removeFromSuperview()
             self.imageRequestID = nil
+            self.lastImageView?.removeFromSuperview()
+            self.lastImageView = nil
+            self.scrollView?.removeFromSuperview()
+            self.scrollView = nil
             self.removeFromSuperview()
         }
     }
@@ -159,14 +162,19 @@ class CLImageAmplifyView: UIView {
     
     func clickSureBtn() {
         
+        if self.singlePictureClickSureBtn != nil {
+            self.singlePictureClickSureBtn!()
+        }
+        
+        self.lastImageView?.removeFromSuperview()
+        self.lastImageView = nil
+        self.scrollView?.removeFromSuperview()
+        self.scrollView = nil
         self.removeFromSuperview()
         
         if self.imageRequestID != nil {
             self.manager.cancelImageRequest(self.imageRequestID!)
-        }
-        
-        if self.singlePictureClickSureBtn != nil {
-            self.singlePictureClickSureBtn!()
+            self.imageRequestID = nil
         }
     }
 }

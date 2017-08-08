@@ -39,22 +39,32 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 假如用户在收藏相册详情中选中了一张照片，那么就应该把全部照片中的数据源刷新一下，这样才能显示选中状态
+        // 将所有模型至为未选中
+        if self.photoArr != nil {
+            for model in self.photoArr! {
+                model.isSelect = false
+            }
+        }
+        let chooseAssetArr = CLPickersTools.instence.getChoosePictureArray()
+        for item in chooseAssetArr {
+            guard let photoArrVaile = self.photoArr else {
+                continue
+            }
+            for model in photoArrVaile {
+                if model.phAsset?.localIdentifier == item.localIdentifier {
+                    model.isSelect = true
+                    continue
+                }
+            }
+        }
+        
         if self.isAllPhoto {
             // 数组中新增一个数据代表相机图片
             self.photoArr?.append(CLImagePickerPhotoModel())
         }
         
         self.initView()
-        
-        // 判断用户是否开启访问相册功能
-        CLPickersTools.instence.authorize(authorizeClouse: { (state) in
-            if state == .authorized {
-                
-            } else {
-                return
-            }
-        })
-
     }
     
     // 点击确定
@@ -177,6 +187,10 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             cell.singleChoosePicture = { [weak self] (assetArr,img) in
                 
                 if self?.singleType == .singlePictureCrop {  // 单选裁剪
+                    if assetArr.first?.mediaType == .video {
+                        self?.choosePictureComplete(assetArr: assetArr, img: img)
+                        return
+                    }
                     let cutVC = CLCropViewController()
                     if self?.singlePictureCropScale != nil {
                         cutVC.scale = (self?.singlePictureCropScale)!

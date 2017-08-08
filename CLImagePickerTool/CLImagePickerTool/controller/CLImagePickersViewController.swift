@@ -116,7 +116,6 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         CLPickersTools.instence.authorize(authorizeClouse: { (state) in
             if state == .authorized {
                 self.tableView.reloadData()
-
             } else {
                 return
             }

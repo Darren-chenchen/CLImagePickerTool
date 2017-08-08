@@ -62,7 +62,7 @@ class CLSingleTypeCell: UICollectionViewCell {
             let amplifyView =  CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:true)
             amplifyView.singlePictureClickSureBtn = {[weak self] () in
                 if self?.singleChoosePicture != nil {
-                    self?.singleChoosePicture!([(self?.model?.phAsset)!],amplifyView.lastImageView.image ?? UIImage())
+                    self?.singleChoosePicture!([(self?.model?.phAsset)!],amplifyView.lastImageView?.image ?? UIImage())
                 }
             }
         }

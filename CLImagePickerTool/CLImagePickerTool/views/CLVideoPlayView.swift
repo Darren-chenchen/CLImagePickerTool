@@ -99,6 +99,8 @@ class CLVideoPlayView: UIView {
             self.addSubview(self.playBtn)
             self.playBtn.addTarget(self, action: #selector(self.clickPlayBtn), for: .touchUpInside)
         }
+        
+        self.setupBottomView()
     }
     
     func clickPlayBtn() {
