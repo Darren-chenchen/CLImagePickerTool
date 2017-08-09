@@ -127,7 +127,11 @@ class CLCropViewController: CLBaseImagePickerViewController {
     func loadData() {
         CLPickersTools.instence.getAssetOrigin(asset: self.asset!) { (img, info) in
             if img != nil {
-                self.imageView?.image = img!
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.5, execute: {
+                    if img != nil {
+                        self.imageView?.image = img!
+                    }
+                })
             } else {  // 说明本地没有需要到iCloud下载
                 
                 self.circleBtn = CLCircleView.init(frame: CGRect(x: KScreenWidth-40, y: KScreenHeight-100, width: 30, height: 30))

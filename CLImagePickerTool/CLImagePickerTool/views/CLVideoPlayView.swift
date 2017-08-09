@@ -24,7 +24,6 @@ class CLVideoPlayView: UIView {
     var playerItem: AVPlayerItem?
     var player: AVPlayer?
     
-    
     var singleVideoClickSureBtn: singleVideoClickSureBtnClouse?
     
     lazy var bottomView: UIView = {

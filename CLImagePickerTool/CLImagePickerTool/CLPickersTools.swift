@@ -285,11 +285,17 @@ class CLPickersTools {
             return [PHAsset]()
         } else {
             var arr = [PHAsset]()
-            let assetArrResult = PHAsset.fetchAssets(withLocalIdentifiers: dataArr as! Array<String>, options: nil)
-            assetArrResult.enumerateObjects({ (asset, i, nil) in
+            
+            var ArrResult = [PHFetchResult<PHAsset>]()
+            // 需要一个一个获取PHFetchResult，如果使用数组获取的话，返回的顺序就不是存放标识数组的数据
+            for localIdentStr in dataArr as! Array<String> {
+                let assetArrResult = PHAsset.fetchAssets(withLocalIdentifiers: [localIdentStr], options: nil)
+                ArrResult.append(assetArrResult)
+            }
+            for i in 0..<ArrResult.count {
                 //获取每一个资源(PHAsset)
-                arr.append(asset)
-            })
+                arr.append(ArrResult[i].firstObject!)
+            }
             return arr
         }
     }

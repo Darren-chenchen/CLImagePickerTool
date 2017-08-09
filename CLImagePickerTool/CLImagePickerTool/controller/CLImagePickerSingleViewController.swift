@@ -35,6 +35,8 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     @IBOutlet weak var flowout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var resetBtn: UIButton!
+    @IBOutlet weak var lookBtn: UIButton!
     @IBOutlet weak var sureBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,10 +68,38 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         
         self.initView()
     }
-    
+    // 重置
+    @IBAction func clickResetBtn(_ sender: Any) {
+        if self.photoArr != nil {
+            for model in self.photoArr! {
+                model.isSelect = false
+            }
+        }
+        
+        CLPickersTools.instence.clearPicture()
+        
+        self.lookBtn.isEnabled = false
+        self.resetBtn.isEnabled = false
+        self.sureBtn.isEnabled = false
+        self.sureBtn.setTitle("确定", for: .normal)
+
+        self.collectionView.reloadData()
+    }
+    // 预览
+    @IBAction func clickLookBtn(_ sender: Any) {
+        let previewVC = CLPreviewViewController()
+        
+        var array = [PreviewModel]()
+        for item in CLPickersTools.instence.getChoosePictureArray() {
+            let model = PreviewModel()
+            model.phAsset = item
+            array.append(model)
+        }
+        previewVC.picArray = array
+        self.navigationController?.pushViewController(previewVC, animated: true)
+    }
     // 点击确定
     @IBAction func clickSureBtn(_ sender: Any) {
-
         self.choosePictureComplete(assetArr: CLPickersTools.instence.getChoosePictureArray(), img: nil)
     }
     
@@ -93,6 +123,13 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         if CLPickersTools.instence.getSavePictureCount() > 0 {
             let title = "确定(\(CLPickersTools.instence.getSavePictureCount()))"
             self.sureBtn.setTitle(title, for: .normal)
+            self.sureBtn.isEnabled = true
+            self.lookBtn.isEnabled = true
+            self.resetBtn.isEnabled = true
+        } else {
+            self.sureBtn.isEnabled = false
+            self.lookBtn.isEnabled = false
+            self.resetBtn.isEnabled = false
         }
         
         self.flowout.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 30, right: 0)
@@ -176,8 +213,14 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
                 let chooseCount = CLPickersTools.instence.getSavePictureCount()
                 if chooseCount == 0 {
                     self?.sureBtn.setTitle("确定", for: .normal)
+                    self?.sureBtn.isEnabled = false
+                    self?.lookBtn.isEnabled = false
+                    self?.resetBtn.isEnabled = false
                 } else {
                     self?.sureBtn.setTitle("确定(\(chooseCount))", for: .normal)
+                    self?.sureBtn.isEnabled = true
+                    self?.lookBtn.isEnabled = true
+                    self?.resetBtn.isEnabled = true
                 }
             }
             return cell

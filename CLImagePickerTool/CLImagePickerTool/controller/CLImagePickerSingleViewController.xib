@@ -14,6 +14,8 @@
                 <outlet property="bottomView" destination="1yk-T1-MHP" id="pIr-uC-pEB"/>
                 <outlet property="collectionView" destination="5op-LS-FlK" id="pDd-la-rNE"/>
                 <outlet property="flowout" destination="hYb-Uh-0QK" id="Njd-cP-7gC"/>
+                <outlet property="lookBtn" destination="q1U-o5-CKr" id="hIa-Hh-Tyc"/>
+                <outlet property="resetBtn" destination="qKB-CT-jy5" id="4mX-8p-e9d"/>
                 <outlet property="sureBtn" destination="FbQ-MS-Ji4" id="iNg-cR-wWA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -41,13 +43,17 @@
                     <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbQ-MS-Ji4">
-                            <rect key="frame" x="332" y="7" width="35" height="30"/>
+                            <rect key="frame" x="315" y="7" width="60" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Oec-am-WLq"/>
+                                <constraint firstAttribute="width" constant="60" id="zmJ-gY-b7R"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="确定">
                                 <color key="titleColor" red="0.33333333333333331" green="0.71372549019607845" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="clickSureBtn:" destination="-1" eventType="touchUpInside" id="TfZ-ft-Jex"/>
@@ -60,15 +66,53 @@
                                 <constraint firstAttribute="height" constant="1" id="bDp-y6-Uqj"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1U-o5-CKr">
+                            <rect key="frame" x="0.0" y="1" width="60" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="7Ul-ve-EJo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="预览">
+                                <color key="titleColor" red="0.33333333329999998" green="0.71372549019999998" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickLookBtn:" destination="-1" eventType="touchUpInside" id="aHU-KR-efz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKB-CT-jy5">
+                            <rect key="frame" x="60" y="1" width="60" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="gD8-EE-Upi"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="重置">
+                                <color key="titleColor" red="0.33333333329999998" green="0.71372549019999998" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickResetBtn:" destination="-1" eventType="touchUpInside" id="ncD-Hg-IUQ"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="qKB-CT-jy5" firstAttribute="leading" secondItem="q1U-o5-CKr" secondAttribute="trailing" id="OhN-na-oAa"/>
+                        <constraint firstAttribute="bottom" secondItem="qKB-CT-jy5" secondAttribute="bottom" id="WTO-Av-zp5"/>
                         <constraint firstAttribute="trailing" secondItem="bX3-lF-BZZ" secondAttribute="trailing" id="a1f-Yx-dhV"/>
                         <constraint firstItem="bX3-lF-BZZ" firstAttribute="leading" secondItem="1yk-T1-MHP" secondAttribute="leading" id="b1g-nO-Tty"/>
                         <constraint firstAttribute="height" constant="44" id="cws-j0-rXr"/>
                         <constraint firstItem="FbQ-MS-Ji4" firstAttribute="centerY" secondItem="1yk-T1-MHP" secondAttribute="centerY" id="dyh-o8-PEf"/>
-                        <constraint firstAttribute="trailing" secondItem="FbQ-MS-Ji4" secondAttribute="trailing" constant="8" id="idR-FL-yo3"/>
+                        <constraint firstItem="q1U-o5-CKr" firstAttribute="leading" secondItem="1yk-T1-MHP" secondAttribute="leading" id="hQK-hg-Z1g"/>
+                        <constraint firstAttribute="trailing" secondItem="FbQ-MS-Ji4" secondAttribute="trailing" id="idR-FL-yo3"/>
+                        <constraint firstItem="q1U-o5-CKr" firstAttribute="top" secondItem="bX3-lF-BZZ" secondAttribute="bottom" id="lYe-tv-r8h"/>
                         <constraint firstItem="bX3-lF-BZZ" firstAttribute="top" secondItem="1yk-T1-MHP" secondAttribute="top" id="nOn-Cp-FK5"/>
+                        <constraint firstAttribute="bottom" secondItem="q1U-o5-CKr" secondAttribute="bottom" id="om5-Uc-g94"/>
+                        <constraint firstItem="qKB-CT-jy5" firstAttribute="top" secondItem="bX3-lF-BZZ" secondAttribute="bottom" id="vUa-7a-LLR"/>
                     </constraints>
                 </view>
             </subviews>

@@ -49,6 +49,10 @@
 		95304F8F1F34C3E1001F76B6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F8D1F34C3E1001F76B6 /* TestViewController.swift */; };
 		95304F901F34C3E1001F76B6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304F8E1F34C3E1001F76B6 /* TestViewController.xib */; };
 		9583FDE21F384CF400C1A320 /* CLCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583FDE11F384CF400C1A320 /* CLCropViewController.swift */; };
+		959B5B6A1F39D6010031B5AB /* CLPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B691F39D6010031B5AB /* CLPreviewViewController.swift */; };
+		959B5B6C1F39D8D50031B5AB /* CLPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6B1F39D8D50031B5AB /* CLPreviewCell.swift */; };
+		959B5B6E1F39E4350031B5AB /* CLPreviewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */; };
+		959B5B701F3AAB5D0031B5AB /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6F1F3AAB5D0031B5AB /* PreviewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +100,10 @@
 		95304F8D1F34C3E1001F76B6 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		95304F8E1F34C3E1001F76B6 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		9583FDE11F384CF400C1A320 /* CLCropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLCropViewController.swift; sourceTree = "<group>"; };
+		959B5B691F39D6010031B5AB /* CLPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPreviewViewController.swift; sourceTree = "<group>"; };
+		959B5B6B1F39D8D50031B5AB /* CLPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPreviewCell.swift; sourceTree = "<group>"; };
+		959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPreviewVideoCell.swift; sourceTree = "<group>"; };
+		959B5B6F1F3AAB5D0031B5AB /* PreviewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				95304EDD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift */,
+				959B5B6F1F3AAB5D0031B5AB /* PreviewModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -233,6 +242,7 @@
 				95304EE61F3324BF001F76B6 /* CLImagePickerSingleViewController.swift */,
 				95304EE71F3324BF001F76B6 /* CLImagePickerSingleViewController.xib */,
 				9583FDE11F384CF400C1A320 /* CLCropViewController.swift */,
+				959B5B691F39D6010031B5AB /* CLPreviewViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -251,6 +261,8 @@
 				95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */,
 				95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */,
 				95304F8A1F346E07001F76B6 /* CLSingleTypeCell.xib */,
+				959B5B6B1F39D8D50031B5AB /* CLPreviewCell.swift */,
+				959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -344,6 +356,7 @@
 			files = (
 				95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */,
 				95304EF61F3324BF001F76B6 /* MessageStyleView.swift in Sources */,
+				959B5B6A1F39D6010031B5AB /* CLPreviewViewController.swift in Sources */,
 				95304F121F3324C0001F76B6 /* CLImagePickersTool.swift in Sources */,
 				95304EF81F3324BF001F76B6 /* NomalStyleView.swift in Sources */,
 				95304F0D1F3324C0001F76B6 /* CustomNavgationView.swift in Sources */,
@@ -360,13 +373,16 @@
 				95304F101F3324C0001F76B6 /* CLPickersTools.swift in Sources */,
 				95304F081F3324BF001F76B6 /* CLImageAmplifyView.swift in Sources */,
 				95304F031F3324BF001F76B6 /* CLBaseImagePickerViewController.swift in Sources */,
+				959B5B6C1F39D8D50031B5AB /* CLPreviewCell.swift in Sources */,
 				95304F061F3324BF001F76B6 /* CLImagePickersViewController.swift in Sources */,
 				95304EFC1F3324BF001F76B6 /* PopViewUtil.swift in Sources */,
 				95304F071F3324BF001F76B6 /* CLCircleView.swift in Sources */,
 				95304E7C1F32F036001F76B6 /* AppDelegate.swift in Sources */,
 				95304EFA1F3324BF001F76B6 /* HDAlertViewController.swift in Sources */,
+				959B5B701F3AAB5D0031B5AB /* PreviewModel.swift in Sources */,
 				95304F091F3324BF001F76B6 /* CLImagePickerCamaroCell.swift in Sources */,
 				95304F341F334867001F76B6 /* BundleUtil.swift in Sources */,
+				959B5B6E1F39E4350031B5AB /* CLPreviewVideoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
