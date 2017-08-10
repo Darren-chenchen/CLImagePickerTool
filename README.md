@@ -61,13 +61,13 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 #### 注意点
 1.选择照片以后在返回的PHAsset对象，在CLPickerTool类中提供了PHAsset转image的方法，并可以设置图片压缩。
 
-		let imageArr = CLPickerTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
+		let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
 
 该方法是同步方法当选择图片较多时可能会等待，我们可以提示一个加载框表示正在处理中
 		
 2.如果是视频文件，提供了PHAsset转AVPlayerItem对象的方法
 		
-		let Arr = CLPickerTool.convertAssetArrToAvPlayerItemArr(assetArr: asset)
+		let Arr = CLImagePickersTool.convertAssetArrToAvPlayerItemArr(assetArr: asset)
 		
 3.你会发现在选择完图片后提供了2个回调参数 (asset,cutImage)  ，在一般情况下使用asset来转化自己想要的指定压缩大小的图片，而cutImage只有在单选裁剪的情况才会返回，其他情况返回nil
 
