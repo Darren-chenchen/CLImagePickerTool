@@ -26,7 +26,10 @@ class CLImagePickerPhotoModel: NSObject {
     var isSelect: Bool? = false
     var videoLength: String?
     var progressValue: CGFloat = 0
-        
+    
+    // 在用户配置了onlyChooseImageOrVideo的情况下，如果模型中的onlyChooseImageOrVideo为true，那么就显示alpha,
+    var onlyChooseImageOrVideo: Bool = false
+    
     func getNewTimeFromDurationSecond(duration:Double) -> String{
         
         var newTimer = ""

@@ -1,5 +1,5 @@
 # CLImagePickerTool
-语言：swift   这是一个多图片选择的控件，支持图片多选，视频预览、照片预览、屏蔽视频文件、重置选中状态、预览、异步下载图片
+语言：swift   这是一个多图片选择的控件，支持图片多选，视频预览、照片预览、屏蔽视频文件、重置选中状态、预览、异步下载图片、视频文件和图片文件不能同时选择
 
 # 效果预览
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170809115610183-1194812397.gif)
@@ -57,6 +57,14 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
             
         }
 
+6.视频文件和图片文件不能同时选择
+
+		let imagePickTool = CLImagePickersTool()
+        imagePickTool.onlyChooseImageOrVideo = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
+            
+        }
+
 
 #### 注意点
 1.选择照片以后在返回的PHAsset对象，在CLPickerTool类中提供了PHAsset转image的方法，并可以设置图片压缩。
@@ -70,4 +78,3 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 		let Arr = CLImagePickersTool.convertAssetArrToAvPlayerItemArr(assetArr: asset)
 		
 3.你会发现在选择完图片后提供了2个回调参数 (asset,cutImage)  ，在一般情况下使用asset来转化自己想要的指定压缩大小的图片，而cutImage只有在单选裁剪的情况才会返回，其他情况返回nil
-

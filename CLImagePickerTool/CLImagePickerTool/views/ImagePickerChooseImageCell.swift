@@ -22,6 +22,8 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     @IBOutlet weak var chooseImageBtn: CLCircleView!
     
     let btnBackColor = UIColor(white: 0, alpha: 0.6)
+    // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
+    var onlyChooseImageOrVideo: Bool = false
     
     var imagePickerChooseImage: imagePickerChooseImageCellClouse?
     
@@ -48,13 +50,32 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             // 是否选中
             self.chooseBtn.isSelected = self.model?.isSelect ?? false
             self.chooseImageBtn.isSelected = self.model?.isSelect ?? false
-            self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
             if self.chooseImageBtn.isSelected {
                 self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
             } else {
                 self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
             }
             
+            setupCellCover()
+        }
+    }
+    
+    // 设置cell的阴影
+    func setupCellCover() {
+        // 视频，图片只能选择1中
+        if self.onlyChooseImageOrVideo {
+            if self.chooseImageBtn.isSelected {
+                self.iconView.alpha = 0.5
+                self.backgroundColor = UIColor.white
+                self.chooseImageBtn.isHidden = false
+            } else {
+                self.iconView.alpha = (self.model?.onlyChooseImageOrVideo ?? false) ? 0.5:1
+                self.backgroundColor = UIColor(white: 0, alpha: 0.8)
+                self.chooseImageBtn.isHidden = (self.model?.onlyChooseImageOrVideo ?? false) ? true:false
+            }
+        } else {
+            self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
+            self.backgroundColor = UIColor.white
         }
     }
     
@@ -78,6 +99,14 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
         if self.model?.phAsset == nil {
             return
         }
+        
+        // 视频图片只能选择一种
+        if self.onlyChooseImageOrVideo {
+            if (self.model?.onlyChooseImageOrVideo ?? false) {
+                return
+            }
+        }
+
         // 相册
         if self.model?.phAsset?.mediaType == .image {
             _ = CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:false)
@@ -107,12 +136,33 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             }
         }
         
+        if self.onlyChooseImageOrVideo {
+            if (self.model?.onlyChooseImageOrVideo ?? false) {
+                PopViewUtil.alert(message: "视频文件和图片文件只能选择1种", leftTitle: "知道了", rightTitle: "", leftHandler: {
+                    
+                }, rightHandler: { 
+                    
+                })
+                return
+            }
+        }
+        
         self.chooseBtn.isSelected = !self.chooseBtn.isSelected
         self.chooseImageBtn.isSelected = self.chooseBtn.isSelected
-        self.iconView.alpha = self.chooseImageBtn.isSelected ? 0.5:1
         self.model?.isSelect = self.chooseImageBtn.isSelected
+        setupCellCover()
         
         if self.chooseImageBtn.isSelected {
+            
+            // 如果是视频和照片只能选择一种，先判断用户第一次选择的是视频还是照片，并记录下来
+            if self.onlyChooseImageOrVideo {
+                if CLPickersTools.instence.getSavePictureCount() == 0 {
+                    UserDefaults.standard.set(self.model?.phAsset?.mediaType.rawValue, forKey: UserChooserType)
+                    UserDefaults.standard.synchronize()
+                    CLNotificationCenter.post(name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNotic), object: self.model?.phAsset?.mediaType.rawValue)
+                }
+            }
+            
             CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: true)
             if imagePickerChooseImage != nil {
                 imagePickerChooseImage!()
@@ -120,12 +170,25 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             
             self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
         } else {
+            
             CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
             if imagePickerChooseImage != nil {
                 imagePickerChooseImage!()
             }
             
             self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
+            
+            if self.onlyChooseImageOrVideo {
+                if CLPickersTools.instence.getSavePictureCount() == 0 {
+                    // 判断是不是所有都取消了，如果是记得清除记录用户第一次选择的类型（照片或者视频）
+                    UserDefaults.standard.set(0, forKey: UserChooserType)
+                    UserDefaults.standard.synchronize()
+                    
+                    // 发送通知，更新模型的状态
+                    CLNotificationCenter.post(name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNoticCencel), object: nil)
+                }
+            }
+
         }
         
         // 动画

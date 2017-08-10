@@ -24,10 +24,10 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     
     // 标记是不是所有照片。如果是所有照片再添加拍照图片
     var isAllPhoto: Bool = false
-    
     // 单选状态的类型
     var singleType: CLImagePickersToolType?
-    
+    // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
+    var onlyChooseImageOrVideo: Bool = false
     // 图片裁剪比例
     var singlePictureCropScale: CGFloat?
     
@@ -61,13 +61,56 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
             }
         }
         
+        // 图片和视频只能选择一种
+        if self.onlyChooseImageOrVideo {
+            let chooseType = UserDefaults.standard.integer(forKey: UserChooserType)
+            if chooseType != 0 {
+                for model in (self.photoArr ?? []) {
+                    if model.phAsset?.mediaType.rawValue != chooseType {
+                        model.onlyChooseImageOrVideo = true
+                    } else {
+                        model.onlyChooseImageOrVideo = false
+                    }
+                }
+            } else {
+                for model in (self.photoArr ?? []) {
+                    model.onlyChooseImageOrVideo = false
+                }
+            }
+        }
+        
+        // 数组中新增一个数据代表相机图片
         if self.isAllPhoto {
-            // 数组中新增一个数据代表相机图片
             self.photoArr?.append(CLImagePickerPhotoModel())
         }
         
         self.initView()
+        
+        self.initWventHendle()
     }
+    
+    func initWventHendle() {
+        CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNotic), object: nil)
+        CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticCencelFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNoticCencel), object: nil)
+    }
+    
+    func OnlyChooseImageOrVideoNoticFunc(notic:Notification) {
+        let chooseType = notic.object as! Int
+        for model in (self.photoArr ?? []) {
+            if model.phAsset?.mediaType.rawValue != chooseType {
+                model.onlyChooseImageOrVideo = true
+            }
+        }
+        
+        self.collectionView.reloadData()
+    }
+    func OnlyChooseImageOrVideoNoticCencelFunc() {
+        for model in (self.photoArr ?? []) {
+            model.onlyChooseImageOrVideo = false
+        }
+        self.collectionView.reloadData()
+    }
+    
     // 重置
     @IBAction func clickResetBtn(_ sender: Any) {
         if self.photoArr != nil {
@@ -82,6 +125,15 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.resetBtn.isEnabled = false
         self.sureBtn.isEnabled = false
         self.sureBtn.setTitle("确定", for: .normal)
+        
+        if self.onlyChooseImageOrVideo {
+            for model in (self.photoArr ?? []) {
+                model.onlyChooseImageOrVideo = false
+            }
+            // 重置选择的类型
+            UserDefaults.standard.set(0, forKey: UserChooserType)
+            UserDefaults.standard.synchronize()
+        }
 
         self.collectionView.reloadData()
     }
@@ -175,6 +227,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     
     deinit {
         print("CLImagePickerSingleViewController释放")
+        CLNotificationCenter.removeObserver(self)
     }
 
 }
@@ -204,10 +257,10 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             return cell
         }
         
-        
         if self.singleType == nil {  // 说明不是单选
             let model = self.photoArr?[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellID, for: indexPath) as! ImagePickerChooseImageCell
+            cell.onlyChooseImageOrVideo = self.onlyChooseImageOrVideo
             cell.model = model
             cell.imagePickerChooseImage = {[weak self] () in
                 let chooseCount = CLPickersTools.instence.getSavePictureCount()

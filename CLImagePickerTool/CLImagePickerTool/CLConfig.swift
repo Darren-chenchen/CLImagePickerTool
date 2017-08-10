@@ -30,6 +30,12 @@ let CLPhotoListRefreshNotic = "CLPhotoListRefreshNotic"
 let CLImagePickerMaxImagesCount = "CLImagePickerMaxImagesCount"
 // 是够允许选择视频的key
 let CLIsHiddenVideo = "CLIsHiddenVideo"
+// 用户第一次选择的类型
+let UserChooserType = "UserChooserType"
+// 用户选择了图片，更新控制器的数据源，将视频全部置灰
+let OnlyChooseImageOrVideoNotic = "OnlyChooseImageOrVideoNotic"
+// 用户全部取消后，更新数据源为最初状态
+let OnlyChooseImageOrVideoNoticCencel = "OnlyChooseImageOrVideoNoticCencel"
 
 // MARK:- 设置圆角
 func CLViewsBorder(_ view:UIView, borderWidth:CGFloat, borderColor:UIColor?=nil,cornerRadius:CGFloat){

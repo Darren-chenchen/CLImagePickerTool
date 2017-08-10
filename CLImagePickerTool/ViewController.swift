@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var img3: UIImageView!
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var img2: UIImageView!
@@ -74,7 +75,6 @@ class ViewController: UIViewController {
             self.label1.text = "压缩后\(String(describing: imageData))"
             self.label2.text = "压缩前\(String(describing: imageData2))"
         }
-        
 
     }
     @IBAction func clickSingleBtn(_ sender: Any) {
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         imagePickTool.singleImageChooseType = .singlePictureCrop
 
         imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
-            
+            self.img3.image = cutImage
         }
 
     }
@@ -105,6 +105,13 @@ class ViewController: UIViewController {
         imagePickTool.singlePictureCropScale = 2  // 宽/高
         
         imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
+            self.img3.image = cutImage
+        }
+    }
+    @IBAction func clickOnlyBtn(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.onlyChooseImageOrVideo = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
             
         }
     }
