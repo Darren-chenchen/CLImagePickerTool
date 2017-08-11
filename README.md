@@ -95,11 +95,11 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 
 #### 预览
 
-![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811171842992-1542228138.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173456726-575856294.png)
 
 
-![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811171901898-385764033.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173503757-1358818969.png)
 
-![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173031335-718576025.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173509945-924188710.png)
 
-![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173039288-592436694.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173516257-1452586854.png)
