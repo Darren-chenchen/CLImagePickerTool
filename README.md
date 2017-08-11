@@ -90,3 +90,17 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 		let Arr = CLImagePickersTool.convertAssetArrToAvPlayerItemArr(assetArr: asset)
 		
 3.你会发现在选择完图片后提供了2个回调参数 (asset,cutImage)  ，在一般情况下使用asset来转化自己想要的指定压缩大小的图片，而cutImage只有在单选裁剪的情况才会返回，其他情况返回nil
+
+
+
+#### 预览
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811171836242-521747092.png)
+
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811171842992-1542228138.png)
+
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811171901898-385764033.png)
+
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811171856148-320594392.png)
