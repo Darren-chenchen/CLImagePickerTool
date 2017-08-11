@@ -11,8 +11,8 @@ import Photos
 import PhotosUI
 
 public enum CLImagePickersToolType {
-    case singlePicture
-    case singlePictureCrop
+    case singlePicture   // 图片单选
+    case singlePictureCrop   // 单选并裁剪
 }
 
 typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
@@ -35,6 +35,8 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     public var singlePictureCropScale: CGFloat?
     // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
     public var onlyChooseImageOrVideo: Bool = false
+    // 单选模式下，图片可以编辑，默认不可编辑
+    public var singleModelImageCanEditor: Bool = false
     
     // 判断相机是放在外面还是内部
     public func setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
@@ -55,7 +57,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
                 // 判断用户是否开启访问相册功能
                 CLPickersTools.instence.authorize(authorizeClouse: { (state) in
                     if state == .authorized {
-                        let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo) { (assetArr,cutImage) in
+                        let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor) { (assetArr,cutImage) in
                             if self.clPickerToolClouse != nil {
                                 self.clPickerToolClouse!(assetArr,cutImage)
                             }
@@ -74,7 +76,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
             // 判断用户是否开启访问相册功能
             CLPickersTools.instence.authorize(authorizeClouse: { (state) in
                 if state == .authorized {
-                    let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo) { (assetArr,cutImage) in
+                    let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor) { (assetArr,cutImage) in
                         didChooseImageSuccess(assetArr,cutImage)
                     }
                     superVC.present(photo, animated: true, completion: nil)

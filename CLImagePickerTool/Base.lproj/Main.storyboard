@@ -102,17 +102,26 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4mJ-bt-Chf">
-                                <rect key="frame" x="9" y="257" width="350" height="128"/>
+                                <rect key="frame" x="9" y="286" width="350" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="TeG-K1-NT6"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2I0-UF-4Md">
+                                <rect key="frame" x="82" y="248" width="108" height="30"/>
+                                <state key="normal" title="更多功能请移步"/>
+                                <connections>
+                                    <action selector="clickMoreBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vPl-9K-fPL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="2I0-UF-4Md" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="66" id="0aG-sg-abp"/>
                             <constraint firstItem="kxa-7S-xM7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="1rz-fy-K5f"/>
                             <constraint firstItem="4mJ-bt-Chf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="9" id="2aI-LK-lbS"/>
                             <constraint firstItem="YAv-hl-bUs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="66" id="2b4-Bg-aLQ"/>
+                            <constraint firstItem="2I0-UF-4Md" firstAttribute="top" secondItem="UAk-Vz-CwC" secondAttribute="bottom" constant="8" id="AF5-FR-nhG"/>
                             <constraint firstAttribute="trailing" secondItem="oHy-Bw-xuM" secondAttribute="trailing" id="CNt-hz-ran"/>
                             <constraint firstItem="jzK-xs-xQJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ch3-Up-Qs7"/>
                             <constraint firstItem="9nJ-Jx-1WI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="F5p-j0-Awe"/>
@@ -121,7 +130,7 @@
                             <constraint firstItem="lwF-fc-z12" firstAttribute="top" secondItem="qZE-gv-tVh" secondAttribute="bottom" constant="8" id="GH7-hU-z7k"/>
                             <constraint firstItem="STJ-th-vi4" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="334" id="Jyd-8V-EAp"/>
                             <constraint firstItem="UAk-Vz-CwC" firstAttribute="top" secondItem="YAv-hl-bUs" secondAttribute="bottom" constant="8" id="LoO-TO-ymE"/>
-                            <constraint firstItem="4mJ-bt-Chf" firstAttribute="top" secondItem="UAk-Vz-CwC" secondAttribute="bottom" constant="17" id="QTQ-v7-Qnc"/>
+                            <constraint firstItem="4mJ-bt-Chf" firstAttribute="top" secondItem="UAk-Vz-CwC" secondAttribute="bottom" constant="46" id="QTQ-v7-Qnc"/>
                             <constraint firstAttribute="trailing" secondItem="Jy0-9a-d2B" secondAttribute="trailing" id="T6E-An-zVT"/>
                             <constraint firstItem="9nJ-Jx-1WI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="VsD-Ea-u53"/>
                             <constraint firstItem="oHy-Bw-xuM" firstAttribute="leading" secondItem="kxa-7S-xM7" secondAttribute="trailing" constant="10" id="WJE-MB-kxL"/>

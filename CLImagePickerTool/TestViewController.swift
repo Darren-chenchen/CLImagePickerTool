@@ -10,9 +10,9 @@ import UIKit
 
 class TestViewController: UIViewController {
 
+    @IBOutlet weak var img: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     @IBAction func clickBtn(_ sender: Any) {
@@ -22,8 +22,11 @@ class TestViewController: UIViewController {
     @IBAction func clickBtn2(_ sender: Any) {
         
         let imagePickTool = CLImagePickersTool()
-
-        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
+        imagePickTool.singleImageChooseType = .singlePicture
+        imagePickTool.singleModelImageCanEditor = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            
+            self.img.image = editorImage
         }
     }
 

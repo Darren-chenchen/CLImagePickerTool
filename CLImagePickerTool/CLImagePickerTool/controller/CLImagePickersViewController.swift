@@ -21,7 +21,7 @@ class CLImagePickersViewController: UINavigationController {
     
     let albumVC =  CLImageAlbumPickerController()
 
-    func initWith(MaxImagesCount: Int,isHiddenVideo:Bool,cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
+    func initWith(MaxImagesCount: Int,isHiddenVideo:Bool,cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,singleModelImageCanEditor: Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
         
         // 存储用户设置的最多图片数量
         UserDefaults.standard.set(MaxImagesCount, forKey: CLImagePickerMaxImagesCount)
@@ -44,12 +44,13 @@ class CLImagePickersViewController: UINavigationController {
         albumVC.singleType = singleType
         albumVC.singlePictureCropScale = singlePictureCropScale
         albumVC.onlyChooseImageOrVideo = onlyChooseImageOrVideo
+        albumVC.singleModelImageCanEditor = singleModelImageCanEditor
         
         let vc = CLImagePickersViewController.init(rootViewController: albumVC)
-        vc.setupOnce(array: dataArr,cameraOut:cameraOut,singleType:singleType,singlePictureCropScale:singlePictureCropScale,onlyChooseImageOrVideo:onlyChooseImageOrVideo,didChooseImageSuccess:didChooseImageSuccess)
+        vc.setupOnce(array: dataArr,cameraOut:cameraOut,singleType:singleType,singlePictureCropScale:singlePictureCropScale,onlyChooseImageOrVideo:onlyChooseImageOrVideo,singleModelImageCanEditor:singleModelImageCanEditor,didChooseImageSuccess:didChooseImageSuccess)
         return vc
     }
-    func setupOnce(array:[[String:[CLImagePickerPhotoModel]]],cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+    func setupOnce(array:[[String:[CLImagePickerPhotoModel]]],cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,singleModelImageCanEditor:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.imageCompleteClouse = didChooseImageSuccess
 
@@ -65,6 +66,7 @@ class CLImagePickersViewController: UINavigationController {
         singleVC.onlyChooseImageOrVideo = onlyChooseImageOrVideo
         singleVC.singlePictureCropScale = singlePictureCropScale
         singleVC.singleType = singleType
+        singleVC.singleModelImageCanEditor = singleModelImageCanEditor
         singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
             self.imageCompleteClouse!(assetArr,image)
         }
@@ -95,6 +97,8 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
     var singlePictureCropScale: CGFloat?
     // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
     var onlyChooseImageOrVideo: Bool = false
+    // 单选模式下图片可以编辑
+    var singleModelImageCanEditor: Bool = false
     
     lazy var tableView: UITableView = {
         let tableView = UITableView.init(frame: CGRect(x:0,y:64,width:KScreenWidth,height:KScreenHeight-64), style: .plain)
@@ -175,6 +179,7 @@ extension CLImageAlbumPickerController:UITableViewDelegate,UITableViewDataSource
         }
         singleVC.onlyChooseImageOrVideo = onlyChooseImageOrVideo
         singleVC.singleType = singleType
+        singleVC.singleModelImageCanEditor = singleModelImageCanEditor
         singleVC.singlePictureCropScale = singlePictureCropScale
         singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
             self.imageCompleteClouse!(assetArr,image)

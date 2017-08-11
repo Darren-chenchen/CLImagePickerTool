@@ -66,6 +66,18 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
         }
 
 
+7.设置单选模式下图片可以编辑（涂鸦，马赛克等操作）
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811143547726-237857813.gif)
+
+		let imagePickTool = CLImagePickersTool()
+        imagePickTool.singleImageChooseType = .singlePicture
+        imagePickTool.singleModelImageCanEditor = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            
+            self.img.image = editorImage
+        }
+
 #### 注意点
 1.选择照片以后在返回的PHAsset对象，在CLPickerTool类中提供了PHAsset转image的方法，并可以设置图片压缩。
 

@@ -11,6 +11,7 @@ import Photos
 import PassKit
 
 typealias singleChoosePictureClouse = ([PHAsset],UIImage) -> ()
+typealias singleChoosePictureAndEditorClouse = ([PHAsset],UIImage) -> ()
 
 class CLSingleTypeCell: UICollectionViewCell {
 
@@ -20,6 +21,10 @@ class CLSingleTypeCell: UICollectionViewCell {
     @IBOutlet weak var iconView: UIImageView!
     
     var singleChoosePicture: singleChoosePictureClouse?
+    var singleChoosePictureAndEditor: singleChoosePictureAndEditorClouse?
+
+    // 单选模式下图片可以编辑
+    var singleModelImageCanEditor: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,10 +64,16 @@ class CLSingleTypeCell: UICollectionViewCell {
     func clickIconView(ges:UITapGestureRecognizer) {
         // 相册
         if self.model?.phAsset?.mediaType == .image {
-            let amplifyView =  CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:true)
+            let amplifyView =  CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:true,singleModelImageCanEditor:self.singleModelImageCanEditor)
             amplifyView.singlePictureClickSureBtn = {[weak self] () in
                 if self?.singleChoosePicture != nil {
                     self?.singleChoosePicture!([(self?.model?.phAsset)!],amplifyView.lastImageView?.image ?? UIImage())
+                }
+            }
+            // 编辑图片
+            amplifyView.singlePictureClickEditorBtn = { [weak self] () in
+                if self?.singleChoosePictureAndEditor != nil {
+                    self?.singleChoosePictureAndEditor!([(self?.model?.phAsset)!],amplifyView.lastImageView?.image ?? UIImage())
                 }
             }
         }

@@ -30,6 +30,8 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     var onlyChooseImageOrVideo: Bool = false
     // 图片裁剪比例
     var singlePictureCropScale: CGFloat?
+    // 单选模式下图片可以编辑
+    var singleModelImageCanEditor: Bool = false
     
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var flowout: UICollectionViewFlowLayout!
@@ -279,6 +281,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             return cell
         } else {  // 是单选
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CLSingleTypeCell", for: indexPath) as! CLSingleTypeCell
+            cell.singleModelImageCanEditor = self.singleModelImageCanEditor
             cell.model = self.photoArr?[indexPath.row]
             cell.singleChoosePicture = { [weak self] (assetArr,img) in
                 
@@ -301,6 +304,21 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
                     self?.choosePictureComplete(assetArr: assetArr, img: img)
                 }
             }
+            // 编辑图片
+            cell.singleChoosePictureAndEditor =  { [weak self] (assetArr,img) in
+                let editorVC = EditorViewController.init(nibName: "EditorViewController", bundle: BundleUtil.getCurrentBundle())
+                editorVC.editorImage = img
+                editorVC.editorImageComplete = {(img) in
+                    self?.choosePictureComplete(assetArr: assetArr, img: img)
+                    
+                    // 记得pop，不然控制器释放不掉
+                    self?.dismiss(animated: true) {
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+                self?.present(editorVC, animated: true, completion: nil)
+            }
+
             return cell
         }
     }
