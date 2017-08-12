@@ -1,10 +1,6 @@
 # CLImagePickerTool
 语言：swift   这是一个多图片选择的控件，支持图片多选，视频预览、照片预览、屏蔽视频文件、重置选中状态、预览、异步下载图片、视频文件和图片文件不能同时选择、图片编辑操作（马赛克，涂鸦）
 
-# 效果预览
-![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170809115610183-1194812397.gif)
-
-
 # 使用方式
 
 pod 'CLImagePickerTool'
@@ -68,8 +64,6 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 
 7.设置单选模式下图片可以编辑（涂鸦，马赛克等操作）
 
-![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811143547726-237857813.gif)
-
 		let imagePickTool = CLImagePickersTool()
         imagePickTool.singleImageChooseType = .singlePicture
         imagePickTool.singleModelImageCanEditor = true
@@ -95,11 +89,21 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 
 #### 预览
 
-![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173456726-575856294.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091659257-1585723771.png)
 
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091707882-3990190.png)
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091715054-1822490215.png)
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091722929-1245930585.png)
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173456726-575856294.png)
 
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173503757-1358818969.png)
 
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173509945-924188710.png)
 
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173516257-1452586854.png)
+
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091736929-353490961.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091742757-552281277.png)
