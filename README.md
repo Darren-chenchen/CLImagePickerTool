@@ -90,20 +90,12 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 #### 预览
 
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091659257-1585723771.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091707882-3990190.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091715054-1822490215.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091722929-1245930585.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173456726-575856294.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173503757-1358818969.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173509945-924188710.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170811173516257-1452586854.png)
-
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091736929-353490961.png)
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812091742757-552281277.png)
