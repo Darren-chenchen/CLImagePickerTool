@@ -39,9 +39,15 @@
                         <outlet property="delegate" destination="-1" id="Wlc-yA-GpK"/>
                     </connections>
                 </collectionView>
-                <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yk-T1-MHP">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yk-T1-MHP">
                     <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <subviews>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUU-Ut-II7">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <items>
+                                <barButtonItem id="mN4-l0-Z26"/>
+                            </items>
+                        </toolbar>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbQ-MS-Ji4">
                             <rect key="frame" x="315" y="7" width="60" height="30"/>
                             <constraints>
@@ -99,18 +105,22 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="qKB-CT-jy5" firstAttribute="leading" secondItem="q1U-o5-CKr" secondAttribute="trailing" id="OhN-na-oAa"/>
                         <constraint firstAttribute="bottom" secondItem="qKB-CT-jy5" secondAttribute="bottom" id="WTO-Av-zp5"/>
                         <constraint firstAttribute="trailing" secondItem="bX3-lF-BZZ" secondAttribute="trailing" id="a1f-Yx-dhV"/>
                         <constraint firstItem="bX3-lF-BZZ" firstAttribute="leading" secondItem="1yk-T1-MHP" secondAttribute="leading" id="b1g-nO-Tty"/>
                         <constraint firstAttribute="height" constant="44" id="cws-j0-rXr"/>
+                        <constraint firstAttribute="trailing" secondItem="oUU-Ut-II7" secondAttribute="trailing" id="dcg-95-dR6"/>
                         <constraint firstItem="FbQ-MS-Ji4" firstAttribute="centerY" secondItem="1yk-T1-MHP" secondAttribute="centerY" id="dyh-o8-PEf"/>
+                        <constraint firstItem="oUU-Ut-II7" firstAttribute="top" secondItem="1yk-T1-MHP" secondAttribute="top" id="eSc-4m-SpJ"/>
+                        <constraint firstItem="oUU-Ut-II7" firstAttribute="leading" secondItem="1yk-T1-MHP" secondAttribute="leading" id="fC3-Oh-yYx"/>
                         <constraint firstItem="q1U-o5-CKr" firstAttribute="leading" secondItem="1yk-T1-MHP" secondAttribute="leading" id="hQK-hg-Z1g"/>
                         <constraint firstAttribute="trailing" secondItem="FbQ-MS-Ji4" secondAttribute="trailing" id="idR-FL-yo3"/>
                         <constraint firstItem="q1U-o5-CKr" firstAttribute="top" secondItem="bX3-lF-BZZ" secondAttribute="bottom" id="lYe-tv-r8h"/>
                         <constraint firstItem="bX3-lF-BZZ" firstAttribute="top" secondItem="1yk-T1-MHP" secondAttribute="top" id="nOn-Cp-FK5"/>
+                        <constraint firstAttribute="bottom" secondItem="oUU-Ut-II7" secondAttribute="bottom" id="nee-aU-lyf"/>
                         <constraint firstAttribute="bottom" secondItem="q1U-o5-CKr" secondAttribute="bottom" id="om5-Uc-g94"/>
                         <constraint firstItem="qKB-CT-jy5" firstAttribute="top" secondItem="bX3-lF-BZZ" secondAttribute="bottom" id="vUa-7a-LLR"/>
                     </constraints>

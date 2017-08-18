@@ -43,6 +43,13 @@ class CLBaseImagePickerViewController: UIViewController {
         return btn
     }()
     
+    lazy var toobar: UIToolbar = {
+        // 添加磨玻璃
+        let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: 64))
+        toolBar.barStyle = .default
+        return toolBar
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -60,6 +67,9 @@ class CLBaseImagePickerViewController: UIViewController {
         self.view.addSubview(self.customNavBar)
         // 右边按钮
         self.customNavBar.addSubview(self.rightBtn)
+        // 毛玻璃效果
+        self.customNavBar.addSubview(self.toobar)
+        self.customNavBar.sendSubview(toBack: self.toobar)
         
         self.customNavBar.addSubview(self.backBtn)
         self.backBtn.isHidden = true

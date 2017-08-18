@@ -92,8 +92,8 @@ class CLImageAmplifyView: UIView {
                 }
             } else {  // 说明本地没有需要到iCloud下载
                 
-                self.circleBtn = CLCircleView.init(frame: CGRect(x: (self.lastImageView?.cl_width)!-40, y: (self.lastImageView?.cl_height)!-40, width: 30, height: 30))
-                self.lastImageView?.addSubview(self.circleBtn!)
+                self.circleBtn = CLCircleView.init(frame: CGRect(x: (self.lastImageView?.cl_width)!-40, y: (self.cl_height)-80, width: 30, height: 30))
+                self.addSubview(self.circleBtn!)
                 
                 let option = PHImageRequestOptions()
                 option.isNetworkAccessAllowed = true
@@ -106,7 +106,6 @@ class CLImageAmplifyView: UIView {
                             self.circleBtn?.value = 10
                         } else {
                             self.circleBtn?.value = CGFloat(progress*100)
-                            
                         }
                     })
                 }
@@ -126,7 +125,6 @@ class CLImageAmplifyView: UIView {
         //最大放大比例
         self.scrollView?.maximumZoomScale = 1.5;
         self.scrollView?.delegate = self;
-        
         
         UIView.animate(withDuration: 0.5) {
             var frame = self.lastImageView?.frame

@@ -26,14 +26,10 @@ class CustomNavgationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // 添加磨玻璃
-        let toolBar = UIToolbar.init(frame: self.bounds)
-        toolBar.barStyle = .black
-        self.addSubview(toolBar)
-        
+       
         self.addSubview(self.titleLable)
         self.addSubview(self.navLine)
-        self.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        self.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
