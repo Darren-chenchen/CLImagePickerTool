@@ -99,7 +99,9 @@ class CLVideoPlayView: UIView {
             self.playBtn.addTarget(self, action: #selector(self.clickPlayBtn), for: .touchUpInside)
         }
         
-        self.setupBottomView()
+        if isSingleChoose {
+            self.setupBottomView()
+        }
     }
     
     func clickPlayBtn() {
@@ -131,7 +133,7 @@ class CLVideoPlayView: UIView {
                 self.playerItem = playItem
                 self.player = AVPlayer(playerItem: self.playerItem)
                 let playerLayer = AVPlayerLayer(player: self.player)
-                playerLayer.frame = self.bounds
+                playerLayer.frame = self.lastImageView.bounds
                 playerLayer.videoGravity = AVLayerVideoGravityResizeAspect //视频填充模式
                 self.lastImageView.layer.addSublayer(playerLayer)
                 
