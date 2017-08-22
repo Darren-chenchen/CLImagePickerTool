@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CLImagePickerTool'
-  s.version = '1.1.8'
+  s.version = '1.1.9'
   s.license = 'MIT'
   s.summary = 'This is a picture selector'
   s.homepage = 'https://github.com/Darren-chenchen/CLImagePickerTool'
@@ -11,6 +11,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'CLImagePickerTool/CLImagePickerTool/**/*.swift'
   s.resource_bundles = { 
-	'CLImagePickerTool' => ['CLImagePickerTool/CLImagePickerTool/images/**/*.png','CLImagePickerTool/CLImagePickerTool/**/*.{xib,storyboard}']
+	'CLImagePickerTool' => ['CLImagePickerTool/CLImagePickerTool/images/**/*.png','CLImagePickerTool/CLImagePickerTool/**/*.{xib,storyboard}','CLImagePickerTool/CLImagePickerTool/**/*.{lproj,strings}']
   }
 end

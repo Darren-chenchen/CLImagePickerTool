@@ -11,6 +11,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'CLImagePickerTool/CLImagePickerTool/**/*.swift'
   s.resource_bundles = { 
-	'CLImagePickerTool' => ['CLImagePickerTool/CLImagePickerTool/images/**/*.png','CLImagePickerTool/CLImagePickerTool/**/*.{xib,storyboard}']
+	'CLImagePickerTool' => ['CLImagePickerTool/CLImagePickerTool/images/**/*.png','CLImagePickerTool/CLImagePickerTool/**/*.{xib,storyboard}','CLImagePickerTool/CLImagePickerTool/**/*.{lproj,strings}']
   }
 end
