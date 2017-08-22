@@ -58,7 +58,7 @@ class CLImagePickersViewController: UINavigationController {
         let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
-        if singleVC.navTitle == "所有照片" {
+        if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 {
             if cameraOut == false {  // 相机不是放在外面
                 singleVC.isAllPhoto = true
             }
@@ -137,9 +137,9 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         self.dismiss(animated: true, completion: nil)
     }
     func initView() {
-        self.navTitle = "相册"
+        self.navTitle = photoStr
         self.backBtn.isHidden = true
-        self.rightBtn.setTitle("取消", for: .normal)
+        self.rightBtn.setTitle(cancelStr, for: .normal)
     }
     
     deinit {
@@ -172,7 +172,7 @@ extension CLImageAlbumPickerController:UITableViewDelegate,UITableViewDataSource
         let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
-        if singleVC.navTitle == "所有照片" {
+        if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 {
             if cameraOut == false {  // 相机不是放在外面
                 singleVC.isAllPhoto = true
             }

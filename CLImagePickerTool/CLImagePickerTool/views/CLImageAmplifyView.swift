@@ -34,7 +34,7 @@ class CLImageAmplifyView: UIView {
         let bottom = UIView.init(frame: CGRect(x: 0, y: KScreenHeight-44, width: KScreenWidth, height: 44))
         bottom.backgroundColor = UIColor(white: 0, alpha: 0.8)
         let btn = UIButton.init(frame: CGRect(x: KScreenWidth-80, y: 0, width: 80, height: 44))
-        btn.setTitle("确定", for: .normal)
+        btn.setTitle(sureStr, for: .normal)
         btn.setTitleColor(mainColor, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         bottom.addSubview(btn)
@@ -43,7 +43,7 @@ class CLImageAmplifyView: UIView {
         // 编辑按钮
         if self.singleModelImageCanEditor == true {
             let btnEditor = UIButton.init(frame: CGRect(x: 0, y: 0, width: 80, height: 44))
-            btnEditor.setTitle("编辑", for: .normal)
+            btnEditor.setTitle(editorStr, for: .normal)
             btnEditor.setTitleColor(mainColor, for: .normal)
             btnEditor.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             bottom.addSubview(btnEditor)

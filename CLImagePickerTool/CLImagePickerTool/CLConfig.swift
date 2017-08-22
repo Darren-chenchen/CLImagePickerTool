@@ -48,90 +48,39 @@ func CLViewsBorder(_ view:UIView, borderWidth:CGFloat, borderColor:UIColor?=nil,
 // 主题色
 let mainColor = CoustomColor(85, g: 182, b: 55, a: 1)
 
-extension UIView {
-        
-    /// x
-    var cl_x: CGFloat {
-        get {
-            return frame.origin.x
-        }
-        set(newValue) {
-            var tempFrame: CGRect = frame
-            tempFrame.origin.x    = newValue
-            frame                 = tempFrame
-        }
-    }
-    
-    /// y
-    var cl_y: CGFloat {
-        get {
-            return frame.origin.y
-        }
-        set(newValue) {
-            var tempFrame: CGRect = frame
-            tempFrame.origin.y    = newValue
-            frame                 = tempFrame
-        }
-    }
-    
-    /// height
-    var cl_height: CGFloat {
-        get {
-            return frame.size.height
-        }
-        set(newValue) {
-            var tempFrame: CGRect = frame
-            tempFrame.size.height = newValue
-            frame                 = tempFrame
-        }
-    }
-    
-    /// width
-    var cl_width: CGFloat {
-        get {
-            return frame.size.width
-        }
-        set(newValue) {
-            var tempFrame: CGRect = frame
-            tempFrame.size.width = newValue
-            frame = tempFrame
-        }
-    }
-    
-    /// size
-    var cl_size: CGSize {
-        get {
-            return frame.size
-        }
-        set(newValue) {
-            var tempFrame: CGRect = frame
-            tempFrame.size = newValue
-            frame = tempFrame
-        }
-    }
-    
-    /// centerX
-    var cl_centerX: CGFloat {
-        get {
-            return center.x
-        }
-        set(newValue) {
-            var tempCenter: CGPoint = center
-            tempCenter.x = newValue
-            center = tempCenter
-        }
-    }
-    
-    /// centerY
-    var cl_centerY: CGFloat {
-        get {
-            return center.y
-        }
-        set(newValue) {
-            var tempCenter: CGPoint = center
-            tempCenter.y = newValue
-            center = tempCenter;
-        }
-    }
-    
-}
+
+// 所有照片的可能情况
+let allPhoto = "所有照片"
+let allPhoto2 = "All Photos"
+let allPhoto3 = "Camera Roll"
+
+// 本地化
+let sureStr = BundleUtil.cl_localizedStringForKey(key: "确定")
+let resetStr = BundleUtil.cl_localizedStringForKey(key: "重置")
+let previewStr = BundleUtil.cl_localizedStringForKey(key: "预览")
+let cancelStr = BundleUtil.cl_localizedStringForKey(key: "取消")
+let photoStr = BundleUtil.cl_localizedStringForKey(key: "相册")
+let errorStr = BundleUtil.cl_localizedStringForKey(key: "错误")
+let editorStr = BundleUtil.cl_localizedStringForKey(key: "编辑")
+let playErrorStr = BundleUtil.cl_localizedStringForKey(key: "播放出错")
+let maxPhotoCountStr = BundleUtil.cl_localizedStringForKey(key: "您最多只能选择%zd张照片")
+let knowStr = BundleUtil.cl_localizedStringForKey(key: "知道了")
+let imageAndVideoOnlyOneStr = BundleUtil.cl_localizedStringForKey(key: "视频文件和图片文件只能选择1种")
+
+let graffitiStr = BundleUtil.cl_localizedStringForKey(key: "涂鸦")
+let eraserStr = BundleUtil.cl_localizedStringForKey(key: "橡皮擦")
+let mosaicStr = BundleUtil.cl_localizedStringForKey(key: "马赛克")
+let undoStr = BundleUtil.cl_localizedStringForKey(key: "上一步")
+let redoStr = BundleUtil.cl_localizedStringForKey(key: "下一步")
+
+let photoLimitStr = BundleUtil.cl_localizedStringForKey(key: "照片访问受限")
+let clickSetStr = BundleUtil.cl_localizedStringForKey(key: "点击“设置”，允许访问您的照片")
+let setStr = BundleUtil.cl_localizedStringForKey(key: "设置")
+
+let cameraLimitStr = BundleUtil.cl_localizedStringForKey(key: "相机访问受限")
+let clickCameraStr = BundleUtil.cl_localizedStringForKey(key: "点击“设置”，允许访问您的相机")
+
+let tackPhotoStr = BundleUtil.cl_localizedStringForKey(key: "拍照")
+let chooseStr = BundleUtil.cl_localizedStringForKey(key: "从手机相册选择")
+
+

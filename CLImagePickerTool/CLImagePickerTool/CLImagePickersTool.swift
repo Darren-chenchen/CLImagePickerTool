@@ -47,12 +47,12 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         if self.cameraOut == true {  // 拍照功能在外面
             var alert: UIAlertController!
             alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-            let cleanAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel,handler:nil)
-            let photoAction = UIAlertAction(title: "拍照", style: UIAlertActionStyle.default){ (action:UIAlertAction)in
+            let cleanAction = UIAlertAction(title: cancelStr, style: UIAlertActionStyle.cancel,handler:nil)
+            let photoAction = UIAlertAction(title: tackPhotoStr, style: UIAlertActionStyle.default){ (action:UIAlertAction)in
                 
                 self.camera(superVC:superVC)
             }
-            let choseAction = UIAlertAction(title: "从手机相册选择", style: UIAlertActionStyle.default){ (action:UIAlertAction)in
+            let choseAction = UIAlertAction(title: chooseStr, style: UIAlertActionStyle.default){ (action:UIAlertAction)in
                 
                 // 判断用户是否开启访问相册功能
                 CLPickersTools.instence.authorize(authorizeClouse: { (state) in
@@ -169,7 +169,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     // 保存图片的结果
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         if let err = error {
-            UIAlertView(title: "错误", message: err.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            UIAlertView(title: errorStr, message: err.localizedDescription, delegate: nil, cancelButtonTitle: sureStr).show()
         } else {
             
             let dataArr = CLPickersTools.instence.loadData()

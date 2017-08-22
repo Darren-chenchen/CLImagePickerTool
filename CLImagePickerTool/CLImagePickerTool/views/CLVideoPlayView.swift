@@ -30,7 +30,7 @@ class CLVideoPlayView: UIView {
         let bottom = UIView.init(frame: CGRect(x: 0, y: KScreenHeight-44, width: KScreenWidth, height: 44))
         bottom.backgroundColor = UIColor(white: 0, alpha: 0.8)
         let btn = UIButton.init(frame: CGRect(x: KScreenWidth-80, y: 0, width: 80, height: 44))
-        btn.setTitle("确定", for: .normal)
+        btn.setTitle(sureStr, for: .normal)
         btn.setTitleColor(mainColor, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         bottom.addSubview(btn)
@@ -173,7 +173,7 @@ class CLVideoPlayView: UIView {
                 })
             }else if object.status == .failed || object.status == .unknown{
                 print("播放出错")
-                PopViewUtil.alert(message: "播放出错", leftTitle: "", rightTitle: "确定", leftHandler: {
+                PopViewUtil.alert(message: playErrorStr, leftTitle: "", rightTitle:sureStr, leftHandler: {
                 }, rightHandler: {
                 })
                 PopViewUtil.share.stopLoading()

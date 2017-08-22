@@ -146,7 +146,7 @@ class CLPreviewVideoCell: UICollectionViewCell {
                 })
             }else if object.status == .failed || object.status == .unknown{
                 print("播放出错")
-                PopViewUtil.alert(message: "播放出错", leftTitle: "", rightTitle: "确定", leftHandler: {
+                PopViewUtil.alert(message: playErrorStr, leftTitle: "", rightTitle: sureStr, leftHandler: {
                 }, rightHandler: {
                 })
                 PopViewUtil.share.stopLoading()

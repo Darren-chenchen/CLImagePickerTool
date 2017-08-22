@@ -12,7 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditorViewController" customModule="CLImagePickerTool" customModuleProvider="target">
             <connections>
                 <outlet property="bottomView" destination="EKF-RE-uTt" id="dQc-gn-eOu"/>
+                <outlet property="cancelBtn" destination="jY0-yR-Byk" id="LW0-mJ-unk"/>
                 <outlet property="scrollView" destination="iyl-hc-bU7" id="elg-7T-VpA"/>
+                <outlet property="sureBtn" destination="ts5-R4-GIn" id="9tK-mv-xiP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,9 +30,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY0-yR-Byk">
-                            <rect key="frame" x="8" y="0.0" width="43" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="43" id="TRF-5J-iVa"/>
+                                <constraint firstAttribute="width" constant="60" id="TRF-5J-iVa"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="取消"/>
@@ -58,7 +60,7 @@
                         <constraint firstAttribute="height" constant="44" id="YZA-11-LMx"/>
                         <constraint firstItem="ts5-R4-GIn" firstAttribute="top" secondItem="h8q-CG-wcH" secondAttribute="top" id="dwc-S6-Lsy"/>
                         <constraint firstItem="jY0-yR-Byk" firstAttribute="top" secondItem="h8q-CG-wcH" secondAttribute="top" id="m4l-UB-AHz"/>
-                        <constraint firstItem="jY0-yR-Byk" firstAttribute="leading" secondItem="h8q-CG-wcH" secondAttribute="leading" constant="8" id="xNN-gn-SOO"/>
+                        <constraint firstItem="jY0-yR-Byk" firstAttribute="leading" secondItem="h8q-CG-wcH" secondAttribute="leading" id="xNN-gn-SOO"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKF-RE-uTt">

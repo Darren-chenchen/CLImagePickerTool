@@ -14,6 +14,8 @@ class EditorViewController: UIViewController {
     
     var editorImageComplete: editorImageCompleteClouse?
     
+    @IBOutlet weak var sureBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
    // 底部控件
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -89,10 +91,15 @@ extension EditorViewController {
         scrollView.minimumZoomScale = 1
         scrollView.maximumZoomScale = 10
         
+        self.cancelBtn.setTitle(cancelStr, for: .normal)
+        self.sureBtn.setTitle(sureStr, for: .normal)
+        
         let scaleImage = UIImage.scaleImage(image: self.editorImage)
 
         drawBoardImageView = DrawBoard.init(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: scaleImage.size.height))
-        
+        if scaleImage.size.height < KScreenHeight-44-50 {
+            drawBoardImageView.cl_y = (KScreenHeight-44-50-scaleImage.size.height)*0.5
+        }
         drawBoardImageView.isUserInteractionEnabled = true
         drawBoardImageView.backgroundColor = UIColor(patternImage: scaleImage)
         
@@ -113,7 +120,7 @@ extension EditorViewController {
         // 底部的工具
         let imageArr = ["ic_pen","ic_erase","ic_msk","ic_pre","ic_redo"]
         let imageArrSelect = ["ic_pen_grey","ic_erase_grey","ic_msk_grey","ic_pre_grey","ic_redo_grey"]
-        let titleArr = ["涂鸦","橡皮擦","马赛克","上一步","下一步"]
+        let titleArr = [graffitiStr,eraserStr,mosaicStr,undoStr,redoStr]
         let btnW: CGFloat = 40
         let btnH: CGFloat = 40
         let marginX: CGFloat = 25
@@ -154,7 +161,7 @@ extension EditorViewController {
     
     func clickBottomBtn(btn:UIButton) {
 
-        if btn.currentTitle == "涂鸦" {
+        if btn.currentTitle == graffitiStr {
             
             pencilBtn.isSelected = !pencilBtn.isSelected
             eraserBtn.isSelected = false
@@ -168,7 +175,7 @@ extension EditorViewController {
                 self.drawBoardImageView.brush = nil
             }
         }
-        if btn.currentTitle == "橡皮擦" {
+        if btn.currentTitle == eraserStr {
 
             choosePencilViewDismiss()
             eraserBtn.isSelected = !eraserBtn.isSelected
@@ -181,7 +188,7 @@ extension EditorViewController {
                 self.drawBoardImageView.brush = nil
             }
         }
-        if btn.currentTitle == "马赛克" {
+        if btn.currentTitle == mosaicStr {
             choosePencilViewDismiss()
             masicBtn.isSelected = !masicBtn.isSelected
             pencilBtn.isSelected = false
@@ -194,7 +201,7 @@ extension EditorViewController {
             }
         }
 
-        if btn.currentTitle == "上一步" {
+        if btn.currentTitle == undoStr {
             if self.drawBoardImageView.canBack() {
                 self.goBackBtn.isEnabled = true
                 self.forwardBtn.isEnabled = true
@@ -203,7 +210,7 @@ extension EditorViewController {
                 self.goBackBtn.isEnabled = false
             }
         }
-        if btn.currentTitle == "下一步" {
+        if btn.currentTitle == redoStr {
             if self.drawBoardImageView.canForward() {
                 self.forwardBtn.isEnabled = true
                 self.goBackBtn.isEnabled = true

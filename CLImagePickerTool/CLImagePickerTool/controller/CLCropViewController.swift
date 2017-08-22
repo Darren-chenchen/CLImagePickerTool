@@ -92,12 +92,12 @@ class CLCropViewController: CLBaseImagePickerViewController {
         self.view.addSubview(bottomView)
         
         let cancelBtn = UIButton.init(frame: CGRect(x: 0, y: 0, width: 80, height: 46))
-        cancelBtn.setTitle("取消", for: .normal)
+        cancelBtn.setTitle(cancelStr, for: .normal)
         cancelBtn.addTarget(self, action: #selector(clickCancelBtn), for: .touchUpInside)
         bottomView.addSubview(cancelBtn)
         
         let sureBtn = UIButton.init(frame: CGRect(x: bottomView.frame.size.width-80, y: 0, width: 80, height: 46))
-        sureBtn.setTitle("确定", for: .normal)
+        sureBtn.setTitle(sureStr, for: .normal)
         sureBtn.addTarget(self, action: #selector(clickSureBtn), for: .touchUpInside)
         bottomView.addSubview(sureBtn)
 

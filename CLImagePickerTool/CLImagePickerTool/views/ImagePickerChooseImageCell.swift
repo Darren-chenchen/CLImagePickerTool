@@ -127,7 +127,8 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             // 判断是否超过限制
             let maxCount = UserDefaults.standard.integer(forKey: CLImagePickerMaxImagesCount)
             if CLPickersTools.instence.getSavePictureCount() >= maxCount {
-                PopViewUtil.alert(message: "您最多只能选择\(maxCount)张照片", leftTitle: "", rightTitle: "知道了", leftHandler: {
+                
+                PopViewUtil.alert(message:String(format: maxPhotoCountStr, maxCount), leftTitle: "", rightTitle: knowStr, leftHandler: {
                     
                 }, rightHandler: {
                     
@@ -138,7 +139,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
         
         if self.onlyChooseImageOrVideo {
             if (self.model?.onlyChooseImageOrVideo ?? false) {
-                PopViewUtil.alert(message: "视频文件和图片文件只能选择1种", leftTitle: "知道了", rightTitle: "", leftHandler: {
+                PopViewUtil.alert(message:imageAndVideoOnlyOneStr, leftTitle: knowStr, rightTitle: "", leftHandler: {
                     
                 }, rightHandler: { 
                     

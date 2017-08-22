@@ -57,3 +57,102 @@ extension UIImage {
     }
 
 }
+extension String {
+    //range转换为NSRange
+    func nsRange(from range: Range<String.Index>) -> NSRange {
+        let from = range.lowerBound.samePosition(in: utf16)
+        let to = range.upperBound.samePosition(in: utf16)
+        return NSRange(location: utf16.distance(from: utf16.startIndex, to: from),
+                       length: utf16.distance(from: from, to: to))
+    }
+
+}
+
+
+extension UIView {
+    
+    /// x
+    var cl_x: CGFloat {
+        get {
+            return frame.origin.x
+        }
+        set(newValue) {
+            var tempFrame: CGRect = frame
+            tempFrame.origin.x    = newValue
+            frame                 = tempFrame
+        }
+    }
+    
+    /// y
+    var cl_y: CGFloat {
+        get {
+            return frame.origin.y
+        }
+        set(newValue) {
+            var tempFrame: CGRect = frame
+            tempFrame.origin.y    = newValue
+            frame                 = tempFrame
+        }
+    }
+    
+    /// height
+    var cl_height: CGFloat {
+        get {
+            return frame.size.height
+        }
+        set(newValue) {
+            var tempFrame: CGRect = frame
+            tempFrame.size.height = newValue
+            frame                 = tempFrame
+        }
+    }
+    
+    /// width
+    var cl_width: CGFloat {
+        get {
+            return frame.size.width
+        }
+        set(newValue) {
+            var tempFrame: CGRect = frame
+            tempFrame.size.width = newValue
+            frame = tempFrame
+        }
+    }
+    
+    /// size
+    var cl_size: CGSize {
+        get {
+            return frame.size
+        }
+        set(newValue) {
+            var tempFrame: CGRect = frame
+            tempFrame.size = newValue
+            frame = tempFrame
+        }
+    }
+    
+    /// centerX
+    var cl_centerX: CGFloat {
+        get {
+            return center.x
+        }
+        set(newValue) {
+            var tempCenter: CGPoint = center
+            tempCenter.x = newValue
+            center = tempCenter
+        }
+    }
+    
+    /// centerY
+    var cl_centerY: CGFloat {
+        get {
+            return center.y
+        }
+        set(newValue) {
+            var tempCenter: CGPoint = center
+            tempCenter.y = newValue
+            center = tempCenter;
+        }
+    }
+    
+}

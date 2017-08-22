@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class BundleUtil {
     
@@ -21,5 +22,34 @@ class BundleUtil {
             return Bundle.main
         }
     }
-
+    
+    static func cl_localizedStringForKey(key: String) -> String {
+        return self.cl_localizedStringForKey(key: key, value: "")
+    }
+    
+    static func cl_localizedStringForKey(key: String,value:String) -> String {
+        var bundle: Bundle? = nil
+        
+        if bundle == nil {
+            var language = NSLocale.preferredLanguages.first
+            let r = language?.range(of: "zh-Hans")
+            if r != nil {
+                let nsr = "".nsRange(from: r!)
+                if nsr.location != NSNotFound {
+                    language = "zh-Hans"
+                } else {
+                    language = "en"
+                }
+            } else {
+                language = "en"
+            }
+            
+            bundle = Bundle(path: self.getCurrentBundle().path(forResource: language, ofType: "lproj")!)
+        }
+        
+        let str = bundle?.localizedString(forKey: key, value: value, table: nil)
+        return str ?? ""
+    }
+    
+        
 }

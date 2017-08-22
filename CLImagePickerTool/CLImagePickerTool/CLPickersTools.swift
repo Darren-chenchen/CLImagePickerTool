@@ -30,7 +30,7 @@ class CLPickersTools {
         var flagData: [String:[CLImagePickerPhotoModel]]?
         for i in 0..<self.dataArr.count {
             let dict = self.dataArr[i]
-            if dict.keys.first == "所有照片" {
+            if dict.keys.first == allPhoto || dict.keys.first == allPhoto2 || dict.keys.first == allPhoto3 {
                 flagData = dict
                 self.dataArr.remove(at: i)
                 break
@@ -89,28 +89,38 @@ class CLPickersTools {
                 }
 
                 var titleStr: String?
-                if assetCollection.localizedTitle == "Favorites" {
-                    titleStr = "收藏"
-                } else if assetCollection.localizedTitle == "Videos" {
+//                if assetCollection.localizedTitle == "Favorites" {
+//                    titleStr = "收藏"
+//                } else if assetCollection.localizedTitle == "Videos" {
+//                    // 是否允许选择视频
+//                    if self.isHiddenVideo {
+//                        continue
+//                    } else {
+//                        titleStr = "视频"
+//                    }
+//                } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" {
+//                    titleStr = "所有照片"
+//                } else if assetCollection.localizedTitle == "Recently Added" {
+//                    titleStr = "最近添加"
+//                } else if assetCollection.localizedTitle == "Screenshots" {
+//                    titleStr = "屏幕快照"
+//                } else if assetCollection.localizedTitle == "Selfies" {
+//                    titleStr = "自拍"
+//                } else if assetCollection.localizedTitle == "Recently Deleted" {
+//                    titleStr = "最近删除"
+//                } else {
+                
+//                }
+                
+                if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
                     // 是否允许选择视频
                     if self.isHiddenVideo {
                         continue
-                    } else {
-                        titleStr = "视频"
                     }
-                } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" {
-                    titleStr = "所有照片"
-                } else if assetCollection.localizedTitle == "Recently Added" {
-                    titleStr = "最近添加"
-                } else if assetCollection.localizedTitle == "Screenshots" {
-                    titleStr = "屏幕快照"
-                } else if assetCollection.localizedTitle == "Selfies" {
-                    titleStr = "自拍"
-                } else if assetCollection.localizedTitle == "Recently Deleted" {
-                    titleStr = "最近删除"
-                } else {
-                    titleStr = assetCollection.localizedTitle
                 }
+                // 部分设备打印出来的是中文，所以直接添加就好了
+                titleStr = assetCollection.localizedTitle
+                
                 dataArr.append([titleStr!:array])
             }
         }
@@ -336,7 +346,7 @@ class CLPickersTools {
             
             authorizeClouse(status)
         } else {
-            PopViewUtil.alert(title: "照片访问受限", message: "点击“设置”，允许访问您的照片", leftTitle: "取消", rightTitle: "设置", leftHandler: {
+            PopViewUtil.alert(title: photoLimitStr, message: clickSetStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {
                 
             }, rightHandler: {
                 let url = URL(string: UIApplicationOpenSettingsURLString)
@@ -370,7 +380,7 @@ class CLPickersTools {
                 }
             })
         } else {
-            PopViewUtil.alert(title: "相机访问受限", message: "点击“设置”，允许访问您的相机", leftTitle: "取消", rightTitle: "设置", leftHandler: {
+            PopViewUtil.alert(title: cameraLimitStr, message: clickCameraStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {
                 
             }, rightHandler: {
                 let url = URL(string: UIApplicationOpenSettingsURLString)

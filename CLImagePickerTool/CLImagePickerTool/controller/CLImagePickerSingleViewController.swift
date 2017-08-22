@@ -126,7 +126,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.lookBtn.isEnabled = false
         self.resetBtn.isEnabled = false
         self.sureBtn.isEnabled = false
-        self.sureBtn.setTitle("确定", for: .normal)
+        self.sureBtn.setTitle(sureStr, for: .normal)
         
         if self.onlyChooseImageOrVideo {
             for model in (self.photoArr ?? []) {
@@ -172,10 +172,14 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     func initView() {
         self.backBtn.isHidden = false
         
-        self.rightBtn.setTitle("取消", for: .normal)
+        self.rightBtn.setTitle(cancelStr, for: .normal)
+        
+        self.lookBtn.setTitle(previewStr, for: .normal)
+        self.resetBtn.setTitle(resetStr, for: .normal)
+        self.sureBtn.setTitle(sureStr, for: .normal)
         
         if CLPickersTools.instence.getSavePictureCount() > 0 {
-            let title = "确定(\(CLPickersTools.instence.getSavePictureCount()))"
+            let title = "\(sureStr)(\(CLPickersTools.instence.getSavePictureCount()))"
             self.sureBtn.setTitle(title, for: .normal)
             self.sureBtn.isEnabled = true
             self.lookBtn.isEnabled = true
@@ -267,12 +271,12 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             cell.imagePickerChooseImage = {[weak self] () in
                 let chooseCount = CLPickersTools.instence.getSavePictureCount()
                 if chooseCount == 0 {
-                    self?.sureBtn.setTitle("确定", for: .normal)
+                    self?.sureBtn.setTitle(sureStr, for: .normal)
                     self?.sureBtn.isEnabled = false
                     self?.lookBtn.isEnabled = false
                     self?.resetBtn.isEnabled = false
                 } else {
-                    self?.sureBtn.setTitle("确定(\(chooseCount))", for: .normal)
+                    self?.sureBtn.setTitle("\(sureStr)(\(chooseCount))", for: .normal)
                     self?.sureBtn.isEnabled = true
                     self?.lookBtn.isEnabled = true
                     self?.resetBtn.isEnabled = true
@@ -345,7 +349,7 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
     // 保存图片的结果
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         if let err = error {
-            UIAlertView(title: "错误", message: err.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+            UIAlertView(title: errorStr, message: err.localizedDescription, delegate: nil, cancelButtonTitle: sureStr).show()
         } else {
         
             var dataArr = CLPickersTools.instence.loadData()
@@ -360,7 +364,7 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
             dataArr.removeFirst()
             var arr = self.photoArr
             arr?.removeLast()
-            dataArr.insert(["所有照片":arr!], at: 0)
+            dataArr.insert([self.navTitle:arr!], at: 0)
             CLNotificationCenter.post(name: NSNotification.Name(rawValue:CLPhotoListRefreshNotic), object: dataArr)
             
             PopViewUtil.share.stopLoading()
