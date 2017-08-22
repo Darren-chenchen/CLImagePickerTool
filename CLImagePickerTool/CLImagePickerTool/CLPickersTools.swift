@@ -109,7 +109,7 @@ class CLPickersTools {
                 } else if assetCollection.localizedTitle == "Recently Deleted" {
                     titleStr = "最近删除"
                 } else {
-                    continue
+                    titleStr = assetCollection.localizedTitle
                 }
                 dataArr.append([titleStr!:array])
             }

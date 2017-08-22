@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "更多功能"; ObjectID = "2I0-UF-4Md"; */
+"2I0-UF-4Md.normalTitle" = "更多功能";
+
+/* Class = "UIButton"; normalTitle = "访问相册相机在外部"; ObjectID = "9nJ-Jx-1WI"; */
+"9nJ-Jx-1WI.normalTitle" = "访问相册相机在外部";
+
+/* Class = "UILabel"; text = "图片压缩0.2倍后的图片大小是："; ObjectID = "Jy0-9a-d2B"; */
+"Jy0-9a-d2B.text" = "图片压缩0.2倍后的图片大小是：";
+
+/* Class = "UIButton"; normalTitle = "视频文件和图片文件只能选择1种"; ObjectID = "UAk-Vz-CwC"; */
+"UAk-Vz-CwC.normalTitle" = "视频文件和图片文件只能选择1种";
+
+/* Class = "UIButton"; normalTitle = "图片单选并且裁剪并指定宽高比"; ObjectID = "YAv-hl-bUs"; */
+"YAv-hl-bUs.normalTitle" = "图片单选并且裁剪并指定宽高比";
+
+/* Class = "UIButton"; normalTitle = "访问相册相机在内部,选择完对图片进行压缩处理"; ObjectID = "jzK-xs-xQJ"; */
+"jzK-xs-xQJ.normalTitle" = "访问相册相机在内部,选择完对图片进行压缩处理";
+
+/* Class = "UIButton"; normalTitle = "图片单选并且裁剪"; ObjectID = "lwF-fc-z12"; */
+"lwF-fc-z12.normalTitle" = "图片单选并且裁剪";
+
+/* Class = "UILabel"; text = "图片未压缩大小是："; ObjectID = "oHy-Bw-xuM"; */
+"oHy-Bw-xuM.text" = "图片未压缩大小是：";
+
+/* Class = "UIButton"; normalTitle = "图片单选并且屏蔽视频文件"; ObjectID = "qZE-gv-tVh"; */
+"qZE-gv-tVh.normalTitle" = "图片单选并且屏蔽视频文件";

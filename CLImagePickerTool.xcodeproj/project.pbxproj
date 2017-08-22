@@ -146,6 +146,10 @@
 		9514448D1F3D6F4B006C7731 /* ic_erase_grey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_erase_grey@3x.png"; sourceTree = "<group>"; };
 		9514448E1F3D6F4B006C7731 /* ic_erase@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_erase@3x.png"; sourceTree = "<group>"; };
 		9514448F1F3D6F4B006C7731 /* ic_erase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_erase@2x.png"; sourceTree = "<group>"; };
+		952447E21F4BBFCF0055F4CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		952447E31F4BBFCF0055F4CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		952447E41F4BBFD50055F4CD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		952447E51F4BBFD50055F4CD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		95304E781F32F036001F76B6 /* CLImagePickerTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CLImagePickerTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95304E7B1F32F036001F76B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95304E7D1F32F036001F76B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -589,6 +593,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				95304E801F32F036001F76B6 /* Base */,
+				952447E21F4BBFCF0055F4CD /* zh-Hans */,
+				952447E41F4BBFD50055F4CD /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -597,6 +603,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				95304E851F32F036001F76B6 /* Base */,
+				952447E31F4BBFCF0055F4CD /* zh-Hans */,
+				952447E51F4BBFD50055F4CD /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -608,6 +616,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -658,6 +667,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
