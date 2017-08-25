@@ -17,6 +17,8 @@ class CLPickersTools {
     
     // 是否隐藏视频文件
     var isHiddenVideo: Bool = false
+    // 是否隐藏图片文件，显示视频文件，默认不隐藏
+    var isHiddenImage: Bool = false
         
     fileprivate var dataArr = [[String:[CLImagePickerPhotoModel]]]()
     
@@ -76,10 +78,19 @@ class CLPickersTools {
                             array.append(model)
                         }
                     } else {
-                        //获取每一个资源(PHAsset)
-                        let model = CLImagePickerPhotoModel()
-                        model.phAsset = asset
-                        array.append(model)
+                        if self.isHiddenImage {  // 隐藏图片资源
+                            if asset.mediaType == .video {
+                                //获取每一个资源(PHAsset)
+                                let model = CLImagePickerPhotoModel()
+                                model.phAsset = asset
+                                array.append(model)
+                            }
+                        } else {
+                            //获取每一个资源(PHAsset)
+                            let model = CLImagePickerPhotoModel()
+                            model.phAsset = asset
+                            array.append(model)
+                        }
                     }
                     
                 })
@@ -89,39 +100,28 @@ class CLPickersTools {
                 }
 
                 var titleStr: String?
-//                if assetCollection.localizedTitle == "Favorites" {
-//                    titleStr = "收藏"
-//                } else if assetCollection.localizedTitle == "Videos" {
-//                    // 是否允许选择视频
-//                    if self.isHiddenVideo {
-//                        continue
-//                    } else {
-//                        titleStr = "视频"
-//                    }
-//                } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" {
-//                    titleStr = "所有照片"
-//                } else if assetCollection.localizedTitle == "Recently Added" {
-//                    titleStr = "最近添加"
-//                } else if assetCollection.localizedTitle == "Screenshots" {
-//                    titleStr = "屏幕快照"
-//                } else if assetCollection.localizedTitle == "Selfies" {
-//                    titleStr = "自拍"
-//                } else if assetCollection.localizedTitle == "Recently Deleted" {
-//                    titleStr = "最近删除"
-//                } else {
                 
-//                }
-                
-                if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
-                    // 是否允许选择视频
-                    if self.isHiddenVideo {
-                        continue
+                if self.isHiddenImage {
+                    if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
+                        // 部分设备打印出来的是中文，所以直接添加就好了
+                        titleStr = assetCollection.localizedTitle
+                        
+                        dataArr.append([titleStr!:array])
                     }
+                    
+                } else {
+                    if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
+                        // 是否允许选择视频
+                        if self.isHiddenVideo {
+                            continue
+                        }
+                    }
+                    // 部分设备打印出来的是中文，所以直接添加就好了
+                    titleStr = assetCollection.localizedTitle
+                    
+                    dataArr.append([titleStr!:array])
+
                 }
-                // 部分设备打印出来的是中文，所以直接添加就好了
-                titleStr = assetCollection.localizedTitle
-                
-                dataArr.append([titleStr!:array])
             }
         }
     }
@@ -159,17 +159,32 @@ class CLPickersTools {
                             array.append(model)
                         }
                     } else {
-                        //获取每一个资源(PHAsset)
-                        let model = CLImagePickerPhotoModel()
-                        model.phAsset = asset
-                        array.append(model)
+                        if self.isHiddenImage {  // 隐藏图片资源
+                            if asset.mediaType == .video {
+                                //获取每一个资源(PHAsset)
+                                let model = CLImagePickerPhotoModel()
+                                model.phAsset = asset
+                                array.append(model)
+                            }
+
+                        } else {
+                            //获取每一个资源(PHAsset)
+                            let model = CLImagePickerPhotoModel()
+                            model.phAsset = asset
+                            array.append(model)
+                        }
+
                     }
                 })
                 
                 if assetCollection.localizedTitle == nil || array.count == 0 {
                     continue
                 }
-                dataArr.append([assetCollection.localizedTitle!:array])
+                if self.isHiddenImage {
+                
+                } else {
+                    dataArr.append([assetCollection.localizedTitle!:array])
+                }
             }
         }
     }

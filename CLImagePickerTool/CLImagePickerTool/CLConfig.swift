@@ -36,6 +36,8 @@ let UserChooserType = "UserChooserType"
 let OnlyChooseImageOrVideoNotic = "OnlyChooseImageOrVideoNotic"
 // 用户全部取消后，更新数据源为最初状态
 let OnlyChooseImageOrVideoNoticCencel = "OnlyChooseImageOrVideoNoticCencel"
+// 预览界面设置选中与取消，通知列表界面刷新
+let PreviewForSelectOrNotSelectedNotic = "PreviewForSelectOrNotSelectedNotic"
 
 // MARK:- 设置圆角
 func CLViewsBorder(_ view:UIView, borderWidth:CGFloat, borderColor:UIColor?=nil,cornerRadius:CGFloat){

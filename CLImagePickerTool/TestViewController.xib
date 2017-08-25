@@ -34,18 +34,32 @@
                         <action selector="clickBtn:" destination="-1" eventType="touchUpInside" id="3et-JF-3bz"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="reC-Ck-W4Z">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="reC-Ck-W4Z">
                     <rect key="frame" x="0.0" y="118" width="375" height="216"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="216" id="nu5-K4-kDY"/>
+                    </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWj-wd-VuJ">
+                    <rect key="frame" x="65" y="353" width="108" height="30"/>
+                    <state key="normal" title="只显示视频文件"/>
+                    <connections>
+                        <action selector="clickBtn3:" destination="-1" eventType="touchUpInside" id="tys-Jn-z42"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="iWg-Ma-VLh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="5Hz-ED-u9T"/>
+                <constraint firstAttribute="trailing" secondItem="reC-Ck-W4Z" secondAttribute="trailing" id="5IR-2k-6YV"/>
+                <constraint firstItem="reC-Ck-W4Z" firstAttribute="top" secondItem="VQZ-h8-gr0" secondAttribute="bottom" constant="16" id="7np-q4-tgl"/>
                 <constraint firstItem="iWg-Ma-VLh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="BcK-HY-5rl"/>
+                <constraint firstItem="VWj-wd-VuJ" firstAttribute="top" secondItem="reC-Ck-W4Z" secondAttribute="bottom" constant="19" id="Cts-m8-RZ5"/>
                 <constraint firstItem="VQZ-h8-gr0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="OR8-b5-fCu"/>
+                <constraint firstItem="VWj-wd-VuJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="65" id="T2H-Bj-dPq"/>
                 <constraint firstItem="VQZ-h8-gr0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="65" id="wb2-6v-1Ef"/>
+                <constraint firstItem="reC-Ck-W4Z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xZK-7n-wBn"/>
             </constraints>
             <point key="canvasLocation" x="-92.5" y="84.5"/>
         </view>

@@ -16,4 +16,5 @@ class PreviewModel: NSObject {
     var phAsset: PHAsset?
     var downLoadProgress: CGFloat = 100  // 默认100
     var index: Int = 0
+    var isCheck = true
 }

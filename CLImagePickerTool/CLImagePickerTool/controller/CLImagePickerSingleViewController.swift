@@ -94,6 +94,36 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     func initWventHendle() {
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNotic), object: nil)
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticCencelFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNoticCencel), object: nil)
+        CLNotificationCenter.addObserver(self, selector: #selector(PreviewForSelectOrNotSelectedNoticFunc), name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: nil)
+    }
+    
+    func PreviewForSelectOrNotSelectedNoticFunc(notic:Notification) {
+        
+        let modelPreView = notic.object as! PreviewModel
+        for model in (self.photoArr ?? []) {
+            if model.phAsset == modelPreView.phAsset {
+                model.isSelect = modelPreView.isCheck
+            }
+        }
+        
+        
+        if CLPickersTools.instence.getSavePictureCount() > 0 {
+            let title = "\(sureStr)(\(CLPickersTools.instence.getSavePictureCount()))"
+            self.sureBtn.setTitle(title, for: .normal)
+            self.sureBtn.isEnabled = true
+            self.lookBtn.isEnabled = true
+            self.resetBtn.isEnabled = true
+        } else {
+            self.sureBtn.setTitle(sureStr, for: .normal)
+            self.sureBtn.isEnabled = false
+            self.lookBtn.isEnabled = false
+            self.resetBtn.isEnabled = false
+            
+            // 全部取消了，如果是视频和照片2选1的类型，当全部取消后，还要刷新界面
+            self.OnlyChooseImageOrVideoNoticCencelFunc()
+        }
+        
+        self.collectionView.reloadData()
     }
     
     func OnlyChooseImageOrVideoNoticFunc(notic:Notification) {
@@ -147,6 +177,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         for item in CLPickersTools.instence.getChoosePictureArray() {
             let model = PreviewModel()
             model.phAsset = item
+            model.isCheck = true
             array.append(model)
         }
         previewVC.picArray = array
@@ -166,7 +197,6 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.dismiss(animated: true) {
             self.navigationController?.popViewController(animated: true)
         }
-
     }
     
     func initView() {

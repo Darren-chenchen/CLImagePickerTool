@@ -54,6 +54,8 @@
 		951444931F3D6F4B006C7731 /* ic_erase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9514448F1F3D6F4B006C7731 /* ic_erase@2x.png */; };
 		951E42DE1F4C3D1C00E4C4A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 951E42D91F4C3D1C00E4C4A7 /* Localizable.strings */; };
 		951E42DF1F4C3D1C00E4C4A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 951E42DC1F4C3D1C00E4C4A7 /* Localizable.strings */; };
+		951E43061F4FFECC00E4C4A7 /* btn_back_w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E43051F4FFECC00E4C4A7 /* btn_back_w@2x.png */; };
+		951E43081F50005000E4C4A7 /* btn_back_w@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E43071F50005000E4C4A7 /* btn_back_w@3x.png */; };
 		95304E7C1F32F036001F76B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304E7B1F32F036001F76B6 /* AppDelegate.swift */; };
 		95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304E7D1F32F036001F76B6 /* ViewController.swift */; };
 		95304E811F32F036001F76B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95304E7F1F32F036001F76B6 /* Main.storyboard */; };
@@ -150,6 +152,8 @@
 		9514448F1F3D6F4B006C7731 /* ic_erase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_erase@2x.png"; sourceTree = "<group>"; };
 		951E42DA1F4C3D1C00E4C4A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		951E42DD1F4C3D1C00E4C4A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
+		951E43051F4FFECC00E4C4A7 /* btn_back_w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back_w@2x.png"; sourceTree = "<group>"; };
+		951E43071F50005000E4C4A7 /* btn_back_w@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back_w@3x.png"; sourceTree = "<group>"; };
 		952447E21F4BBFCF0055F4CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		952447E31F4BBFCF0055F4CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		952447E41F4BBFD50055F4CD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 				95304EE11F3324BF001F76B6 /* cl_imagepickervedio.png */,
 				95304EE21F3324BF001F76B6 /* clvedioplaybtn.png */,
 				95304EE31F3324BF001F76B6 /* takePicture.png */,
+				951E43051F4FFECC00E4C4A7 /* btn_back_w@2x.png */,
+				951E43071F50005000E4C4A7 /* btn_back_w@3x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -530,6 +536,7 @@
 				951444591F3D54DE006C7731 /* clr_green@2x.png in Resources */,
 				951444861F3D5658006C7731 /* ic_redo@3x.png in Resources */,
 				951444931F3D6F4B006C7731 /* ic_erase@2x.png in Resources */,
+				951E43061F4FFECC00E4C4A7 /* btn_back_w@2x.png in Resources */,
 				95304EF91F3324BF001F76B6 /* NomalStyleView.xib in Resources */,
 				951444761F3D5632006C7731 /* ic_pen@3x.png in Resources */,
 				95304F8C1F346E07001F76B6 /* CLSingleTypeCell.xib in Resources */,
@@ -541,6 +548,7 @@
 				9514447E1F3D5646006C7731 /* ic_pre@3x.png in Resources */,
 				95304EFF1F3324BF001F76B6 /* btn_back2@3x.png in Resources */,
 				951E42DE1F4C3D1C00E4C4A7 /* Localizable.strings in Resources */,
+				951E43081F50005000E4C4A7 /* btn_back_w@3x.png in Resources */,
 				951444901F3D6F4B006C7731 /* ic_erase_grey@2x.png in Resources */,
 				95304E811F32F036001F76B6 /* Main.storyboard in Resources */,
 				951444691F3D5613006C7731 /* ic_msk_grey@2x.png in Resources */,

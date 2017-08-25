@@ -30,5 +30,13 @@ class TestViewController: UIViewController {
         }
     }
 
+    // 隐藏图片文件，展示视频文件
+    @IBAction func clickBtn3(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.isHiddenImage = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            
+        }
+    }
 
 }

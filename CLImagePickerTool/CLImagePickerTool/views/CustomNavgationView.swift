@@ -17,7 +17,7 @@ class CustomNavgationView: UIView {
         titleLable.font = UIFont.boldSystemFont(ofSize: 18)
         return titleLable
     }()
-    fileprivate lazy var navLine:UILabel = {
+    lazy var navLine:UILabel = {
         let navLine = UILabel()
         navLine.backgroundColor = UIColor.gray
         return navLine;

@@ -21,7 +21,7 @@ class CLImagePickersViewController: UINavigationController {
     
     let albumVC =  CLImageAlbumPickerController()
 
-    func initWith(MaxImagesCount: Int,isHiddenVideo:Bool,cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,singleModelImageCanEditor: Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
+    func initWith(MaxImagesCount: Int,isHiddenVideo:Bool,cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,singleModelImageCanEditor: Bool,isHiddenImage:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
         
         // 存储用户设置的最多图片数量
         UserDefaults.standard.set(MaxImagesCount, forKey: CLImagePickerMaxImagesCount)
@@ -36,8 +36,10 @@ class CLImagePickersViewController: UINavigationController {
         UserDefaults.standard.synchronize()
         
         CLPickersTools.instence.isHiddenVideo = isHiddenVideo  // 是否隐藏视频文件赋值
-        let dataArr = CLPickersTools.instence.loadData()
+        CLPickersTools.instence.isHiddenImage = isHiddenImage
         
+        let dataArr = CLPickersTools.instence.loadData()
+                
         albumVC.dataArr = dataArr
         albumVC.cameraOut = cameraOut
         albumVC.imageCompleteClouse = didChooseImageSuccess

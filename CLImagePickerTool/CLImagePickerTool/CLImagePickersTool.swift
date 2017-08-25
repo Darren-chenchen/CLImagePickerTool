@@ -27,6 +27,8 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     
     // 是否隐藏视频文件，默认不隐藏
     public var isHiddenVideo: Bool = false
+    // 是否隐藏图片文件，显示视频文件，默认不隐藏
+    public var isHiddenImage: Bool = false
     // 设置单选图片，单选图片并裁剪属性，默认多选
     public var singleImageChooseType: CLImagePickersToolType?
     // 设置相机在外部，默认不在外部
@@ -57,7 +59,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
                 // 判断用户是否开启访问相册功能
                 CLPickersTools.instence.authorize(authorizeClouse: { (state) in
                     if state == .authorized {
-                        let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor) { (assetArr,cutImage) in
+                        let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor,isHiddenImage:self.isHiddenImage) { (assetArr,cutImage) in
                             if self.clPickerToolClouse != nil {
                                 self.clPickerToolClouse!(assetArr,cutImage)
                             }
@@ -76,7 +78,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
             // 判断用户是否开启访问相册功能
             CLPickersTools.instence.authorize(authorizeClouse: { (state) in
                 if state == .authorized {
-                    let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor) { (assetArr,cutImage) in
+                    let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor,isHiddenImage:self.isHiddenImage) { (assetArr,cutImage) in
                         didChooseImageSuccess(assetArr,cutImage)
                     }
                     superVC.present(photo, animated: true, completion: nil)

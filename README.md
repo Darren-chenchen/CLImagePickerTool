@@ -1,5 +1,5 @@
 # CLImagePickerTool
-语言：swift   这是一个多图片选择的控件，支持图片多选，视频预览、照片预览、屏蔽视频文件、重置选中状态、预览、异步下载图片、视频文件和图片文件不能同时选择、图片编辑操作（马赛克，涂鸦）
+语言：swift   这是一个多图片选择的控件，支持图片多选,缩放，视频预览、照片预览、屏蔽视频文件、播放视频文件、屏蔽图片资源显示视频资源、重置选中状态、预览、异步下载图片、视频文件和图片文件不能同时选择、图片编辑操作（马赛克，涂鸦）
 
 # 使用方式
 
@@ -70,6 +70,14 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             
             self.img.image = editorImage
+        }
+        
+ 8.只显示视频文件，不显示图片文件
+ 
+ 		let imagePickTool = CLImagePickersTool()
+        imagePickTool.isHiddenImage = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            
         }
 
 #### 注意点
