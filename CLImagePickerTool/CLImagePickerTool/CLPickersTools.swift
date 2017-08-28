@@ -106,7 +106,7 @@ class CLPickersTools {
                         // 部分设备打印出来的是中文，所以直接添加就好了
                         titleStr = self.setupTitleStr(assetCollection: assetCollection)
                         
-                        dataArr.append([assetCollection.localizedTitle!:array])
+                        dataArr.append([titleStr!:array])
                     }
                 } else {
                     if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
@@ -118,7 +118,7 @@ class CLPickersTools {
                     // 部分设备打印出来的是中文，所以直接添加就好了
                     titleStr = self.setupTitleStr(assetCollection: assetCollection)
                     
-                    dataArr.append([assetCollection.localizedTitle!:array])
+                    dataArr.append([titleStr!:array])
                 }
             }
         }
