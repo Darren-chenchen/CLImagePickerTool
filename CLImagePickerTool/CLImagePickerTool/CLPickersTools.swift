@@ -104,11 +104,10 @@ class CLPickersTools {
                 if self.isHiddenImage {
                     if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
                         // 部分设备打印出来的是中文，所以直接添加就好了
-                        titleStr = assetCollection.localizedTitle
+                        titleStr = self.setupTitleStr(assetCollection: assetCollection)
                         
-                        dataArr.append([titleStr!:array])
+                        dataArr.append([assetCollection.localizedTitle!:array])
                     }
-                    
                 } else {
                     if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
                         // 是否允许选择视频
@@ -117,13 +116,35 @@ class CLPickersTools {
                         }
                     }
                     // 部分设备打印出来的是中文，所以直接添加就好了
-                    titleStr = assetCollection.localizedTitle
+                    titleStr = self.setupTitleStr(assetCollection: assetCollection)
                     
-                    dataArr.append([titleStr!:array])
-
+                    dataArr.append([assetCollection.localizedTitle!:array])
                 }
             }
         }
+    }
+    
+    func setupTitleStr(assetCollection:PHAssetCollection) -> String{
+        var titleStr: String?
+        
+        if assetCollection.localizedTitle == "Favorites" {
+            titleStr = favStr
+        } else if assetCollection.localizedTitle == "Videos" {
+            titleStr = videoStr
+        } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" {
+            titleStr = allPStr
+        } else if assetCollection.localizedTitle == "Recently Added" {
+            titleStr = rencentStr
+        } else if assetCollection.localizedTitle == "Screenshots" {
+            titleStr = shotStr
+        } else if assetCollection.localizedTitle == "Selfies" {
+            titleStr = selfStr
+        } else if assetCollection.localizedTitle == "Recently Deleted" {
+            titleStr = delectStr
+        } else {
+            titleStr = assetCollection.localizedTitle
+        }
+        return titleStr ?? ""
     }
     
     //2、列出用户创建的相册，并获取每一个相册中的PHAsset对象，代码如下：
@@ -337,7 +358,7 @@ class CLPickersTools {
         //  创建 CAGradientLayer 对象
         let gradientLayer = CAGradientLayer()
         //  设置 gradientLayer 的 Frame
-        gradientLayer.frame = superView.bounds;
+        gradientLayer.frame = superView.bounds
         //  创建渐变色数组，需要转换为CGColor颜色
         gradientLayer.colors = [CoustomColor(0, g: 0, b: 0, a: 0).cgColor,CoustomColor(0, g: 0, b: 0, a: 0.5).cgColor,CoustomColor(0, g: 0, b: 0, a: 1.0).cgColor]
         //  设置三种颜色变化点，取值范围 0.0~1.0

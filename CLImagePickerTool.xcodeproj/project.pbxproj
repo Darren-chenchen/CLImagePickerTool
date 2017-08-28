@@ -90,7 +90,6 @@
 		95304F101F3324C0001F76B6 /* CLPickersTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF31F3324BF001F76B6 /* CLPickersTools.swift */; };
 		95304F111F3324C0001F76B6 /* CLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF41F3324BF001F76B6 /* CLConfig.swift */; };
 		95304F121F3324C0001F76B6 /* CLImagePickersTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */; };
-		95304F321F334187001F76B6 /* CLImagePickerTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 95304F311F334187001F76B6 /* CLImagePickerTool.podspec */; };
 		95304F341F334867001F76B6 /* BundleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F331F334867001F76B6 /* BundleUtil.swift */; };
 		95304F401F3419A5001F76B6 /* photo_sel_photoPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */; };
 		95304F8B1F346E07001F76B6 /* CLSingleTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */; };
@@ -194,7 +193,6 @@
 		95304EF31F3324BF001F76B6 /* CLPickersTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPickersTools.swift; sourceTree = "<group>"; };
 		95304EF41F3324BF001F76B6 /* CLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLConfig.swift; sourceTree = "<group>"; };
 		95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickersTool.swift; sourceTree = "<group>"; };
-		95304F311F334187001F76B6 /* CLImagePickerTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CLImagePickerTool.podspec; sourceTree = "<group>"; };
 		95304F331F334867001F76B6 /* BundleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleUtil.swift; sourceTree = "<group>"; };
 		95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_sel_photoPicker.png; sourceTree = "<group>"; };
 		95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLSingleTypeCell.swift; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 		95304E7A1F32F036001F76B6 /* CLImagePickerTool */ = {
 			isa = PBXGroup;
 			children = (
-				95304F311F334187001F76B6 /* CLImagePickerTool.podspec */,
 				95304E8E1F32F131001F76B6 /* CLImagePickerTool */,
 				95304E8D1F32F0A8001F76B6 /* other */,
 			);
@@ -530,7 +527,6 @@
 				951444791F3D563D006C7731 /* ic_pre_grey@2x.png in Resources */,
 				951444621F3D54F1006C7731 /* clr_purple@3x.png in Resources */,
 				951444391F3D4FBA006C7731 /* EditorViewController.xib in Resources */,
-				95304F321F334187001F76B6 /* CLImagePickerTool.podspec in Resources */,
 				95304E861F32F036001F76B6 /* LaunchScreen.storyboard in Resources */,
 				95304E831F32F036001F76B6 /* Assets.xcassets in Resources */,
 				951444651F3D54FE006C7731 /* clr_red@2x.png in Resources */,

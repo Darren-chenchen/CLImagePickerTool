@@ -85,4 +85,11 @@ let clickCameraStr = BundleUtil.cl_localizedStringForKey(key: "点击“设置�
 let tackPhotoStr = BundleUtil.cl_localizedStringForKey(key: "拍照")
 let chooseStr = BundleUtil.cl_localizedStringForKey(key: "从手机相册选择")
 
+let favStr = BundleUtil.cl_localizedStringForKey(key: "收藏")
+let videoStr = BundleUtil.cl_localizedStringForKey(key: "视频")
+let allPStr = BundleUtil.cl_localizedStringForKey(key: "所有照片")
+let rencentStr = BundleUtil.cl_localizedStringForKey(key: "最近添加")
+let shotStr = BundleUtil.cl_localizedStringForKey(key: "屏幕快照")
+let selfStr = BundleUtil.cl_localizedStringForKey(key: "自拍")
+let delectStr = BundleUtil.cl_localizedStringForKey(key: "最近删除")
 
