@@ -98,15 +98,11 @@ class CLPickersTools {
                 if assetCollection.localizedTitle == nil || array.count == 0 {
                     continue
                 }
-
-                var titleStr: String?
                 
                 if self.isHiddenImage {
                     if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
                         // 部分设备打印出来的是中文，所以直接添加就好了
-                        titleStr = self.setupTitleStr(assetCollection: assetCollection)
-                        
-                        dataArr.append([titleStr!:array])
+                        dataArr.append([self.setupTitleStr(assetCollection: assetCollection):array])
                     }
                 } else {
                     if assetCollection.localizedTitle == "Videos" || assetCollection.localizedTitle == "视频" {
@@ -116,35 +112,33 @@ class CLPickersTools {
                         }
                     }
                     // 部分设备打印出来的是中文，所以直接添加就好了
-                    titleStr = self.setupTitleStr(assetCollection: assetCollection)
-                    
-                    dataArr.append([titleStr!:array])
+                    dataArr.append([self.setupTitleStr(assetCollection: assetCollection):array])
                 }
             }
         }
     }
     
     func setupTitleStr(assetCollection:PHAssetCollection) -> String{
-        var titleStr: String?
+        var title: String?
         
         if assetCollection.localizedTitle == "Favorites" {
-            titleStr = favStr
+            title = favStr
         } else if assetCollection.localizedTitle == "Videos" {
-            titleStr = videoStr
+            title = videoStr
         } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" {
-            titleStr = allPStr
+            title = allPStr
         } else if assetCollection.localizedTitle == "Recently Added" {
-            titleStr = rencentStr
+            title = rencentStr
         } else if assetCollection.localizedTitle == "Screenshots" {
-            titleStr = shotStr
+            title = shotStr
         } else if assetCollection.localizedTitle == "Selfies" {
-            titleStr = selfStr
+            title = selfStr
         } else if assetCollection.localizedTitle == "Recently Deleted" {
-            titleStr = delectStr
+            title = delectStr
         } else {
-            titleStr = assetCollection.localizedTitle
+            title = assetCollection.localizedTitle
         }
-        return titleStr ?? ""
+        return title ?? ""
     }
     
     //2、列出用户创建的相册，并获取每一个相册中的PHAsset对象，代码如下：
