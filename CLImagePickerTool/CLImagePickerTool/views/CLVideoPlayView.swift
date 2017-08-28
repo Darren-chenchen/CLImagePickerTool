@@ -74,7 +74,7 @@ class CLVideoPlayView: UIView {
         imageView.image = (tap.view as! UIImageView).image
         imageView.frame = self.convert((picView?.frame)!, from: superView)
         self.addSubview(imageView)
-        
+                
         CLPickersTools.instence.getAssetOrigin(asset: originImageAsset) { (img, info) in
             if img != nil {
                 imageView.image = img!
@@ -187,9 +187,12 @@ class CLVideoPlayView: UIView {
     
     func clickBgView(tapBgView:UITapGestureRecognizer){
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.lastImageView.frame = self.originalFrame
-            self.lastImageView.alpha = 0
+
+            self.lastImageView.contentMode = .scaleAspectFill
+            self.lastImageView.layer.masksToBounds = true
+
             self.playBtn.alpha = 0
             tapBgView.view?.backgroundColor = UIColor.clear
             

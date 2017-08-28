@@ -148,11 +148,16 @@ class CLImageAmplifyView: UIView {
     }
     
      func clickBgView(tapBgView:UITapGestureRecognizer){
+        
+        self.bottomView.removeFromSuperview()
+        
         self.scrollView?.contentOffset = CGPoint(x: 0, y: 0)
         
         UIView.animate(withDuration: 0.5, animations: {
             self.lastImageView?.frame = self.originalFrame
-            self.lastImageView?.alpha = 0
+            self.lastImageView?.contentMode = .scaleAspectFill
+            self.lastImageView?.layer.masksToBounds = true
+            
             tapBgView.view?.backgroundColor = UIColor.clear
             self.circleBtn?.removeFromSuperview()
             self.circleBtn = nil

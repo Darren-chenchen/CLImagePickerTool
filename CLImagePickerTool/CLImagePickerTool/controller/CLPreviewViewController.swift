@@ -95,7 +95,7 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         shakeAnimation.fromValue = 0.8
         shakeAnimation.toValue = 1
         shakeAnimation.autoreverses = true
-        self.rightBtn.layer.add(shakeAnimation, forKey: nil)
+        self.selectBtn.layer.add(shakeAnimation, forKey: nil)
     }
     override func backBtnclick() {
         self.navigationController?.popViewController(animated: true)
