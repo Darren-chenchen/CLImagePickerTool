@@ -4,12 +4,12 @@
 ![Pod Platform](https://img.shields.io/cocoapods/p/CLImagePickerTool.svg?style=flat)
 ![Pod License](https://img.shields.io/cocoapods/l/CLImagePickerTool.svg?style=flat)
 
-#要求
+# 要求
 
 - iOS 8.0+
 - swift 3.0+
 
-#主要功能：
+# 主要功能：
 
 - 图片多选，设置最大可选择的照片数量
 - 点击图片进行查看，可缩放
