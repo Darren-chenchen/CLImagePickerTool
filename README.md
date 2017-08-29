@@ -1,8 +1,29 @@
-# CLImagePickerTool（2.0.3）
-语言：swift   这是一个多图片选择的控件，支持图片多选,缩放，视频预览、照片预览、屏蔽视频文件、播放视频文件、屏蔽图片资源显示视频资源、重置选中状态、预览、异步下载图片、视频文件和图片文件不能同时选择、图片编辑操作（马赛克，涂鸦）
+# CLImagePickerTool 照片选择器
+
+![Pod Version](https://img.shields.io/cocoapods/v/CLImagePickerTool.svg?style=flat)
+![Pod Platform](https://img.shields.io/cocoapods/p/CLImagePickerTool.svg?style=flat)
+![Pod License](https://img.shields.io/cocoapods/l/CLImagePickerTool.svg?style=flat)
+
+#要求
+
+- iOS 8.0+
+- swift 3.0+
+
+#主要功能：
+
+- 图片多选，设置最大可选择的照片数量
+- 点击图片进行查看，可缩放
+- 视频预览、视频播放、照片预览
+- 屏蔽视频文件、播放视频文件
+- 屏蔽图片资源显示视频资源
+- 重置选中状态、预览、异步下载图片
+- 视频文件和图片文件不能同时选择
+- 图片编辑操作（马赛克，涂鸦）
+- 下载iCloud中的照片或者视频文件，显示下载进度
+- 单选模式下图片可按照比例裁剪
 
 # 使用方式
-由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题可及时提出。
+由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
 
 pod 'CLImagePickerTool'
 
@@ -14,7 +35,7 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 # 简介
 1.基本用法，默认相机选择在内部、图片多选、支持选择视频文件
 
-		// superVC 当前的控制器
+		// superVC 当前的控制器 MaxImagesCount最多选择的照片数量
 		let imagePickTool = CLImagePickersTool()
 		imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")		}
@@ -44,17 +65,17 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
         }
         
 
-5.单选图片，选择完成后进行裁剪操作
+5.单选图片，选择完成后进行裁剪操作imagePickTool.singlePictureCropScale = 2 //宽/高
 		
 		let imagePickTool = CLImagePickersTool()
         
         imagePickTool.singleImageChooseType = .singlePictureCrop
-
-        imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
+		
+	imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
             
         }
 
-6.视频文件和图片文件不能同时选择
+6.可以选择视频和图片，但是视频文件和图片文件不能同时选择
 
 		let imagePickTool = CLImagePickersTool()
         imagePickTool.onlyChooseImageOrVideo = true
@@ -80,6 +101,24 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             
         }
+        
+ 9.部分属性介绍
+		 		
+		// 是否隐藏视频文件，默认不隐藏
+		public var isHiddenVideo: Bool = false
+		// 是否隐藏图片文件，显示视频文件，默认不隐藏
+		public var isHiddenImage: Bool = false
+		// 设置单选图片，单选图片并裁剪属性，默认多选
+		public var singleImageChooseType: CLImagePickersToolType?
+		// 设置相机在外部，默认不在外部
+		public var cameraOut: Bool = false
+		// 单选模式下图片并且可裁剪。默认裁剪比例是1：1，也可以设置如下参数
+		public var singlePictureCropScale: CGFloat?
+		// 视频和照片只能选择一种，不能同时选择,默认可以同时选择
+		public var onlyChooseImageOrVideo: Bool = false
+		// 单选模式下，图片可以编辑，默认不可编辑
+		public var singleModelImageCanEditor: Bool = false
+		
 
 #### 注意点
 1.选择照片以后在返回的PHAsset对象，在CLPickerTool类中提供了PHAsset转image的方法，并可以设置图片压缩。

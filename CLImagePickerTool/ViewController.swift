@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         
         let imagePickTool = CLImagePickersTool()
         
-        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 3, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
             
             let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
