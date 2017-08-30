@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "95DEE9F11F56924D0059C3CC"
-               BuildableName = "CLImagePickerTool.framework"
-               BlueprintName = "CLImagePickerToolFramework"
+               BlueprintIdentifier = "952BD9EF1F56B22900DDDBEE"
+               BuildableName = "ImagePickerTool.framework"
+               BlueprintName = "ImagePickerTool"
                ReferencedContainer = "container:CLImagePickerTool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "95DEE9F11F56924D0059C3CC"
-            BuildableName = "CLImagePickerTool.framework"
-            BlueprintName = "CLImagePickerToolFramework"
+            BlueprintIdentifier = "952BD9EF1F56B22900DDDBEE"
+            BuildableName = "ImagePickerTool.framework"
+            BlueprintName = "ImagePickerTool"
             ReferencedContainer = "container:CLImagePickerTool.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "95DEE9F11F56924D0059C3CC"
-            BuildableName = "CLImagePickerTool.framework"
-            BlueprintName = "CLImagePickerToolFramework"
+            BlueprintIdentifier = "952BD9EF1F56B22900DDDBEE"
+            BuildableName = "ImagePickerTool.framework"
+            BlueprintName = "ImagePickerTool"
             ReferencedContainer = "container:CLImagePickerTool.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
