@@ -117,6 +117,8 @@ class CLCropViewController: CLBaseImagePickerViewController {
             self.manager.cancelImageRequest(self.imageRequestID!)
         }
 
+        
+        
         if self.clCropClouse != nil {
             self.clCropClouse!(self.cropImage())
         }
