@@ -386,6 +386,7 @@
 			children = (
 				95304E7A1F32F036001F76B6 /* CLImagePickerTool */,
 				958D2DE41F57E43200A0BB0D /* CLImagePickerTool-framework */,
+				952BD9F11F56B22900DDDBEE /* ImagePickerTool */,
 				95304E791F32F036001F76B6 /* Products */,
 			);
 			sourceTree = "<group>";
