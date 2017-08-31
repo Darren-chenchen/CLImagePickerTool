@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ImagePickerChooseImageCell" customModule="ImageDeal" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imagecellID" id="gTV-IL-0wX" customClass="ImagePickerChooseImageCell" customModule="CLImagePickerTool" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -47,7 +47,7 @@
                             <constraint firstItem="Xft-yT-9eG" firstAttribute="leading" secondItem="JUP-2a-xz5" secondAttribute="leading" constant="10" id="qzv-3J-vhz"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9Z-B6-03A" customClass="CLCircleView" customModule="ImageDeal" customModuleProvider="target">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9Z-B6-03A" customClass="CLCircleView" customModule="CLImagePickerTool" customModuleProvider="target">
                         <rect key="frame" x="72" y="3" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="8Kw-ee-93y"/>
