@@ -58,54 +58,7 @@
 		951E43081F50005000E4C4A7 /* btn_back_w@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E43071F50005000E4C4A7 /* btn_back_w@3x.png */; };
 		951E430B1F53BE6500E4C4A7 /* btn_back2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E43091F53BE6500E4C4A7 /* btn_back2@2x.png */; };
 		951E430C1F53BE6500E4C4A7 /* btn_back2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E430A1F53BE6500E4C4A7 /* btn_back2@3x.png */; };
-		952BD9F41F56B22900DDDBEE /* ImagePickerTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 952BD9F21F56B22900DDDBEE /* ImagePickerTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		952BD9F71F56B22900DDDBEE /* CLImagePickerTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 952BD9F01F56B22900DDDBEE /* CLImagePickerTool.framework */; };
-		952BD9F81F56B22900DDDBEE /* CLImagePickerTool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 952BD9F01F56B22900DDDBEE /* CLImagePickerTool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		952BD9FC1F56B23A00DDDBEE /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951444881F3D585A006C7731 /* Ext.swift */; };
-		952BD9FD1F56B24000DDDBEE /* BaseBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514443B1F3D4FE4006C7731 /* BaseBrush.swift */; };
-		952BD9FE1F56B24000DDDBEE /* DBUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514443C1F3D4FE4006C7731 /* DBUndoManager.swift */; };
-		952BD9FF1F56B24000DDDBEE /* DrawBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514443D1F3D4FE4006C7731 /* DrawBoard.swift */; };
-		952BDA001F56B24000DDDBEE /* EraserBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514443E1F3D4FE4006C7731 /* EraserBrush.swift */; };
-		952BDA011F56B24000DDDBEE /* GaussianBlurBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514443F1F3D4FE4006C7731 /* GaussianBlurBrush.swift */; };
-		952BDA021F56B24000DDDBEE /* InputBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951444401F3D4FE4006C7731 /* InputBrush.swift */; };
-		952BDA031F56B24000DDDBEE /* LineBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951444411F3D4FE4006C7731 /* LineBrush.swift */; };
-		952BDA041F56B24000DDDBEE /* PencilBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951444421F3D4FE4006C7731 /* PencilBrush.swift */; };
-		952BDA051F56B24000DDDBEE /* RectangleBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951444431F3D4FE4006C7731 /* RectangleBrush.swift */; };
-		952BDA061F56B24600DDDBEE /* MessageStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED31F3324BF001F76B6 /* MessageStyleView.swift */; };
-		952BDA071F56B24600DDDBEE /* MessageStyleView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED41F3324BF001F76B6 /* MessageStyleView.xib */; };
-		952BDA081F56B24600DDDBEE /* NomalStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED51F3324BF001F76B6 /* NomalStyleView.swift */; };
-		952BDA091F56B24600DDDBEE /* NomalStyleView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED61F3324BF001F76B6 /* NomalStyleView.xib */; };
-		952BDA0A1F56B24600DDDBEE /* HDAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED71F3324BF001F76B6 /* HDAlertViewController.swift */; };
-		952BDA0B1F56B24600DDDBEE /* HDAlertWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED81F3324BF001F76B6 /* HDAlertWindowView.swift */; };
-		952BDA0C1F56B24600DDDBEE /* PopViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304ED91F3324BF001F76B6 /* PopViewUtil.swift */; };
-		952BDA0D1F56B24B00DDDBEE /* CLImagePickerPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EDD1F3324BF001F76B6 /* CLImagePickerPhotoModel.swift */; };
-		952BDA0E1F56B24B00DDDBEE /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6F1F3AAB5D0031B5AB /* PreviewModel.swift */; };
-		952BDA371F56B25C00DDDBEE /* CLBaseImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EE51F3324BF001F76B6 /* CLBaseImagePickerViewController.swift */; };
-		952BDA381F56B25C00DDDBEE /* CLImagePickersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EE81F3324BF001F76B6 /* CLImagePickersViewController.swift */; };
-		952BDA391F56B25C00DDDBEE /* CLImagePickerSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EE61F3324BF001F76B6 /* CLImagePickerSingleViewController.swift */; };
-		952BDA3A1F56B25C00DDDBEE /* CLImagePickerSingleViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 95304EE71F3324BF001F76B6 /* CLImagePickerSingleViewController.xib */; };
-		952BDA3B1F56B25C00DDDBEE /* CLCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583FDE11F384CF400C1A320 /* CLCropViewController.swift */; };
-		952BDA3C1F56B25C00DDDBEE /* CLPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B691F39D6010031B5AB /* CLPreviewViewController.swift */; };
-		952BDA3D1F56B25C00DDDBEE /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951444361F3D4FBA006C7731 /* EditorViewController.swift */; };
-		952BDA3E1F56B25C00DDDBEE /* EditorViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 951444371F3D4FBA006C7731 /* EditorViewController.xib */; };
-		952BDA3F1F56B26400DDDBEE /* PencilChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514444D1F3D52EB006C7731 /* PencilChooseView.swift */; };
-		952BDA401F56B26400DDDBEE /* CLCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEA1F3324BF001F76B6 /* CLCircleView.swift */; };
-		952BDA411F56B26400DDDBEE /* CLImageAmplifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEB1F3324BF001F76B6 /* CLImageAmplifyView.swift */; };
-		952BDA421F56B26400DDDBEE /* CLVideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEF1F3324BF001F76B6 /* CLVideoPlayView.swift */; };
-		952BDA431F56B26400DDDBEE /* CLImagePickerCamaroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEC1F3324BF001F76B6 /* CLImagePickerCamaroCell.swift */; };
-		952BDA441F56B26400DDDBEE /* CLImagePickerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EED1F3324BF001F76B6 /* CLImagePickerListCell.swift */; };
-		952BDA451F56B26400DDDBEE /* CLImagePickerListCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 95304EEE1F3324BF001F76B6 /* CLImagePickerListCell.xib */; };
-		952BDA461F56B26400DDDBEE /* CustomNavgationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF01F3324BF001F76B6 /* CustomNavgationView.swift */; };
-		952BDA471F56B26400DDDBEE /* ImagePickerChooseImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF11F3324BF001F76B6 /* ImagePickerChooseImageCell.swift */; };
-		952BDA481F56B26400DDDBEE /* ImagePickerChooseImageCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */; };
-		952BDA491F56B26400DDDBEE /* CLSingleTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */; };
-		952BDA4A1F56B26400DDDBEE /* CLSingleTypeCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 95304F8A1F346E07001F76B6 /* CLSingleTypeCell.xib */; };
-		952BDA4B1F56B26400DDDBEE /* CLPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6B1F39D8D50031B5AB /* CLPreviewCell.swift */; };
-		952BDA4C1F56B26400DDDBEE /* CLPreviewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */; };
-		952BDA4D1F56B26400DDDBEE /* CLPickersTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF31F3324BF001F76B6 /* CLPickersTools.swift */; };
-		952BDA4E1F56B26400DDDBEE /* CLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF41F3324BF001F76B6 /* CLConfig.swift */; };
-		952BDA4F1F56B26400DDDBEE /* CLImagePickersTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */; };
-		952BDA501F56B26400DDDBEE /* BundleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F331F334867001F76B6 /* BundleUtil.swift */; };
 		95304E7C1F32F036001F76B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304E7B1F32F036001F76B6 /* AppDelegate.swift */; };
 		95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304E7D1F32F036001F76B6 /* ViewController.swift */; };
 		95304E811F32F036001F76B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95304E7F1F32F036001F76B6 /* Main.storyboard */; };
@@ -150,17 +103,6 @@
 		959B5B6E1F39E4350031B5AB /* CLPreviewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */; };
 		959B5B701F3AAB5D0031B5AB /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6F1F3AAB5D0031B5AB /* PreviewModel.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		952BD9F51F56B22900DDDBEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95304E701F32F036001F76B6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 952BD9EF1F56B22900DDDBEE;
-			remoteInfo = ImagePickerTool;
-		};
-/* End PBXContainerItemProxy section */
-
 
 /* Begin PBXFileReference section */
 		951444361F3D4FBA006C7731 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
@@ -269,13 +211,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		952BD9EC1F56B22900DDDBEE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		95304E751F32F036001F76B6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -529,36 +464,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		952BD9ED1F56B22900DDDBEE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				952BD9F41F56B22900DDDBEE /* ImagePickerTool.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		952BD9EF1F56B22900DDDBEE /* ImagePickerTool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 952BD9F91F56B22900DDDBEE /* Build configuration list for PBXNativeTarget "ImagePickerTool" */;
-			buildPhases = (
-				952BD9EB1F56B22900DDDBEE /* Sources */,
-				952BD9EC1F56B22900DDDBEE /* Frameworks */,
-				952BD9ED1F56B22900DDDBEE /* Headers */,
-				952BD9EE1F56B22900DDDBEE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ImagePickerTool;
-			productName = ImagePickerTool;
-			productReference = 952BD9F01F56B22900DDDBEE /* CLImagePickerTool.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		95304E771F32F036001F76B6 /* CLImagePickerTool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95304E8A1F32F036001F76B6 /* Build configuration list for PBXNativeTarget "CLImagePickerTool" */;
@@ -566,12 +472,10 @@
 				95304E741F32F036001F76B6 /* Sources */,
 				95304E751F32F036001F76B6 /* Frameworks */,
 				95304E761F32F036001F76B6 /* Resources */,
-				95DEE9FE1F56924D0059C3CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				952BD9F61F56B22900DDDBEE /* PBXTargetDependency */,
 			);
 			name = CLImagePickerTool;
 			productName = CLImagePickerTool;
@@ -588,11 +492,6 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "陈亮陈亮";
 				TargetAttributes = {
-					952BD9EF1F56B22900DDDBEE = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = X3GVR7H4ML;
-						ProvisioningStyle = Automatic;
-					};
 					95304E771F32F036001F76B6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = X3GVR7H4ML;
@@ -615,19 +514,11 @@
 			projectRoot = "";
 			targets = (
 				95304E771F32F036001F76B6 /* CLImagePickerTool */,
-				952BD9EF1F56B22900DDDBEE /* ImagePickerTool */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		952BD9EE1F56B22900DDDBEE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		95304E761F32F036001F76B6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -691,58 +582,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		952BD9EB1F56B22900DDDBEE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				952BDA3F1F56B26400DDDBEE /* PencilChooseView.swift in Sources */,
-				952BDA401F56B26400DDDBEE /* CLCircleView.swift in Sources */,
-				952BDA411F56B26400DDDBEE /* CLImageAmplifyView.swift in Sources */,
-				952BDA421F56B26400DDDBEE /* CLVideoPlayView.swift in Sources */,
-				952BDA431F56B26400DDDBEE /* CLImagePickerCamaroCell.swift in Sources */,
-				952BDA441F56B26400DDDBEE /* CLImagePickerListCell.swift in Sources */,
-				952BDA451F56B26400DDDBEE /* CLImagePickerListCell.xib in Sources */,
-				952BDA461F56B26400DDDBEE /* CustomNavgationView.swift in Sources */,
-				952BDA471F56B26400DDDBEE /* ImagePickerChooseImageCell.swift in Sources */,
-				952BDA481F56B26400DDDBEE /* ImagePickerChooseImageCell.xib in Sources */,
-				952BDA491F56B26400DDDBEE /* CLSingleTypeCell.swift in Sources */,
-				952BDA4A1F56B26400DDDBEE /* CLSingleTypeCell.xib in Sources */,
-				952BDA4B1F56B26400DDDBEE /* CLPreviewCell.swift in Sources */,
-				952BDA4C1F56B26400DDDBEE /* CLPreviewVideoCell.swift in Sources */,
-				952BDA4D1F56B26400DDDBEE /* CLPickersTools.swift in Sources */,
-				952BDA4E1F56B26400DDDBEE /* CLConfig.swift in Sources */,
-				952BDA4F1F56B26400DDDBEE /* CLImagePickersTool.swift in Sources */,
-				952BDA501F56B26400DDDBEE /* BundleUtil.swift in Sources */,
-				952BDA371F56B25C00DDDBEE /* CLBaseImagePickerViewController.swift in Sources */,
-				952BDA381F56B25C00DDDBEE /* CLImagePickersViewController.swift in Sources */,
-				952BDA391F56B25C00DDDBEE /* CLImagePickerSingleViewController.swift in Sources */,
-				952BDA3A1F56B25C00DDDBEE /* CLImagePickerSingleViewController.xib in Sources */,
-				952BDA3B1F56B25C00DDDBEE /* CLCropViewController.swift in Sources */,
-				952BDA3C1F56B25C00DDDBEE /* CLPreviewViewController.swift in Sources */,
-				952BDA3D1F56B25C00DDDBEE /* EditorViewController.swift in Sources */,
-				952BDA3E1F56B25C00DDDBEE /* EditorViewController.xib in Sources */,
-				952BDA0D1F56B24B00DDDBEE /* CLImagePickerPhotoModel.swift in Sources */,
-				952BDA0E1F56B24B00DDDBEE /* PreviewModel.swift in Sources */,
-				952BDA061F56B24600DDDBEE /* MessageStyleView.swift in Sources */,
-				952BDA071F56B24600DDDBEE /* MessageStyleView.xib in Sources */,
-				952BDA081F56B24600DDDBEE /* NomalStyleView.swift in Sources */,
-				952BDA091F56B24600DDDBEE /* NomalStyleView.xib in Sources */,
-				952BDA0A1F56B24600DDDBEE /* HDAlertViewController.swift in Sources */,
-				952BDA0B1F56B24600DDDBEE /* HDAlertWindowView.swift in Sources */,
-				952BDA0C1F56B24600DDDBEE /* PopViewUtil.swift in Sources */,
-				952BD9FD1F56B24000DDDBEE /* BaseBrush.swift in Sources */,
-				952BD9FE1F56B24000DDDBEE /* DBUndoManager.swift in Sources */,
-				952BD9FF1F56B24000DDDBEE /* DrawBoard.swift in Sources */,
-				952BDA001F56B24000DDDBEE /* EraserBrush.swift in Sources */,
-				952BDA011F56B24000DDDBEE /* GaussianBlurBrush.swift in Sources */,
-				952BDA021F56B24000DDDBEE /* InputBrush.swift in Sources */,
-				952BDA031F56B24000DDDBEE /* LineBrush.swift in Sources */,
-				952BDA041F56B24000DDDBEE /* PencilBrush.swift in Sources */,
-				952BDA051F56B24000DDDBEE /* RectangleBrush.swift in Sources */,
-				952BD9FC1F56B23A00DDDBEE /* Ext.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		95304E741F32F036001F76B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -793,14 +632,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		952BD9F61F56B22900DDDBEE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 952BD9EF1F56B22900DDDBEE /* ImagePickerTool */;
-			targetProxy = 952BD9F51F56B22900DDDBEE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		951E42D91F4C3D1C00E4C4A7 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -841,52 +672,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		952BD9FA1F56B22900DDDBEE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X3GVR7H4ML;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ImagePickerTool/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hd.ImagePickerTool;
-				PRODUCT_NAME = CLImagePickerTool;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		952BD9FB1F56B22900DDDBEE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X3GVR7H4ML;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ImagePickerTool/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hd.ImagePickerTool;
-				PRODUCT_NAME = CLImagePickerTool;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		95304E881F32F036001F76B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1015,14 +800,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		952BD9F91F56B22900DDDBEE /* Build configuration list for PBXNativeTarget "ImagePickerTool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				952BD9FA1F56B22900DDDBEE /* Debug */,
-				952BD9FB1F56B22900DDDBEE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		95304E731F32F036001F76B6 /* Build configuration list for PBXProject "CLImagePickerTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
