@@ -14,6 +14,11 @@ class BundleUtil {
     static func getCurrentBundle() -> Bundle{
                 
         let podBundle = Bundle(for: CLImagePickersTool.self)
+        
+        if podBundle.bundlePath.contains(".framework") {   // carthage
+            return podBundle
+        }
+        
         let bundleURL = podBundle.url(forResource: "CLImagePickerTool", withExtension: "bundle")
         if bundleURL != nil {
             let bundle = Bundle(url: bundleURL!)!
@@ -43,6 +48,7 @@ class BundleUtil {
             } else {
                 language = "en"
             }
+            
             
             bundle = Bundle(path: self.getCurrentBundle().path(forResource: language, ofType: "lproj")!)
         }
