@@ -23,13 +23,16 @@
 - 单选模式下图片可按照比例裁剪
 
 # 使用方式
-由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
+1.由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
 
 pod 'CLImagePickerTool'
 
 
 建议使用下面的方式及时下载最新版
 pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePickerTool.git'
+
+2.支持carthage管理
+github "Darren-chenchen/CLImagePickerTool"
 
 
 # 简介
