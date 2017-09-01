@@ -15,9 +15,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var img2: UIImageView!
     @IBOutlet weak var img: UIImageView!
+    
+    @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var btn1: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.btn1.titleLabel?.numberOfLines = 0
+        self.btn2.titleLabel?.numberOfLines = 0
+        self.btn1.sizeToFit()
+        self.btn2.sizeToFit()
     }
 
     // 相机在内部
@@ -25,26 +33,25 @@ class ViewController: UIViewController {
         
         let imagePickTool = CLImagePickersTool()
         
-        imagePickTool.setupImagePickerWith(MaxImagesCount: 3, superVC: self) { (asset,cutImage) in
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 10, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
             
-            let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
-            self.img.image = imageArr.first
+            // 获取原图，耗时较长
+            // scale 指定压缩比
+            let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.1)
             
-            let imageArr2 = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 1)
-            self.img2.image = imageArr2.first
-            
-            if imageArr.first == nil {
-                return
-            }
-            if imageArr2.first == nil {
-                return
-            }
+            print(imageArr)
+        }
+    }
+    @IBAction func clickBtnTh(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 10, superVC: self) { (asset,cutImage) in
+            print("返回的asset数组是\(asset)")
 
-            let imageData = UIImageJPEGRepresentation(imageArr.first!,1)!
-            let imageData2 = UIImageJPEGRepresentation(imageArr2.first!,1)!
-            self.label1.text = "压缩后\(String(describing: imageData))"
-            self.label2.text = "压缩前\(String(describing: imageData2))"
+            //获取缩略图，耗时较短
+            let imageArr = CLImagePickersTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
+            print(imageArr)
+            self.img.image = imageArr.first
         }
     }
     // 相机在外部
@@ -56,24 +63,6 @@ class ViewController: UIViewController {
 
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
-            
-            let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
-            self.img.image = imageArr.first
-            
-            let imageArr2 = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 1)
-            self.img2.image = imageArr2.first
-            
-            if imageArr.first == nil {
-                return
-            }
-            if imageArr2.first == nil {
-                return
-            }
-
-            let imageData = UIImageJPEGRepresentation(imageArr.first!,1)!
-            let imageData2 = UIImageJPEGRepresentation(imageArr2.first!,1)!
-            self.label1.text = "压缩后\(String(describing: imageData))"
-            self.label2.text = "压缩前\(String(describing: imageData2))"
         }
 
     }

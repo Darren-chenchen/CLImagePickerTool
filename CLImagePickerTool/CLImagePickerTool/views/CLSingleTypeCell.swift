@@ -42,9 +42,14 @@ class CLSingleTypeCell: UICollectionViewCell {
         didSet{
             
             // 图片
-            if model?.phAsset != nil {
-                CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: (model?.phAsset)!) { (image, info) in
-                    self.iconView.image = image
+            if model?.pictureImg != nil {
+                self.iconView.image = model?.pictureImg
+            }else {
+                if model?.phAsset != nil {
+                    CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: (model?.phAsset)!) { (image, info) in
+                        self.iconView.image = image
+                        self.model?.pictureImg = image
+                    }
                 }
             }
             

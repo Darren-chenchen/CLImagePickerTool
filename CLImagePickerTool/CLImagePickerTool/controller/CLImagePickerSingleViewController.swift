@@ -15,7 +15,7 @@ typealias  CLImagePickerSingleChooseImageCompleteClouse = (Array<PHAsset>,UIImag
 class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
 
     var photoArr: [CLImagePickerPhotoModel]?
-    
+        
     var cameraPicker: UIImagePickerController!
     
     var singleChooseImageCompleteClouse: CLImagePickerSingleChooseImageCompleteClouse?

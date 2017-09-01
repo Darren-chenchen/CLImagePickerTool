@@ -129,6 +129,17 @@ github "Darren-chenchen/CLImagePickerTool"
 		let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
 
 该方法是同步方法当选择图片较多时可能会等待，我们可以提示一个加载框表示正在处理中
+
+在某些情况下我们不需要原图，只需要缩略图即可，而且获取缩略图的速度是非常快的，我们只需要指定一下需要的图片尺寸即可。如下：
+
+	 let imagePickTool = CLImagePickersTool()
+     imagePickTool.setupImagePickerWith(MaxImagesCount: 10, superVC: self) { (asset,cutImage) in
+            print("返回的asset数组是\(asset)")
+
+            //获取缩略图，耗时较短
+            let imageArr = CLImagePickersTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
+            print(imageArr)
+        }
 		
 2.如果是视频文件，提供了PHAsset转AVPlayerItem对象的方法
 		

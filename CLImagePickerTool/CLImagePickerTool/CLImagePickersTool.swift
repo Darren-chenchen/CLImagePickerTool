@@ -101,7 +101,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     }
     
     
-    //MARK: - 提供asset数组转图片的方法供外界使用
+    //MARK: - 提供asset数组转图片的方法供外界使用---原图
     public static func convertAssetArrToImage(assetArr:Array<PHAsset>,scale:CGFloat) -> [UIImage] {
 
         var imageArr = [UIImage]()
@@ -118,8 +118,24 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
                 })
             }
         }
+        
         return imageArr
     }
+    //MARK: - 提供asset数组转图片的方法供外界使用---缩略图
+    public static func convertAssetArrToThumbnailImage(assetArr:Array<PHAsset>,targetSize:CGSize) -> [UIImage] {
+        
+        var imageArr = [UIImage]()
+        for item in assetArr {
+            if item.mediaType == .image {  // 如果是图片
+                CLImagePickersTool.getAssetThumbnail(targetSize: targetSize, asset: item, dealImageSuccess: { (img, info) in
+                    imageArr.append(img ?? UIImage())
+                })
+            }
+        }
+        
+        return imageArr
+    }
+
     //MARK: - 提供asset数组中的视频文件转为AVPlayerItem数组
     public static func convertAssetArrToAvPlayerItemArr(assetArr:Array<PHAsset>) -> [AVPlayerItem] {
         
@@ -147,11 +163,43 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions() //可以设置图像的质量、版本、也会有参数控制图像的裁剪
         option.isSynchronous = true
+        option.isNetworkAccessAllowed = true  // iCloud上的照片需要下载
+        option.resizeMode   = .fast
+
         manager.requestImage(for: asset, targetSize:PHImageManagerMaximumSize, contentMode: .aspectFit, options: option) { (originImage, info) in
             dealImageSuccess(originImage,info)
         }
     }
-   
+    // 获取缩略图的方法  同步
+    static func getAssetThumbnail(targetSize:CGSize,asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> ()) -> Void {
+        let imageSize: CGSize?
+        
+        if targetSize.width < KScreenWidth && targetSize.width < 600 {
+            imageSize = CGSize(width: targetSize.width*UIScreen.main.scale, height: targetSize.height*UIScreen.main.scale)
+        } else {
+            let aspectRatio = CGFloat(asset.pixelWidth) / CGFloat(asset.pixelHeight)
+            var pixelWidth = targetSize.width * UIScreen.main.scale * 1.5;
+            // 超宽图片
+            if (aspectRatio > 1.8) {
+                pixelWidth = pixelWidth * aspectRatio
+            }
+            // 超高图片
+            if (aspectRatio < 0.2) {
+                pixelWidth = pixelWidth * 0.5
+            }
+            let pixelHeight = pixelWidth / aspectRatio
+            imageSize = CGSize(width:pixelWidth, height:pixelHeight)
+        }
+        
+        //获取缩略图
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions() //可以设置图像的质量、版本、也会有参数控制图像的裁剪
+        option.resizeMode   = .fast
+        option.isNetworkAccessAllowed = false
+        manager.requestImage(for: asset, targetSize:imageSize!, contentMode: .aspectFill, options: option) { (thumbnailImage, info) in
+            dealImageSuccess(thumbnailImage,info)
+        }
+    }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
