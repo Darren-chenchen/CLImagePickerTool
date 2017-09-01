@@ -15,11 +15,14 @@ class BundleUtil {
                 
         let podBundle = Bundle(for: CLImagePickersTool.self)
         
-        if podBundle.bundlePath.contains(".framework") {   // carthage
-            return podBundle
+        let bundleURL = podBundle.url(forResource: "CLImagePickerTool", withExtension: "bundle")
+        
+        if bundleURL == nil {
+            if podBundle.bundlePath.contains("ImagePickerTool.framework") {   // carthage
+                return podBundle
+            }
         }
         
-        let bundleURL = podBundle.url(forResource: "CLImagePickerTool", withExtension: "bundle")
         if bundleURL != nil {
             let bundle = Bundle(url: bundleURL!)!
             return bundle
