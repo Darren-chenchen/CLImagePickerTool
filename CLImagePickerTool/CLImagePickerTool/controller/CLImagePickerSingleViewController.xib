@@ -49,7 +49,7 @@
                             </items>
                         </toolbar>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbQ-MS-Ji4">
-                            <rect key="frame" x="330" y="7" width="35" height="30"/>
+                            <rect key="frame" x="325" y="7" width="35" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Oec-am-WLq"/>
                             </constraints>
@@ -72,9 +72,9 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1U-o5-CKr">
-                            <rect key="frame" x="0.0" y="1" width="60" height="43"/>
+                            <rect key="frame" x="0.0" y="1" width="70" height="43"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="7Ul-ve-EJo"/>
+                                <constraint firstAttribute="width" constant="70" id="7Ul-ve-EJo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="预览">
@@ -88,7 +88,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKB-CT-jy5">
-                            <rect key="frame" x="60" y="1" width="60" height="43"/>
+                            <rect key="frame" x="70" y="1" width="60" height="43"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="gD8-EE-Upi"/>
                             </constraints>
@@ -116,7 +116,7 @@
                         <constraint firstItem="oUU-Ut-II7" firstAttribute="top" secondItem="1yk-T1-MHP" secondAttribute="top" id="eSc-4m-SpJ"/>
                         <constraint firstItem="oUU-Ut-II7" firstAttribute="leading" secondItem="1yk-T1-MHP" secondAttribute="leading" id="fC3-Oh-yYx"/>
                         <constraint firstItem="q1U-o5-CKr" firstAttribute="leading" secondItem="1yk-T1-MHP" secondAttribute="leading" id="hQK-hg-Z1g"/>
-                        <constraint firstAttribute="trailing" secondItem="FbQ-MS-Ji4" secondAttribute="trailing" constant="10" id="idR-FL-yo3"/>
+                        <constraint firstAttribute="trailing" secondItem="FbQ-MS-Ji4" secondAttribute="trailing" constant="15" id="idR-FL-yo3"/>
                         <constraint firstItem="q1U-o5-CKr" firstAttribute="top" secondItem="bX3-lF-BZZ" secondAttribute="bottom" id="lYe-tv-r8h"/>
                         <constraint firstItem="bX3-lF-BZZ" firstAttribute="top" secondItem="1yk-T1-MHP" secondAttribute="top" id="nOn-Cp-FK5"/>
                         <constraint firstAttribute="bottom" secondItem="oUU-Ut-II7" secondAttribute="bottom" id="nee-aU-lyf"/>

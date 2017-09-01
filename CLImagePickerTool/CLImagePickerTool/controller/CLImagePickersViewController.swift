@@ -69,8 +69,8 @@ class CLImagePickersViewController: UINavigationController {
         singleVC.singlePictureCropScale = singlePictureCropScale
         singleVC.singleType = singleType
         singleVC.singleModelImageCanEditor = singleModelImageCanEditor
-        singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
-            self.imageCompleteClouse!(assetArr,image)
+        singleVC.singleChooseImageCompleteClouse = {[weak self] (assetArr:Array<PHAsset>,image) in
+            self?.imageCompleteClouse!(assetArr,image)
         }
         self.pushViewController(singleVC, animated: true)        
     }
@@ -183,8 +183,8 @@ extension CLImageAlbumPickerController:UITableViewDelegate,UITableViewDataSource
         singleVC.singleType = singleType
         singleVC.singleModelImageCanEditor = singleModelImageCanEditor
         singleVC.singlePictureCropScale = singlePictureCropScale
-        singleVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
-            self.imageCompleteClouse!(assetArr,image)
+        singleVC.singleChooseImageCompleteClouse = {[weak self] (assetArr:Array<PHAsset>,image) in
+            self?.imageCompleteClouse!(assetArr,image)
         }
         self.navigationController?.pushViewController(singleVC, animated: true)
     }

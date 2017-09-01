@@ -189,13 +189,15 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     }
     
     func choosePictureComplete(assetArr:Array<PHAsset>,img:UIImage?) {
-        if self.singleChooseImageCompleteClouse != nil {
-            self.singleChooseImageCompleteClouse!(assetArr,img)
+        
+        weak var weakSelf = self
+        if weakSelf?.singleChooseImageCompleteClouse != nil {
+            weakSelf?.singleChooseImageCompleteClouse!(assetArr,img)
         }
         
         // 记得pop，不然控制器释放不掉
-        self.dismiss(animated: true) {
-            self.navigationController?.popViewController(animated: true)
+        weakSelf?.dismiss(animated: true) {
+            weakSelf?.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -329,7 +331,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
                         cutVC.scale = (self?.singlePictureCropScale)!
                     }
                     cutVC.originalImage = img
-                    cutVC.clCropClouse = {(cutImg) in
+                    cutVC.clCropClouse = {[weak self] (cutImg) in
                         self?.choosePictureComplete(assetArr: assetArr, img: cutImg)
                     }
                     cutVC.asset = assetArr.first

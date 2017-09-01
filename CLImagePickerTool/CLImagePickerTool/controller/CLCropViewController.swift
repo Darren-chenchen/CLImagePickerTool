@@ -111,19 +111,19 @@ class CLCropViewController: CLBaseImagePickerViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    deinit {
+        print("CLCropViewController裁剪释放")
+    }
+    
     func clickSureBtn() {
         
         if self.imageRequestID != nil {
             self.manager.cancelImageRequest(self.imageRequestID!)
         }
-
-        
         
         if self.clCropClouse != nil {
             self.clCropClouse!(self.cropImage())
         }
-    
-        self.navigationController?.popViewController(animated: true)
     }
     
     func loadData() {
