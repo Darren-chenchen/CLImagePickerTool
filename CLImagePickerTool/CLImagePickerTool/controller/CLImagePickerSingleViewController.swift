@@ -191,14 +191,15 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     func choosePictureComplete(assetArr:Array<PHAsset>,img:UIImage?) {
         
         weak var weakSelf = self
-        if weakSelf?.singleChooseImageCompleteClouse != nil {
-            weakSelf?.singleChooseImageCompleteClouse!(assetArr,img)
-        }
-        
         // 记得pop，不然控制器释放不掉
         weakSelf?.dismiss(animated: true) {
             weakSelf?.navigationController?.popViewController(animated: true)
         }
+        
+        
+        if weakSelf?.singleChooseImageCompleteClouse != nil {
+            weakSelf?.singleChooseImageCompleteClouse!(assetArr,img)
+        }        
     }
     
     func initView() {

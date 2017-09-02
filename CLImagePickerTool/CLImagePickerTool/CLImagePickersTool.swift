@@ -100,27 +100,27 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         }
     }
     
-    
-    //MARK: - 提供asset数组转图片的方法供外界使用---原图
-    public static func convertAssetArrToImage(assetArr:Array<PHAsset>,scale:CGFloat) -> [UIImage] {
-
-        var imageArr = [UIImage]()
+    //MARK: - 提供asset数组转图片的方法供外界使用---原图,异步方法，每转换成一张图片就返回出去
+    public static func convertAssetArrToOriginImage(assetArr:Array<PHAsset>,scale:CGFloat,successClouse:@escaping (UIImage)->(),failedClouse:@escaping ()->()) {
+        
         for item in assetArr {
             if item.mediaType == .image {  // 如果是图片
                 CLImagePickersTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
                     if img != nil {
-                        
                         // 对图片压缩
                         let zipImageData = UIImageJPEGRepresentation(img!,scale)!
                         let image = UIImage(data: zipImageData)
-                        imageArr.append(image!)
+
+                        successClouse(image!)
                     }
+                }, dealImageFailed: {
+                    failedClouse()
                 })
             }
         }
-        
-        return imageArr
     }
+    
+    
     //MARK: - 提供asset数组转图片的方法供外界使用---缩略图
     public static func convertAssetArrToThumbnailImage(assetArr:Array<PHAsset>,targetSize:CGSize) -> [UIImage] {
         
@@ -132,7 +132,6 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
                 })
             }
         }
-        
         return imageArr
     }
 
@@ -157,14 +156,22 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         return videoArr
     }
     
-    // 获取原图的方法  同步
-    static func getAssetOrigin(asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> ()) -> Void {
+    // 获取原图的方法  异步
+    static func getAssetOrigin(asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> (),dealImageFailed:@escaping () -> ()) -> Void {
         //获取原图
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions() //可以设置图像的质量、版本、也会有参数控制图像的裁剪
-        option.isSynchronous = true
         option.isNetworkAccessAllowed = true  // iCloud上的照片需要下载
         option.resizeMode   = .fast
+        option.progressHandler = {
+            (progress, error, stop, info) in
+            DispatchQueue.main.async(execute: {
+                print(progress, "异步获取icloud中的照片文件",error ?? "error")
+                if (error != nil) {
+                    dealImageFailed()
+                }
+            })
+        }
 
         manager.requestImage(for: asset, targetSize:PHImageManagerMaximumSize, contentMode: .aspectFit, options: option) { (originImage, info) in
             dealImageSuccess(originImage,info)

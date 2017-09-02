@@ -11,12 +11,10 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var img3: UIImageView!
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var img2: UIImageView!
-    @IBOutlet weak var img: UIImageView!
     
+    @IBOutlet weak var PhotoScrollView: PhotoView!
     @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var photoScrollView2: PhotoView!
     @IBOutlet weak var btn1: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +24,17 @@ class ViewController: UIViewController {
         self.btn2.titleLabel?.numberOfLines = 0
         self.btn1.sizeToFit()
         self.btn2.sizeToFit()
+        
+        self.PhotoScrollView.picArr.append(UIImage(named: "takePicture")!)
+        self.photoScrollView2.picArr.append(UIImage(named: "takePicture")!)
+
+        self.PhotoScrollView.closeBtnClickClouse = { (imageArr) in
+            self.PhotoScrollView.picArr = imageArr
+        }
+        self.photoScrollView2.closeBtnClickClouse = { (imageArr) in
+            self.photoScrollView2.picArr = imageArr
+        }
+
     }
 
     // 相机在内部
@@ -36,11 +45,28 @@ class ViewController: UIViewController {
         imagePickTool.setupImagePickerWith(MaxImagesCount: 10, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
             
-            // 获取原图，耗时较长
-            // scale 指定压缩比
-            let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.1)
             
-            print(imageArr)
+            PopViewUtil.share.showLoading()
+            
+            self.PhotoScrollView.picArr.removeAll()
+            self.PhotoScrollView.picArr.append(UIImage(named: "takePicture")!)
+            
+            var imageArr = [UIImage]()
+            
+            // 获取原图，异步
+            // scale 指定压缩比
+            // 内部提供的方法可以异步获取图片，同步获取的话时间比较长，不建议！，如果是iCloud中的照片就直接从icloud中下载，下载完成后返回图片,同时也提供了下载失败的方法
+            CLImagePickersTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, successClouse: {[weak self] (image) in
+                imageArr.append(image)
+                self?.PhotoScrollView.picArr.append(image)
+
+                // 图片下载完成后再去掉我们的转转转控件，这里没有考虑assetArr中含有视频文件的情况
+                if imageArr.count == asset.count {
+                    PopViewUtil.share.stopLoading()
+                }
+            }, failedClouse: { () in
+                PopViewUtil.share.stopLoading()
+            })
         }
     }
     @IBAction func clickBtnTh(_ sender: Any) {
@@ -49,9 +75,15 @@ class ViewController: UIViewController {
             print("返回的asset数组是\(asset)")
 
             //获取缩略图，耗时较短
-            let imageArr = CLImagePickersTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
+            let imageArr = CLImagePickersTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 200, height: 200))
             print(imageArr)
-            self.img.image = imageArr.first
+            
+            self.photoScrollView2.picArr.removeAll()
+            self.photoScrollView2.picArr.append(UIImage(named: "takePicture")!)
+
+            for item in imageArr {
+                self.photoScrollView2.picArr.append(item)
+            }
         }
     }
     // 相机在外部

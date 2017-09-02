@@ -126,9 +126,24 @@ github "Darren-chenchen/CLImagePickerTool"
 #### 注意点
 1.选择照片以后在返回的PHAsset对象，在CLPickerTool类中提供了PHAsset转image的方法，并可以设置图片压缩。
 
-		let imageArr = CLImagePickersTool.convertAssetArrToImage(assetArr: asset, scale: 0.2)
+	// 获取原图，异步
+    // scale 指定压缩比
+    // 内部提供的方法可以异步获取图片，同步获取的话时间比较长，不建议！，如果是iCloud中的照片就直接从icloud中下载，下载完成后返回图片,同时也提供了下载失败的方法
+        
+    var imageArr = [UIImage]()
+    CLImagePickersTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, successClouse: {[weak self] (image) in
+                imageArr.append(image)
+                self?.PhotoScrollView.picArr.append(image)
 
-该方法是同步方法当选择图片较多时可能会等待，我们可以提示一个加载框表示正在处理中
+                // 图片下载完成后再去掉我们的转转转控件，这里没有考虑assetArr中含有视频文件的情况
+                if imageArr.count == asset.count {
+                    PopViewUtil.share.stopLoading()
+                }
+            }, failedClouse: { () in
+                PopViewUtil.share.stopLoading()
+            })
+
+该方法是异步方法，当选择图片较多时可能会等待，我们可以提示一个加载框表示正在处理中，其实如果是本地已经存在的图片，那么下载起来会很快，主要是考虑有些图片是本地没有的，存在于iCloud中，那么下载需要时间。同时也有可能下载失败。
 
 在某些情况下我们不需要原图，只需要缩略图即可，而且获取缩略图的速度是非常快的，我们只需要指定一下需要的图片尺寸即可。如下：
 

@@ -96,6 +96,7 @@
 		95304F8C1F346E07001F76B6 /* CLSingleTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304F8A1F346E07001F76B6 /* CLSingleTypeCell.xib */; };
 		95304F8F1F34C3E1001F76B6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F8D1F34C3E1001F76B6 /* TestViewController.swift */; };
 		95304F901F34C3E1001F76B6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304F8E1F34C3E1001F76B6 /* TestViewController.xib */; };
+		95431A4A1F5ADA2C00512ACA /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95431A491F5ADA2C00512ACA /* PhotoView.swift */; };
 		9583FDE21F384CF400C1A320 /* CLCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583FDE11F384CF400C1A320 /* CLCropViewController.swift */; };
 		958D2DE71F57E43200A0BB0D /* CLImagePickerTool-framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 958D2DE51F57E43200A0BB0D /* CLImagePickerTool-framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		958D2DEA1F57E43200A0BB0D /* ImagePickerTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958D2DE31F57E43200A0BB0D /* ImagePickerTool.framework */; };
@@ -312,6 +313,7 @@
 		95304F8A1F346E07001F76B6 /* CLSingleTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CLSingleTypeCell.xib; sourceTree = "<group>"; };
 		95304F8D1F34C3E1001F76B6 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		95304F8E1F34C3E1001F76B6 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		95431A491F5ADA2C00512ACA /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		9583FDE11F384CF400C1A320 /* CLCropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLCropViewController.swift; sourceTree = "<group>"; };
 		958D2DE31F57E43200A0BB0D /* ImagePickerTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImagePickerTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		958D2DE51F57E43200A0BB0D /* CLImagePickerTool-framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLImagePickerTool-framework.h"; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 			children = (
 				95304E7B1F32F036001F76B6 /* AppDelegate.swift */,
 				95304E7D1F32F036001F76B6 /* ViewController.swift */,
+				95431A491F5ADA2C00512ACA /* PhotoView.swift */,
 				95304E7F1F32F036001F76B6 /* Main.storyboard */,
 				95304E821F32F036001F76B6 /* Assets.xcassets */,
 				95304E841F32F036001F76B6 /* LaunchScreen.storyboard */,
@@ -808,6 +811,7 @@
 				95304F0D1F3324C0001F76B6 /* CustomNavgationView.swift in Sources */,
 				9514444C1F3D4FE4006C7731 /* RectangleBrush.swift in Sources */,
 				951444891F3D585A006C7731 /* Ext.swift in Sources */,
+				95431A4A1F5ADA2C00512ACA /* PhotoView.swift in Sources */,
 				9514444E1F3D52EB006C7731 /* PencilChooseView.swift in Sources */,
 				95304F0A1F3324BF001F76B6 /* CLImagePickerListCell.swift in Sources */,
 				95304F041F3324BF001F76B6 /* CLImagePickerSingleViewController.swift in Sources */,
