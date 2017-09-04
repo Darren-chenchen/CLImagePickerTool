@@ -10,6 +10,7 @@ import UIKit
 
 class TestViewController: UIViewController {
 
+    @IBOutlet weak var clipImage: UIImageView!
     @IBOutlet weak var img: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,35 @@ class TestViewController: UIViewController {
     
     @IBAction func clickBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func clickSinglebtn(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.singleImageChooseType = .singlePicture
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+        }
+
+    }
+    
+    
+    @IBAction func clickSingleBtn2(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.singleImageChooseType = .singlePictureCrop
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            self.clipImage.image = editorImage
+        }
+
+    }
+    
+    @IBAction func clickSingleBtn3(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.singleImageChooseType = .singlePictureCrop
+        imagePickTool.singlePictureCropScale = 2
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            self.clipImage.image = editorImage
+        }
+        
+
     }
 
     @IBAction func clickBtn2(_ sender: Any) {
@@ -28,6 +58,15 @@ class TestViewController: UIViewController {
             
             self.img.image = editorImage
         }
+    }
+    
+    
+    @IBAction func clickOnlyBtn(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.onlyChooseImageOrVideo = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+        }
+
     }
 
     // 隐藏图片文件，展示视频文件

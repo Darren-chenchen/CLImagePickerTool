@@ -192,6 +192,7 @@
 		959B5B6C1F39D8D50031B5AB /* CLPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6B1F39D8D50031B5AB /* CLPreviewCell.swift */; };
 		959B5B6E1F39E4350031B5AB /* CLPreviewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */; };
 		959B5B701F3AAB5D0031B5AB /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6F1F3AAB5D0031B5AB /* PreviewModel.swift */; };
+		95A4A8891F5CF8350077D52D /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A4A8881F5CF8350077D52D /* VideoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +323,7 @@
 		959B5B6B1F39D8D50031B5AB /* CLPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPreviewCell.swift; sourceTree = "<group>"; };
 		959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPreviewVideoCell.swift; sourceTree = "<group>"; };
 		959B5B6F1F3AAB5D0031B5AB /* PreviewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
+		95A4A8881F5CF8350077D52D /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +418,7 @@
 				95304E7B1F32F036001F76B6 /* AppDelegate.swift */,
 				95304E7D1F32F036001F76B6 /* ViewController.swift */,
 				95431A491F5ADA2C00512ACA /* PhotoView.swift */,
+				95A4A8881F5CF8350077D52D /* VideoView.swift */,
 				95304E7F1F32F036001F76B6 /* Main.storyboard */,
 				95304E821F32F036001F76B6 /* Assets.xcassets */,
 				95304E841F32F036001F76B6 /* LaunchScreen.storyboard */,
@@ -802,6 +805,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95A4A8891F5CF8350077D52D /* VideoView.swift in Sources */,
 				95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */,
 				95304EF61F3324BF001F76B6 /* MessageStyleView.swift in Sources */,
 				959B5B6A1F39D6010031B5AB /* CLPreviewViewController.swift in Sources */,

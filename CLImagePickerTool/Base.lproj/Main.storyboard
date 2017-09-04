@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCe-yT-8Ks">
-                                <rect key="frame" x="8" y="202" width="359" height="30"/>
+                                <rect key="frame" x="8" y="194" width="359" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="默认多选，选择完成后将asset对象转换为缩略图,图片可能会模糊，同步"/>
                                 <connections>
@@ -37,49 +37,8 @@
                                     <action selector="clickBtn1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TjG-yx-f4i"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-gv-tVh">
-                                <rect key="frame" x="0.0" y="391" width="375" height="32"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="图片单选并且屏蔽视频文件"/>
-                                <connections>
-                                    <action selector="clickSingleBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ED3-rA-Zeb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwF-fc-z12">
-                                <rect key="frame" x="0.0" y="431" width="375" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="图片单选并且裁剪"/>
-                                <connections>
-                                    <action selector="clickSinglebtn2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7SW-2H-7Pn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-hl-bUs">
-                                <rect key="frame" x="16" y="471" width="343" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="图片单选并且裁剪并指定宽高比"/>
-                                <connections>
-                                    <action selector="clickJumpBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vyu-ar-bBb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAk-Vz-CwC">
-                                <rect key="frame" x="16" y="587" width="343" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="视频文件和图片文件只能选择1种"/>
-                                <connections>
-                                    <action selector="clickOnlyBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zLY-UN-Rhd"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4mJ-bt-Chf">
-                                <rect key="frame" x="0.0" y="490" width="375" height="102"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2I0-UF-4Md">
-                                <rect key="frame" x="0.0" y="627" width="375" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2I0-UF-4Md">
+                                <rect key="frame" x="0.0" y="604" width="375" height="32"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                                 <state key="normal" title="更多功能"/>
                                 <connections>
@@ -87,56 +46,77 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ph3-4L-SfL" customClass="PhotoView" customModule="CLImagePickerTool" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="84" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="80"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="cM5-qP-rm3"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpe-L2-lnk" customClass="PhotoView" customModule="CLImagePickerTool" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="249" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="234" width="375" height="80"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="4hM-HO-rs4"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nJ-Jx-1WI">
-                                <rect key="frame" x="0.0" y="351" width="375" height="32"/>
+                                <rect key="frame" x="8" y="562" width="359" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="访问相册相机在外部"/>
                                 <connections>
                                     <action selector="clickBtn2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mst-w6-TKR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMj-pe-PLX">
+                                <rect key="frame" x="8" y="361" width="359" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="选择视频文件，选择完成后转换成AVPlayerItem对象"/>
+                                <connections>
+                                    <action selector="clickClooseVideobtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KrK-tl-ohd"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3P2-pt-8OA" customClass="VideoView" customModule="CLImagePickerTool" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="392" width="375" height="80"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="BR9-v8-YuW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ph3-4L-SfL" firstAttribute="top" secondItem="BPX-13-ZdX" secondAttribute="bottom" constant="18" id="5em-pl-aJ0"/>
-                            <constraint firstItem="qZE-gv-tVh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AnI-sg-de5"/>
+                            <constraint firstItem="3P2-pt-8OA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="37Q-PF-KYE"/>
+                            <constraint firstItem="ph3-4L-SfL" firstAttribute="top" secondItem="BPX-13-ZdX" secondAttribute="bottom" constant="10" id="5em-pl-aJ0"/>
                             <constraint firstAttribute="trailing" secondItem="aCe-yT-8Ks" secondAttribute="trailing" constant="8" id="AnN-zt-3Ta"/>
-                            <constraint firstItem="9nJ-Jx-1WI" firstAttribute="top" secondItem="dpe-L2-lnk" secondAttribute="bottom" constant="22" id="DEw-Hj-KJH"/>
-                            <constraint firstItem="9nJ-Jx-1WI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EQ1-Rg-Hqd"/>
+                            <constraint firstItem="2I0-UF-4Md" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BMd-a1-VQO"/>
                             <constraint firstAttribute="trailing" secondItem="BPX-13-ZdX" secondAttribute="trailing" constant="8" id="EnX-ac-H7g"/>
-                            <constraint firstItem="dpe-L2-lnk" firstAttribute="top" secondItem="aCe-yT-8Ks" secondAttribute="bottom" constant="17" id="HGS-ld-g1J"/>
+                            <constraint firstItem="9nJ-Jx-1WI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="GfH-zK-kmf"/>
+                            <constraint firstItem="dpe-L2-lnk" firstAttribute="top" secondItem="aCe-yT-8Ks" secondAttribute="bottom" constant="10" id="HGS-ld-g1J"/>
                             <constraint firstItem="BPX-13-ZdX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="IsX-zK-P70"/>
-                            <constraint firstAttribute="trailing" secondItem="9nJ-Jx-1WI" secondAttribute="trailing" id="M3e-gk-Od0"/>
+                            <constraint firstAttribute="trailing" secondItem="eMj-pe-PLX" secondAttribute="trailing" constant="8" id="Mbi-ov-ONd"/>
                             <constraint firstAttribute="trailing" secondItem="ph3-4L-SfL" secondAttribute="trailing" id="Md0-D7-rNn"/>
                             <constraint firstItem="BPX-13-ZdX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="NC3-nS-Ann"/>
                             <constraint firstItem="aCe-yT-8Ks" firstAttribute="top" secondItem="ph3-4L-SfL" secondAttribute="bottom" constant="38" id="OsL-aD-7lY"/>
                             <constraint firstAttribute="trailing" secondItem="dpe-L2-lnk" secondAttribute="trailing" id="PLb-Xp-uME"/>
-                            <constraint firstAttribute="trailing" secondItem="qZE-gv-tVh" secondAttribute="trailing" id="R3e-Di-QDg"/>
+                            <constraint firstItem="3P2-pt-8OA" firstAttribute="top" secondItem="eMj-pe-PLX" secondAttribute="bottom" constant="1" id="aQd-mJ-Umf"/>
+                            <constraint firstItem="2I0-UF-4Md" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="10" id="aXL-x9-6Qb"/>
+                            <constraint firstAttribute="trailing" secondItem="9nJ-Jx-1WI" secondAttribute="trailing" constant="8" id="ddA-Mu-m1e"/>
+                            <constraint firstItem="9nJ-Jx-1WI" firstAttribute="top" secondItem="3P2-pt-8OA" secondAttribute="bottom" constant="90" id="egM-TG-6yK"/>
                             <constraint firstItem="dpe-L2-lnk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g8l-ct-ztv"/>
+                            <constraint firstAttribute="trailing" secondItem="3P2-pt-8OA" secondAttribute="trailing" id="gmR-UK-3Xw"/>
                             <constraint firstItem="ph3-4L-SfL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lvC-Ad-phb"/>
                             <constraint firstItem="aCe-yT-8Ks" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="np2-CE-8qG"/>
-                            <constraint firstItem="qZE-gv-tVh" firstAttribute="top" secondItem="9nJ-Jx-1WI" secondAttribute="bottom" constant="8" id="rIE-W8-TGu"/>
+                            <constraint firstItem="eMj-pe-PLX" firstAttribute="top" secondItem="dpe-L2-lnk" secondAttribute="bottom" constant="47" id="rCr-ew-eRY"/>
+                            <constraint firstAttribute="trailing" secondItem="2I0-UF-4Md" secondAttribute="trailing" id="u5U-GW-nCH"/>
+                            <constraint firstItem="eMj-pe-PLX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="wmv-Ug-nq2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="PhotoScrollView" destination="ph3-4L-SfL" id="dn4-rp-cSO"/>
                         <outlet property="btn1" destination="BPX-13-ZdX" id="K0B-8Z-1ro"/>
                         <outlet property="btn2" destination="aCe-yT-8Ks" id="qlf-WN-anV"/>
-                        <outlet property="img3" destination="4mJ-bt-Chf" id="XFX-j7-JQZ"/>
                         <outlet property="photoScrollView2" destination="dpe-L2-lnk" id="yXf-sd-ypq"/>
+                        <outlet property="videoScrollView" destination="3P2-pt-8OA" id="VPG-yG-TxG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

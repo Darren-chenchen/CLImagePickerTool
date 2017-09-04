@@ -9,12 +9,14 @@
 import UIKit
 
 typealias CloseBtnClickClouse = ([UIImage])->()
+typealias VisitPhotoBtnClickClouse = ()->()
 
 class PhotoView: UIView {
     
     
     var closeBtnClickClouse: CloseBtnClickClouse?
-    
+    var visitPhotoBtnClickClouse: VisitPhotoBtnClickClouse?
+
     var picStrArr = [String]()  // 在实际的项目中可能用于存储图片的url
 
     var imgView: UIImageView!
@@ -64,7 +66,7 @@ class PhotoView: UIView {
                 
                 self.imgView = imageView
                 self.scrollView.addSubview(imageView)
-                if (i==(picArr.count-1)) {
+                if (i==0) {
                     imageView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(clickChooseImage)))
                 }
                 
@@ -97,7 +99,9 @@ class PhotoView: UIView {
     
     /// 选择相册
     func clickChooseImage() {
-      
+        if self.visitPhotoBtnClickClouse != nil {
+            self.visitPhotoBtnClickClouse!()
+        }
     }
     
     /// 隐藏关闭按钮用于纯展示

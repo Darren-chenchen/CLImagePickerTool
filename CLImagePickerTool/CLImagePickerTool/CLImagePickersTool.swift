@@ -101,22 +101,22 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     }
     
     //MARK: - 提供asset数组转图片的方法供外界使用---原图,异步方法，每转换成一张图片就返回出去
-    public static func convertAssetArrToOriginImage(assetArr:Array<PHAsset>,scale:CGFloat,successClouse:@escaping (UIImage)->(),failedClouse:@escaping ()->()) {
+    public static func convertAssetArrToOriginImage(assetArr:Array<PHAsset>,scale:CGFloat,successClouse:@escaping (UIImage,PHAsset)->(),failedClouse:@escaping ()->()) {
         
         for item in assetArr {
-            if item.mediaType == .image {  // 如果是图片
+//            if item.mediaType == .image {  // 如果是图片
                 CLImagePickersTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
                     if img != nil {
                         // 对图片压缩
                         let zipImageData = UIImageJPEGRepresentation(img!,scale)!
                         let image = UIImage(data: zipImageData)
 
-                        successClouse(image!)
+                        successClouse(image!,item)
                     }
                 }, dealImageFailed: {
                     failedClouse()
                 })
-            }
+//            }
         }
     }
     
@@ -127,7 +127,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         var imageArr = [UIImage]()
         for item in assetArr {
             if item.mediaType == .image {  // 如果是图片
-                CLImagePickersTool.getAssetThumbnail(targetSize: targetSize, asset: item, dealImageSuccess: { (img, info) in
+                CLPickersTools.instence.getAssetThumbnail(targetSize: targetSize, asset: item, dealImageSuccess: { (img, info) in
                     imageArr.append(img ?? UIImage())
                 })
             }
@@ -136,24 +136,35 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     }
 
     //MARK: - 提供asset数组中的视频文件转为AVPlayerItem数组
-    public static func convertAssetArrToAvPlayerItemArr(assetArr:Array<PHAsset>) -> [AVPlayerItem] {
+    public static func convertAssetToAvPlayerItem(asset:PHAsset,successClouse:@escaping (AVPlayerItem)->(),failedClouse:@escaping ()->(),progressClouse:@escaping (Double)->()) {
         
-        var videoArr = [AVPlayerItem]()
-        for item in assetArr {
-            if item.mediaType == .video {  // 如果是图片
-                let manager = PHImageManager.default()
-                let videoRequestOptions = PHVideoRequestOptions()
-                videoRequestOptions.deliveryMode = .automatic
-                videoRequestOptions.version = .current
-                videoRequestOptions.isNetworkAccessAllowed = true
-                manager.requestPlayerItem(forVideo: item, options: videoRequestOptions) { (playItem, info) in
-                    if playItem != nil {
-                        videoArr.append(playItem!)
+        if asset.mediaType == .video {
+            let manager = PHImageManager.default()
+            let videoRequestOptions = PHVideoRequestOptions()
+            videoRequestOptions.deliveryMode = .automatic
+            videoRequestOptions.version = .current
+            videoRequestOptions.isNetworkAccessAllowed = true
+            
+            videoRequestOptions.progressHandler = {
+                (progress, error, stop, info) in
+                
+                DispatchQueue.main.async(execute: {
+                    if (error != nil) {
+                        failedClouse()
+                    } else {
+                        progressClouse(progress)
                     }
-                }
+                })
+            }
+            
+            manager.requestPlayerItem(forVideo: asset, options: videoRequestOptions) { (playItem, info) in
+                DispatchQueue.main.async(execute: {
+                    if playItem != nil {
+                        successClouse(playItem!)
+                    }
+                })
             }
         }
-        return videoArr
     }
     
     // 获取原图的方法  异步

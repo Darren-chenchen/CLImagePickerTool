@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestViewController" customModule="CLImagePickerTool" customModuleProvider="target">
             <connections>
+                <outlet property="clipImage" destination="eGd-79-F7l" id="2ym-mj-imd"/>
                 <outlet property="img" destination="reC-Ck-W4Z" id="aSi-C6-kGH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,9 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQZ-h8-gr0">
-                    <rect key="frame" x="65" y="72" width="199" height="30"/>
-                    <state key="normal" title="单选模式下设置图片可以编辑"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQZ-h8-gr0">
+                    <rect key="frame" x="32" y="330" width="255" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="图片单选+可以编辑图片（涂鸦操作）"/>
                     <connections>
                         <action selector="clickBtn2:" destination="-1" eventType="touchUpInside" id="6ja-fT-GaK"/>
                     </connections>
@@ -34,32 +36,61 @@
                         <action selector="clickBtn:" destination="-1" eventType="touchUpInside" id="3et-JF-3bz"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="reC-Ck-W4Z">
-                    <rect key="frame" x="0.0" y="118" width="375" height="216"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="reC-Ck-W4Z">
+                    <rect key="frame" x="0.0" y="356" width="375" height="113"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="216" id="nu5-K4-kDY"/>
-                    </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWj-wd-VuJ">
-                    <rect key="frame" x="65" y="353" width="108" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWj-wd-VuJ">
+                    <rect key="frame" x="32" y="550" width="108" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="只显示视频文件"/>
                     <connections>
                         <action selector="clickBtn3:" destination="-1" eventType="touchUpInside" id="tys-Jn-z42"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drD-DK-sAD">
+                    <rect key="frame" x="32" y="85" width="62" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="图片单选"/>
+                    <connections>
+                        <action selector="clickSinglebtn:" destination="-1" eventType="touchUpInside" id="4bJ-w1-tMW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHX-eK-o17">
+                    <rect key="frame" x="32" y="168" width="239" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="图片单选+裁剪（裁剪比例可定制）"/>
+                    <connections>
+                        <action selector="clickSingleBtn3:" destination="-1" eventType="touchUpInside" id="UsN-MC-Zu7"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-79-F7l">
+                    <rect key="frame" x="0.0" y="194" width="375" height="113"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEs-U1-x0a">
+                    <rect key="frame" x="32" y="505" width="245" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="多选，但是视频和图片不能同时选择"/>
+                    <connections>
+                        <action selector="clickOnlyBtn:" destination="-1" eventType="touchUpInside" id="g3z-hi-8Wy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4V-pb-ZJD">
+                    <rect key="frame" x="32" y="123" width="233" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="图片单选+裁剪(裁剪比例默认1：1)"/>
+                    <connections>
+                        <action selector="clickSingleBtn2:" destination="-1" eventType="touchUpInside" id="Qy6-XL-QUz"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="iWg-Ma-VLh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="5Hz-ED-u9T"/>
-                <constraint firstAttribute="trailing" secondItem="reC-Ck-W4Z" secondAttribute="trailing" id="5IR-2k-6YV"/>
-                <constraint firstItem="reC-Ck-W4Z" firstAttribute="top" secondItem="VQZ-h8-gr0" secondAttribute="bottom" constant="16" id="7np-q4-tgl"/>
-                <constraint firstItem="iWg-Ma-VLh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="BcK-HY-5rl"/>
-                <constraint firstItem="VWj-wd-VuJ" firstAttribute="top" secondItem="reC-Ck-W4Z" secondAttribute="bottom" constant="19" id="Cts-m8-RZ5"/>
-                <constraint firstItem="VQZ-h8-gr0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="OR8-b5-fCu"/>
-                <constraint firstItem="VWj-wd-VuJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="65" id="T2H-Bj-dPq"/>
-                <constraint firstItem="VQZ-h8-gr0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="65" id="wb2-6v-1Ef"/>
-                <constraint firstItem="reC-Ck-W4Z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xZK-7n-wBn"/>
+                <constraint firstItem="iWg-Ma-VLh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="f4O-iT-iqd"/>
+                <constraint firstItem="iWg-Ma-VLh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="iza-OP-Trx"/>
             </constraints>
             <point key="canvasLocation" x="-92.5" y="84.5"/>
         </view>

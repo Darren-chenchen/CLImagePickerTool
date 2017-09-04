@@ -129,9 +129,9 @@ github "Darren-chenchen/CLImagePickerTool"
 	// 获取原图，异步
     // scale 指定压缩比
     // 内部提供的方法可以异步获取图片，同步获取的话时间比较长，不建议！，如果是iCloud中的照片就直接从icloud中下载，下载完成后返回图片,同时也提供了下载失败的方法
-        
+     //assetItem 获取成功对应的Phasset对象   
     var imageArr = [UIImage]()
-    CLImagePickersTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, successClouse: {[weak self] (image) in
+    CLImagePickersTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, successClouse: {[weak self] ((image,assetItem) in
                 imageArr.append(image)
                 self?.PhotoScrollView.picArr.append(image)
 
@@ -158,7 +158,15 @@ github "Darren-chenchen/CLImagePickerTool"
 		
 2.如果是视频文件，提供了PHAsset转AVPlayerItem对象的方法
 		
-		let Arr = CLImagePickersTool.convertAssetArrToAvPlayerItemArr(assetArr: asset)
+		CLImagePickersTool.convertAssetToAvPlayerItem(asset: self.asset!, successClouse: { (playerItem) in
+            DispatchQueue.main.async(execute: {
+					// 执行你的操作
+            })
+        }, failedClouse: { 
+            
+        }) { (progress) in
+            print("视频下载进度\(progress)")
+        }
 		
 3.你会发现在选择完图片后提供了2个回调参数 (asset,cutImage)  ，在一般情况下使用asset来转化自己想要的指定压缩大小的图片，而cutImage只有在单选裁剪的情况才会返回，其他情况返回nil
 
