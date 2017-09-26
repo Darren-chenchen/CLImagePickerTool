@@ -31,7 +31,9 @@ class CLImageAmplifyView: UIView {
     var singlePictureClickEditorBtn: singlePictureClickEditorBtnClouse?
 
     lazy var bottomView: UIView = {
-        let bottom = UIView.init(frame: CGRect(x: 0, y: KScreenHeight-44, width: KScreenWidth, height: 44))
+        
+        let viewH: CGFloat = UIDevice.current.isX() == true ? 44+34:44
+        let bottom = UIView.init(frame: CGRect(x: 0, y: KScreenHeight-viewH, width: KScreenWidth, height: viewH))
         bottom.backgroundColor = UIColor(white: 0, alpha: 0.8)
         let btn = UIButton.init(frame: CGRect(x: KScreenWidth-80, y: 0, width: 80, height: 44))
         btn.setTitle(sureStr, for: .normal)

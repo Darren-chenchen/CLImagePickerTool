@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditorViewController" customModule="CLImagePickerTool" customModuleProvider="target">
             <connections>
+                <outlet property="BottomViewHYS" destination="jpm-bN-9Np" id="ZC4-Pm-1bx"/>
+                <outlet property="TopViewHYS" destination="YZA-11-LMx" id="A1r-eu-tBt"/>
                 <outlet property="bottomView" destination="EKF-RE-uTt" id="dQc-gn-eOu"/>
                 <outlet property="cancelBtn" destination="jY0-yR-Byk" id="LW0-mJ-unk"/>
                 <outlet property="scrollView" destination="iyl-hc-bU7" id="elg-7T-VpA"/>
@@ -33,6 +35,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="TRF-5J-iVa"/>
+                                <constraint firstAttribute="height" constant="44" id="p6b-WO-wRY"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="取消"/>
@@ -58,8 +61,7 @@
                         <constraint firstAttribute="bottom" secondItem="jY0-yR-Byk" secondAttribute="bottom" id="QIi-WF-Jta"/>
                         <constraint firstAttribute="trailing" secondItem="ts5-R4-GIn" secondAttribute="trailing" id="W8D-4h-iwJ"/>
                         <constraint firstAttribute="height" constant="44" id="YZA-11-LMx"/>
-                        <constraint firstItem="ts5-R4-GIn" firstAttribute="top" secondItem="h8q-CG-wcH" secondAttribute="top" id="dwc-S6-Lsy"/>
-                        <constraint firstItem="jY0-yR-Byk" firstAttribute="top" secondItem="h8q-CG-wcH" secondAttribute="top" id="m4l-UB-AHz"/>
+                        <constraint firstItem="ts5-R4-GIn" firstAttribute="height" secondItem="jY0-yR-Byk" secondAttribute="height" id="fjn-Id-9yj"/>
                         <constraint firstItem="jY0-yR-Byk" firstAttribute="leading" secondItem="h8q-CG-wcH" secondAttribute="leading" id="xNN-gn-SOO"/>
                     </constraints>
                 </view>

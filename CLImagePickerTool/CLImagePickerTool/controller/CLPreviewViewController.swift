@@ -65,6 +65,8 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         self.view.bringSubview(toFront: self.customNavBar)
         
         self.selectBtn = UIButton.init(frame: CGRect(x:KScreenWidth-45 , y: 28, width: 25, height: 25))
+        self.selectBtn.cl_y = UIDevice.current.isX() == true ? 48:28
+
         self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
         CLViewsBorder(self.selectBtn, borderWidth: 1.5, borderColor: UIColor.white, cornerRadius: self.selectBtn.cl_width*0.5)
         self.customNavBar.addSubview(self.selectBtn)

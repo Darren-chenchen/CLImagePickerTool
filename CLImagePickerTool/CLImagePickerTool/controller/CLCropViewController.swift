@@ -87,7 +87,9 @@ class CLCropViewController: CLBaseImagePickerViewController {
         layer.path = path.cgPath
         self.view.layer.addSublayer(layer)
         
-        let bottomView = UIView.init(frame: CGRect(x: 0, y: self.view.bounds.size.height - 46, width: self.view.bounds.size.width, height: 46))
+        let viewH: CGFloat = UIDevice.current.isX() == true ? 46+34:46
+
+        let bottomView = UIView.init(frame: CGRect(x: 0, y: self.view.bounds.size.height - viewH, width: self.view.bounds.size.width, height: viewH))
         bottomView.backgroundColor = UIColor(red: 30/255.0, green: 30/255.0, blue: 30/255.0, alpha: 0.7)
         self.view.addSubview(bottomView)
         

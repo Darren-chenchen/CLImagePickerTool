@@ -103,7 +103,7 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
     var singleModelImageCanEditor: Bool = false
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView.init(frame: CGRect(x:0,y:64,width:KScreenWidth,height:KScreenHeight-64), style: .plain)
+        let tableView = UITableView.init(frame: CGRect(x:0,y:KNavgationBarHeight,width:KScreenWidth,height:KScreenHeight-KNavgationBarHeight), style: .plain)
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self

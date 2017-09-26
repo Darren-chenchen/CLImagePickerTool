@@ -37,7 +37,8 @@ class CustomNavgationView: UIView {
     }    
     
     override func layoutSubviews() {
-        self.titleLable.frame = CGRect(x: 50, y: 20, width: KScreenWidth-100, height: 64-20);
-        self.navLine.frame = CGRect(x: 0, y: 64, width: KScreenWidth, height: 0.26);
+        let titleY: CGFloat = UIDevice.current.isX() == true ? 40:20
+        self.titleLable.frame = CGRect(x: 50, y: titleY, width: KScreenWidth-100, height: 44)
+        self.navLine.frame = CGRect(x: 0, y: KNavgationBarHeight, width: KScreenWidth, height: 0.26)
     }
 }

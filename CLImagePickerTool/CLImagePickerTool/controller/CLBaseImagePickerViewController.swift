@@ -13,7 +13,7 @@ class CLBaseImagePickerViewController: UIViewController {
     // 自定义导航栏
     lazy var customNavBar: CustomNavgationView = {
         let nav = CustomNavgationView()
-        nav.frame = CGRect(x: 0, y: 0, width: KScreenWidth, height: 64)
+        nav.frame = CGRect(x: 0, y: 0, width: KScreenWidth, height: KNavgationBarHeight)
         return nav
     }()
     // 右边第一个按钮
@@ -45,7 +45,7 @@ class CLBaseImagePickerViewController: UIViewController {
     
     lazy var toobar: UIToolbar = {
         // 添加磨玻璃
-        let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: 64))
+        let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: KNavgationBarHeight))
         toolBar.barStyle = .default
         return toolBar
     }()
@@ -54,7 +54,8 @@ class CLBaseImagePickerViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
-        self.automaticallyAdjustsScrollViewInsets = false;
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.isTranslucent = false
         
@@ -73,8 +74,13 @@ class CLBaseImagePickerViewController: UIViewController {
         
         self.customNavBar.addSubview(self.backBtn)
         self.backBtn.isHidden = true
+        
+        // 设置位置，适配iphonex
+        let titleY: CGFloat = UIDevice.current.isX() == true ? 40:20
+        self.rightBtn.cl_y = titleY
+        self.backBtn.cl_y = titleY
     }
-    
+
     func rightBtnClick(){
         
     }

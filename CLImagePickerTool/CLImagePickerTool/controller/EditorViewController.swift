@@ -14,6 +14,8 @@ class EditorViewController: UIViewController {
     
     var editorImageComplete: editorImageCompleteClouse?
     
+    @IBOutlet weak var BottomViewHYS: NSLayoutConstraint!
+    @IBOutlet weak var TopViewHYS: NSLayoutConstraint!
     @IBOutlet weak var sureBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
    // 底部控件
@@ -90,6 +92,10 @@ extension EditorViewController {
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1
         scrollView.maximumZoomScale = 10
+        
+        self.TopViewHYS.constant = UIDevice.current.isX() == true ? 44+44:44
+        self.BottomViewHYS.constant = UIDevice.current.isX() == true ? 50+34:50
+
         
         self.cancelBtn.setTitle(cancelStr, for: .normal)
         self.sureBtn.setTitle(sureStr, for: .normal)

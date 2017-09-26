@@ -13,6 +13,11 @@ let KScreenWidth  = UIScreen.main.bounds.width
 /* 屏幕高度 */
 let KScreenHeight = UIScreen.main.bounds.height
 
+//导航栏高度
+let KNavgationBarHeight: CGFloat = UIDevice.current.isX() == true ? 88.0:64.0
+//tabbar高度
+let KTabBarHeight: CGFloat = UIDevice.current.isX() == true ? 83.0:49.0
+
 func CoustomColor(_ r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
     return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a)
 }

@@ -37,11 +37,15 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     @IBOutlet weak var flowout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var bottomViewHYS: NSLayoutConstraint!
+    @IBOutlet weak var bottomViewYS: NSLayoutConstraint!
     @IBOutlet weak var resetBtn: UIButton!
     @IBOutlet weak var lookBtn: UIButton!
     @IBOutlet weak var sureBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.bottomViewHYS.constant = UIDevice.current.isX() == true ? 34+44:44
         
         // 假如用户在收藏相册详情中选中了一张照片，那么就应该把全部照片中的数据源刷新一下，这样才能显示选中状态
         // 将所有模型至为未选中
@@ -234,8 +238,12 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.collectionView.register(UINib.init(nibName: "CLSingleTypeCell", bundle: BundleUtil.getCurrentBundle()), forCellWithReuseIdentifier: "CLSingleTypeCell")
 
         
-        self.collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 44, right: 0)
-        self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 64, left: 0, bottom: 44, right: 0)
+        self.collectionView.contentInset = UIEdgeInsets(top: KNavgationBarHeight, left: 0, bottom: 44, right: 0)
+        self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: KNavgationBarHeight, left: 0, bottom: 44, right: 0)
+        if UIDevice.current.isIOS11() {
+            self.collectionView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 44, right: 0)
+            self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 44, left: 0, bottom: 44, right: 0)
+        }
         
         let item = self.collectionView(self.collectionView!, numberOfItemsInSection: 0) - 1
         if item == -1 { // 防止相册为0

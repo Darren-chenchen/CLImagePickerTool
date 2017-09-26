@@ -156,3 +156,21 @@ extension UIView {
     }
     
 }
+
+extension UIDevice {
+    public func isX() -> Bool {
+        if UIScreen.main.bounds.height == 812 {
+            return true
+        }
+        
+        return false
+    }
+    
+    public func isIOS11() -> Bool{
+        if #available(iOS 11.0, *) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
