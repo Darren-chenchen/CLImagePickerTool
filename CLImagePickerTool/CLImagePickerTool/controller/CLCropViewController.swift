@@ -14,22 +14,22 @@ typealias CLCropViewControllerClouse = (UIImage)->()
 
 class CLCropViewController: CLBaseImagePickerViewController {
     
-    var scale: CGFloat = 1  // 宽/高
+    @objc var scale: CGFloat = 1  // 宽/高
     
-    var originalImage: UIImage?
+    @objc var originalImage: UIImage?
     
-    var imageView: UIImageView?
+    @objc var imageView: UIImageView?
     
-    var asset: PHAsset?
+    @objc var asset: PHAsset?
     
-    var clCropClouse: CLCropViewControllerClouse?
+    @objc var clCropClouse: CLCropViewControllerClouse?
     
-    var circleBtn: CLCircleView?
+    @objc var circleBtn: CLCircleView?
     
-    let manager = PHImageManager.default()
+    @objc let manager = PHImageManager.default()
     var imageRequestID: PHImageRequestID?
 
-    lazy var scrollView: UIScrollView = {
+    @objc lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView.init(frame: CGRect(x: 0, y: 0.5*(UIScreen.main.bounds.size.height-UIScreen.main.bounds.size.width/self.scale), width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width/self.scale))
         scroll.bouncesZoom = true
         scroll.minimumZoomScale = 1
@@ -75,7 +75,7 @@ class CLCropViewController: CLBaseImagePickerViewController {
     }
     
     
-    func userInterface() {
+    @objc func userInterface() {
         let cropframe = self.scrollView.frame
         let path = UIBezierPath.init(roundedRect: self.view.bounds, cornerRadius: 0)
         let cropPath = UIBezierPath.init(roundedRect:cropframe, cornerRadius: 0)
@@ -105,7 +105,7 @@ class CLCropViewController: CLBaseImagePickerViewController {
 
     }
     
-    func clickCancelBtn() {
+    @objc func clickCancelBtn() {
         if self.imageRequestID != nil {
             self.manager.cancelImageRequest(self.imageRequestID!)
         }
@@ -117,7 +117,7 @@ class CLCropViewController: CLBaseImagePickerViewController {
         print("CLCropViewController裁剪释放")
     }
     
-    func clickSureBtn() {
+    @objc func clickSureBtn() {
         
         if self.imageRequestID != nil {
             self.manager.cancelImageRequest(self.imageRequestID!)
@@ -128,7 +128,7 @@ class CLCropViewController: CLBaseImagePickerViewController {
         }
     }
     
-    func loadData() {
+    @objc func loadData() {
         CLPickersTools.instence.getAssetOrigin(asset: self.asset!) { (img, info) in
             if img != nil {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.5, execute: {
@@ -179,7 +179,7 @@ extension CLCropViewController: UIScrollViewDelegate {
         self.centerContent()
     }
         
-    func centerContent() {
+    @objc func centerContent() {
         
         guard var imageViewFrame =  self.imageView?.frame else {
             return
@@ -200,7 +200,7 @@ extension CLCropViewController: UIScrollViewDelegate {
         self.imageView?.frame = imageViewFrame
     }
     
-    func cropImage() -> UIImage {        
+    @objc func cropImage() -> UIImage {        
         var offset = self.scrollView.contentOffset
         //图片缩放比例
         let zoom = (self.imageView?.frame.size.width)!/(self.originalImage?.size.width)!

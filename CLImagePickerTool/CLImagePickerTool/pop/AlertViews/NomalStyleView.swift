@@ -14,9 +14,9 @@ typealias middleHendleClouse = () -> ()
 
 class NomalStyleView: UIView {
     
-    var leftHendle: leftHendleClouse?
-    var rightHendle: rightHendleClouse?
-    var middleHendle: middleHendleClouse?
+    @objc var leftHendle: leftHendleClouse?
+    @objc var rightHendle: rightHendleClouse?
+    @objc var middleHendle: middleHendleClouse?
 
     @IBOutlet weak var contentLableBottomYS: NSLayoutConstraint!
     @IBOutlet weak var btnsBottomView: UIView!
@@ -25,7 +25,7 @@ class NomalStyleView: UIView {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
-    static func show() -> NomalStyleView {
+    @objc static func show() -> NomalStyleView {
         return BundleUtil.getCurrentBundle().loadNibNamed("NomalStyleView", owner: nil, options: nil)?.last as! NomalStyleView
     }
     

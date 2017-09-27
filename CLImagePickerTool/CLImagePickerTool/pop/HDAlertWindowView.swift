@@ -11,22 +11,22 @@ import UIKit
 class HDAlertWindowView: UIView {
 
     // 屏幕宽度
-    let APPH = UIScreen.main.bounds.height
+    @objc let APPH = UIScreen.main.bounds.height
     // 屏幕高度
-    let APPW = UIScreen.main.bounds.width
+    @objc let APPW = UIScreen.main.bounds.width
     
-    lazy var coverView: UIView = {
+    @objc lazy var coverView: UIView = {
         let cover = UIView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height))
         cover.backgroundColor = UIColor(white: 0, alpha: 0.6)
         return cover
     }()
     
-    lazy var nomalView: NomalStyleView = {
+    @objc lazy var nomalView: NomalStyleView = {
         let bottom = NomalStyleView.show()
         self.addSubview(bottom)
         return bottom
     }()
-    lazy var messageView: MessageStyleView = {
+    @objc lazy var messageView: MessageStyleView = {
         let bottom = MessageStyleView.show()
         self.addSubview(bottom)
         return bottom
@@ -45,7 +45,7 @@ class HDAlertWindowView: UIView {
 
 //MARK: - 标准样式(标题，内容，左按钮，右按钮)
 extension HDAlertWindowView{
-    func  alert(title: String!,message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
+    @objc func  alert(title: String!,message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
         
         // modal
         showVC()
@@ -82,7 +82,7 @@ extension HDAlertWindowView{
 
 //MARK: - 一个主标题 (内容，左按钮，右按钮)
 extension HDAlertWindowView{
-    func  alert(message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
+    @objc func  alert(message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
         
         // modal 控制器
         showVC()

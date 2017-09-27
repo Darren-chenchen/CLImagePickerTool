@@ -20,11 +20,11 @@ class CLSingleTypeCell: UICollectionViewCell {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var iconView: UIImageView!
     
-    var singleChoosePicture: singleChoosePictureClouse?
-    var singleChoosePictureAndEditor: singleChoosePictureAndEditorClouse?
+    @objc var singleChoosePicture: singleChoosePictureClouse?
+    @objc var singleChoosePictureAndEditor: singleChoosePictureAndEditorClouse?
 
     // 单选模式下图片可以编辑
-    var singleModelImageCanEditor: Bool = false
+    @objc var singleModelImageCanEditor: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,7 +38,7 @@ class CLSingleTypeCell: UICollectionViewCell {
         self.iconView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(clickIconView(ges:))))
     }
     
-    var model: CLImagePickerPhotoModel? {
+    @objc var model: CLImagePickerPhotoModel? {
         didSet{
             
             // 图片
@@ -66,7 +66,7 @@ class CLSingleTypeCell: UICollectionViewCell {
     }
     
     
-    func clickIconView(ges:UITapGestureRecognizer) {
+    @objc func clickIconView(ges:UITapGestureRecognizer) {
         // 相册
         if self.model?.phAsset?.mediaType == .image {
             let amplifyView =  CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:true,singleModelImageCanEditor:self.singleModelImageCanEditor)

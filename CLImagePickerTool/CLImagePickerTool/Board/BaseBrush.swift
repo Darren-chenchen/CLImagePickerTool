@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import Foundation
 
 //supportedContinuousDrawing，表示是否是连续不断的绘图
 //drawInContext，基于Context的绘图方法，子类必须实现具体的绘图
@@ -25,11 +26,11 @@ class BaseBrush : NSObject, PaintBrush {
     
     var strokeWidth: CGFloat!
     
-    func supportedContinuousDrawing() -> Bool {
+    @objc func supportedContinuousDrawing() -> Bool {
         return false
     }
     
-    func drawInContext(_ context: CGContext) {
+    @objc func drawInContext(_ context: CGContext) {
         assert(false, "must implements in subclass.")
     }
 }

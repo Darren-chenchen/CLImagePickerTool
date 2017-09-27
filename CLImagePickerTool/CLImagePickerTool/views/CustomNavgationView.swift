@@ -10,14 +10,14 @@ import UIKit
 
 class CustomNavgationView: UIView {
 
-    lazy var titleLable:UILabel = {
+    @objc lazy var titleLable:UILabel = {
         let titleLable = UILabel()
         titleLable.textAlignment = .center
         titleLable.textColor = UIColor.black
         titleLable.font = UIFont.boldSystemFont(ofSize: 18)
         return titleLable
     }()
-    lazy var navLine:UILabel = {
+    @objc lazy var navLine:UILabel = {
         let navLine = UILabel()
         navLine.backgroundColor = UIColor.gray
         return navLine;

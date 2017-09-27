@@ -15,24 +15,24 @@ typealias VedioViewVisitPhotoBtnClickClouse = ()->()
 
 class VideoView: UIView {
     
-    var closeBtnClickClouse: VedioViewCloseBtnClickClouse?
-    var visitPhotoBtnClickClouse: VedioViewVisitPhotoBtnClickClouse?
+    @objc var closeBtnClickClouse: VedioViewCloseBtnClickClouse?
+    @objc var visitPhotoBtnClickClouse: VedioViewVisitPhotoBtnClickClouse?
 
-    var picStrArr = [String]()  // 在实际的项目中可能用于存储图片的url
+    @objc var picStrArr = [String]()  // 在实际的项目中可能用于存储图片的url
 
-    var imgView: UIImageView!
-    var scrollView: UIScrollView!
+    @objc var imgView: UIImageView!
+    @objc var scrollView: UIScrollView!
     
-    var assetArr = [PHAsset]()
+    @objc var assetArr = [PHAsset]()
     
-    var playBtn: UIButton!
+    @objc var playBtn: UIButton!
     
-    var player: AVPlayer?
-    var playerItem: AVPlayerItem?
+    @objc var player: AVPlayer?
+    @objc var playerItem: AVPlayerItem?
 
-    var asset: PHAsset?
+    @objc var asset: PHAsset?
     
-    var playBtnArr = [UIButton]()
+    @objc var playBtnArr = [UIButton]()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,7 +55,7 @@ class VideoView: UIView {
     }
     
     /// 设置图片数组
-    var picArr = [UIImage]() {
+    @objc var picArr = [UIImage]() {
         didSet{
 
             for view in self.scrollView.subviews {
@@ -110,7 +110,7 @@ class VideoView: UIView {
         }
     }
     
-    func clickPlayBtn(btn:UIButton) {
+    @objc func clickPlayBtn(btn:UIButton) {
         
         self.playBtn = btn
         self.playBtn.alpha = 0
@@ -128,7 +128,7 @@ class VideoView: UIView {
                 self.player = AVPlayer(playerItem: self.playerItem)
                 let playerLayer = AVPlayerLayer(player: self.player)
                 playerLayer.frame = self.imgView.bounds
-                playerLayer.videoGravity = AVLayerVideoGravityResizeAspect //视频填充模式
+                playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect //视频填充模式
                 btn.superview?.layer.addSublayer(playerLayer)
                 
                 self.addObserver()
@@ -141,7 +141,7 @@ class VideoView: UIView {
     }
     
     /// 关闭按钮
-    func clickCloseBtn(btn:UIButton) {
+    @objc func clickCloseBtn(btn:UIButton) {
         self.picArr.remove(at: btn.tag)
         
         if self.closeBtnClickClouse != nil {
@@ -150,14 +150,14 @@ class VideoView: UIView {
     }
     
     /// 选择相册
-    func clickChooseImage() {
+    @objc func clickChooseImage() {
         if self.visitPhotoBtnClickClouse != nil {
             self.visitPhotoBtnClickClouse!()
         }
     }
     
     /// 隐藏关闭按钮用于纯展示
-    var hiddenAllCloseBtn = false {
+    @objc var hiddenAllCloseBtn = false {
         didSet{
             if hiddenAllCloseBtn == true {
                 for view in self.scrollView.subviews {
@@ -174,14 +174,14 @@ class VideoView: UIView {
 
     
     
-    func addObserver(){
+    @objc func addObserver(){
         
         //为AVPlayerItem添加status属性观察，得到资源准备好，开始播放视频
         playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CLVideoPlayView.playerItemDidReachEnd(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
     }
     
-    func removeObserver() {
+    @objc func removeObserver() {
         if self.playerItem != nil {
             self.playerItem?.removeObserver(self, forKeyPath: "status")
             NotificationCenter.default.removeObserver(self, name:  Notification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerItem)
@@ -189,7 +189,7 @@ class VideoView: UIView {
         
     }
     
-    func playerItemDidReachEnd(notification:Notification) {
+    @objc func playerItemDidReachEnd(notification:Notification) {
         self.playBtn.alpha = 1
     }
     

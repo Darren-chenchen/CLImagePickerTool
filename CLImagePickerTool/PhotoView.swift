@@ -14,13 +14,13 @@ typealias VisitPhotoBtnClickClouse = ()->()
 class PhotoView: UIView {
     
     
-    var closeBtnClickClouse: CloseBtnClickClouse?
-    var visitPhotoBtnClickClouse: VisitPhotoBtnClickClouse?
+    @objc var closeBtnClickClouse: CloseBtnClickClouse?
+    @objc var visitPhotoBtnClickClouse: VisitPhotoBtnClickClouse?
 
-    var picStrArr = [String]()  // 在实际的项目中可能用于存储图片的url
+    @objc var picStrArr = [String]()  // 在实际的项目中可能用于存储图片的url
 
-    var imgView: UIImageView!
-    var scrollView: UIScrollView!
+    @objc var imgView: UIImageView!
+    @objc var scrollView: UIScrollView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +43,7 @@ class PhotoView: UIView {
     }
     
     /// 设置图片数组
-    var picArr = [UIImage]() {
+    @objc var picArr = [UIImage]() {
         didSet{
 
             for view in self.scrollView.subviews {
@@ -89,7 +89,7 @@ class PhotoView: UIView {
     }
     
     /// 关闭按钮
-    func clickCloseBtn(btn:UIButton) {
+    @objc func clickCloseBtn(btn:UIButton) {
         self.picArr.remove(at: btn.tag)
         
         if self.closeBtnClickClouse != nil {
@@ -98,14 +98,14 @@ class PhotoView: UIView {
     }
     
     /// 选择相册
-    func clickChooseImage() {
+    @objc func clickChooseImage() {
         if self.visitPhotoBtnClickClouse != nil {
             self.visitPhotoBtnClickClouse!()
         }
     }
     
     /// 隐藏关闭按钮用于纯展示
-    var hiddenAllCloseBtn = false {
+    @objc var hiddenAllCloseBtn = false {
         didSet{
             if hiddenAllCloseBtn == true {
                 for view in self.scrollView.subviews {

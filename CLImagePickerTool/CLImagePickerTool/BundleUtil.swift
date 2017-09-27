@@ -40,18 +40,12 @@ class BundleUtil {
         
         if bundle == nil {
             var language = NSLocale.preferredLanguages.first
-            let r = language?.range(of: "zh-Hans")
+            let r: Range? = language?.range(of: "zh-Hans")
             if r != nil {
-                let nsr = "".nsRange(from: r!)
-                if nsr.location != NSNotFound {
-                    language = "zh-Hans"
-                } else {
-                    language = "en"
-                }
+                language = "zh-Hans"
             } else {
                 language = "en"
             }
-            
             
             bundle = Bundle(path: self.getCurrentBundle().path(forResource: language, ofType: "lproj")!)
         }

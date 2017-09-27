@@ -9,9 +9,9 @@
 import UIKit
 
 class MessageStyleView: UIView {
-    var leftHendle: leftHendleClouse?
-    var rightHendle: rightHendleClouse?
-    var middleHendle: middleHendleClouse?
+    @objc var leftHendle: leftHendleClouse?
+    @objc var rightHendle: rightHendleClouse?
+    @objc var middleHendle: middleHendleClouse?
 
     @IBOutlet weak var middleBtn: UIButton!
     @IBOutlet weak var contentLableBottomYS: NSLayoutConstraint!
@@ -20,7 +20,7 @@ class MessageStyleView: UIView {
     @IBOutlet weak var leftBtn: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
     
-    static func show() -> MessageStyleView {
+    @objc static func show() -> MessageStyleView {
         return BundleUtil.getCurrentBundle().loadNibNamed("MessageStyleView", owner: nil, options: nil)?.last as! MessageStyleView
     }
     

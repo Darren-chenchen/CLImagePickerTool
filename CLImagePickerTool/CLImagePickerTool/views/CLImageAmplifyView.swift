@@ -16,21 +16,21 @@ typealias singlePictureClickEditorBtnClouse = ()->()
 
 class CLImageAmplifyView: UIView {
     
-    var lastImageView: UIImageView?
+    @objc var lastImageView: UIImageView!
     var originalFrame:CGRect!
-    var scrollView: UIScrollView?
-    var circleBtn: CLCircleView?
+    @objc var scrollView: UIScrollView?
+    @objc var circleBtn: CLCircleView?
     
-    let manager = PHImageManager.default()
+    @objc let manager = PHImageManager.default()
     var imageRequestID: PHImageRequestID?
     
     // 单选模式下图片是否可以编辑
-    var singleModelImageCanEditor: Bool = false
+    @objc var singleModelImageCanEditor: Bool = false
     
-    var singlePictureClickSureBtn: singlePictureClickSureBtnClouse?
-    var singlePictureClickEditorBtn: singlePictureClickEditorBtnClouse?
+    @objc var singlePictureClickSureBtn: singlePictureClickSureBtnClouse?
+    @objc var singlePictureClickEditorBtn: singlePictureClickEditorBtnClouse?
 
-    lazy var bottomView: UIView = {
+    @objc lazy var bottomView: UIView = {
         
         let viewH: CGFloat = UIDevice.current.isX() == true ? 44+34:44
         let bottom = UIView.init(frame: CGRect(x: 0, y: KScreenHeight-viewH, width: KScreenWidth, height: viewH))
@@ -54,7 +54,7 @@ class CLImageAmplifyView: UIView {
         return bottom
     }()
     
-    static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset,isSingleChoose:Bool,singleModelImageCanEditor:Bool) -> CLImageAmplifyView{
+    @objc static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset,isSingleChoose:Bool,singleModelImageCanEditor:Bool) -> CLImageAmplifyView{
         
         let amplifyView = CLImageAmplifyView.init(frame: (UIApplication.shared.keyWindow?.bounds)!)
         
@@ -126,21 +126,22 @@ class CLImageAmplifyView: UIView {
         
         //最大放大比例
         self.scrollView?.maximumZoomScale = 1.5;
-        self.scrollView?.delegate = self;
+        self.scrollView?.delegate = self
         
         UIView.animate(withDuration: 0.5) {
-            var frame = self.lastImageView?.frame
-            frame?.size.width = (self.scrollView?.frame.size.width)!
-            let bili = ((self.lastImageView?.image?.size.height)! / (self.lastImageView?.image?.size.width)!)
-            frame?.size.height = (frame?.size.width)! * bili
-            frame?.origin.x = 0
-            frame?.origin.y = ((self.scrollView?.frame.size.height)! - (frame?.size.height)!) * 0.5
-            self.lastImageView?.frame = frame!
-            
-            if (frame?.size.height)! > UIScreen.main.bounds.height {
-                frame?.origin.y = 0
-                self.lastImageView?.frame = frame!
-                self.scrollView?.contentSize = CGSize(width: 0, height: (frame?.size.height)!)
+            var frameImg = self.lastImageView?.frame
+            frameImg?.size.width = (self.scrollView?.cl_width)!
+            let bili = (self.lastImageView.image?.size.height)! / (self.lastImageView.image?.size.width)!
+            let h =  (frameImg?.size.width)! * bili
+            frameImg?.size.height = h
+            frameImg?.origin.x = 0
+            frameImg?.origin.y = ((self.scrollView?.frame.size.height)! - (h)) * 0.5
+            self.lastImageView?.frame = frameImg!
+
+            if (frameImg?.size.height)! > UIScreen.main.bounds.height {
+                frameImg?.origin.y = 0
+                self.lastImageView?.frame = frameImg!
+                self.scrollView?.contentSize = CGSize(width: 0, height: (frameImg?.size.height)!)
             }
         }
         
@@ -149,7 +150,7 @@ class CLImageAmplifyView: UIView {
         }
     }
     
-     func clickBgView(tapBgView:UITapGestureRecognizer){
+     @objc func clickBgView(tapBgView:UITapGestureRecognizer){
         
         self.bottomView.removeFromSuperview()
         
@@ -179,11 +180,11 @@ class CLImageAmplifyView: UIView {
         }
     }
     
-    func setupBottomView() {
+    @objc func setupBottomView() {
         self.addSubview(self.bottomView)
     }
     
-    func clickSureBtn() {
+    @objc func clickSureBtn() {
         
         if self.singlePictureClickSureBtn != nil {
             self.singlePictureClickSureBtn!()
@@ -202,7 +203,7 @@ class CLImageAmplifyView: UIView {
     }
     
     // 编辑图片
-    func clickEditorBtn() {
+    @objc func clickEditorBtn() {
         if self.singlePictureClickEditorBtn != nil {
             self.singlePictureClickEditorBtn!()
         }

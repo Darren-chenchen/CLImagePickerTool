@@ -22,19 +22,19 @@ enum DrawingState {
 class DrawBoard: UIImageView {
     
     // 开始绘画就让控制器中的返回按钮可点击
-    var beginDraw: beginDrawClouse?
+    @objc var beginDraw: beginDrawClouse?
     // 不能再撤销或者前进
-    var unableDraw: undoUnableActionClouse?
-    var reableDraw: redoUnableActionClouse?
+    @objc var unableDraw: undoUnableActionClouse?
+    @objc var reableDraw: redoUnableActionClouse?
     
     fileprivate var boardUndoManager = DBUndoManager() // 缓存或Undo控制器
-    var canUndo: Bool {
+    @objc var canUndo: Bool {
         get {
             return self.boardUndoManager.canUndo
         }
     }
     
-    var canRedo: Bool {
+    @objc var canRedo: Bool {
         get {
             return self.boardUndoManager.canRedo
         }
@@ -43,19 +43,19 @@ class DrawBoard: UIImageView {
     // 绘图状态
     fileprivate var drawingState: DrawingState!
     // 绘图的基类
-    var brush: BaseBrush?
+    @objc var brush: BaseBrush?
     //保存当前的图形
     fileprivate var realImage: UIImage?
-    var strokeWidth: CGFloat = 3
+    @objc var strokeWidth: CGFloat = 3
     // 画笔颜色，文本输入框的字体颜色
-    var strokeColor: UIColor = UIColor.red
+    @objc var strokeColor: UIColor = UIColor.red
     // 和马赛克相关的图片
-    var masicImage: UIImage!
+    @objc var masicImage: UIImage!
     // 高斯模糊
-    var strokeGauussianColor: UIColor = UIColor.clear
+    @objc var strokeGauussianColor: UIColor = UIColor.clear
 
     // 橡皮擦效果图片
-    lazy var eraserImage: UIImageView = {
+    @objc lazy var eraserImage: UIImageView = {
         let img = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.addSubview(img)
         return img
@@ -142,7 +142,7 @@ class DrawBoard: UIImageView {
         }
     }
     //MARK: - 返回画板上的图片，用于保存
-    func takeImage() -> UIImage {
+    @objc func takeImage() -> UIImage {
         
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
         
@@ -159,7 +159,7 @@ class DrawBoard: UIImageView {
     }
     
     // 撤销
-    func undo() {
+    @objc func undo() {
         if self.canUndo == false {
             return
         }
@@ -174,7 +174,7 @@ class DrawBoard: UIImageView {
         }
     }
     // 前进
-    func redo() {
+    @objc func redo() {
         if self.canRedo == false {
             return
         }
@@ -189,7 +189,7 @@ class DrawBoard: UIImageView {
         }
     }
     // 还原
-    func retureAction() {
+    @objc func retureAction() {
         self.image = nil
         self.realImage = self.image
         
@@ -197,11 +197,11 @@ class DrawBoard: UIImageView {
     }
     
     // 是否可以撤销
-    func canBack() -> Bool {
+    @objc func canBack() -> Bool {
         return self.canUndo
     }
     // 是否可以前进
-    func canForward() -> Bool {
+    @objc func canForward() -> Bool {
         return self.canRedo
     }
     deinit {

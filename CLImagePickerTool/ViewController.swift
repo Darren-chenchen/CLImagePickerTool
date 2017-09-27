@@ -92,7 +92,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func dealImage(imageArr:[UIImage],index:Int) {
+    @objc func dealImage(imageArr:[UIImage],index:Int) {
         // 图片下载完成后再去掉我们的转转转控件，这里没有考虑assetArr中含有视频文件的情况
         if imageArr.count == index {
             PopViewUtil.share.stopLoading()

@@ -21,13 +21,13 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     @IBOutlet weak var chooseBtn: UIButton!
     @IBOutlet weak var chooseImageBtn: CLCircleView!
     
-    let btnBackColor = UIColor(white: 0, alpha: 0.6)
+    @objc let btnBackColor = UIColor(white: 0, alpha: 0.6)
     // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
-    var onlyChooseImageOrVideo: Bool = false
+    @objc var onlyChooseImageOrVideo: Bool = false
     
-    var imagePickerChooseImage: imagePickerChooseImageCellClouse?
+    @objc var imagePickerChooseImage: imagePickerChooseImageCellClouse?
     
-    var model: CLImagePickerPhotoModel? {
+    @objc var model: CLImagePickerPhotoModel? {
         didSet{
             
             // 图片
@@ -67,7 +67,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     }
     
     // 设置cell的阴影
-    func setupCellCover() {
+    @objc func setupCellCover() {
         // 视频，图片只能选择1中
         if self.onlyChooseImageOrVideo {
             if self.chooseImageBtn.isSelected {
@@ -101,7 +101,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
         self.iconView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(clickIconView(ges:))))
     }
     
-    func clickIconView(ges:UITapGestureRecognizer) {
+    @objc func clickIconView(ges:UITapGestureRecognizer) {
         if self.model?.phAsset == nil {
             return
         }

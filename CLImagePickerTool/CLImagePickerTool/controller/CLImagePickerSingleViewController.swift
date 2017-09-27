@@ -14,24 +14,24 @@ typealias  CLImagePickerSingleChooseImageCompleteClouse = (Array<PHAsset>,UIImag
 
 class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
 
-    var photoArr: [CLImagePickerPhotoModel]?
+    @objc var photoArr: [CLImagePickerPhotoModel]?
         
-    var cameraPicker: UIImagePickerController!
+    @objc var cameraPicker: UIImagePickerController!
     
-    var singleChooseImageCompleteClouse: CLImagePickerSingleChooseImageCompleteClouse?
+    @objc var singleChooseImageCompleteClouse: CLImagePickerSingleChooseImageCompleteClouse?
     
-    let imageCellID = "imagecellID"
+    @objc let imageCellID = "imagecellID"
     
     // 标记是不是所有照片。如果是所有照片再添加拍照图片
-    var isAllPhoto: Bool = false
+    @objc var isAllPhoto: Bool = false
     // 单选状态的类型
     var singleType: CLImagePickersToolType?
     // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
-    var onlyChooseImageOrVideo: Bool = false
+    @objc var onlyChooseImageOrVideo: Bool = false
     // 图片裁剪比例
     var singlePictureCropScale: CGFloat?
     // 单选模式下图片可以编辑
-    var singleModelImageCanEditor: Bool = false
+    @objc var singleModelImageCanEditor: Bool = false
     
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var flowout: UICollectionViewFlowLayout!
@@ -95,13 +95,13 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.initWventHendle()
     }
     
-    func initWventHendle() {
+    @objc func initWventHendle() {
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNotic), object: nil)
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticCencelFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNoticCencel), object: nil)
         CLNotificationCenter.addObserver(self, selector: #selector(PreviewForSelectOrNotSelectedNoticFunc), name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: nil)
     }
     
-    func PreviewForSelectOrNotSelectedNoticFunc(notic:Notification) {
+    @objc func PreviewForSelectOrNotSelectedNoticFunc(notic:Notification) {
         
         let modelPreView = notic.object as! PreviewModel
         for model in (self.photoArr ?? []) {
@@ -130,7 +130,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.collectionView.reloadData()
     }
     
-    func OnlyChooseImageOrVideoNoticFunc(notic:Notification) {
+    @objc func OnlyChooseImageOrVideoNoticFunc(notic:Notification) {
         let chooseType = notic.object as! Int
         for model in (self.photoArr ?? []) {
             if model.phAsset?.mediaType.rawValue != chooseType {
@@ -140,7 +140,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         
         self.collectionView.reloadData()
     }
-    func OnlyChooseImageOrVideoNoticCencelFunc() {
+    @objc func OnlyChooseImageOrVideoNoticCencelFunc() {
         for model in (self.photoArr ?? []) {
             model.onlyChooseImageOrVideo = false
         }
@@ -192,7 +192,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.choosePictureComplete(assetArr: CLPickersTools.instence.getChoosePictureArray(), img: nil)
     }
     
-    func choosePictureComplete(assetArr:Array<PHAsset>,img:UIImage?) {
+    @objc func choosePictureComplete(assetArr:Array<PHAsset>,img:UIImage?) {
         
         weak var weakSelf = self
         // 记得pop，不然控制器释放不掉
@@ -206,7 +206,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         }        
     }
     
-    func initView() {
+    @objc func initView() {
         self.backBtn.isHidden = false
         
         self.rightBtn.setTitle(cancelStr, for: .normal)
@@ -388,7 +388,7 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
     }
     
     // 保存图片的结果
-    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         if let err = error {
             UIAlertView(title: errorStr, message: err.localizedDescription, delegate: nil, cancelButtonTitle: sureStr).show()
         } else {

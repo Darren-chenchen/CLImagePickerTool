@@ -11,16 +11,16 @@ import UIKit
 class HDAlertViewController: UIViewController {
     
     // 屏幕宽度
-    let APPH = UIScreen.main.bounds.height
+    @objc let APPH = UIScreen.main.bounds.height
     // 屏幕高度
-    let APPW = UIScreen.main.bounds.width
+    @objc let APPW = UIScreen.main.bounds.width
     
-    lazy var nomalView: NomalStyleView = {
+    @objc lazy var nomalView: NomalStyleView = {
         let bottom = NomalStyleView.show()
         self.view.addSubview(bottom)
         return bottom
     }()
-    lazy var messageView: MessageStyleView = {
+    @objc lazy var messageView: MessageStyleView = {
         let bottom = MessageStyleView.show()
         self.view.addSubview(bottom)
         return bottom
@@ -41,7 +41,7 @@ class HDAlertViewController: UIViewController {
 
 //MARK: - 标准样式(标题，内容，左按钮，右按钮)
 extension HDAlertViewController{
-    func  alert(title: String!,message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
+    @objc func  alert(title: String!,message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
         
         // modal 控制器
         showVC()
@@ -78,7 +78,7 @@ extension HDAlertViewController{
 
 //MARK: - 一个主标题 (内容，左按钮，右按钮)
 extension HDAlertViewController{
-    func  alert(message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
+    @objc func  alert(message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
         
         // modal 控制器
         showVC()

@@ -16,17 +16,17 @@ typealias singleVideoClickSureBtnClouse = ()->()
 
 class CLVideoPlayView: UIView {
 
-    var lastImageView = UIImageView()
+    @objc var lastImageView = UIImageView()
     var originalFrame:CGRect!
     
-    var asset: PHAsset?
+    @objc var asset: PHAsset?
     
-    var playerItem: AVPlayerItem?
-    var player: AVPlayer?
+    @objc var playerItem: AVPlayerItem?
+    @objc var player: AVPlayer?
     
-    var singleVideoClickSureBtn: singleVideoClickSureBtnClouse?
+    @objc var singleVideoClickSureBtn: singleVideoClickSureBtnClouse?
     
-    lazy var bottomView: UIView = {
+    @objc lazy var bottomView: UIView = {
         let viewH: CGFloat = UIDevice.current.isX() == true ? 44+34:44
 
         let bottom = UIView.init(frame: CGRect(x: 0, y: KScreenHeight-viewH, width: KScreenWidth, height: viewH))
@@ -41,7 +41,7 @@ class CLVideoPlayView: UIView {
     }()
 
     
-    lazy var playBtn: UIButton = {
+    @objc lazy var playBtn: UIButton = {
         let btn = UIButton.init(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         
         btn.setBackgroundImage(UIImage(named: "clvedioplaybtn", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
@@ -49,7 +49,7 @@ class CLVideoPlayView: UIView {
         return btn
     }()
     
-    public static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset,isSingleChoose:Bool) -> CLVideoPlayView{
+    @objc public static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset,isSingleChoose:Bool) -> CLVideoPlayView{
         
         let amplifyView = CLVideoPlayView.init(frame: (UIApplication.shared.keyWindow?.bounds)!)
         
@@ -106,7 +106,7 @@ class CLVideoPlayView: UIView {
         }
     }
     
-    func clickPlayBtn() {
+    @objc func clickPlayBtn() {
         self.playBtn.isHidden = true
         
         if self.asset == nil {
@@ -136,7 +136,7 @@ class CLVideoPlayView: UIView {
                 self.player = AVPlayer(playerItem: self.playerItem)
                 let playerLayer = AVPlayerLayer(player: self.player)
                 playerLayer.frame = self.lastImageView.bounds
-                playerLayer.videoGravity = AVLayerVideoGravityResizeAspect //视频填充模式
+                playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect //视频填充模式
                 self.lastImageView.layer.addSublayer(playerLayer)
                 
                 self.addObserver()
@@ -144,14 +144,14 @@ class CLVideoPlayView: UIView {
         }
     }
     
-    func addObserver(){
+    @objc func addObserver(){
         
         //为AVPlayerItem添加status属性观察，得到资源准备好，开始播放视频
         playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CLVideoPlayView.playerItemDidReachEnd(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
     }
     
-    func removeObserver() {
+    @objc func removeObserver() {
         if self.playerItem != nil {
             self.playerItem?.removeObserver(self, forKeyPath: "status")
             NotificationCenter.default.removeObserver(self, name:  Notification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerItem)
@@ -159,7 +159,7 @@ class CLVideoPlayView: UIView {
 
     }
     
-    func playerItemDidReachEnd(notification:Notification) {
+    @objc func playerItemDidReachEnd(notification:Notification) {
         self.playBtn.isHidden = false
     }
     
@@ -187,7 +187,7 @@ class CLVideoPlayView: UIView {
         self.removeObserver()
     }
     
-    func clickBgView(tapBgView:UITapGestureRecognizer){
+    @objc func clickBgView(tapBgView:UITapGestureRecognizer){
         
         UIView.animate(withDuration: 0.3, animations: {
             self.lastImageView.frame = self.originalFrame
@@ -206,11 +206,11 @@ class CLVideoPlayView: UIView {
         }
     }
     
-    func setupBottomView() {
+    @objc func setupBottomView() {
         self.addSubview(self.bottomView)
     }
     
-    func clickSureBtn() {
+    @objc func clickSureBtn() {
         
         self.removeFromSuperview()
         

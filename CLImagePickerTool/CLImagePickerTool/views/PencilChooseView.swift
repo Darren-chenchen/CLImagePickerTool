@@ -12,11 +12,11 @@ typealias clickPencilImageClouse = (UIImage) -> ()
 
 class PencilChooseView: UIView {
     
-    var scrollView: UIScrollView!
+    @objc var scrollView: UIScrollView!
     
-    var clickPencilImage: clickPencilImageClouse?
+    @objc var clickPencilImage: clickPencilImageClouse?
     
-    var currentImage: UIImageView?
+    @objc var currentImage: UIImageView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,7 +56,7 @@ class PencilChooseView: UIView {
         scrollView.contentSize = CGSize(width: magin*CGFloat(imageArr.count+1)+imgW*CGFloat(imageArr.count)-KScreenWidth, height: 0)
     }
     
-    func clickPencilImageView(tap:UITapGestureRecognizer) {
+    @objc func clickPencilImageView(tap:UITapGestureRecognizer) {
         if clickPencilImage != nil {
             
             self.currentImage?.alpha = 1

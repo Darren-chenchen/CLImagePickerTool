@@ -12,9 +12,9 @@ typealias clickCamaroCellClouse = () -> ()
 
 class CLImagePickerCamaroCell: UICollectionViewCell {
     
-    var clickCamaroCell: clickCamaroCellClouse?
+    @objc var clickCamaroCell: clickCamaroCellClouse?
     
-    lazy var iconView: UIImageView = {
+    @objc lazy var iconView: UIImageView = {
         let img = UIImageView.init(frame:  CGRect(x: 0, y: 0, width: cellH, height: cellH))
         
         img.image = UIImage(named: "takePicture", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)
@@ -29,7 +29,7 @@ class CLImagePickerCamaroCell: UICollectionViewCell {
         self.iconView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(clickImage)))
     }
     
-    func clickImage() {
+    @objc func clickImage() {
         if clickCamaroCell != nil {
             self.clickCamaroCell!()
         }

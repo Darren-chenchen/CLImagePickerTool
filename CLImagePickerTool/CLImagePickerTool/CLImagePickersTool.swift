@@ -19,29 +19,29 @@ typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
 
 public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
         
-    var cameraPicker: UIImagePickerController!
+    @objc var cameraPicker: UIImagePickerController!
     
-    var  superVC: UIViewController?
+    @objc var  superVC: UIViewController?
     
-    var clPickerToolClouse: CLPickerToolClouse?
+    @objc var clPickerToolClouse: CLPickerToolClouse?
     
     // 是否隐藏视频文件，默认不隐藏
-    public var isHiddenVideo: Bool = false
+    @objc public var isHiddenVideo: Bool = false
     // 是否隐藏图片文件，显示视频文件，默认不隐藏
-    public var isHiddenImage: Bool = false
+    @objc public var isHiddenImage: Bool = false
     // 设置单选图片，单选图片并裁剪属性，默认多选
     public var singleImageChooseType: CLImagePickersToolType?
     // 设置相机在外部，默认不在外部
-    public var cameraOut: Bool = false
+    @objc public var cameraOut: Bool = false
     // 单选模式下图片并且可裁剪。默认裁剪比例是1：1，也可以设置如下参数
     public var singlePictureCropScale: CGFloat?
     // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
-    public var onlyChooseImageOrVideo: Bool = false
+    @objc public var onlyChooseImageOrVideo: Bool = false
     // 单选模式下，图片可以编辑，默认不可编辑
-    public var singleModelImageCanEditor: Bool = false
+    @objc public var singleModelImageCanEditor: Bool = false
     
     // 判断相机是放在外面还是内部
-    public func setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+    @objc public func setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.superVC = superVC
         self.clPickerToolClouse = didChooseImageSuccess
@@ -88,7 +88,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         }
     }
     
-    func camera(superVC:UIViewController) {
+    @objc func camera(superVC:UIViewController) {
         
         CLPickersTools.instence.authorizeCamaro { (state) in
             if state == .authorized {
@@ -101,7 +101,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     }
     
     //MARK: - 提供asset数组转图片的方法供外界使用---原图,异步方法，每转换成一张图片就返回出去
-    public static func convertAssetArrToOriginImage(assetArr:Array<PHAsset>,scale:CGFloat,successClouse:@escaping (UIImage,PHAsset)->(),failedClouse:@escaping ()->()) {
+    @objc public static func convertAssetArrToOriginImage(assetArr:Array<PHAsset>,scale:CGFloat,successClouse:@escaping (UIImage,PHAsset)->(),failedClouse:@escaping ()->()) {
         
         for item in assetArr {
 //            if item.mediaType == .image {  // 如果是图片
@@ -122,7 +122,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     
     
     //MARK: - 提供asset数组转图片的方法供外界使用---缩略图
-    public static func convertAssetArrToThumbnailImage(assetArr:Array<PHAsset>,targetSize:CGSize) -> [UIImage] {
+    @objc public static func convertAssetArrToThumbnailImage(assetArr:Array<PHAsset>,targetSize:CGSize) -> [UIImage] {
         
         var imageArr = [UIImage]()
         for item in assetArr {
@@ -136,7 +136,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     }
 
     //MARK: - 提供asset数组中的视频文件转为AVPlayerItem数组
-    public static func convertAssetToAvPlayerItem(asset:PHAsset,successClouse:@escaping (AVPlayerItem)->(),failedClouse:@escaping ()->(),progressClouse:@escaping (Double)->()) {
+    @objc public static func convertAssetToAvPlayerItem(asset:PHAsset,successClouse:@escaping (AVPlayerItem)->(),failedClouse:@escaping ()->(),progressClouse:@escaping (Double)->()) {
         
         if asset.mediaType == .video {
             let manager = PHImageManager.default()
@@ -168,7 +168,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     }
     
     // 获取原图的方法  异步
-    static func getAssetOrigin(asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> (),dealImageFailed:@escaping () -> ()) -> Void {
+    @objc static func getAssetOrigin(asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> (),dealImageFailed:@escaping () -> ()) -> Void {
         //获取原图
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions() //可以设置图像的质量、版本、也会有参数控制图像的裁剪
@@ -189,7 +189,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         }
     }
     // 获取缩略图的方法  同步
-    static func getAssetThumbnail(targetSize:CGSize,asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> ()) -> Void {
+    @objc static func getAssetThumbnail(targetSize:CGSize,asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> ()) -> Void {
         let imageSize: CGSize?
         
         if targetSize.width < KScreenWidth && targetSize.width < 600 {
@@ -235,7 +235,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     }
     
     // 保存图片的结果
-    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         if let err = error {
             UIAlertView(title: errorStr, message: err.localizedDescription, delegate: nil, cancelButtonTitle: sureStr).show()
         } else {

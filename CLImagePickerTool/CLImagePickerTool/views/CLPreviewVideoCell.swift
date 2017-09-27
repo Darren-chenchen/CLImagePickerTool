@@ -12,24 +12,24 @@ import Photos
 
 class CLPreviewVideoCell: UICollectionViewCell {
     
-    var previewClouse: CLPreviewCellClouse?
+    @objc var previewClouse: CLPreviewCellClouse?
 
     var imageRequestID: PHImageRequestID?
     
-    let manager = PHImageManager.default()
+    @objc let manager = PHImageManager.default()
     
-    var playerItem: AVPlayerItem?
-    var player: AVPlayer?
+    @objc var playerItem: AVPlayerItem?
+    @objc var player: AVPlayer?
 
     
-    lazy var iconView: UIImageView = {
+    @objc lazy var iconView: UIImageView = {
         let img = UIImageView.init(frame:  CGRect(x: 0, y: 0, width: self.cl_width, height: self.cl_height))
         img.isUserInteractionEnabled = true
         img.contentMode = .scaleAspectFit
         return img
     }()
     
-    lazy var playBtn: UIButton = {
+    @objc lazy var playBtn: UIButton = {
         let btn = UIButton.init(frame: CGRect(x: 0.5*(KScreenWidth-80), y: 0.5*(KScreenHeight-80), width: 80, height: 80))
         
         btn.setBackgroundImage(UIImage(named: "clvedioplaybtn", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
@@ -48,7 +48,7 @@ class CLPreviewVideoCell: UICollectionViewCell {
         self.playBtn.addTarget(self, action: #selector(self.clickPlayBtn), for: .touchUpInside)
     }
     
-    var model: PreviewModel! {
+    @objc var model: PreviewModel! {
         didSet{
             CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: model.phAsset!) { (image, info) in
                 self.iconView.image = image
@@ -56,7 +56,7 @@ class CLPreviewVideoCell: UICollectionViewCell {
         }
     }
     
-    func clickImage() {
+    @objc func clickImage() {
         
         self.removeObserver()
 
@@ -73,7 +73,7 @@ class CLPreviewVideoCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func clickPlayBtn() {
+    @objc func clickPlayBtn() {
         self.playBtn.isHidden = true
         
         if self.model.phAsset == nil {
@@ -103,7 +103,7 @@ class CLPreviewVideoCell: UICollectionViewCell {
                 self.player = AVPlayer(playerItem: self.playerItem)
                 let playerLayer = AVPlayerLayer(player: self.player)
                 playerLayer.frame = self.bounds
-                playerLayer.videoGravity = AVLayerVideoGravityResizeAspect //视频填充模式
+                playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect //视频填充模式
                 self.iconView.layer.addSublayer(playerLayer)
                 
                 self.addObserver()
@@ -111,14 +111,14 @@ class CLPreviewVideoCell: UICollectionViewCell {
         }
     }
     
-    func addObserver(){
+    @objc func addObserver(){
         
         //为AVPlayerItem添加status属性观察，得到资源准备好，开始播放视频
         playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CLVideoPlayView.playerItemDidReachEnd(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
     }
     
-    func removeObserver() {
+    @objc func removeObserver() {
         if self.playerItem != nil {
             self.playerItem?.removeObserver(self, forKeyPath: "status")
             NotificationCenter.default.removeObserver(self, name:  Notification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerItem)
@@ -128,7 +128,7 @@ class CLPreviewVideoCell: UICollectionViewCell {
         }
     }
     
-    func playerItemDidReachEnd(notification:Notification) {
+    @objc func playerItemDidReachEnd(notification:Notification) {
         self.playBtn.isHidden = false
         self.removeObserver()
         

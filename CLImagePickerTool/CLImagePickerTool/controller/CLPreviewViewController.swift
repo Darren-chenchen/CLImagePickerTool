@@ -12,11 +12,11 @@ import PhotosUI
 
 class CLPreviewViewController: CLBaseImagePickerViewController {
     
-    let ID = "Previewcell"
-    let VideoID = "VideoPreviewcell"
+    @objc let ID = "Previewcell"
+    @objc let VideoID = "VideoPreviewcell"
 
-    var picArray: Array<PreviewModel>!
-    var hiddenTextLable: Bool = false
+    @objc var picArray: Array<PreviewModel>!
+    @objc var hiddenTextLable: Bool = false
 
     fileprivate lazy var collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
@@ -35,7 +35,7 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         return collectionView
     }()
     
-    lazy var titleLabel: UILabel = {
+    @objc lazy var titleLabel: UILabel = {
         let textlable = UILabel(frame: CGRect(x: 0, y: self.view.frame.size.height - 50, width: self.view.frame.size.width, height: 20))
         textlable.text = "\(1)/\(self.picArray.count)"
         textlable.textAlignment = .center
@@ -44,8 +44,8 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         return textlable
     }()
     
-    var selectBtn: UIButton!
-    var currentPage: Int = 1
+    @objc var selectBtn: UIButton!
+    @objc var currentPage: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()

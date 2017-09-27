@@ -15,11 +15,11 @@ typealias CLChooseImageCompleteClouse = (Array<PHAsset>,UIImage?)->()
 //MARK: - 导航控制器
 class CLImagePickersViewController: UINavigationController {
     
-    static let share = CLImagePickersViewController()
+    @objc static let share = CLImagePickersViewController()
     
-    var imageCompleteClouse: CLChooseImageCompleteClouse?
+    @objc var imageCompleteClouse: CLChooseImageCompleteClouse?
     
-    let albumVC =  CLImageAlbumPickerController()
+    @objc let albumVC =  CLImageAlbumPickerController()
 
     func initWith(MaxImagesCount: Int,isHiddenVideo:Bool,cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,singleModelImageCanEditor: Bool,isHiddenImage:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
         
@@ -80,7 +80,7 @@ class CLImagePickersViewController: UINavigationController {
         CLNotificationCenter.removeObserver(self)
     }
     
-    func CLPhotoListRefreshNoticMethod(notic:Notification) {
+    @objc func CLPhotoListRefreshNoticMethod(notic:Notification) {
         albumVC.dataArr = notic.object as? [[String : [CLImagePickerPhotoModel]]]
     }
     
@@ -89,20 +89,20 @@ class CLImagePickersViewController: UINavigationController {
 //MARK: - 相册列表控制器
 class CLImageAlbumPickerController: CLBaseImagePickerViewController {
     
-    var imageCompleteClouse: CLChooseImageCompleteClouse?
+    @objc var imageCompleteClouse: CLChooseImageCompleteClouse?
     
     // 相机是否放在内部
-    var cameraOut: Bool = false
+    @objc var cameraOut: Bool = false
     // 单选状态的类型
     var singleType: CLImagePickersToolType?
     // 图片裁剪比例
     var singlePictureCropScale: CGFloat?
     // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
-    var onlyChooseImageOrVideo: Bool = false
+    @objc var onlyChooseImageOrVideo: Bool = false
     // 单选模式下图片可以编辑
-    var singleModelImageCanEditor: Bool = false
+    @objc var singleModelImageCanEditor: Bool = false
     
-    lazy var tableView: UITableView = {
+    @objc lazy var tableView: UITableView = {
         let tableView = UITableView.init(frame: CGRect(x:0,y:KNavgationBarHeight,width:KScreenWidth,height:KScreenHeight-KNavgationBarHeight), style: .plain)
         tableView.tableFooterView = UIView()
         tableView.delegate = self
@@ -138,7 +138,7 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
     override func rightBtnClick() {
         self.dismiss(animated: true, completion: nil)
     }
-    func initView() {
+    @objc func initView() {
         self.navTitle = photoStr
         self.backBtn.isHidden = true
         self.rightBtn.setTitle(cancelStr, for: .normal)

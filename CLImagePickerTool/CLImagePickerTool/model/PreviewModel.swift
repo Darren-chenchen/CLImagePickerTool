@@ -13,8 +13,8 @@ import PhotosUI
 
 class PreviewModel: NSObject {
 
-    var phAsset: PHAsset?
-    var downLoadProgress: CGFloat = 100  // 默认100
-    var index: Int = 0
-    var isCheck = true
+    @objc var phAsset: PHAsset?
+    @objc var downLoadProgress: CGFloat = 100  // 默认100
+    @objc var index: Int = 0
+    @objc var isCheck = true
 }

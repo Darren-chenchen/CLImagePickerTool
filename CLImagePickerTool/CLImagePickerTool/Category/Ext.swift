@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImage {
     // 对截取的长图进行压缩，因为项目中的长图是设置为背景颜色，如果不压缩到适当的尺寸图片就会平铺
-    static func scaleImage(image: UIImage) -> UIImage {
+    @objc static func scaleImage(image: UIImage) -> UIImage {
         let picBili: CGFloat = image.size.width/image.size.height
 
         // 图片大小   UIScreen.main.scale屏幕密度，不加这个图片会不清晰
@@ -26,7 +26,7 @@ extension UIImage {
     }
     
     // 截取一部分
-    static func screenShotForPart(view:UIView,size:CGSize) -> UIImage{
+    @objc static func screenShotForPart(view:UIView,size:CGSize) -> UIImage{
         var image = UIImage()
         UIGraphicsBeginImageContextWithOptions(size, true, 0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -36,7 +36,7 @@ extension UIImage {
     }
     
     // 生成马赛克图片
-    static func transToMosaicImage(orginImage: UIImage,level: NSInteger) -> UIImage{
+    @objc static func transToMosaicImage(orginImage: UIImage,level: NSInteger) -> UIImage{
         
         
         let context: CIContext = CIContext.init()
@@ -50,29 +50,17 @@ extension UIImage {
     }
     
     //创建打码区域
-    func createMaskImage(rect: CGRect ,centerX: CGFloat, centerY: CGFloat, radius:CGFloat)-> CIImage{
+    @objc func createMaskImage(rect: CGRect ,centerX: CGFloat, centerY: CGFloat, radius:CGFloat)-> CIImage{
         let radialGradient = CIFilter(name: "CIRadialGradient",withInputParameters: ["inputRadius0" : radius,"inputRadius1" : radius + 1,"inputColor0" : CIColor(red: 0, green: 1, blue: 0, alpha: 1),"inputColor1" : CIColor(red: 0, green: 0, blue: 0, alpha: 0),kCIInputCenterKey : CIVector(x: centerX, y: centerY)])
-        let radialGradientOutputImage = radialGradient!.outputImage!.cropping(to: rect)
+        let radialGradientOutputImage = radialGradient!.outputImage!.cropped(to: rect)
         return radialGradientOutputImage
     }
 
 }
-extension String {
-    //range转换为NSRange
-    func nsRange(from range: Range<String.Index>) -> NSRange {
-        let from = range.lowerBound.samePosition(in: utf16)
-        let to = range.upperBound.samePosition(in: utf16)
-        return NSRange(location: utf16.distance(from: utf16.startIndex, to: from),
-                       length: utf16.distance(from: from, to: to))
-    }
-
-}
-
-
 extension UIView {
     
     /// x
-    var cl_x: CGFloat {
+    @objc var cl_x: CGFloat {
         get {
             return frame.origin.x
         }
@@ -84,7 +72,7 @@ extension UIView {
     }
     
     /// y
-    var cl_y: CGFloat {
+    @objc var cl_y: CGFloat {
         get {
             return frame.origin.y
         }
@@ -96,7 +84,7 @@ extension UIView {
     }
     
     /// height
-    var cl_height: CGFloat {
+    @objc var cl_height: CGFloat {
         get {
             return frame.size.height
         }
@@ -108,7 +96,7 @@ extension UIView {
     }
     
     /// width
-    var cl_width: CGFloat {
+    @objc var cl_width: CGFloat {
         get {
             return frame.size.width
         }
@@ -120,7 +108,7 @@ extension UIView {
     }
     
     /// size
-    var cl_size: CGSize {
+    @objc var cl_size: CGSize {
         get {
             return frame.size
         }
@@ -132,7 +120,7 @@ extension UIView {
     }
     
     /// centerX
-    var cl_centerX: CGFloat {
+    @objc var cl_centerX: CGFloat {
         get {
             return center.x
         }
@@ -144,7 +132,7 @@ extension UIView {
     }
     
     /// centerY
-    var cl_centerY: CGFloat {
+    @objc var cl_centerY: CGFloat {
         get {
             return center.y
         }
@@ -158,7 +146,7 @@ extension UIView {
 }
 
 extension UIDevice {
-    public func isX() -> Bool {
+    @objc public func isX() -> Bool {
         if UIScreen.main.bounds.height == 812 {
             return true
         }
@@ -166,7 +154,7 @@ extension UIDevice {
         return false
     }
     
-    public func isIOS11() -> Bool{
+    @objc public func isIOS11() -> Bool{
         if #available(iOS 11.0, *) {
             return true
         } else {

@@ -398,12 +398,12 @@ class CLPickersTools {
     
     // 用户是否开启相机权限
     func authorizeCamaro(authorizeClouse:@escaping (AVAuthorizationStatus)->()){
-        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         
         if status == .authorized{
            authorizeClouse(status)
         } else if status == .notDetermined {
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted) in
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted) in
               
                 if granted {  // 允许
                     authorizeClouse(.authorized)

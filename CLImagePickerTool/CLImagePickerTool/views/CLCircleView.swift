@@ -11,7 +11,7 @@ import UIKit
 
 class CLCircleView: UIButton {
 
-    var value: CGFloat = 0 {
+    @objc var value: CGFloat = 0 {
         didSet {
             if value >= 100 {
                self.value = 100
@@ -20,7 +20,7 @@ class CLCircleView: UIButton {
         }
     }
     
-    var maximumValue: CGFloat = 100
+    @objc var maximumValue: CGFloat = 100
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,7 +33,7 @@ class CLCircleView: UIButton {
         self.setupUI()
     }
     
-    func setupUI() {
+    @objc func setupUI() {
         self.backgroundColor = UIColor.clear
         self.isOpaque = false
        

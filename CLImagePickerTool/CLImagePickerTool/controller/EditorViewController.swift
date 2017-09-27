@@ -12,7 +12,7 @@ typealias editorImageCompleteClouse = (UIImage)->()
 
 class EditorViewController: UIViewController {
     
-    var editorImageComplete: editorImageCompleteClouse?
+    @objc var editorImageComplete: editorImageCompleteClouse?
     
     @IBOutlet weak var BottomViewHYS: NSLayoutConstraint!
     @IBOutlet weak var TopViewHYS: NSLayoutConstraint!
@@ -22,21 +22,21 @@ class EditorViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     // 下一步
-    var forwardBtn: UIButton!
+    @objc var forwardBtn: UIButton!
     // 上一步
-    var goBackBtn: UIButton!
+    @objc var goBackBtn: UIButton!
     // 涂鸦
-    var pencilBtn: UIButton!
+    @objc var pencilBtn: UIButton!
     // 橡皮擦
-    var eraserBtn: UIButton!
+    @objc var eraserBtn: UIButton!
     // 马赛克
-    var masicBtn: UIButton!
+    @objc var masicBtn: UIButton!
     // 画板
-    var drawBoardImageView: DrawBoard!
+    @objc var drawBoardImageView: DrawBoard!
     // 需要编辑的图片
-    var editorImage: UIImage!
+    @objc var editorImage: UIImage!
     
-    lazy var choosePencilView: PencilChooseView = {
+    @objc lazy var choosePencilView: PencilChooseView = {
         let chooseView = PencilChooseView.init(frame: CGRect(x: 0, y: KScreenHeight, width: KScreenWidth, height: 40))
         chooseView.clickPencilImage = {[weak self] (img:UIImage) in
             self?.drawBoardImageView.strokeColor = UIColor(patternImage: img)
@@ -66,7 +66,7 @@ class EditorViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     //MARK: - 选择画笔颜色
-    func showPencilView(){
+    @objc func showPencilView(){
         self.view.addSubview(self.choosePencilView)
         self.view.bringSubview(toFront: self.bottomView)
         self.choosePencilView.cl_y = self.bottomView.cl_y
@@ -76,7 +76,7 @@ class EditorViewController: UIViewController {
         }
     }
     //MARK: - 选择画笔结束
-    func choosePencilViewDismiss() {
+    @objc func choosePencilViewDismiss() {
         UIView.animate(withDuration: 0.3, animations: {
             self.choosePencilView.cl_y = KScreenHeight
         }) { (true) in
@@ -165,7 +165,7 @@ extension EditorViewController {
         }
     }
     
-    func clickBottomBtn(btn:UIButton) {
+    @objc func clickBottomBtn(btn:UIButton) {
 
         if btn.currentTitle == graffitiStr {
             

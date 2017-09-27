@@ -14,22 +14,22 @@ typealias CLPreviewCellClouse = () -> ()
 
 class CLPreviewCell: UICollectionViewCell {
     
-    var previewClouse: CLPreviewCellClouse?
+    @objc var previewClouse: CLPreviewCellClouse?
     
-    var circleBtn: CLCircleView?
+    @objc var circleBtn: CLCircleView?
     
     var imageRequestID: PHImageRequestID?
     
-    let manager = PHImageManager.default()
+    @objc let manager = PHImageManager.default()
     
-    lazy var iconView: UIImageView = {
+    @objc lazy var iconView: UIImageView = {
         let img = UIImageView.init(frame:  CGRect(x: 0, y: 0, width: self.cl_width, height: self.cl_height))
         img.isUserInteractionEnabled = true
         img.contentMode = .scaleAspectFit
         return img
     }()
     
-    var identifyIndex: Int = 0
+    @objc var identifyIndex: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,7 +41,7 @@ class CLPreviewCell: UICollectionViewCell {
         self.addSubview(self.circleBtn!)
     }
     
-    var model: PreviewModel! {
+    @objc var model: PreviewModel! {
         didSet{
             CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: model.phAsset!) { (image, info) in
                 self.iconView.image = image
@@ -92,7 +92,7 @@ class CLPreviewCell: UICollectionViewCell {
         }
     }
     
-    func clickImage() {
+    @objc func clickImage() {
         if self.imageRequestID != nil  {
             self.manager.cancelImageRequest(self.imageRequestID!)
         }

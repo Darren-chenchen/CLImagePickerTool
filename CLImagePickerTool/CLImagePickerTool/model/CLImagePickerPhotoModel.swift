@@ -12,7 +12,7 @@ import PhotosUI
 
 class CLImagePickerPhotoModel: NSObject {
 
-    var phAsset: PHAsset? {
+    @objc var phAsset: PHAsset? {
         didSet{
             if self.phAsset?.mediaType == .video {
                 if self.phAsset?.duration == nil {
@@ -24,15 +24,15 @@ class CLImagePickerPhotoModel: NSObject {
         }
     }
     var isSelect: Bool? = false
-    var videoLength: String?
-    var progressValue: CGFloat = 0
+    @objc var videoLength: String?
+    @objc var progressValue: CGFloat = 0
     
-    var pictureImg: UIImage?
+    @objc var pictureImg: UIImage?
     
     // 在用户配置了onlyChooseImageOrVideo的情况下，如果模型中的onlyChooseImageOrVideo为true，那么就显示alpha,
-    var onlyChooseImageOrVideo: Bool = false
+    @objc var onlyChooseImageOrVideo: Bool = false
     
-    func getNewTimeFromDurationSecond(duration:Double) -> String{
+    @objc func getNewTimeFromDurationSecond(duration:Double) -> String{
         
         var newTimer = ""
         if duration < 10 {

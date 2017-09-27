@@ -20,7 +20,7 @@ class CLImagePickerListCell: UITableViewCell {
         
     }
     
-    var rowData: [String:[CLImagePickerPhotoModel]]? {
+    @objc var rowData: [String:[CLImagePickerPhotoModel]]? {
         didSet{
             self.titleLable.text = rowData?.keys.first
             let arr = rowData?.values.first
@@ -42,7 +42,7 @@ class CLImagePickerListCell: UITableViewCell {
         }
     }
     
-    static func cellWithTableView(tableView:UITableView) -> CLImagePickerListCell{
+    @objc static func cellWithTableView(tableView:UITableView) -> CLImagePickerListCell{
         let bundle = BundleUtil.getCurrentBundle()
         let ID = "ImagePickerListCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: ID)
