@@ -95,10 +95,10 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.initWventHendle()
     }
     
-    @objc func initWventHendle() {
+    func initWventHendle() {
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNotic), object: nil)
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticCencelFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNoticCencel), object: nil)
-        CLNotificationCenter.addObserver(self, selector: #selector(PreviewForSelectOrNotSelectedNoticFunc), name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: nil)
+        CLNotificationCenter.addObserver(self, selector: #selector(CLImagePickerSingleViewController.PreviewForSelectOrNotSelectedNoticFunc), name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: nil)
     }
     
     @objc func PreviewForSelectOrNotSelectedNoticFunc(notic:Notification) {
@@ -245,21 +245,23 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
             self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 44, left: 0, bottom: 44, right: 0)
         }
         
-        let item = self.collectionView(self.collectionView!, numberOfItemsInSection: 0) - 1
-        if item == -1 { // 防止相册为0
-            return
-        }
-        let lastItemIndex = IndexPath.init(item: item, section: 0)
-        self.collectionView?.scrollToItem(at: lastItemIndex, at: .top, animated: false)
-        
         // 单选隐藏下面的确定
         if self.singleType == nil {  // 说明不是单选
             self.bottomView.isHidden = false
         } else {
             self.bottomView.isHidden = true
         }
+        
+        let item = self.collectionView(self.collectionView!, numberOfItemsInSection: 0) - 1
+        if item == -1 { // 防止相册为0
+            return
+        }
+        let lastItemIndex = IndexPath.init(row: item, section: 0)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
+            self.collectionView?.scrollToItem(at: lastItemIndex, at: .top, animated: false)
+        }
     }
-    
+
     override func backBtnclick() {
         self.navigationController?.popViewController(animated: true)
     }
