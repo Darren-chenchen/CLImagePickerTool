@@ -88,7 +88,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         }
     }
     
-    @objc func camera(superVC:UIViewController) {
+    @objc public func camera(superVC:UIViewController) {
         
         CLPickersTools.instence.authorizeCamaro { (state) in
             if state == .authorized {
