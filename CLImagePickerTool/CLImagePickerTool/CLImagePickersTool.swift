@@ -104,14 +104,20 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     @objc public static func convertAssetArrToOriginImage(assetArr:Array<PHAsset>,scale:CGFloat,successClouse:@escaping (UIImage,PHAsset)->(),failedClouse:@escaping ()->()) {
         
         for item in assetArr {
+            
 //            if item.mediaType == .image {  // 如果是图片
                 CLImagePickersTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
                     if img != nil {
                         // 对图片压缩
-                        let zipImageData = UIImageJPEGRepresentation(img!,scale)!
-                        let image = UIImage(data: zipImageData)
-
-                        successClouse(image!,item)
+                        if UIImageJPEGRepresentation(img!,scale) == nil {
+                        } else {
+                            let zipImageData = UIImageJPEGRepresentation(img!,scale)!
+                            
+                            let image = UIImage(data: zipImageData)
+                            
+                            successClouse(image!,item)
+                        }
+                        
                     }
                 }, dealImageFailed: {
                     failedClouse()
