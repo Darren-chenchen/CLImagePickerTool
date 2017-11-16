@@ -60,6 +60,7 @@ let mainColor = CoustomColor(85, g: 182, b: 55, a: 1)
 let allPhoto = "所有照片"
 let allPhoto2 = "All Photos"
 let allPhoto3 = "Camera Roll"
+let allPhoto4 = "相机胶卷"
 
 // 本地化
 let sureStr = BundleUtil.cl_localizedStringForKey(key: "确定")

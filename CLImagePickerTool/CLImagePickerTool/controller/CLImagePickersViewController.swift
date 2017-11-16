@@ -47,13 +47,13 @@ class CLImagePickersViewController: UINavigationController {
         UserDefaults.standard.set(0, forKey: UserChooserType)
         UserDefaults.standard.synchronize()
         
-        // CLPickersTools是一个单利，在这个单利中记录导航栏的信息，可以对导航栏进行设置
+        // CLPickersTools是一个单利，在这个单利中记录导航栏的信息，可以对导航栏进行设置,但是这种方式存在bug，如果一个项目中多个地方使用这个框架，就不好控制单利
         CLPickersTools.instence.isHiddenVideo = isHiddenVideo  // 是否隐藏视频文件赋值
         CLPickersTools.instence.isHiddenImage = isHiddenImage
         CLPickersTools.instence.navColor = navColor
         CLPickersTools.instence.navTitleColor = navTitleColor
-        CLPickersTools.instence.statusBarType = statusBarType        
-        
+        CLPickersTools.instence.statusBarType = statusBarType
+
         let dataArr = CLPickersTools.instence.loadData()
                 
         albumVC.dataArr = dataArr
@@ -65,10 +65,22 @@ class CLImagePickersViewController: UINavigationController {
         albumVC.singleModelImageCanEditor = singleModelImageCanEditor
         
         let vc = CLImagePickersViewController.init(rootViewController: albumVC)
-        vc.setupOnce(array: dataArr,cameraOut:cameraOut,singleType:singleType,singlePictureCropScale:singlePictureCropScale,onlyChooseImageOrVideo:onlyChooseImageOrVideo,singleModelImageCanEditor:singleModelImageCanEditor,didChooseImageSuccess:didChooseImageSuccess)
+        vc.setupOnce(array: dataArr,
+                     cameraOut:cameraOut,
+                     singleType:singleType,
+                     singlePictureCropScale:singlePictureCropScale,
+                     onlyChooseImageOrVideo:onlyChooseImageOrVideo,
+                     singleModelImageCanEditor:singleModelImageCanEditor,
+                     didChooseImageSuccess:didChooseImageSuccess)
         return vc
     }
-    func setupOnce(array:[[String:[CLImagePickerPhotoModel]]],cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,singleModelImageCanEditor:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+    func setupOnce(array:[[String:[CLImagePickerPhotoModel]]],
+                   cameraOut:Bool,
+                   singleType:CLImagePickersToolType?,
+                   singlePictureCropScale:CGFloat?,
+                   onlyChooseImageOrVideo:Bool,
+                   singleModelImageCanEditor:Bool,
+                   didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.imageCompleteClouse = didChooseImageSuccess
 
@@ -88,7 +100,7 @@ class CLImagePickersViewController: UINavigationController {
         singleVC.singleChooseImageCompleteClouse = {[weak self] (assetArr:Array<PHAsset>,image) in
             self?.imageCompleteClouse!(assetArr,image)
         }
-        self.pushViewController(singleVC, animated: true)        
+        self.pushViewController(singleVC, animated: true)
     }
     
     deinit {
@@ -159,7 +171,7 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         self.backBtn.isHidden = true
         self.rightBtn.setTitle(cancelStr, for: .normal)
     }
-    
+
     deinit {
         print("CLImageAlbumPickerController释放")        
     }

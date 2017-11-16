@@ -68,22 +68,10 @@ class CLBaseImagePickerViewController: UIViewController {
         self.view.addSubview(self.customNavBar)
         // 右边按钮
         self.customNavBar.addSubview(self.rightBtn)
-        // 毛玻璃效果
-        if CLPickersTools.instence.navColor == nil {
-            self.customNavBar.addSubview(self.toobar)
-            self.customNavBar.sendSubview(toBack: self.toobar)
-        } else {
-            self.customNavBar.backgroundColor = CLPickersTools.instence.navColor
-        }
         
-        if CLPickersTools.instence.navTitleColor != nil {
-            self.backBtn.imageView?.tintColor = CLPickersTools.instence.navTitleColor
-            let img = self.backBtn.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
-            self.backBtn.setImage(img, for: .normal)
-            
-            self.customNavBar.titleLable.textColor = CLPickersTools.instence.navTitleColor
-            self.rightBtn.setTitleColor(CLPickersTools.instence.navTitleColor, for: .normal)
-        }
+        // 毛玻璃效果
+        self.customNavBar.addSubview(self.toobar)
+        self.customNavBar.sendSubview(toBack: self.toobar)
         
         self.customNavBar.addSubview(self.backBtn)
         self.backBtn.isHidden = true
@@ -93,14 +81,39 @@ class CLBaseImagePickerViewController: UIViewController {
         self.rightBtn.cl_y = titleY
         self.backBtn.cl_y = titleY
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if CLPickersTools.instence.navColor == nil {
+            self.toobar.isHidden = false
+            self.customNavBar.backgroundColor = UIColor.clear
+        } else {
+            self.customNavBar.backgroundColor = CLPickersTools.instence.navColor
+            self.toobar.isHidden = true
+        }
+        
+        if CLPickersTools.instence.navTitleColor != nil {
+            self.backBtn.imageView?.tintColor = CLPickersTools.instence.navTitleColor
+            let img = self.backBtn.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+            self.backBtn.setImage(img, for: .normal)
+            
+            self.customNavBar.titleLable.textColor = CLPickersTools.instence.navTitleColor
+            self.rightBtn.setTitleColor(CLPickersTools.instence.navTitleColor, for: .normal)
+        } else {
+            self.backBtn.imageView?.tintColor = UIColor.black
+            let img = self.backBtn.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+            self.backBtn.setImage(img, for: .normal)
+            
+            self.customNavBar.titleLable.textColor = UIColor.black
+            self.rightBtn.setTitleColor(UIColor.black, for: .normal)
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if CLPickersTools.instence.statusBarType == .black {
+        if  CLPickersTools.instence.statusBarType == .black {
             return .default
         }
         return .lightContent
     }
-
     @objc func rightBtnClick(){
         
     }

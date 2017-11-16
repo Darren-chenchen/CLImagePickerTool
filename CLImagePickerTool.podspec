@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CLImagePickerTool'
-  s.version = '2.1.5'
+  s.version = '2.1.6'
   s.license = 'MIT'
   s.summary = 'This is a picture selector'
   s.homepage = 'https://github.com/Darren-chenchen/CLImagePickerTool'

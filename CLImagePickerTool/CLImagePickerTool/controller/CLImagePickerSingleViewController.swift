@@ -110,7 +110,6 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
             }
         }
         
-        
         if CLPickersTools.instence.getSavePictureCount() > 0 {
             let title = "\(sureStr)(\(CLPickersTools.instence.getSavePictureCount()))"
             self.sureBtn.setTitle(title, for: .normal)

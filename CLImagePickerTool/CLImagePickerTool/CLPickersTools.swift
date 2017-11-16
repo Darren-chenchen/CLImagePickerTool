@@ -38,7 +38,7 @@ class CLPickersTools {
         var flagData: [String:[CLImagePickerPhotoModel]]?
         for i in 0..<self.dataArr.count {
             let dict = self.dataArr[i]
-            if dict.keys.first == allPhoto || dict.keys.first == allPhoto2 || dict.keys.first == allPhoto3 {
+            if dict.keys.first == allPhoto || dict.keys.first == allPhoto2 || dict.keys.first == allPhoto3 || dict.keys.first == allPhoto4 {
                 flagData = dict
                 self.dataArr.remove(at: i)
                 break
