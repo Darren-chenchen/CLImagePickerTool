@@ -14,6 +14,10 @@ public enum CLImagePickersToolType {
     case singlePicture   // 图片单选
     case singlePictureCrop   // 单选并裁剪
 }
+public enum CLImagePickersToolStatusBarType {
+    case black   // 黑色
+    case white   // 白色
+}
 
 typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
 
@@ -39,6 +43,12 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     @objc public var onlyChooseImageOrVideo: Bool = false
     // 单选模式下，图片可以编辑，默认不可编辑
     @objc public var singleModelImageCanEditor: Bool = false
+    // 配置导航栏的颜色，默认是毛玻璃效果
+    public var navColor: UIColor? = nil
+    // 配置导航栏文字的颜色
+    public var navTitleColor: UIColor? = nil
+    // 配置状态栏的颜色
+    public var statusBarType: CLImagePickersToolStatusBarType = .black
     
     // 判断相机是放在外面还是内部
     @objc public func setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
@@ -59,7 +69,19 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
                 // 判断用户是否开启访问相册功能
                 CLPickersTools.instence.authorize(authorizeClouse: { (state) in
                     if state == .authorized {
-                        let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor,isHiddenImage:self.isHiddenImage) { (assetArr,cutImage) in
+                        let photo = CLImagePickersViewController.share.initWith(
+                            MaxImagesCount: MaxImagesCount,
+                            isHiddenVideo:self.isHiddenVideo,
+                            cameraOut:self.cameraOut,
+                            singleType:self.singleImageChooseType,
+                            singlePictureCropScale:self.singlePictureCropScale,
+                            onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,
+                            singleModelImageCanEditor:self.singleModelImageCanEditor,
+                            isHiddenImage:self.isHiddenImage,
+                            navColor:self.navColor,
+                            navTitleColor:self.navTitleColor,
+                            statusBarType:self.statusBarType
+                        ) { (assetArr,cutImage) in
                             if self.clPickerToolClouse != nil {
                                 self.clPickerToolClouse!(assetArr,cutImage)
                             }
@@ -78,7 +100,18 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
             // 判断用户是否开启访问相册功能
             CLPickersTools.instence.authorize(authorizeClouse: { (state) in
                 if state == .authorized {
-                    let photo = CLImagePickersViewController.share.initWith(MaxImagesCount: MaxImagesCount,isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,singleType:self.singleImageChooseType,singlePictureCropScale:self.singlePictureCropScale,onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,singleModelImageCanEditor:self.singleModelImageCanEditor,isHiddenImage:self.isHiddenImage) { (assetArr,cutImage) in
+                    let photo = CLImagePickersViewController.share.initWith(
+                        MaxImagesCount: MaxImagesCount,
+                        isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,
+                        singleType:self.singleImageChooseType,
+                        singlePictureCropScale:self.singlePictureCropScale,
+                        onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,
+                        singleModelImageCanEditor:self.singleModelImageCanEditor,
+                        isHiddenImage:self.isHiddenImage,
+                        navColor:self.navColor,
+                        navTitleColor:self.navTitleColor,
+                        statusBarType:self.statusBarType
+                    ) { (assetArr,cutImage) in
                         didChooseImageSuccess(assetArr,cutImage)
                     }
                     superVC.present(photo, animated: true, completion: nil)

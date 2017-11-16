@@ -21,7 +21,19 @@ class CLImagePickersViewController: UINavigationController {
     
     @objc let albumVC =  CLImageAlbumPickerController()
 
-    func initWith(MaxImagesCount: Int,isHiddenVideo:Bool,cameraOut:Bool,singleType:CLImagePickersToolType?,singlePictureCropScale:CGFloat?,onlyChooseImageOrVideo:Bool,singleModelImageCanEditor: Bool,isHiddenImage:Bool,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
+    func initWith(
+        MaxImagesCount:Int,
+        isHiddenVideo:Bool,
+        cameraOut:Bool,
+        singleType:CLImagePickersToolType?,
+        singlePictureCropScale:CGFloat?,
+        onlyChooseImageOrVideo:Bool,
+        singleModelImageCanEditor: Bool,
+        isHiddenImage:Bool,
+        navColor:UIColor?,
+        navTitleColor:UIColor?,
+        statusBarType:CLImagePickersToolStatusBarType,
+        didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
         
         // 存储用户设置的最多图片数量
         UserDefaults.standard.set(MaxImagesCount, forKey: CLImagePickerMaxImagesCount)
@@ -35,8 +47,12 @@ class CLImagePickersViewController: UINavigationController {
         UserDefaults.standard.set(0, forKey: UserChooserType)
         UserDefaults.standard.synchronize()
         
+        // CLPickersTools是一个单利，在这个单利中记录导航栏的信息，可以对导航栏进行设置
         CLPickersTools.instence.isHiddenVideo = isHiddenVideo  // 是否隐藏视频文件赋值
         CLPickersTools.instence.isHiddenImage = isHiddenImage
+        CLPickersTools.instence.navColor = navColor
+        CLPickersTools.instence.navTitleColor = navTitleColor
+        CLPickersTools.instence.statusBarType = statusBarType        
         
         let dataArr = CLPickersTools.instence.loadData()
                 

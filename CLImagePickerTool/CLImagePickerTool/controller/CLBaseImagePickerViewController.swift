@@ -69,8 +69,21 @@ class CLBaseImagePickerViewController: UIViewController {
         // 右边按钮
         self.customNavBar.addSubview(self.rightBtn)
         // 毛玻璃效果
-        self.customNavBar.addSubview(self.toobar)
-        self.customNavBar.sendSubview(toBack: self.toobar)
+        if CLPickersTools.instence.navColor == nil {
+            self.customNavBar.addSubview(self.toobar)
+            self.customNavBar.sendSubview(toBack: self.toobar)
+        } else {
+            self.customNavBar.backgroundColor = CLPickersTools.instence.navColor
+        }
+        
+        if CLPickersTools.instence.navTitleColor != nil {
+            self.backBtn.imageView?.tintColor = CLPickersTools.instence.navTitleColor
+            let img = self.backBtn.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+            self.backBtn.setImage(img, for: .normal)
+            
+            self.customNavBar.titleLable.textColor = CLPickersTools.instence.navTitleColor
+            self.rightBtn.setTitleColor(CLPickersTools.instence.navTitleColor, for: .normal)
+        }
         
         self.customNavBar.addSubview(self.backBtn)
         self.backBtn.isHidden = true
@@ -79,6 +92,13 @@ class CLBaseImagePickerViewController: UIViewController {
         let titleY: CGFloat = UIDevice.current.isX() == true ? 40:20
         self.rightBtn.cl_y = titleY
         self.backBtn.cl_y = titleY
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if CLPickersTools.instence.statusBarType == .black {
+            return .default
+        }
+        return .lightContent
     }
 
     @objc func rightBtnClick(){

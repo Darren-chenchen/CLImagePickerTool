@@ -19,7 +19,13 @@ class CLPickersTools {
     var isHiddenVideo: Bool = false
     // 是否隐藏图片文件，显示视频文件，默认不隐藏
     var isHiddenImage: Bool = false
-        
+    // 配置导航栏的颜色，默认是毛玻璃效果
+    public var navColor: UIColor? = nil
+    // 配置导航栏文字的颜色
+    public var navTitleColor: UIColor? = nil
+    // 配置状态栏的颜色
+    public var statusBarType: CLImagePickersToolStatusBarType = .black
+    
     fileprivate var dataArr = [[String:[CLImagePickerPhotoModel]]]()
     
     func loadData() -> Array<[String:[CLImagePickerPhotoModel]]>{

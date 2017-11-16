@@ -21,6 +21,7 @@
 - 图片编辑操作（马赛克，涂鸦，性能得到很大改善）
 - 下载iCloud中的照片或者视频文件，显示下载进度
 - 单选模式下图片可按照比例裁剪
+- 导航栏颜色、状态栏颜色随意配置，默认是毛玻璃效果
 
 # 使用方式
 1.由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
@@ -105,8 +106,18 @@ github "Darren-chenchen/CLImagePickerTool"
             
         }
         
- 9.部分属性介绍
-		 		
+ 9.配置导航栏的颜色
+ 		
+		 let imagePickTool = CLImagePickersTool()
+		 imagePickTool.navColor = UIColor.red
+		 imagePickTool.navTitleColor = UIColor.white
+		 imagePickTool.statusBarType = .white
+		 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+		            
+		 }
+        
+ 10.部分属性介绍
+				 		
 		// 是否隐藏视频文件，默认不隐藏
 		public var isHiddenVideo: Bool = false
 		// 是否隐藏图片文件，显示视频文件，默认不隐藏
@@ -121,6 +132,12 @@ github "Darren-chenchen/CLImagePickerTool"
 		public var onlyChooseImageOrVideo: Bool = false
 		// 单选模式下，图片可以编辑，默认不可编辑
 		public var singleModelImageCanEditor: Bool = false
+		// 配置导航栏的颜色，默认是毛玻璃效果
+		public var navColor: UIColor? = nil
+		// 配置导航栏文字的颜色
+		public var navTitleColor: UIColor? = nil
+		// 配置状态栏的颜色
+		public var statusBarType: CLImagePickersToolStatusBarType = .black
 		
 
 #### 注意点
@@ -170,6 +187,34 @@ github "Darren-chenchen/CLImagePickerTool"
 		
 3.你会发现在选择完图片后提供了2个回调参数 (asset,cutImage)  ，在一般情况下使用asset来转化自己想要的指定压缩大小的图片，而cutImage只有在单选裁剪的情况才会返回，其他情况返回nil
 
+4.关于状态的颜色配置
+在这个库中设置状态颜色改变需要2部操作
+1）在info.plist文件中设置View controller-based status bar appearance为yes。
+
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<true/>
+
+2）新增一个UINavigationController扩展，为什么要加入扩展，因为preferredStatusBarStyle这个方法只有在没有导航控制器的页面才会生效
+
+
+		extension UINavigationController {
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        if self.topViewController == nil {
+            return .default
+        }
+        return self.topViewController!.preferredStatusBarStyle
+    }
+}
+
+3)在base中设置导航栏的颜色
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if CLPickersTools.instence.statusBarType == .black {
+            return .default
+        }
+        return .lightContent
+    }
 
 
 #### 预览
@@ -184,3 +229,5 @@ github "Darren-chenchen/CLImagePickerTool"
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812093209617-1451644996.png)
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812093228101-34143907.png)
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812093802132-2072790927.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201711/818253-20171116114322327-1275157845.png)
+![(logo)](http://images2017.cnblogs.com/blog/818253/201711/818253-20171116114303577-2033470575.png)

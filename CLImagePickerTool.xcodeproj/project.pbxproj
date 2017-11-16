@@ -97,6 +97,8 @@
 		95304F8F1F34C3E1001F76B6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F8D1F34C3E1001F76B6 /* TestViewController.swift */; };
 		95304F901F34C3E1001F76B6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304F8E1F34C3E1001F76B6 /* TestViewController.xib */; };
 		95431A4A1F5ADA2C00512ACA /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95431A491F5ADA2C00512ACA /* PhotoView.swift */; };
+		957EBCFF1FBD38CB003AF218 /* NavgationVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957EBCFE1FBD38CB003AF218 /* NavgationVCExt.swift */; };
+		957EBD001FBD38CB003AF218 /* NavgationVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957EBCFE1FBD38CB003AF218 /* NavgationVCExt.swift */; };
 		9583FDE21F384CF400C1A320 /* CLCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583FDE11F384CF400C1A320 /* CLCropViewController.swift */; };
 		958D2DE71F57E43200A0BB0D /* CLImagePickerTool-framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 958D2DE51F57E43200A0BB0D /* CLImagePickerTool-framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		958D2DEA1F57E43200A0BB0D /* ImagePickerTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958D2DE31F57E43200A0BB0D /* ImagePickerTool.framework */; };
@@ -315,6 +317,7 @@
 		95304F8D1F34C3E1001F76B6 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		95304F8E1F34C3E1001F76B6 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		95431A491F5ADA2C00512ACA /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		957EBCFE1FBD38CB003AF218 /* NavgationVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavgationVCExt.swift; sourceTree = "<group>"; };
 		9583FDE11F384CF400C1A320 /* CLCropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLCropViewController.swift; sourceTree = "<group>"; };
 		958D2DE31F57E43200A0BB0D /* ImagePickerTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImagePickerTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		958D2DE51F57E43200A0BB0D /* CLImagePickerTool-framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLImagePickerTool-framework.h"; sourceTree = "<group>"; };
@@ -364,6 +367,7 @@
 		951444871F3D584F006C7731 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				957EBCFE1FBD38CB003AF218 /* NavgationVCExt.swift */,
 				951444881F3D585A006C7731 /* Ext.swift */,
 			);
 			path = Category;
@@ -807,6 +811,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				957EBCFF1FBD38CB003AF218 /* NavgationVCExt.swift in Sources */,
 				95A4A8891F5CF8350077D52D /* VideoView.swift in Sources */,
 				95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */,
 				95304EF61F3324BF001F76B6 /* MessageStyleView.swift in Sources */,
@@ -882,6 +887,7 @@
 				958D2E2B1F57E72000A0BB0D /* NomalStyleView.swift in Sources */,
 				958D2E2C1F57E72000A0BB0D /* HDAlertViewController.swift in Sources */,
 				958D2E2D1F57E72000A0BB0D /* HDAlertWindowView.swift in Sources */,
+				957EBD001FBD38CB003AF218 /* NavgationVCExt.swift in Sources */,
 				958D2E2E1F57E72000A0BB0D /* PopViewUtil.swift in Sources */,
 				958D2E2F1F57E72000A0BB0D /* CLImagePickerPhotoModel.swift in Sources */,
 				958D2E301F57E72000A0BB0D /* PreviewModel.swift in Sources */,

@@ -78,4 +78,13 @@ class TestViewController: UIViewController {
         }
     }
 
+    @IBAction func clickBtn4(_ sender: Any) {
+        let imagePickTool = CLImagePickersTool()
+        imagePickTool.navColor = UIColor.red
+        imagePickTool.navTitleColor = UIColor.white
+        imagePickTool.statusBarType = .white
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            
+        }
+    }
 }
