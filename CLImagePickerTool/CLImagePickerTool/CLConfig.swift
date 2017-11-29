@@ -13,6 +13,8 @@ let KScreenWidth  = UIScreen.main.bounds.width
 /* 屏幕高度 */
 let KScreenHeight = UIScreen.main.bounds.height
 
+ let CLWindow = UIApplication.shared.keyWindow
+
 //导航栏高度
 let KNavgationBarHeight: CGFloat = UIDevice.current.isX() == true ? 88.0:64.0
 //tabbar高度

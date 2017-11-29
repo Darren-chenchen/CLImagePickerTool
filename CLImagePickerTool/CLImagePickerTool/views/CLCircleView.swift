@@ -36,7 +36,6 @@ class CLCircleView: UIButton {
     @objc func setupUI() {
         self.backgroundColor = UIColor.clear
         self.isOpaque = false
-       
     }
     
     override func draw(_ rect: CGRect) {

@@ -214,8 +214,6 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.resetBtn.setTitle(resetStr, for: .normal)
         self.sureBtn.setTitle(sureStr, for: .normal)
         
-        // 配置导航栏的颜色
-        
         if CLPickersTools.instence.getSavePictureCount() > 0 {
             let title = "\(sureStr)(\(CLPickersTools.instence.getSavePictureCount()))"
             self.sureBtn.setTitle(title, for: .normal)

@@ -21,13 +21,13 @@ public enum CLImagePickersToolStatusBarType {
 
 typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
 
-public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+public class CLImagePickersTool: NSObject {
         
-    @objc var cameraPicker: UIImagePickerController!
+    private var cameraPicker: UIImagePickerController!
     
-    @objc var  superVC: UIViewController?
+    private var  superVC: UIViewController?
     
-    @objc var clPickerToolClouse: CLPickerToolClouse?
+    private var clPickerToolClouse: CLPickerToolClouse?
     
     // 是否隐藏视频文件，默认不隐藏
     @objc public var isHiddenVideo: Bool = false
@@ -50,45 +50,45 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     // 配置状态栏的颜色
     public var statusBarType: CLImagePickersToolStatusBarType = .black
     
+    // 第二种弹出方式
+    func setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+        CLPickersTools.instence.authorize(authorizeClouse: { (state) in
+
+            if state == .authorized {
+                let anotherVC = CLImagePickerAnotherViewController.init(nibName: "CLImagePickerAnotherViewController", bundle: BundleUtil.getCurrentBundle())
+                anotherVC.modalPresentationStyle = .custom
+                anotherVC.transitioningDelegate = CLPresent.instance
+                
+                anotherVC.MaxImagesCount = maxImagesCount
+                anotherVC.isHiddenVideo = self.isHiddenVideo
+                anotherVC.isHiddenImage = self.isHiddenImage
+                anotherVC.onlyChooseImageOrVideo = self.onlyChooseImageOrVideo
+                
+                anotherVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
+                    didChooseImageSuccess(assetArr,image)
+                }
+                superVC.present(anotherVC, animated: true, completion: nil)
+            }
+        })
+    }
+
     // 判断相机是放在外面还是内部
     @objc public func setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.superVC = superVC
         self.clPickerToolClouse = didChooseImageSuccess
-        
+
         if self.cameraOut == true {  // 拍照功能在外面
             var alert: UIAlertController!
             alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
             let cleanAction = UIAlertAction(title: cancelStr, style: UIAlertActionStyle.cancel,handler:nil)
             let photoAction = UIAlertAction(title: tackPhotoStr, style: UIAlertActionStyle.default){ (action:UIAlertAction)in
-                
+                // 访问相机
                 self.camera(superVC:superVC)
             }
             let choseAction = UIAlertAction(title: chooseStr, style: UIAlertActionStyle.default){ (action:UIAlertAction)in
                 
-                // 判断用户是否开启访问相册功能
-                CLPickersTools.instence.authorize(authorizeClouse: { (state) in
-                    if state == .authorized {
-                        let photo = CLImagePickersViewController.share.initWith(
-                            MaxImagesCount: MaxImagesCount,
-                            isHiddenVideo:self.isHiddenVideo,
-                            cameraOut:self.cameraOut,
-                            singleType:self.singleImageChooseType,
-                            singlePictureCropScale:self.singlePictureCropScale,
-                            onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,
-                            singleModelImageCanEditor:self.singleModelImageCanEditor,
-                            isHiddenImage:self.isHiddenImage,
-                            navColor:self.navColor,
-                            navTitleColor:self.navTitleColor,
-                            statusBarType:self.statusBarType
-                        ) { (assetArr,cutImage) in
-                            if self.clPickerToolClouse != nil {
-                                self.clPickerToolClouse!(assetArr,cutImage)
-                            }
-                        }
-                        superVC.present(photo, animated: true, completion: nil)
-                    }
-                })
+                self.gotoPhoto(MaxImagesCount: MaxImagesCount)
             }
             
             alert.addAction(cleanAction)
@@ -97,34 +97,46 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
             superVC.present(alert, animated: true, completion: nil)
 
         } else {
-            // 判断用户是否开启访问相册功能
-            CLPickersTools.instence.authorize(authorizeClouse: { (state) in
-                if state == .authorized {
-                    let photo = CLImagePickersViewController.share.initWith(
-                        MaxImagesCount: MaxImagesCount,
-                        isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,
-                        singleType:self.singleImageChooseType,
-                        singlePictureCropScale:self.singlePictureCropScale,
-                        onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,
-                        singleModelImageCanEditor:self.singleModelImageCanEditor,
-                        isHiddenImage:self.isHiddenImage,
-                        navColor:self.navColor,
-                        navTitleColor:self.navTitleColor,
-                        statusBarType:self.statusBarType
-                    ) { (assetArr,cutImage) in
-                        didChooseImageSuccess(assetArr,cutImage)
-                    }
-                    superVC.present(photo, animated: true, completion: nil)
-                }
-            })
-            
+            self.gotoPhoto(MaxImagesCount: MaxImagesCount)
         }
+        
     }
     
+    // 访问相册
+    func gotoPhoto(MaxImagesCount: Int) {
+        // 判断用户是否开启访问相册功能
+        CLPickersTools.instence.authorize(authorizeClouse: { (state) in
+            if state == .authorized {
+                let photo = CLImagePickersViewController.share.initWith(
+                    MaxImagesCount: MaxImagesCount,
+                    isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,
+                    singleType:self.singleImageChooseType,
+                    singlePictureCropScale:self.singlePictureCropScale,
+                    onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,
+                    singleModelImageCanEditor:self.singleModelImageCanEditor,
+                    isHiddenImage:self.isHiddenImage,
+                    navColor:self.navColor,
+                    navTitleColor:self.navTitleColor,
+                    statusBarType:self.statusBarType
+                ) { (assetArr,cutImage) in
+                    if self.clPickerToolClouse != nil {
+                        self.clPickerToolClouse!(assetArr,cutImage)
+                    }
+                }
+                self.superVC?.present(photo, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    // 访问相机
     @objc public func camera(superVC:UIViewController) {
         
         CLPickersTools.instence.authorizeCamaro { (state) in
             if state == .authorized {
+                if self.isCameraAvailable() == false {
+                    PopViewUtil.alert(message: "相机不可用", leftTitle: "", rightTitle: "确定", leftHandler: nil, rightHandler: nil)
+                    return
+                }
                 self.cameraPicker = UIImagePickerController()
                 self.cameraPicker.delegate = self
                 self.cameraPicker.sourceType = .camera
@@ -133,29 +145,32 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         }
     }
     
+    func isCameraAvailable() -> Bool{
+        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
+    }
+    
+    
     //MARK: - 提供asset数组转图片的方法供外界使用---原图,异步方法，每转换成一张图片就返回出去
     @objc public static func convertAssetArrToOriginImage(assetArr:Array<PHAsset>,scale:CGFloat,successClouse:@escaping (UIImage,PHAsset)->(),failedClouse:@escaping ()->()) {
         
         for item in assetArr {
             
-//            if item.mediaType == .image {  // 如果是图片
-                CLImagePickersTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
-                    if img != nil {
-                        // 对图片压缩
-                        if UIImageJPEGRepresentation(img!,scale) == nil {
-                        } else {
-                            let zipImageData = UIImageJPEGRepresentation(img!,scale)!
-                            
-                            let image = UIImage(data: zipImageData)
-                            
-                            successClouse(image!,item)
-                        }
+            CLImagePickersTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
+                if img != nil {
+                    // 对图片压缩
+                    if UIImageJPEGRepresentation(img!,scale) == nil {
+                    } else {
+                        let zipImageData = UIImageJPEGRepresentation(img!,scale)!
                         
+                        let image = UIImage(data: zipImageData)
+                        
+                        successClouse(image!,item)
                     }
-                }, dealImageFailed: {
-                    failedClouse()
-                })
-//            }
+                    
+                }
+            }, dealImageFailed: {
+                failedClouse()
+            })
         }
     }
     
@@ -258,6 +273,10 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         }
     }
     
+    
+}
+
+extension CLImagePickersTool: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         picker.dismiss(animated: true) {}
@@ -289,6 +308,5 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
             }
         }
     }
-
 }
 

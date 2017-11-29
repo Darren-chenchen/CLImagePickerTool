@@ -51,6 +51,28 @@ class CLPickersTools {
         return dataArr
     }
     
+    // 只获取全部相册
+    func loadPhotoForAll() -> [[String:[CLImagePickerPhotoModel]]]{
+        self.dataArr.removeAll()
+        
+        self.fetchAllSystemAblum()
+        
+        var flagData: [String:[CLImagePickerPhotoModel]]?
+        for i in 0..<self.dataArr.count {
+            let dict = self.dataArr[i]
+            if dict.keys.first == allPhoto || dict.keys.first == allPhoto2 || dict.keys.first == allPhoto3 || dict.keys.first == allPhoto4 {
+                flagData = dict
+                break
+            }
+        }
+        
+        if flagData == nil {
+            flagData = self.dataArr.first
+        }
+        
+        return [flagData!]
+    }
+    
     //1、列出系统所有的相册，并获取每一个相册中的PHAsset对象
     fileprivate func fetchAllSystemAblum() -> Void {
         let smartAlbums:PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .albumRegular, options: nil)

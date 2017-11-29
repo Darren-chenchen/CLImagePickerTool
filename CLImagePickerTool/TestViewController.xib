@@ -94,6 +94,15 @@
                         <action selector="clickOnlyBtn:" destination="-1" eventType="touchUpInside" id="g3z-hi-8Wy"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wk1-ki-bmG">
+                    <rect key="frame" x="17" y="617" width="148" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <state key="normal" title="更多样式请点击"/>
+                    <connections>
+                        <action selector="clickBtn5:" destination="-1" eventType="touchUpInside" id="y6Z-KP-lUW"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>

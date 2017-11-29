@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopViewUtil: NSObject {
+public class PopViewUtil: NSObject {
     
     @objc static let share = PopViewUtil()
     @objc var activite: UIActivityIndicatorView?
@@ -28,7 +28,7 @@ class PopViewUtil: NSObject {
     }
     
     //MARK: - Returns: 当前控制器
-    @objc static func getCurrentViewcontroller() -> UIViewController?{
+    @objc public static func getCurrentViewcontroller() -> UIViewController?{
         let rootController = UIApplication.shared.keyWindow?.rootViewController
         if let tabController = rootController as? UITabBarController   {
             if let navController = tabController.selectedViewController as? UINavigationController{

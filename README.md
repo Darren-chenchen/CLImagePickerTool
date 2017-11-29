@@ -22,6 +22,7 @@
 - 下载iCloud中的照片或者视频文件，显示下载进度
 - 单选模式下图片可按照比例裁剪
 - 导航栏颜色、状态栏颜色随意配置，默认是毛玻璃效果
+- 本地化，支持英文
 
 # 使用方式
 1.由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
@@ -105,8 +106,18 @@ github "Darren-chenchen/CLImagePickerTool"
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             
         }
-        
- 9.配置导航栏的颜色
+     
+ 9.底部弹出样式
+ 
+ 		let imagePickTool = CLImagePickersTool()
+        imagePickTool.setupImagePickerAnotherWayWith(maxImagesCount: 3, superVC: self) { (asserArr, img) in
+            print("成功返回\(asserArr)")
+        }
+    
+
+![(logo)](https://images2018.cnblogs.com/blog/818253/201711/818253-20171129101532269-1706535987.png)
+    
+ 10.配置导航栏的颜色
  		
 		 let imagePickTool = CLImagePickersTool()
 		 imagePickTool.navColor = UIColor.red
@@ -116,7 +127,7 @@ github "Darren-chenchen/CLImagePickerTool"
 		            
 		 }
         
- 10.部分属性介绍
+ 11.部分属性介绍
 				 		
 		// 是否隐藏视频文件，默认不隐藏
 		public var isHiddenVideo: Bool = false
@@ -231,3 +242,4 @@ github "Darren-chenchen/CLImagePickerTool"
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812093802132-2072790927.png)
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201711/818253-20171116114322327-1275157845.png)
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201711/818253-20171116114303577-2033470575.png)
+![(logo)](https://images2018.cnblogs.com/blog/818253/201711/818253-20171129101532269-1706535987.png)

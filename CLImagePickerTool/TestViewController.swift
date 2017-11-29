@@ -87,4 +87,8 @@ class TestViewController: UIViewController {
             
         }
     }
+    @IBAction func clickBtn5(_ sender: Any) {
+        let test2 = Test2ViewController.init(nibName: "Test2ViewController", bundle: nil)
+        self.present(test2, animated: true, completion: nil)
+    }
 }

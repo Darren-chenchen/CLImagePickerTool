@@ -56,7 +56,9 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         if !hiddenTextLable {
             self.view.addSubview(self.titleLabel)
         }
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.toobar.alpha = 0
         self.customNavBar.navLine.isHidden = true
         self.backBtn.isHidden = false
@@ -66,7 +68,7 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         
         self.selectBtn = UIButton.init(frame: CGRect(x:KScreenWidth-45 , y: 28, width: 25, height: 25))
         self.selectBtn.cl_y = UIDevice.current.isX() == true ? 48:28
-
+        
         self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
         CLViewsBorder(self.selectBtn, borderWidth: 1.5, borderColor: UIColor.white, cornerRadius: self.selectBtn.cl_width*0.5)
         self.customNavBar.addSubview(self.selectBtn)
@@ -101,6 +103,7 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
     }
     override func backBtnclick() {
         self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     deinit {

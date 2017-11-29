@@ -18,6 +18,7 @@ class CLImagePickerListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+
     }
     
     @objc var rowData: [String:[CLImagePickerPhotoModel]]? {

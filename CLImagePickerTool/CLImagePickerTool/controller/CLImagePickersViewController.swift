@@ -151,7 +151,7 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         
         self.view.backgroundColor = UIColor.white
         self.initView()
-        
+
         // 判断用户是否开启访问相册功能
         CLPickersTools.instence.authorize(authorizeClouse: { (state) in
             if state == .authorized {
