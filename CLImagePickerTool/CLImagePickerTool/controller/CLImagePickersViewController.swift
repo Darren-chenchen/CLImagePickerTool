@@ -88,7 +88,7 @@ class CLImagePickersViewController: UINavigationController {
         let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
-        if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 {
+        if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 || singleVC.navTitle == allPhoto4 {
             if cameraOut == false {  // 相机不是放在外面
                 singleVC.isAllPhoto = true
             }
@@ -202,7 +202,7 @@ extension CLImageAlbumPickerController:UITableViewDelegate,UITableViewDataSource
         let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
-        if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 {
+        if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 || singleVC.navTitle == allPhoto4 {
             if cameraOut == false {  // 相机不是放在外面
                 singleVC.isAllPhoto = true
             }

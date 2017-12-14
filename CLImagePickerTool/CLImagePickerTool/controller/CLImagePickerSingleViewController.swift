@@ -397,7 +397,10 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
             var dataArr = CLPickersTools.instence.loadData()
             let newModel = dataArr.first?.values.first?.last
             
-            self.photoArr?.insert(newModel!, at: (self.photoArr?.count ?? 1)-1)
+            let amount = dataArr.first?.values.first?.count ?? 1
+            let index = amount-1
+            
+            self.photoArr?.insert(newModel!, at: index)
             self.collectionView.reloadData()
             let lastItemIndex = IndexPath.init(item: (self.photoArr?.count ?? 1)-1, section: 0)
             self.collectionView?.scrollToItem(at: lastItemIndex, at: .top, animated: false)

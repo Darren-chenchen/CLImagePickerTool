@@ -109,7 +109,8 @@ public class CLImagePickersTool: NSObject {
             if state == .authorized {
                 let photo = CLImagePickersViewController.share.initWith(
                     MaxImagesCount: MaxImagesCount,
-                    isHiddenVideo:self.isHiddenVideo,cameraOut:self.cameraOut,
+                    isHiddenVideo:self.isHiddenVideo,
+                    cameraOut:self.cameraOut,
                     singleType:self.singleImageChooseType,
                     singlePictureCropScale:self.singlePictureCropScale,
                     onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,

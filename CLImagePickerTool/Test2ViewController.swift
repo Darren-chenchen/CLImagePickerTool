@@ -21,7 +21,7 @@ class Test2ViewController: UIViewController {
     
     @IBAction func clickBtn1(_ sender: Any) {
         let imagePickTool = CLImagePickersTool()
-        imagePickTool.setupImagePickerAnotherWayWith(maxImagesCount: 3, superVC: self) { (asserArr, img) in
+        imagePickTool.setupImagePickerAnotherWayWith(maxImagesCount: 1, superVC: self) { (asserArr, img) in
             print("成功返回\(asserArr)")
         }
         
