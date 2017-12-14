@@ -21,9 +21,9 @@ public enum CLImagePickersToolStatusBarType {
 
 typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
 
-public class CLImagePickersTool: NSObject {
+public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
         
-    private var cameraPicker: UIImagePickerController!
+    @objc var cameraPicker: UIImagePickerController!
     
     private var  superVC: UIViewController?
     
@@ -274,10 +274,6 @@ public class CLImagePickersTool: NSObject {
         }
     }
     
-    
-}
-
-extension CLImagePickersTool: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         picker.dismiss(animated: true) {}
@@ -309,5 +305,7 @@ extension CLImagePickersTool: UIImagePickerControllerDelegate,UINavigationContro
             }
         }
     }
+    
 }
+
 

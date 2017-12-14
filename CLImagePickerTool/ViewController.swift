@@ -11,11 +11,26 @@ import Photos
 
 class ViewController: UIViewController {
     
+
+    
     @IBOutlet weak var videoScrollView: VideoView!
     @IBOutlet weak var PhotoScrollView: PhotoView!
     @IBOutlet weak var btn2: UIButton!
     @IBOutlet weak var photoScrollView2: PhotoView!
     @IBOutlet weak var btn1: UIButton!
+    
+    // 如果是单独访问相机，一定要声明为全局变量
+    let imagePickTool = CLImagePickersTool()
+
+    // 相机在外部
+    @IBAction func clickBtn2(_ sender: Any) {
+        
+        imagePickTool.cameraOut = true
+        
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
+            print("返回的asset数组是\(asset)")
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -179,18 +194,7 @@ class ViewController: UIViewController {
     
     
     
-    // 相机在外部
-    @IBAction func clickBtn2(_ sender: Any) {
-        
-        let imagePickTool = CLImagePickersTool()
-        
-        imagePickTool.cameraOut = true
-
-        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
-            print("返回的asset数组是\(asset)")
-        }
-
-    }
+    
     @IBAction func clickMoreBtn(_ sender: Any) {
         let test = TestViewController.init(nibName: "TestViewController", bundle: nil)
         self.present(test, animated: true, completion: nil)

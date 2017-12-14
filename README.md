@@ -227,6 +227,17 @@ github "Darren-chenchen/CLImagePickerTool"
         return .lightContent
     }
 
+5.单独访问相机需要注意的问题，需要将CLImagePickersTool设置成全局变量，不然相机的代理方法不走。因为局部变量的话CLImagePickersTool会及时销毁，代理自然就不走了。
+
+	// 如果是单独访问相机，一定要声明为全局变量
+    let imagePickTool = CLImagePickersTool()
+    // 相机在外部
+    @IBAction func clickBtn2(_ sender: Any) {
+        imagePickTool.cameraOut = true
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
+            print("返回的asset数组是\(asset)")
+        } 
+    }
 
 #### 预览
 
