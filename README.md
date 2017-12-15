@@ -222,7 +222,6 @@ CLImagePickersTool.convertAssetToAvPlayerItem(asset: self.asset!, successClouse:
 
 ```swift
 extension UINavigationController {
-
 	open override var preferredStatusBarStyle: UIStatusBarStyle {
 	if self.topViewController == nil {
 	    return .default
