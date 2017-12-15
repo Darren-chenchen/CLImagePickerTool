@@ -19,7 +19,7 @@ public enum CLImagePickersToolStatusBarType {
     case white   // 白色
 }
 
-typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
+public typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
 
 public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
         
@@ -27,7 +27,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     
     private var  superVC: UIViewController?
     
-    private var clPickerToolClouse: CLPickerToolClouse?
+    public var clPickerToolClouse: CLPickerToolClouse?
     
     // 是否隐藏视频文件，默认不隐藏
     @objc public var isHiddenVideo: Bool = false

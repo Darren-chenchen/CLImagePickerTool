@@ -47,7 +47,7 @@ github "Darren-chenchen/CLImagePickerTool"
 
 2.设置相机选择在外部 imagePickTool.cameraOut = true
 
-
+		// 注意此时CLImagePickersTool要声明为全局变量，不然代理方法不走
 		let imagePickTool = CLImagePickersTool()
 		imagePickTool.cameraOut = true
 	imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in

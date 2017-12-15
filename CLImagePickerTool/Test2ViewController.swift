@@ -10,6 +10,8 @@ import UIKit
 
 class Test2ViewController: UIViewController {
 
+    let imagePickTool = CLImagePickersTool()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +40,10 @@ class Test2ViewController: UIViewController {
     
     // 直接访问相机
     @IBAction func clickBtn2(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
         imagePickTool.camera(superVC: self)
+        imagePickTool.clPickerToolClouse = {(assetArr,img) in
+            print(assetArr)
+            print(img ?? "nil")
+        }
     }
 }
