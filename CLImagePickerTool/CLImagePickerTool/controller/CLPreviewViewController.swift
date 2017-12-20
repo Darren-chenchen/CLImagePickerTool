@@ -122,9 +122,9 @@ extension CLPreviewViewController: UICollectionViewDelegate,UICollectionViewData
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.ID, for: indexPath) as! CLPreviewCell
             model.index = indexPath.row
             cell.identifyIndex = indexPath.row
+            cell.modelArr = self.picArray
             cell.model = model
             cell.previewClouse = {() in
-//                self?.navigationController?.popViewController(animated: true)
             }
             return cell
 
@@ -132,7 +132,6 @@ extension CLPreviewViewController: UICollectionViewDelegate,UICollectionViewData
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.VideoID, for: indexPath) as! CLPreviewVideoCell
             cell.model = model
             cell.previewClouse = {() in
-//                self?.navigationController?.popViewController(animated: true)
             }
             return cell
 

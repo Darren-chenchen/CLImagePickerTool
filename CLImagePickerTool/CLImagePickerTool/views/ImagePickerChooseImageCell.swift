@@ -27,22 +27,12 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     
     @objc var imagePickerChooseImage: imagePickerChooseImageCellClouse?
     
+    var representedAssetIdentifier = ""
+    
+    
     @objc var model: CLImagePickerPhotoModel? {
         didSet{
             
-            // 图片
-            if model?.pictureImg != nil {
-                self.iconView.image = model?.pictureImg
-            }else {
-                if model?.phAsset != nil {
-                    
-                    CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: (self.model?.phAsset)!) { (image, info) in
-                        self.iconView.image = image
-                        self.model?.pictureImg = image
-                    }
-                }
-            }
-    
             // 视频时长
             self.timerLable.text = model?.videoLength
             
@@ -59,7 +49,7 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             if self.chooseImageBtn.isSelected {
                 self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
             } else {
-                self.chooseImageBtn.setBackgroundImage(UIImage(named:""), for: .normal)
+                self.chooseImageBtn.setBackgroundImage(nil, for: .normal)
             }
             
             setupCellCover()

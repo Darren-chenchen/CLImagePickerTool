@@ -26,6 +26,9 @@ class CLSingleTypeCell: UICollectionViewCell {
     // 单选模式下图片可以编辑
     @objc var singleModelImageCanEditor: Bool = false
     
+    var representedAssetIdentifier = ""
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -41,17 +44,7 @@ class CLSingleTypeCell: UICollectionViewCell {
     @objc var model: CLImagePickerPhotoModel? {
         didSet{
             
-            // 图片
-            if model?.pictureImg != nil {
-                self.iconView.image = model?.pictureImg
-            }else {
-                if model?.phAsset != nil {
-                    CLPickersTools.instence.getAssetThumbnail(targetSize: CGSize(width:cellH, height: cellH), asset: (model?.phAsset)!) { (image, info) in
-                        self.iconView.image = image
-                        self.model?.pictureImg = image
-                    }
-                }
-            }
+            
             
             // 视频时长
             self.timerLable.text = model?.videoLength

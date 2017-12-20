@@ -14,6 +14,10 @@ typealias  CLImagePickerSingleChooseImageCompleteClouse = (Array<PHAsset>,UIImag
 
 class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
 
+    fileprivate var previousPreheatRect = CGRect.zero
+    fileprivate let imageManager = PHCachingImageManager()
+    fileprivate var thumbnailSize: CGSize! = CGSize(width:(UIScreen.main.bounds.width-15)/4.0*UIScreen.main.scale, height: (UIScreen.main.bounds.width-15)/4.0*UIScreen.main.scale)
+    
     @objc var photoArr: [CLImagePickerPhotoModel]?
         
     @objc var cameraPicker: UIImagePickerController!
@@ -44,11 +48,11 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     @IBOutlet weak var sureBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.bottomViewHYS.constant = UIDevice.current.isX() == true ? 34+44:44
         
-        // 假如用户在收藏相册详情中选中了一张照片，那么就应该把全部照片中的数据源刷新一下，这样才能显示选中状态
-        // 将所有模型至为未选中
+         //假如用户在收藏相册详情中选中了一张照片，那么就应该把全部照片中的数据源刷新一下，这样才能显示选中状态
+         //将所有模型至为未选中
         if self.photoArr != nil {
             for model in self.photoArr! {
                 model.isSelect = false
@@ -66,7 +70,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
                 }
             }
         }
-        
+
         // 图片和视频只能选择一种
         if self.onlyChooseImageOrVideo {
             let chooseType = UserDefaults.standard.integer(forKey: UserChooserType)
@@ -87,15 +91,20 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         
         // 数组中新增一个数据代表相机图片
         if self.isAllPhoto {
-            self.photoArr?.append(CLImagePickerPhotoModel())
+            let model = CLImagePickerPhotoModel()
+            let assetArrResult = PHAsset.fetchAssets(withLocalIdentifiers: [(self.photoArr?.first?.phAsset?.localIdentifier)!], options: nil)
+            model.phAsset = assetArrResult.firstObject
+            self.photoArr?.append(model)
         }
         
-        self.initView()
+        initView()
         
-        self.initWventHendle()
+        resetCachedAssets()
+
+        self.initEventHendle()
     }
-    
-    func initWventHendle() {
+
+    func initEventHendle() {
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNotic), object: nil)
         CLNotificationCenter.addObserver(self, selector: #selector(OnlyChooseImageOrVideoNoticCencelFunc), name: NSNotification.Name(rawValue:OnlyChooseImageOrVideoNoticCencel), object: nil)
         CLNotificationCenter.addObserver(self, selector: #selector(CLImagePickerSingleViewController.PreviewForSelectOrNotSelectedNoticFunc), name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: nil)
@@ -207,13 +216,13 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     
     @objc func initView() {
         self.backBtn.isHidden = false
-        
+
         self.rightBtn.setTitle(cancelStr, for: .normal)
-        
+
         self.lookBtn.setTitle(previewStr, for: .normal)
         self.resetBtn.setTitle(resetStr, for: .normal)
         self.sureBtn.setTitle(sureStr, for: .normal)
-        
+
         if CLPickersTools.instence.getSavePictureCount() > 0 {
             let title = "\(sureStr)(\(CLPickersTools.instence.getSavePictureCount()))"
             self.sureBtn.setTitle(title, for: .normal)
@@ -230,13 +239,14 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.flowout.footerReferenceSize = CGSize(width: KScreenWidth, height: 30)
         self.flowout.minimumLineSpacing = 5
         self.flowout.minimumInteritemSpacing = 0
-        self.flowout.itemSize = CGSize(width: cellH, height:cellH)
-        
+        self.flowout.itemSize = CGSize(width: (UIScreen.main.bounds.width-15)/4.0, height:(UIScreen.main.bounds.width-15)/4.0)
+
         self.collectionView.register(UINib.init(nibName: "ImagePickerChooseImageCell", bundle: BundleUtil.getCurrentBundle()), forCellWithReuseIdentifier: imageCellID)
         self.collectionView.register(CLImagePickerCamaroCell.self, forCellWithReuseIdentifier: "CLImagePickerCamaroCell")
-        self.collectionView.register(UINib.init(nibName: "CLSingleTypeCell", bundle: BundleUtil.getCurrentBundle()), forCellWithReuseIdentifier: "CLSingleTypeCell")
+        if self.singleType != nil {
+            self.collectionView.register(UINib.init(nibName: "CLSingleTypeCell", bundle: BundleUtil.getCurrentBundle()), forCellWithReuseIdentifier: "CLSingleTypeCell")
+        }
 
-        
         self.collectionView.contentInset = UIEdgeInsets(top: KNavgationBarHeight, left: 0, bottom: 44, right: 0)
         self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: KNavgationBarHeight, left: 0, bottom: 44, right: 0)
         if UIDevice.current.isIOS11() {
@@ -250,11 +260,13 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         } else {
             self.bottomView.isHidden = true
         }
-        
+
         let item = self.collectionView(self.collectionView!, numberOfItemsInSection: 0) - 1
         if item == -1 { // 防止相册为0
             return
         }
+        
+        
         let lastItemIndex = IndexPath.init(row: item, section: 0)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.1) {
             self.collectionView?.scrollToItem(at: lastItemIndex, at: .top, animated: false)
@@ -266,7 +278,6 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     }
     
     override func rightBtnClick() {
-        
         // 记得pop，不然控制器释放不掉
         self.dismiss(animated: true) { 
             self.navigationController?.popViewController(animated: true)
@@ -277,7 +288,72 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         print("CLImagePickerSingleViewController释放")
         CLNotificationCenter.removeObserver(self)
     }
-
+    
+    // MARK: UIScrollView
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateCachedAssets()
+    }
+    fileprivate func resetCachedAssets() {
+        imageManager.stopCachingImagesForAllAssets()
+        previousPreheatRect = .zero
+    }
+    fileprivate func updateCachedAssets() {
+        
+        // Update only if the view is visible.
+        guard isViewLoaded && view.window != nil else { return }
+        
+        // The preheat window is twice the height of the visible rect.
+        let visibleRect = CGRect(origin: collectionView!.contentOffset, size: collectionView!.bounds.size)
+        let preheatRect = visibleRect.insetBy(dx: 0, dy: -0.5 * visibleRect.height)
+        
+        // Update only if the visible area is significantly different from the last preheated area.
+        let delta = abs(preheatRect.midY - previousPreheatRect.midY)
+        guard delta > view.bounds.height / 3 else { return }
+        
+        // Compute the assets to start caching and to stop caching.
+        let (addedRects, removedRects) = differencesBetweenRects(previousPreheatRect, preheatRect)
+        let addedAssets = addedRects
+            .flatMap { rect in collectionView!.indexPathsForElements(in: rect) }
+            .map { indexPath in self.photoArr![indexPath.row].phAsset ?? PHAsset() }
+        let removedAssets = removedRects
+            .flatMap { rect in collectionView!.indexPathsForElements(in: rect) }
+            .map { indexPath in self.photoArr![indexPath.row].phAsset ?? PHAsset() }
+        
+        // Update the assets the PHCachingImageManager is caching.
+        imageManager.startCachingImages(for: addedAssets,
+                                        targetSize: thumbnailSize, contentMode: .aspectFill, options: nil)
+        imageManager.stopCachingImages(for: removedAssets,
+                                       targetSize: thumbnailSize, contentMode: .aspectFill, options: nil)
+        
+        // Store the preheat rect to compare against in the future.
+        previousPreheatRect = preheatRect
+    }
+    
+    fileprivate func differencesBetweenRects(_ old: CGRect, _ new: CGRect) -> (added: [CGRect], removed: [CGRect]) {
+        if old.intersects(new) {
+            var added = [CGRect]()
+            if new.maxY > old.maxY {
+                added += [CGRect(x: new.origin.x, y: old.maxY,
+                                 width: new.width, height: new.maxY - old.maxY)]
+            }
+            if old.minY > new.minY {
+                added += [CGRect(x: new.origin.x, y: new.minY,
+                                 width: new.width, height: old.minY - new.minY)]
+            }
+            var removed = [CGRect]()
+            if new.maxY < old.maxY {
+                removed += [CGRect(x: new.origin.x, y: new.maxY,
+                                   width: new.width, height: old.maxY - new.maxY)]
+            }
+            if old.minY < new.minY {
+                removed += [CGRect(x: new.origin.x, y: old.minY,
+                                   width: new.width, height: new.minY - old.minY)]
+            }
+            return (added, removed)
+        } else {
+            return ([new], [old])
+        }
+    }
 }
 
 extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollectionViewDataSource {
@@ -291,7 +367,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
         if indexPath.row == (self.photoArr?.count ?? 1) - 1 && self.isAllPhoto {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CLImagePickerCamaroCell", for: indexPath) as! CLImagePickerCamaroCell
             cell.clickCamaroCell = {[weak self]() in
-                
+
                 CLPickersTools.instence.authorizeCamaro { (state) in
                     if state == .authorized {
                         self?.cameraPicker = UIImagePickerController()
@@ -300,16 +376,23 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
                         self?.present((self?.cameraPicker)!, animated: true, completion: nil)
                     }
                 }
-                
+
             }
             return cell
         }
-        
+    
         if self.singleType == nil {  // 说明不是单选
             let model = self.photoArr?[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellID, for: indexPath) as! ImagePickerChooseImageCell
             cell.onlyChooseImageOrVideo = self.onlyChooseImageOrVideo
+            cell.representedAssetIdentifier = (model?.phAsset?.localIdentifier)!
             cell.model = model
+
+            imageManager.requestImage(for: (model?.phAsset)!, targetSize:thumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+                if cell.representedAssetIdentifier == model?.phAsset?.localIdentifier {
+                    cell.iconView.image = image
+                }
+            })
             cell.imagePickerChooseImage = {[weak self] () in
                 let chooseCount = CLPickersTools.instence.getSavePictureCount()
                 if chooseCount == 0 {
@@ -327,10 +410,17 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             return cell
         } else {  // 是单选
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CLSingleTypeCell", for: indexPath) as! CLSingleTypeCell
+            let model = self.photoArr?[indexPath.row]
+            cell.representedAssetIdentifier = (model?.phAsset?.localIdentifier)!
             cell.singleModelImageCanEditor = self.singleModelImageCanEditor
-            cell.model = self.photoArr?[indexPath.row]
+            cell.model = model
+            imageManager.requestImage(for: (model?.phAsset)!, targetSize:thumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+                if cell.representedAssetIdentifier == model?.phAsset?.localIdentifier {
+                    cell.iconView.image = image
+                }
+            })
             cell.singleChoosePicture = { [weak self] (assetArr,img) in
-                
+
                 if self?.singleType == .singlePictureCrop {  // 单选裁剪
                     if assetArr.first?.mediaType == .video {
                         self?.choosePictureComplete(assetArr: assetArr, img: img)
@@ -356,7 +446,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
                 editorVC.editorImage = img
                 editorVC.editorImageComplete = {(img) in
                     self?.choosePictureComplete(assetArr: assetArr, img: img)
-                    
+
                     // 记得pop，不然控制器释放不掉
                     self?.dismiss(animated: true) {
                         self?.navigationController?.popViewController(animated: true)
@@ -368,6 +458,8 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
             return cell
         }
     }
+    
+    
 }
 
 extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -416,4 +508,10 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
         }
     }
 
+}
+private extension UICollectionView {
+    func indexPathsForElements(in rect: CGRect) -> [IndexPath] {
+        let allLayoutAttributes = collectionViewLayout.layoutAttributesForElements(in: rect)!
+        return allLayoutAttributes.map { $0.indexPath }
+    }
 }

@@ -17,8 +17,8 @@ class CustomNavgationView: UIView {
         titleLable.font = UIFont.boldSystemFont(ofSize: 18)
         return titleLable
     }()
-    @objc lazy var navLine:UILabel = {
-        let navLine = UILabel()
+    @objc lazy var navLine:UIView = {
+        let navLine = UIView()
         navLine.backgroundColor = UIColor.gray
         return navLine;
     }()
@@ -39,6 +39,6 @@ class CustomNavgationView: UIView {
     override func layoutSubviews() {
         let titleY: CGFloat = UIDevice.current.isX() == true ? 40:20
         self.titleLable.frame = CGRect(x: 50, y: titleY, width: KScreenWidth-100, height: 44)
-        self.navLine.frame = CGRect(x: 0, y: KNavgationBarHeight, width: KScreenWidth, height: 0.26)
+        self.navLine.frame = CGRect(x: 0, y: KNavgationBarHeight-0.5, width: KScreenWidth, height: 0.5)
     }
 }
