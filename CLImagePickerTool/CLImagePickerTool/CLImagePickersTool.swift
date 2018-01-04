@@ -222,13 +222,14 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         }
     }
     
-    // 获取原图的方法  异步
+    // 获取原图的方法  同步
     @objc static func getAssetOrigin(asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> (),dealImageFailed:@escaping () -> ()) -> Void {
         //获取原图
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions() //可以设置图像的质量、版本、也会有参数控制图像的裁剪
         option.isNetworkAccessAllowed = true  // iCloud上的照片需要下载
         option.resizeMode   = .fast
+        option.isSynchronous = true
         option.progressHandler = {
             (progress, error, stop, info) in
             DispatchQueue.main.async(execute: {
@@ -243,7 +244,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
             dealImageSuccess(originImage,info)
         }
     }
-    // 获取缩略图的方法  同步
+    // 获取缩略图的方法  异步
     @objc static func getAssetThumbnail(targetSize:CGSize,asset:PHAsset,dealImageSuccess:@escaping (UIImage?,[AnyHashable:Any]?) -> ()) -> Void {
         let imageSize: CGSize?
         
