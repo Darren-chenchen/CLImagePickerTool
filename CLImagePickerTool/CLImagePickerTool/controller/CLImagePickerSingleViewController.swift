@@ -249,9 +249,9 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
 
         self.collectionView.contentInset = UIEdgeInsets(top: KNavgationBarHeight, left: 0, bottom: 44, right: 0)
         self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: KNavgationBarHeight, left: 0, bottom: 44, right: 0)
-        if UIDevice.current.isIOS11() {
-            self.collectionView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 44, right: 0)
-            self.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 44, left: 0, bottom: 44, right: 0)
+        if #available(iOS 11.0, *) {
+            self.collectionView.contentInsetAdjustmentBehavior = .never
+        } else {
         }
         
         // 单选隐藏下面的确定
