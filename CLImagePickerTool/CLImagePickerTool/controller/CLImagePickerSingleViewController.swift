@@ -370,6 +370,10 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
 
                 CLPickersTools.instence.authorizeCamaro { (state) in
                     if state == .authorized {
+                        if self?.isCameraAvailable() == false {
+                            PopViewUtil.alert(message: "相机不可用", leftTitle: "", rightTitle: "确定", leftHandler: nil, rightHandler: nil)
+                            return
+                        }
                         self?.cameraPicker = UIImagePickerController()
                         self?.cameraPicker.delegate = self
                         self?.cameraPicker.sourceType = .camera
@@ -459,7 +463,10 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
         }
     }
     
-    
+    func isCameraAvailable() -> Bool{
+        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
+    }
+
 }
 
 extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
