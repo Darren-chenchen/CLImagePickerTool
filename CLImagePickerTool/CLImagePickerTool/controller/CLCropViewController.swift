@@ -10,7 +10,13 @@ import UIKit
 import Photos
 import PassKit
 
+enum EnterType {
+    case normal
+    case camero
+}
+
 typealias CLCropViewControllerClouse = (UIImage)->()
+typealias CLCropViewControllerCancelClouse = ()->()
 
 class CLCropViewController: CLBaseImagePickerViewController {
     
@@ -23,8 +29,11 @@ class CLCropViewController: CLBaseImagePickerViewController {
     @objc var asset: PHAsset?
     
     @objc var clCropClouse: CLCropViewControllerClouse?
-    
+    @objc var cancelClouse: CLCropViewControllerCancelClouse?
+
     @objc var circleBtn: CLCircleView?
+    
+    var enterType: EnterType = .normal
     
     @objc let manager = PHImageManager.default()
     var imageRequestID: PHImageRequestID?
@@ -109,8 +118,14 @@ class CLCropViewController: CLBaseImagePickerViewController {
         if self.imageRequestID != nil {
             self.manager.cancelImageRequest(self.imageRequestID!)
         }
-
-        self.navigationController?.popViewController(animated: true)
+        if enterType == .normal {
+            self.navigationController?.popViewController(animated: true)
+        }
+        if enterType == .camero {
+            if cancelClouse != nil {
+                self.cancelClouse!()
+            }
+        }
     }
     
     deinit {
@@ -217,6 +232,12 @@ extension CLCropViewController: UIScrollViewDelegate {
 
         let rec = CGRect(x:offset.x/zoom, y:offset.y/zoom,width:width/zoom,height:height/zoom)
         
+        print(rec)
+        print(self.originalImage?.cgImage ?? "2")
+        print(self.originalImage?.imageOrientation.rawValue ?? "00000")
+//        if self.originalImage?.imageOrientation.rawValue == 3 {
+//            self.originalImage?.cgImage
+//        }
         let imageRef = (self.originalImage?.cgImage!)!.cropping(to: rec)
         
         let image = UIImage.init(cgImage: imageRef!)

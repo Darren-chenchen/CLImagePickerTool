@@ -137,8 +137,19 @@ imagePickTool.statusBarType = .white
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
 	            
 }
-```        
- 11.部分属性介绍
+```
+11.设置相机选择在外部，图片可编辑
+
+```swift 
+imagePickTool2.cameraOut = true
+imagePickTool2.isHiddenVideo = true
+imagePickTool2.singleImageChooseType = .singlePicture
+imagePickTool2.singleModelImageCanEditor = true       
+imagePickTool2.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,editorImage) in
+}
+```      
+
+12.部分属性介绍
 
 ```swift				 		
 // 是否隐藏视频文件，默认不隐藏
@@ -256,6 +267,8 @@ let imagePickTool = CLImagePickersTool()
     } 
 }
 ```
+6.单选模式下，才有图片编辑功能，多选模式下没有图片编辑功能。
+图片裁剪和图片编辑不能同时进行
 #### 预览
 
 ![(logo)](http://images2017.cnblogs.com/blog/818253/201708/818253-20170812093235663-1232169184.png)

@@ -277,8 +277,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        picker.dismiss(animated: true) {}
-        
+        PopViewUtil.share.showLoading()
         // 保存到相册
         let type = info[UIImagePickerControllerMediaType] as? String
         if type == "public.image" {
@@ -293,18 +292,78 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     // 保存图片的结果
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         if let err = error {
+            PopViewUtil.share.stopLoading()
             UIAlertView(title: errorStr, message: err.localizedDescription, delegate: nil, cancelButtonTitle: sureStr).show()
         } else {
-            
+
             let dataArr = CLPickersTools.instence.loadData()
             let newModel = dataArr.first?.values.first?.last
-            
-            if self.clPickerToolClouse != nil {
-                if newModel?.phAsset != nil {
-                    self.clPickerToolClouse!([(newModel?.phAsset)!],image)
+            guard let phasset = newModel?.phAsset else {return}
+            if phasset.mediaType == .video {
+                return
+            }
+            var cameroImage: UIImage?
+            CLPickersTools.instence.getAssetOrigin(asset: phasset) { (img, info) in
+                PopViewUtil.share.stopLoading()
+                if img != nil {
+                    cameroImage = img
+                    if self.singleImageChooseType == .singlePictureCrop && self.singleModelImageCanEditor != true {  // 单选
+                        self.crop(image: cameroImage!, phasset: phasset)
+                        print("裁剪")
+                        
+                    } else if self.singleImageChooseType != .singlePictureCrop && self.singleModelImageCanEditor == true {  // 编辑
+                        print("编辑")
+                        self.editor(image: cameroImage!, phasset: phasset)
+                        
+                    } else if self.singleImageChooseType == .singlePictureCrop && self.singleModelImageCanEditor == true {  // 编辑并裁剪
+                        print("编辑并裁剪")
+                        self.crop(image: cameroImage!, phasset: phasset)
+                    } else {
+                        print("其他")
+                        self.cameraPicker.dismiss(animated: true, completion: nil)
+                        if self.clPickerToolClouse != nil {
+                            self.clPickerToolClouse!([phasset],image)
+                        }
+                    }
+                } else {  // 说明本地没有需要到iCloud下载
                 }
             }
         }
+    }
+    
+    // 相机-裁剪
+    func crop(image: UIImage,phasset: PHAsset) {
+        let cutVC = CLCropViewController()
+        if self.singlePictureCropScale != nil {
+            cutVC.scale = (self.singlePictureCropScale)!
+        }
+        cutVC.originalImage = image
+        cutVC.enterType = .camero
+        cutVC.asset = phasset
+        cutVC.clCropClouse = {[weak self] (cutImg) in
+            if self?.clPickerToolClouse != nil {
+                self?.clPickerToolClouse!([phasset],cutImg)
+            }
+            
+            self?.cameraPicker.dismiss(animated: true, completion: nil)
+        }
+        cutVC.cancelClouse = {[weak self]() in
+            self?.cameraPicker.dismiss(animated: true, completion: nil)
+        }
+        self.cameraPicker.pushViewController(cutVC, animated: true)
+    }
+    // 相机-编辑
+    func editor(image: UIImage,phasset: PHAsset) {
+        let editorVC = EditorViewController.init(nibName: "EditorViewController", bundle: BundleUtil.getCurrentBundle())
+        editorVC.editorImage = image
+        editorVC.editorImageComplete = {[weak self](img) in
+            self?.cameraPicker.dismiss(animated: true, completion: nil)
+
+            if self?.clPickerToolClouse != nil {
+                self?.clPickerToolClouse!([phasset],img)
+            }
+        }
+        self.cameraPicker.pushViewController(editorVC, animated: true)
     }
     
 }
