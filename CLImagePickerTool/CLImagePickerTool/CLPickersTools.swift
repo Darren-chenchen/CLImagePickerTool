@@ -48,6 +48,13 @@ class CLPickersTools {
         if flagData != nil {
             self.dataArr.insert(flagData!, at: 0)
         }
+        for i in 0..<self.dataArr.count {
+            let dict = self.dataArr[i]
+            if dict.keys.first == delectStr {  // 屏蔽最近删除
+                self.dataArr.remove(at: i)
+                break
+            }
+        }
         return dataArr
     }
     
@@ -362,7 +369,13 @@ class CLPickersTools {
             }
             for i in 0..<ArrResult.count {
                 //获取每一个资源(PHAsset)
-                arr.append(ArrResult[i].firstObject!)
+                let PHFetchResultArr = ArrResult[i]
+                if PHFetchResultArr.count != 0 {
+                    arr.append(PHFetchResultArr.firstObject!)
+                } else {
+                    // 最近删除的无法获取
+                    print("获取最近删除失败")
+                }
             }
             return arr
         }
