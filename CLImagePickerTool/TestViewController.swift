@@ -97,9 +97,8 @@ class TestViewController: UIViewController {
         imagePickTool.cameraOut = true
         imagePickTool.isHiddenVideo = true
         imagePickTool.singleImageChooseType = .singlePictureCrop
-        imagePickTool.singleModelImageCanEditor = true
         imagePickTool.singlePictureCropScale = 230/144.5
-        imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+        imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,editorImage) in
             self.clipImage.image = editorImage
         }
     }

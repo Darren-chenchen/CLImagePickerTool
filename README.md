@@ -38,7 +38,15 @@ pod 'CLImagePickerTool', :git => 'https://github.com/Darren-chenchen/CLImagePick
 2.支持carthage管理
 github "Darren-chenchen/CLImagePickerTool"
 
+3.注意项目需要配置相机相册权限，ios11之后新增照片保存权限也需要添加
 
+```swift
+<string>访问相机</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>访问相册</string>
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>存储照片</string>
+```
 # 简介
 1.基本用法，默认相机选择在内部、图片多选、支持选择视频文件
 

@@ -479,8 +479,32 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
         // 保存到相册
         let type = info[UIImagePickerControllerMediaType] as? String
         if type == "public.image" {
-            let photo = info[UIImagePickerControllerOriginalImage]
-            UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLImagePickerSingleViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            CLPickersTools.instence.authorizeSave { (state) in
+                if state == .authorized {
+                    let photo = info[UIImagePickerControllerOriginalImage]
+                    UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLImagePickerSingleViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                } else {
+                    DispatchQueue.main.async(execute: {
+                        PopViewUtil.alert(title: photoLimitStr, message: clickSetStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {
+                            // 点击了取消
+                            PopViewUtil.share.stopLoading()
+                            picker.dismiss(animated: true, completion: nil)
+                        }, rightHandler: {
+                            let url = URL(string: UIApplicationOpenSettingsURLString)
+                            if let url = url, UIApplication.shared.canOpenURL(url) {
+                                if #available(iOS 10, *) {
+                                    UIApplication.shared.open(url, options: [:],
+                                                              completionHandler: {
+                                                                (success) in
+                                    })
+                                } else {
+                                    UIApplication.shared.openURL(url)
+                                }
+                            }
+                        })
+                    })
+                }
+            }
         }
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

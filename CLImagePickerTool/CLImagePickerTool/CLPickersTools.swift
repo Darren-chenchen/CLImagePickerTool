@@ -445,7 +445,6 @@ class CLPickersTools {
            authorizeClouse(status)
         } else if status == .notDetermined {
             AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted) in
-              
                 if granted {  // 允许
                     authorizeClouse(.authorized)
                 }
@@ -469,6 +468,17 @@ class CLPickersTools {
 
             authorizeClouse(status)
         }
+    }
+    // 保存照片权限
+    func authorizeSave(authorizeClouse:@escaping (PHAuthorizationStatus)->()) {
+        PHPhotoLibrary.requestAuthorization({ (status) in
+            if status == .authorized || status == .notDetermined {
+                authorizeClouse(.authorized)
+            } else {
+                
+                authorizeClouse(status)
+            }
+        })
     }
     
     deinit {
