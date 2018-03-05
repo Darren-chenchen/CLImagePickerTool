@@ -132,7 +132,7 @@ class ImagePickerChooseImageCellV2: UICollectionViewCell {
 
         // 相册
         if self.model?.phAsset?.mediaType == .image {
-            _ = CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:false, singleModelImageCanEditor: false)
+            _ = CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:false, singleModelImageCanEditor: false, isSelect: (self.model?.isSelect ?? false))
         }
         // 视频
         if self.model?.phAsset?.mediaType == .video {

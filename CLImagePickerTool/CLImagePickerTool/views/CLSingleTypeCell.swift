@@ -62,7 +62,7 @@ class CLSingleTypeCell: UICollectionViewCell {
     @objc func clickIconView(ges:UITapGestureRecognizer) {
         // 相册
         if self.model?.phAsset?.mediaType == .image {
-            let amplifyView =  CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:true,singleModelImageCanEditor:self.singleModelImageCanEditor)
+            let amplifyView =  CLImageAmplifyView.setupAmplifyViewWithUITapGestureRecognizer(tap: ges, superView: self.contentView,originImageAsset:(self.model?.phAsset)!,isSingleChoose:true,singleModelImageCanEditor:self.singleModelImageCanEditor, isSelect: false)
             amplifyView.singlePictureClickSureBtn = {[weak self] () in
                 if self?.singleChoosePicture != nil {
                     self?.singleChoosePicture!([(self?.model?.phAsset)!],amplifyView.lastImageView?.image ?? UIImage())

@@ -34,6 +34,14 @@ class CLImageAmplifyView: UIView {
     
     @objc var singlePictureClickSureBtn: singlePictureClickSureBtnClouse?
     @objc var singlePictureClickEditorBtn: singlePictureClickEditorBtnClouse?
+    
+    var originImageAsset: PHAsset?
+    
+    lazy var selectBtn: UIButton = {
+        let btn = UIButton.init(frame: CGRect(x:KScreenWidth-45 , y: 28, width: 25, height: 25))
+        btn.addTarget(self, action: #selector(clickBtn), for: .touchUpInside)
+        return btn
+    }()
 
     @objc lazy var bottomView: UIView = {
         
@@ -59,20 +67,21 @@ class CLImageAmplifyView: UIView {
         return bottom
     }()
     
-    @objc static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset,isSingleChoose:Bool,singleModelImageCanEditor:Bool) -> CLImageAmplifyView{
+    @objc static func setupAmplifyViewWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset:PHAsset,isSingleChoose:Bool,singleModelImageCanEditor:Bool,isSelect: Bool) -> CLImageAmplifyView{
         
         let amplifyView = CLImageAmplifyView.init(frame: (UIApplication.shared.keyWindow?.bounds)!)
         
-        amplifyView.setupUIWithUITapGestureRecognizer(tap: tap, superView: superView,originImageAsset:originImageAsset,isSingleChoose:isSingleChoose,singleModelImageCanEditor:singleModelImageCanEditor)
+        amplifyView.setupUIWithUITapGestureRecognizer(tap: tap, superView: superView,originImageAsset:originImageAsset,isSingleChoose:isSingleChoose,singleModelImageCanEditor:singleModelImageCanEditor,isSelect: isSelect)
         
         UIApplication.shared.keyWindow?.addSubview(amplifyView)
         
         return amplifyView
     }
     
-    private func setupUIWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset: PHAsset,isSingleChoose:Bool,singleModelImageCanEditor:Bool) {
+    private func setupUIWithUITapGestureRecognizer(tap:UITapGestureRecognizer,superView:UIView,originImageAsset: PHAsset,isSingleChoose:Bool,singleModelImageCanEditor:Bool,isSelect: Bool) {
         
         self.singleModelImageCanEditor = singleModelImageCanEditor
+        self.originImageAsset = originImageAsset
         
         //scrollView作为背景
         self.scrollView = UIScrollView()
@@ -155,9 +164,42 @@ class CLImageAmplifyView: UIView {
         
         if isSingleChoose {   // 单选
             self.setupBottomView()
+        } else {  // 多选
+            self.addSubview(self.selectBtn)
+            if isSelect {
+                self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+                selectBtn.isSelected = true
+            } else {
+                self.selectBtn.setBackgroundImage(UIImage(named: "", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+                selectBtn.isSelected = false
+            }
+            CLViewsBorder(self.selectBtn, borderWidth: 1.5, borderColor: UIColor.white, cornerRadius: self.selectBtn.cl_width*0.5)
         }
     }
-    
+    @objc func clickBtn() {
+        self.selectBtn.isSelected = !self.selectBtn.isSelected
+        let model = PreviewModel()
+        model.phAsset = self.originImageAsset ?? PHAsset()
+        if self.selectBtn.isSelected {
+            self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+            model.isCheck = true
+            CLPickersTools.instence.savePicture(asset: (model.phAsset)!, isAdd: true)
+        } else {
+            self.selectBtn.setBackgroundImage(UIImage(named: "", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+            model.isCheck = false
+            CLPickersTools.instence.savePicture(asset: (model.phAsset)!, isAdd: false)
+        }
+        // 通知列表刷新状态
+        CLNotificationCenter.post(name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: model)
+        
+        // 动画
+        let shakeAnimation = CABasicAnimation.init(keyPath: "transform.scale")
+        shakeAnimation.duration = 0.1
+        shakeAnimation.fromValue = 0.8
+        shakeAnimation.toValue = 1
+        shakeAnimation.autoreverses = true
+        self.selectBtn.layer.add(shakeAnimation, forKey: nil)
+    }
     
      @objc func clickBgView(tapBgView:UITapGestureRecognizer){
         
@@ -173,6 +215,7 @@ class CLImageAmplifyView: UIView {
             tapBgView.view?.backgroundColor = UIColor.clear
             self.circleBtn?.removeFromSuperview()
             self.circleBtn = nil
+            self.selectBtn.alpha = 0
             
             if self.imageRequestID != nil {
                 self.manager.cancelImageRequest(self.imageRequestID!)
@@ -182,6 +225,7 @@ class CLImageAmplifyView: UIView {
             tapBgView.view?.removeFromSuperview()
             self.imageRequestID = nil
             self.lastImageView?.removeFromSuperview()
+            self.selectBtn.removeFromSuperview()
             self.lastImageView = nil
             self.scrollView?.removeFromSuperview()
             self.scrollView = nil
