@@ -30,7 +30,7 @@ class CLPreviewVideoCell: UICollectionViewCell {
     }()
     
     @objc lazy var playBtn: UIButton = {
-        let btn = UIButton.init(frame: CGRect(x: 0.5*(KScreenWidth-80), y: 0.5*(KScreenHeight-80), width: 80, height: 80))
+        let btn = UIButton.init(frame: CGRect(x: 0.5*(self.cl_width-80), y: 0.5*(self.cl_height-80), width: 80, height: 80))
         
         btn.setBackgroundImage(UIImage(named: "clvedioplaybtn", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
         return btn
@@ -68,6 +68,8 @@ class CLPreviewVideoCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.iconView.frame = CGRect(x: 0, y: 0, width: self.cl_width, height: self.cl_height)
+        self.playBtn.frame = CGRect(x: 0.5*(self.cl_width-80), y: 0.5*(self.cl_height-80), width: 80, height: 80)
+
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

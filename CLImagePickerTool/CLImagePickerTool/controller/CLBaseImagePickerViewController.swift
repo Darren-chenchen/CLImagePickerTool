@@ -13,13 +13,11 @@ class CLBaseImagePickerViewController: UIViewController {
     // 自定义导航栏
     @objc lazy var customNavBar: CustomNavgationView = {
         let nav = CustomNavgationView()
-        nav.frame = CGRect(x: 0, y: 0, width: KScreenWidth, height: KNavgationBarHeight)
         return nav
     }()
     // 右边第一个按钮
     @objc lazy var rightBtn: UIButton = {
         let btn = UIButton()
-        btn.frame = CGRect(x: KScreenWidth-64, y: 20, width: 64, height: 44);
         btn.adjustsImageWhenHighlighted = false
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         btn.setTitleColor(UIColor.black, for: .normal)
@@ -36,7 +34,6 @@ class CLBaseImagePickerViewController: UIViewController {
     // 返回按钮
     @objc lazy var backBtn: UIButton = {
         let btn = UIButton()
-        btn.frame = CGRect(x: 0, y: 20, width: 50, height: 44);
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: -12, bottom: 0, right: 0)
         btn.setImage(UIImage(named: "btn_back2", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for:UIControlState())
         btn.addTarget(self, action: #selector(CLBaseImagePickerViewController.backBtnclick), for: .touchUpInside)
@@ -45,7 +42,7 @@ class CLBaseImagePickerViewController: UIViewController {
     
     @objc lazy var toobar: UIToolbar = {
         // 添加磨玻璃
-        let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: KNavgationBarHeight))
+        let toolBar = UIToolbar.init()
         toolBar.barStyle = .default
         return toolBar
     }()
@@ -60,6 +57,46 @@ class CLBaseImagePickerViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         
         self.setupNav()
+        initLayout()
+    }
+    
+    func initLayout() {
+        let titleY: CGFloat = UIDevice.current.isX() == true ? 40:20
+
+        self.customNavBar.translatesAutoresizingMaskIntoConstraints = false
+        self.toobar.translatesAutoresizingMaskIntoConstraints = false
+        self.rightBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.backBtn.translatesAutoresizingMaskIntoConstraints = false
+
+        // 导航栏
+        self.customNavBar.addConstraint(NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: KNavgationBarHeight))
+        self.view.addConstraints([
+            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+            ])
+        // toolbar
+        self.toobar.addConstraint(NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: KNavgationBarHeight))
+        self.customNavBar.addConstraints([
+            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+            ])
+        // 右边的按钮
+        self.rightBtn.addConstraint(NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 44))
+        self.rightBtn.addConstraint(NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 64))
+        self.customNavBar.addConstraints([
+            NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.top, multiplier: 1, constant: titleY),
+            NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+            ])
+        
+        // 返回按钮
+        self.backBtn.addConstraint(NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 44))
+        self.backBtn.addConstraint(NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 50))
+        self.customNavBar.addConstraints([
+            NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.top, multiplier: 1, constant: titleY),
+            NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+            ])
     }
     
     // 先不要写在initview中，因为如果写在initview中就需要在子类中必须实现initView方法，并且调用super.initView()

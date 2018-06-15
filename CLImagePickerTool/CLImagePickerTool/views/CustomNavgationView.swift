@@ -26,19 +26,35 @@ class CustomNavgationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-       
         self.addSubview(self.titleLable)
         self.addSubview(self.navLine)
         self.backgroundColor = UIColor.clear
+        
+        initEventHendle()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }    
-    
-    override func layoutSubviews() {
+    func initEventHendle() {
+        self.titleLable.translatesAutoresizingMaskIntoConstraints = false
+        self.navLine.translatesAutoresizingMaskIntoConstraints = false
+
         let titleY: CGFloat = UIDevice.current.isX() == true ? 40:20
-        self.titleLable.frame = CGRect(x: 50, y: titleY, width: KScreenWidth-100, height: 44)
-        self.navLine.frame = CGRect(x: 0, y: KNavgationBarHeight-0.5, width: KScreenWidth, height: 0.5)
+        self.titleLable.addConstraint(NSLayoutConstraint.init(item: self.titleLable, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 44))
+        self.addConstraints([
+            NSLayoutConstraint.init(item: self.titleLable, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 50),
+            NSLayoutConstraint.init(item: self.titleLable, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: titleY),
+            NSLayoutConstraint.init(item: self.titleLable, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -50)
+            ])
+        
+        self.navLine.addConstraint(NSLayoutConstraint.init(item: self.navLine, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 0.5))
+        self.addConstraints([
+            NSLayoutConstraint.init(item: self.navLine, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.navLine, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.navLine, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+            ])
+    }
+    override func layoutSubviews() {
     }
 }

@@ -231,13 +231,7 @@ extension CLCropViewController: UIScrollViewDelegate {
         }
 
         let rec = CGRect(x:offset.x/zoom, y:offset.y/zoom,width:width/zoom,height:height/zoom)
-        
-        print(rec)
-        print(self.originalImage?.cgImage ?? "2")
-        print(self.originalImage?.imageOrientation.rawValue ?? "00000")
-//        if self.originalImage?.imageOrientation.rawValue == 3 {
-//            self.originalImage?.cgImage
-//        }
+    
         let imageRef = (self.originalImage?.cgImage!)!.cropping(to: rec)
         
         let image = UIImage.init(cgImage: imageRef!)

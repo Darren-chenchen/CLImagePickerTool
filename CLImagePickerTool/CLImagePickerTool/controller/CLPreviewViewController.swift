@@ -17,9 +17,10 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
 
     @objc var picArray: Array<PreviewModel>!
     @objc var hiddenTextLable: Bool = false
+    
+    var layout = UICollectionViewFlowLayout()
 
     fileprivate lazy var collectionView: UICollectionView = {
-        var layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
         var collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
@@ -36,7 +37,7 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
     }()
     
     @objc lazy var titleLabel: UILabel = {
-        let textlable = UILabel(frame: CGRect(x: 0, y: self.view.frame.size.height - 50, width: self.view.frame.size.width, height: 20))
+        let textlable = UILabel()
         textlable.text = "\(1)/\(self.picArray.count)"
         textlable.textAlignment = .center
         textlable.textColor = UIColor.white
@@ -44,14 +45,50 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         return textlable
     }()
     
-    @objc var selectBtn: UIButton!
+    lazy var selectBtn: UIButton = {
+        let btn = UIButton.init()
+        return btn
+    }()
     @objc var currentPage: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.black
+        initView()
+        CLNotificationCenter.addObserver(self, selector: #selector(receiverNotification(notic:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    func initConstraints() {
+        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.selectBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        self.view.addConstraints([
+            NSLayoutConstraint.init(item: self.collectionView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.collectionView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.collectionView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.collectionView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+            ])
         
+        let y: CGFloat = UIDevice.current.isX() == true ? 48:28
+        self.selectBtn.addConstraint(NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 25))
+        self.selectBtn.addConstraint(NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 25))
+        self.customNavBar.addConstraints([
+            NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.top, multiplier: 1, constant: y),
+            NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -20)
+            ])
+        
+        if !hiddenTextLable {
+            self.titleLabel.addConstraint(NSLayoutConstraint.init(item: self.titleLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 20))
+            self.view.addConstraints([
+                NSLayoutConstraint.init(item: self.titleLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -50),
+                NSLayoutConstraint.init(item: self.titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint.init(item: self.titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+                ])
+        }
+
+    }
+    func initView() {
+        self.view.backgroundColor = UIColor.black
         self.view.addSubview(collectionView)
         if !hiddenTextLable {
             self.view.addSubview(self.titleLabel)
@@ -65,15 +102,13 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         self.customNavBar.backgroundColor = UIColor(white: 0, alpha: 0.67)
         self.backBtn.setImage(UIImage(named: "btn_back_w", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for:UIControlState())
         self.view.bringSubview(toFront: self.customNavBar)
-        
-        self.selectBtn = UIButton.init(frame: CGRect(x:KScreenWidth-45 , y: 28, width: 25, height: 25))
-        self.selectBtn.cl_y = UIDevice.current.isX() == true ? 48:28
-        
         self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
-        CLViewsBorder(self.selectBtn, borderWidth: 1.5, borderColor: UIColor.white, cornerRadius: self.selectBtn.cl_width*0.5)
+        CLViewsBorder(self.selectBtn, borderWidth: 1.5, borderColor: UIColor.white, cornerRadius: 25*0.5)
         self.customNavBar.addSubview(self.selectBtn)
         self.customNavBar.bringSubview(toFront: self.rightBtn)
         self.rightBtn.isSelected = true
+        
+        initConstraints()
     }
     
     override func rightBtnClick() {
@@ -105,8 +140,39 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
-    
+
+    @objc func receiverNotification(notic: Notification){
+        
+        let orient = UIDevice.current.orientation
+        switch orient {
+        case .portrait :
+            self.updateCell()
+            //print("屏幕正常竖向")
+            break
+        case .portraitUpsideDown:
+            //print("屏幕倒立")
+            self.updateCell()
+            break
+        case .landscapeLeft:
+            //print("屏幕左旋转")
+            self.updateCell()
+            break
+        case .landscapeRight:
+            //print("屏幕右旋转")
+            self.updateCell()
+            break
+        default:
+            break
+        }
+    }
+    func updateCell() {
+        layout.itemSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.collectionView.reloadData()
+        self.collectionView.layoutIfNeeded()
+        self.collectionView.setContentOffset(CGPoint(x: self.view.frame.size.width * CGFloat(self.currentPage-1), y: 0), animated: true)
+    }
     deinit {
+        CLNotificationCenter.removeObserver(self)
         print("CLPreviewViewController销毁")
     }
 }

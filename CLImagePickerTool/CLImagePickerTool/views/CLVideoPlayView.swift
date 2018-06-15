@@ -203,6 +203,8 @@ class CLVideoPlayView: UIView {
             
             self.removeFromSuperview()
             self.playBtn.removeFromSuperview()
+            self.player?.pause()
+            self.removeObserver()
         }
     }
     
@@ -213,6 +215,8 @@ class CLVideoPlayView: UIView {
     @objc func clickSureBtn() {
         
         self.removeFromSuperview()
+        self.player?.pause()
+        self.removeObserver()
         
         if self.singleVideoClickSureBtn != nil {
             self.singleVideoClickSureBtn!()

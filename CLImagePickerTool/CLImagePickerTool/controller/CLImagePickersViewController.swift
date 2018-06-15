@@ -136,7 +136,6 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
-        self.view.addSubview(tableView)
         return tableView
     }()
     
@@ -161,8 +160,19 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
             }
         })
 
+        initConstraints()
     }
     
+    func initConstraints() {
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        let margin: CGFloat = UIDevice.current.isX() == true ? 34:0
+        self.view.addConstraints([
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: KNavgationBarHeight),
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -margin)
+            ])
+    }
     override func rightBtnClick() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -170,6 +180,12 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         self.navTitle = photoStr
         self.backBtn.isHidden = true
         self.rightBtn.setTitle(cancelStr, for: .normal)
+        self.view.addSubview(tableView)
+        
+        if #available(iOS 9.0, *) {
+            self.tableView.cellLayoutMarginsFollowReadableWidth = false
+        } else {
+        }
     }
 
     deinit {
