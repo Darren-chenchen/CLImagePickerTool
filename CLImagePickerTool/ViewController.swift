@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btn1: UIButton!
     
     // 如果是单独访问相机，一定要声明为全局变量
-    let imagePickTool = CLImagePickersTool()
+    let imagePickTool = CLImagePickerTool()
 
     // 相机在外部
     @IBAction func clickBtn2(_ sender: Any) {
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
     
     // 异步原图
     private func setupPhoto1() {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         
         imagePickTool.isHiddenVideo = true
         
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
             // 获取原图，异步
             // scale 指定压缩比
             // 内部提供的方法可以异步获取图片，同步获取的话时间比较长，不建议！，如果是iCloud中的照片就直接从icloud中下载，下载完成后返回图片,同时也提供了下载失败的方法
-            CLImagePickersTool.convertAssetArrToOriginImage(assetArr: assetArr, scale: 0.1, successClouse: {[weak self] (image,assetItem) in
+            CLImagePickerTool.convertAssetArrToOriginImage(assetArr: assetArr, scale: 0.1, successClouse: {[weak self] (image,assetItem) in
                 imageArr.append(image)
                 self?.PhotoScrollView.picArr.append(image)
                 
@@ -117,13 +117,13 @@ class ViewController: UIViewController {
     
     // 同步，缩略图
     private func setupPhoto2() {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.isHiddenVideo = true
         imagePickTool.setupImagePickerWith(MaxImagesCount: 10, superVC: self) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
             
             //获取缩略图，耗时较短
-            let imageArr = CLImagePickersTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
+            let imageArr = CLImagePickerTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
             print(imageArr)
             
             self.photoScrollView2.picArr.removeAll()
@@ -151,7 +151,7 @@ class ViewController: UIViewController {
     
 //=============================下面是视频的处理===================================
     private func setupVideo() {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.isHiddenImage = true
         imagePickTool.setupImagePickerWith(MaxImagesCount: 5, superVC: self) { (assetArr,cutImage) in
             
@@ -168,7 +168,7 @@ class ViewController: UIViewController {
             // 获取原图，异步
             // scale 指定压缩比
             // 内部提供的方法可以异步获取图片，同步获取的话时间比较长，不建议！，如果是iCloud中的照片就直接从icloud中下载，下载完成后返回图片,同时也提供了下载失败的方法
-            CLImagePickersTool.convertAssetArrToOriginImage(assetArr: assetArr, scale: 0.1, successClouse: {[weak self] (image,assetItem) in
+            CLImagePickerTool.convertAssetArrToOriginImage(assetArr: assetArr, scale: 0.1, successClouse: {[weak self] (image,assetItem) in
                 imageArr.append(image)
                 self?.videoScrollView.picArr.append(image)
                 successAssetArr.append(assetItem)

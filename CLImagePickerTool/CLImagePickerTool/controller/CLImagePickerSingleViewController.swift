@@ -29,7 +29,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     // 标记是不是所有照片。如果是所有照片再添加拍照图片
     @objc var isAllPhoto: Bool = false
     // 单选状态的类型
-    var singleType: CLImagePickersToolType?
+    var singleType: CLImagePickerToolType?
     // 视频和照片只能选择一种，不能同时选择,默认可以同时选择
     @objc var onlyChooseImageOrVideo: Bool = false
     // 图片裁剪比例

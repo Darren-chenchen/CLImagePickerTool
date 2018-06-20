@@ -89,7 +89,7 @@
 		95304F0F1F3324C0001F76B6 /* ImagePickerChooseImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */; };
 		95304F101F3324C0001F76B6 /* CLPickersTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF31F3324BF001F76B6 /* CLPickersTools.swift */; };
 		95304F111F3324C0001F76B6 /* CLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF41F3324BF001F76B6 /* CLConfig.swift */; };
-		95304F121F3324C0001F76B6 /* CLImagePickersTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */; };
+		95304F121F3324C0001F76B6 /* CLImagePickerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickerTool.swift */; };
 		95304F341F334867001F76B6 /* BundleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F331F334867001F76B6 /* BundleUtil.swift */; };
 		95304F401F3419A5001F76B6 /* photo_sel_photoPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */; };
 		95304F8B1F346E07001F76B6 /* CLSingleTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */; };
@@ -187,7 +187,7 @@
 		958D2E411F57E74500A0BB0D /* CLPreviewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B5B6D1F39E4350031B5AB /* CLPreviewVideoCell.swift */; };
 		958D2E421F57E74500A0BB0D /* CLPickersTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF31F3324BF001F76B6 /* CLPickersTools.swift */; };
 		958D2E431F57E74500A0BB0D /* CLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF41F3324BF001F76B6 /* CLConfig.swift */; };
-		958D2E441F57E74500A0BB0D /* CLImagePickersTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */; };
+		958D2E441F57E74500A0BB0D /* CLImagePickerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304EF51F3324BF001F76B6 /* CLImagePickerTool.swift */; };
 		958D2E451F57E74500A0BB0D /* BundleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304F331F334867001F76B6 /* BundleUtil.swift */; };
 		958D2E671F57FFEF00A0BB0D /* ImagePickerTool.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 958D2DE31F57E43200A0BB0D /* ImagePickerTool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		958DFCBA1FBE788C00A3482E /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958DFCB81FBE788C00A3482E /* Test2ViewController.swift */; };
@@ -324,7 +324,7 @@
 		95304EF21F3324BF001F76B6 /* ImagePickerChooseImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePickerChooseImageCell.xib; sourceTree = "<group>"; };
 		95304EF31F3324BF001F76B6 /* CLPickersTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLPickersTools.swift; sourceTree = "<group>"; };
 		95304EF41F3324BF001F76B6 /* CLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLConfig.swift; sourceTree = "<group>"; };
-		95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickersTool.swift; sourceTree = "<group>"; };
+		95304EF51F3324BF001F76B6 /* CLImagePickerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImagePickerTool.swift; sourceTree = "<group>"; };
 		95304F331F334867001F76B6 /* BundleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleUtil.swift; sourceTree = "<group>"; };
 		95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_sel_photoPicker.png; sourceTree = "<group>"; };
 		95304F891F346E07001F76B6 /* CLSingleTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLSingleTypeCell.swift; sourceTree = "<group>"; };
@@ -475,7 +475,7 @@
 				95304EE91F3324BF001F76B6 /* views */,
 				95304EF31F3324BF001F76B6 /* CLPickersTools.swift */,
 				95304EF41F3324BF001F76B6 /* CLConfig.swift */,
-				95304EF51F3324BF001F76B6 /* CLImagePickersTool.swift */,
+				95304EF51F3324BF001F76B6 /* CLImagePickerTool.swift */,
 				95304F331F334867001F76B6 /* BundleUtil.swift */,
 				95E968011FBEDD7600A57D19 /* ImagePickerChooseImageCellV2.swift */,
 				95E968001FBEDD7600A57D19 /* ImagePickerChooseImageCellV2.xib */,
@@ -872,7 +872,7 @@
 				95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */,
 				95304EF61F3324BF001F76B6 /* MessageStyleView.swift in Sources */,
 				959B5B6A1F39D6010031B5AB /* CLPreviewViewController.swift in Sources */,
-				95304F121F3324C0001F76B6 /* CLImagePickersTool.swift in Sources */,
+				95304F121F3324C0001F76B6 /* CLImagePickerTool.swift in Sources */,
 				95A6E7341FBEA5B8006811EC /* CLImagePickerAnotherViewController.swift in Sources */,
 				95304EF81F3324BF001F76B6 /* NomalStyleView.swift in Sources */,
 				951444451F3D4FE4006C7731 /* DBUndoManager.swift in Sources */,
@@ -927,7 +927,7 @@
 				95E967ED1FBEB89A00A57D19 /* CLImagePickerAnotherViewController.swift in Sources */,
 				958D2E431F57E74500A0BB0D /* CLConfig.swift in Sources */,
 				95E967EC1FBEB89A00A57D19 /* CoustomPresentationController.swift in Sources */,
-				958D2E441F57E74500A0BB0D /* CLImagePickersTool.swift in Sources */,
+				958D2E441F57E74500A0BB0D /* CLImagePickerTool.swift in Sources */,
 				958D2E451F57E74500A0BB0D /* BundleUtil.swift in Sources */,
 				958D2E381F57E73900A0BB0D /* CLCircleView.swift in Sources */,
 				958D2E391F57E73900A0BB0D /* CLImageAmplifyView.swift in Sources */,

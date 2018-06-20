@@ -13,7 +13,7 @@ class BundleUtil {
     
     static func getCurrentBundle() -> Bundle{
                 
-        let podBundle = Bundle(for: CLImagePickersTool.self)
+        let podBundle = Bundle(for: CLImagePickerTool.self)
         
         let bundleURL = podBundle.url(forResource: "CLImagePickerTool", withExtension: "bundle")
         

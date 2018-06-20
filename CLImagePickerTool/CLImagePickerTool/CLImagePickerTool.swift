@@ -10,18 +10,18 @@ import UIKit
 import Photos
 import PhotosUI
 
-public enum CLImagePickersToolType {
+public enum CLImagePickerToolType {
     case singlePicture   // 图片单选
     case singlePictureCrop   // 单选并裁剪
 }
-public enum CLImagePickersToolStatusBarType {
+public enum CLImagePickerToolStatusBarType {
     case black   // 黑色
     case white   // 白色
 }
 
 public typealias CLPickerToolClouse = (Array<PHAsset>,UIImage?)->()
 
-public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
         
     @objc var cameraPicker: UIImagePickerController!
     
@@ -34,7 +34,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     // 是否隐藏图片文件，显示视频文件，默认不隐藏
     @objc public var isHiddenImage: Bool = false
     // 设置单选图片，单选图片并裁剪属性，默认多选
-    public var singleImageChooseType: CLImagePickersToolType?
+    public var singleImageChooseType: CLImagePickerToolType?
     // 设置相机在外部，默认不在外部
     @objc public var cameraOut: Bool = false
     // 单选模式下图片并且可裁剪。默认裁剪比例是1：1，也可以设置如下参数
@@ -48,7 +48,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
     // 配置导航栏文字的颜色
     public var navTitleColor: UIColor? = nil
     // 配置状态栏的颜色
-    public var statusBarType: CLImagePickersToolStatusBarType = .black
+    public var statusBarType: CLImagePickerToolStatusBarType = .black
     
     // 第二种弹出方式
     func setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
@@ -99,7 +99,6 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         } else {
             self.gotoPhoto(MaxImagesCount: MaxImagesCount)
         }
-        
     }
     
     // 访问相册
@@ -156,7 +155,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
         
         for item in assetArr {
             
-            CLImagePickersTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
+            CLImagePickerTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
                 if img != nil {
                     // 对图片压缩
                     if UIImageJPEGRepresentation(img!,scale) == nil {
@@ -284,7 +283,7 @@ public class CLImagePickersTool: NSObject,UIImagePickerControllerDelegate,UINavi
             CLPickersTools.instence.authorizeSave { (state) in
                 if state == .authorized {
                     let photo = info[UIImagePickerControllerOriginalImage]
-                    UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLImagePickersTool.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLImagePickerTool.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 } else {
                     DispatchQueue.main.async(execute: {
                         PopViewUtil.alert(title: photoLimitStr, message: clickSetStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {

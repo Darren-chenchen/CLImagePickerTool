@@ -26,6 +26,12 @@
 - 支持git图展示
 - 优化collectionView的滚动效果
 
+# 更新日志
+
+-版本号 2.2.9：优化横屏问题
+
+-版本号 2.3.0：优化命名规范问题（CLImagePickersTool统一改成CLImagePickerTool，中间的s去掉了）
+
 # 使用方式
 1.由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
 
@@ -52,7 +58,7 @@ github "Darren-chenchen/CLImagePickerTool"
 
 ```swift
 // superVC 当前的控制器 MaxImagesCount最多选择的照片数量
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
     print("返回的asset数组是\(asset)")		
  }
@@ -60,8 +66,8 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cu
 2.设置相机选择在外部 imagePickTool.cameraOut = true
            
 ```swift
-// 注意此时CLImagePickersTool要声明为全局变量，不然代理方法不走
-let imagePickTool = CLImagePickersTool()
+// 注意此时CLImagePickerTool要声明为全局变量，不然代理方法不走
+let imagePickTool = CLImagePickerTool()
 imagePickTool.cameraOut = true
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
      print("返回的asset数组是\(asset)")		
@@ -70,7 +76,7 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cu
 3.设置只支持照片文件，不支持视频文件imagePickTool.isHiddenVideo = true
 
 ```swift
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.isHiddenVideo = true	
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
         
@@ -79,7 +85,7 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cu
 4.设置图片单选，屏蔽多选
 
 ```swift		
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.singleImageChooseType = .singlePicture 
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
         
@@ -89,7 +95,7 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cu
 5.单选图片，选择完成后进行裁剪操作imagePickTool.singlePictureCropScale = 2 //宽/高
 
 ```swift		
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.singleImageChooseType = .singlePictureCrop
 imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
         
@@ -98,7 +104,7 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cu
 6.可以选择视频和图片，但是视频文件和图片文件不能同时选择
 
 ```swift
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.onlyChooseImageOrVideo = true
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
         
@@ -108,7 +114,7 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cu
 7.设置单选模式下图片可以编辑（涂鸦，马赛克等操作）
 
 ```swift
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.singleImageChooseType = .singlePicture
 imagePickTool.singleModelImageCanEditor = true
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
@@ -118,7 +124,7 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,ed
  8.只显示视频文件，不显示图片文件
 
 ```swift
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.isHiddenImage = true
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
         
@@ -127,7 +133,7 @@ imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,ed
  9.底部弹出样式
 
 ```swift
-let imagePickTool = CLImagePickersTool() 
+let imagePickTool = CLImagePickerTool() 
 imagePickTool.setupImagePickerAnotherWayWith(maxImagesCount: 3, superVC: self) { (asserArr, img) in
     print("成功返回\(asserArr)")
 }
@@ -138,7 +144,7 @@ imagePickTool.setupImagePickerAnotherWayWith(maxImagesCount: 3, superVC: self) {
  10.配置导航栏的颜色
 
 ```swift 		
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.navColor = UIColor.red
 imagePickTool.navTitleColor = UIColor.white
 imagePickTool.statusBarType = .white
@@ -165,7 +171,7 @@ public var isHiddenVideo: Bool = false
 // 是否隐藏图片文件，显示视频文件，默认不隐藏
 public var isHiddenImage: Bool = false
 // 设置单选图片，单选图片并裁剪属性，默认多选
-public var singleImageChooseType: CLImagePickersToolType?
+public var singleImageChooseType: CLImagePickerToolType?
 // 设置相机在外部，默认不在外部
 public var cameraOut: Bool = false
 // 单选模式下图片并且可裁剪。默认裁剪比例是1：1，也可以设置如下参数
@@ -179,7 +185,7 @@ public var navColor: UIColor? = nil
 // 配置导航栏文字的颜色
 public var navTitleColor: UIColor? = nil
 // 配置状态栏的颜色
-public var statusBarType: CLImagePickersToolStatusBarType = .black
+public var statusBarType: CLImagePickerToolStatusBarType = .black
 ```		
 
 #### 注意点
@@ -191,7 +197,7 @@ public var statusBarType: CLImagePickersToolStatusBarType = .black
 // 内部提供的方法可以异步获取图片，同步获取的话时间比较长，不建议！，如果是iCloud中的照片就直接从icloud中下载，下载完成后返回图片,同时也提供了下载失败的方法
  //assetItem 获取成功对应的Phasset对象   
 var imageArr = [UIImage]()
-CLImagePickersTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, successClouse: {[weak self] ((image,assetItem) in
+CLImagePickerTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, successClouse: {[weak self] ((image,assetItem) in
         imageArr.append(image)
         self?.PhotoScrollView.picArr.append(image)
 
@@ -208,19 +214,19 @@ CLImagePickersTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, suc
 在某些情况下我们不需要原图，只需要缩略图即可，而且获取缩略图的速度是非常快的，我们只需要指定一下需要的图片尺寸即可。如下：
 
 ```swift
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 imagePickTool.setupImagePickerWith(MaxImagesCount: 10, superVC: self) { (asset,cutImage) in
 	print("返回的asset数组是\(asset)")
 
 //获取缩略图，耗时较短
-let imageArr = CLImagePickersTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
+let imageArr = CLImagePickerTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
 	print(imageArr)
 }
 ```		
 2.如果是视频文件，提供了PHAsset转AVPlayerItem对象的方法
 
 ```swift		
-CLImagePickersTool.convertAssetToAvPlayerItem(asset: self.asset!, successClouse: { (playerItem) in
+CLImagePickerTool.convertAssetToAvPlayerItem(asset: self.asset!, successClouse: { (playerItem) in
     DispatchQueue.main.async(execute: {
 			// 执行你的操作
     })
@@ -262,11 +268,11 @@ override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
 }
 ```
-5.单独访问相机需要注意的问题，需要将CLImagePickersTool设置成全局变量，不然相机的代理方法不走。因为局部变量的话CLImagePickersTool会及时销毁，代理自然就不走了。
+5.单独访问相机需要注意的问题，需要将CLImagePickerTool设置成全局变量，不然相机的代理方法不走。因为局部变量的话CLImagePickerTool会及时销毁，代理自然就不走了。
 
 ```swift
 // 如果是单独访问相机，一定要声明为全局变量
-let imagePickTool = CLImagePickersTool()
+let imagePickTool = CLImagePickerTool()
 // 相机在外部
 @IBAction func clickBtn2(_ sender: Any) {
     imagePickTool.cameraOut = true

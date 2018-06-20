@@ -12,7 +12,7 @@ class TestViewController: UIViewController {
 
     @IBOutlet weak var clipImage: UIImageView!
     @IBOutlet weak var img: UIImageView!
-    let imagePickTool = CLImagePickersTool()
+    let imagePickTool = CLImagePickerTool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class TestViewController: UIViewController {
     }
     
     @IBAction func clickSinglebtn(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.singleImageChooseType = .singlePicture
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
         }
@@ -32,7 +32,7 @@ class TestViewController: UIViewController {
     
     
     @IBAction func clickSingleBtn2(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.singleImageChooseType = .singlePictureCrop
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             self.clipImage.image = editorImage
@@ -41,7 +41,7 @@ class TestViewController: UIViewController {
     }
     
     @IBAction func clickSingleBtn3(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.singleImageChooseType = .singlePictureCrop
         imagePickTool.singlePictureCropScale = 2
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
@@ -53,7 +53,7 @@ class TestViewController: UIViewController {
 
     @IBAction func clickBtn2(_ sender: Any) {
         
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.singleImageChooseType = .singlePicture
         imagePickTool.singleModelImageCanEditor = true
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
@@ -64,7 +64,7 @@ class TestViewController: UIViewController {
     
     
     @IBAction func clickOnlyBtn(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.onlyChooseImageOrVideo = true
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
         }
@@ -73,7 +73,7 @@ class TestViewController: UIViewController {
 
     // 隐藏图片文件，展示视频文件
     @IBAction func clickBtn3(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.isHiddenImage = true
         imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             
@@ -81,7 +81,7 @@ class TestViewController: UIViewController {
     }
 
     @IBAction func clickBtn4(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.navColor = UIColor.red
         imagePickTool.navTitleColor = UIColor.white
         imagePickTool.statusBarType = .white

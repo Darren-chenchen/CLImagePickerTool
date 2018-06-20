@@ -120,7 +120,7 @@ class VideoView: UIView {
             return
         }
         PopViewUtil.share.showLoading()
-        CLImagePickersTool.convertAssetToAvPlayerItem(asset: self.asset!, successClouse: { (playerItem) in
+        CLImagePickerTool.convertAssetToAvPlayerItem(asset: self.asset!, successClouse: { (playerItem) in
             DispatchQueue.main.async(execute: {
                 self.removeObserver()
                 

@@ -24,7 +24,7 @@ class CLPickersTools {
     // 配置导航栏文字的颜色
     public var navTitleColor: UIColor? = nil
     // 配置状态栏的颜色
-    public var statusBarType: CLImagePickersToolStatusBarType = .black
+    public var statusBarType: CLImagePickerToolStatusBarType = .black
     
     fileprivate var dataArr = [[String:[CLImagePickerPhotoModel]]]()
     

@@ -11,10 +11,10 @@ import UIKit
 class Test2ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    let imagePickTool = CLImagePickersTool()
-    let imagePickTool2 = CLImagePickersTool()
-    let imagePickTool3 = CLImagePickersTool()
-    let imagePickTool4 = CLImagePickersTool()
+    let imagePickTool = CLImagePickerTool()
+    let imagePickTool2 = CLImagePickerTool()
+    let imagePickTool3 = CLImagePickerTool()
+    let imagePickTool4 = CLImagePickerTool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class Test2ViewController: UIViewController {
     }
     
     @IBAction func clickBtn1(_ sender: Any) {
-        let imagePickTool = CLImagePickersTool()
+        let imagePickTool = CLImagePickerTool()
         imagePickTool.setupImagePickerAnotherWayWith(maxImagesCount: 1, superVC: self) { (asserArr, img) in
             print("成功返回\(asserArr)")
         }
