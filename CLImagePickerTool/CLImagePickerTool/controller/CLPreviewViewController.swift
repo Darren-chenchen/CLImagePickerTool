@@ -112,10 +112,12 @@ class CLPreviewViewController: CLBaseImagePickerViewController {
     }
     
     override func rightBtnClick() {
+        
         let model = self.picArray[self.currentPage-1]
 
         self.rightBtn.isSelected = !self.rightBtn.isSelected
         if self.rightBtn.isSelected {
+            
             self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
             model.isCheck = true
             CLPickersTools.instence.savePicture(asset: (model.phAsset)!, isAdd: true)

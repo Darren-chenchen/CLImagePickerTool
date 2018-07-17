@@ -256,6 +256,17 @@ class CLImageAmplifyView: UIView {
         let model = PreviewModel()
         model.phAsset = self.originImageAsset ?? PHAsset()
         if self.selectBtn.isSelected {
+            // 判断是否超过限制
+            let maxCount = UserDefaults.standard.integer(forKey: CLImagePickerMaxImagesCount)
+            if CLPickersTools.instence.getSavePictureCount() >= maxCount {
+                
+                PopViewUtil.alert(message:String(format: maxPhotoCountStr, maxCount), leftTitle: "", rightTitle: knowStr, leftHandler: {
+                    
+                }, rightHandler: {
+                    
+                })
+                return
+            }
             self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
             model.isCheck = true
             CLPickersTools.instence.savePicture(asset: (model.phAsset)!, isAdd: true)
