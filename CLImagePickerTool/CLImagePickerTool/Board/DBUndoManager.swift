@@ -32,7 +32,7 @@ class DBUndoManager {
             imageArray.removeAll()
         }
         
-        let imgData = UIImagePNGRepresentation(image)
+        let imgData = image.pngData()
         let img = UIImage.init(data: imgData!)
         
         imageArray.append(img!)
@@ -42,7 +42,7 @@ class DBUndoManager {
     func imageForUndo() -> UIImage? {
         index = index-1
         if index>=0 {
-            let imgData = UIImagePNGRepresentation(imageArray[index])
+            let imgData = imageArray[index].pngData()
             let img = UIImage.init(data: imgData!)
             return img
         } else {
@@ -54,12 +54,12 @@ class DBUndoManager {
     func imageForRedo() -> UIImage? {
         index = index+1
         if index<=imageArray.count-1 {
-            let imgData = UIImagePNGRepresentation(imageArray[index])
+            let imgData = imageArray[index].pngData()
             let img = UIImage.init(data: imgData!)
             return img
         } else {
             index = imageArray.count-1
-            let imgData = UIImagePNGRepresentation(imageArray[index])
+            let imgData = imageArray[index].pngData()
             let img = UIImage.init(data: imgData!)
             return img
         }

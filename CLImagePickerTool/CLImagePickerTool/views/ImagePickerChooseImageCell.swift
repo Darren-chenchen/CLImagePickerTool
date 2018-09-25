@@ -78,8 +78,8 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         CLPickersTools.instence.setupBottomViewGradient(superView: self.bottomView)
-        self.bottomView.bringSubview(toFront: self.timerLable) // 防止渐变色同化label
-        self.bottomView.bringSubview(toFront: self.vedioImageView)
+        self.bottomView.bringSubviewToFront(self.timerLable) // 防止渐变色同化label
+        self.bottomView.bringSubviewToFront(self.vedioImageView)
         
         self.iconView.isUserInteractionEnabled = true
         
