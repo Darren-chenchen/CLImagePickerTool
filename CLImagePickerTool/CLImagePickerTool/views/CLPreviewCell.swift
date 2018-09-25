@@ -159,7 +159,7 @@ extension CLPreviewCell: CAAnimationDelegate {
             let imageRef = CGImageSourceCreateImageAtIndex(gifSource!, i, nil) // 取得每一帧的图
             self.imageArr.append(imageRef!)
             
-            let sourceDict = CGImageSourceCopyPropertiesAtIndex(gifSource!, i, nil) as NSDictionary!
+            let sourceDict:NSDictionary! = CGImageSourceCopyPropertiesAtIndex(gifSource!, i, nil)
             let gifDict = sourceDict![String(kCGImagePropertyGIFDictionary)] as! NSDictionary?
             let time = gifDict![String(kCGImagePropertyGIFUnclampedDelayTime)] as! NSNumber // 每一帧的动画时间
             self.timeArr.append(time)

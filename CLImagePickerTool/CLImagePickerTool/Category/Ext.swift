@@ -51,7 +51,7 @@ extension UIImage {
     
     //创建打码区域
     @objc func createMaskImage(rect: CGRect ,centerX: CGFloat, centerY: CGFloat, radius:CGFloat)-> CIImage{
-        let radialGradient = CIFilter(name: "CIRadialGradient",withInputParameters: ["inputRadius0" : radius,"inputRadius1" : radius + 1,"inputColor0" : CIColor(red: 0, green: 1, blue: 0, alpha: 1),"inputColor1" : CIColor(red: 0, green: 0, blue: 0, alpha: 0),kCIInputCenterKey : CIVector(x: centerX, y: centerY)])
+        let radialGradient = CIFilter(name: "CIRadialGradient",parameters: ["inputRadius0" : radius,"inputRadius1" : radius + 1,"inputColor0" : CIColor(red: 0, green: 1, blue: 0, alpha: 1),"inputColor1" : CIColor(red: 0, green: 0, blue: 0, alpha: 0),kCIInputCenterKey : CIVector(x: centerX, y: centerY)])
         let radialGradientOutputImage = radialGradient!.outputImage!.cropped(to: rect)
         return radialGradientOutputImage
     }
