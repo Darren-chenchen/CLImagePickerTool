@@ -68,7 +68,7 @@ class EditorViewController: UIViewController {
     //MARK: - 选择画笔颜色
     @objc func showPencilView(){
         self.view.addSubview(self.choosePencilView)
-        self.view.bringSubview(toFront: self.bottomView)
+        self.view.bringSubviewToFront(self.bottomView)
         self.choosePencilView.cl_y = self.bottomView.cl_y
         UIView.animate(withDuration: 0.3, animations: { 
             self.choosePencilView.cl_y = self.bottomView.cl_y-40
