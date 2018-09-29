@@ -33,8 +33,8 @@ class CLSingleTypeCell: UICollectionViewCell {
         super.awakeFromNib()
         
         CLPickersTools.instence.setupBottomViewGradient(superView: self.bottomView)
-        self.bottomView.bringSubviewToFront(self.timerLable) // 防止渐变色同化label
-        self.bottomView.bringSubviewToFront(self.vedioImageView)
+        self.bottomView.bringSubview(toFront: self.timerLable) // 防止渐变色同化label
+        self.bottomView.bringSubview(toFront: self.vedioImageView)
         
         self.iconView.isUserInteractionEnabled = true
                 

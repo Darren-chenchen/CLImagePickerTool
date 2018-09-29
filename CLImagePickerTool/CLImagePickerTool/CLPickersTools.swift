@@ -420,7 +420,7 @@ class CLPickersTools {
             PopViewUtil.alert(title: photoLimitStr, message: clickSetStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {
                 
             }, rightHandler: {
-                let url = URL(string: UIApplication.openSettingsURLString)
+                let url = URL(string: UIApplicationOpenSettingsURLString)
                 if let url = url, UIApplication.shared.canOpenURL(url) {
                     if #available(iOS 10, *) {
                         UIApplication.shared.open(url, options: [:],
@@ -453,7 +453,7 @@ class CLPickersTools {
             PopViewUtil.alert(title: cameraLimitStr, message: clickCameraStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {
                 
             }, rightHandler: {
-                let url = URL(string: UIApplication.openSettingsURLString)
+                let url = URL(string: UIApplicationOpenSettingsURLString)
                 if let url = url, UIApplication.shared.canOpenURL(url) {
                     if #available(iOS 10, *) {
                         UIApplication.shared.open(url, options: [:],

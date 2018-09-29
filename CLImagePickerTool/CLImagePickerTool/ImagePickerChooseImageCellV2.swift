@@ -105,8 +105,8 @@ class ImagePickerChooseImageCellV2: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.bottomView.bringSubviewToFront(self.timerLable) // 防止渐变色同化label
-        self.bottomView.bringSubviewToFront(self.vedioImageView)
+        self.bottomView.bringSubview(toFront: self.timerLable) // 防止渐变色同化label
+        self.bottomView.bringSubview(toFront: self.vedioImageView)
         
         self.iconView.isUserInteractionEnabled = true
         
