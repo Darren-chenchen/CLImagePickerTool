@@ -92,7 +92,7 @@ class CLCropViewController: CLBaseImagePickerViewController {
         
         let layer = CAShapeLayer()
         layer.fillColor = UIColor(white: 0, alpha: 0.5).cgColor
-        layer.fillRule = CAShapeLayerFillRule.evenOdd
+        layer.fillRule = kCAFillRuleEvenOdd
         layer.path = path.cgPath
         self.view.layer.addSublayer(layer)
         
