@@ -337,7 +337,10 @@ class CLPickersTools {
             // 取出之前的数据
             let dataArr = UserDefaults.standard.value(forKey: CLChooseImageAssetLocalIdentifierKey)
             var arr: Array<String> = dataArr as! Array<String>
-            arr.remove(at: arr.index(of: asset.localIdentifier)!)
+            let i = arr.index(of: asset.localIdentifier)
+            if i != nil {
+                arr.remove(at: i!)
+            }
             UserDefaults.standard.set(arr, forKey: CLChooseImageAssetLocalIdentifierKey)
             UserDefaults.standard.synchronize()
         }

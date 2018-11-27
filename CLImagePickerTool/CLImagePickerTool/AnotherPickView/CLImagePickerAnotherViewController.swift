@@ -35,8 +35,33 @@ class CLImagePickerAnotherViewController: UIViewController {
         super.viewDidLoad()
 
         self.initView()
+        
+        CLNotificationCenter.addObserver(self, selector: #selector(CLImagePickerAnotherViewController.PreviewForSelectOrNotSelectedNoticFunc), name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: nil)
     }
-    
+    deinit {
+        CLNotificationCenter.removeObserver(self)
+    }
+    @objc func PreviewForSelectOrNotSelectedNoticFunc(notic:Notification) {
+        
+        let modelPreView = notic.object as! PreviewModel
+        for model in (self.photoArr ?? []) {
+            if model.phAsset == modelPreView.phAsset {
+                model.isSelect = modelPreView.isCheck
+            }
+        }
+        
+        if CLPickersTools.instence.getSavePictureCount() > 0 {
+            let title = "\(sureStr)(\(CLPickersTools.instence.getSavePictureCount()))"
+            self.sureBtn.setTitle(title, for: .normal)
+            self.sureBtn.isEnabled = true
+            self.resetBtn.isEnabled = true
+        } else {
+            self.sureBtn.isEnabled = false
+            self.resetBtn.isEnabled = false
+        }
+        
+        self.collectionView.reloadData()
+    }
     func initView() {
         // 存储用户设置的最多图片数量
         UserDefaults.standard.set(MaxImagesCount, forKey: CLImagePickerMaxImagesCount)

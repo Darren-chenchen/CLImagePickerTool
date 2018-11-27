@@ -28,9 +28,11 @@
 
 # 更新日志
 
--版本号 2.2.9：优化横屏问题
+-2.2.9：优化横屏问题
 
--版本号 2.3.0：优化命名规范问题（CLImagePickersTool统一改成CLImagePickerTool，中间的s去掉了）
+-2.3.0：优化命名规范问题（CLImagePickersTool统一改成CLImagePickerTool，中间的s去掉了）
+
+-2.3.2：fix bug
 
 # 使用方式
 1.由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
