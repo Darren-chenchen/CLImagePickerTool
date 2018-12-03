@@ -22,7 +22,7 @@ class CLBaseImagePickerViewController: UIViewController {
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         btn.setTitleColor(UIColor.black, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        btn.addTarget(self, action: #selector(CLBaseImagePickerViewController.rightBtnClick), for: UIControlEvents.touchUpInside)
+        btn.addTarget(self, action: #selector(CLBaseImagePickerViewController.rightBtnClick), for: UIControl.Event.touchUpInside)
         return btn
     }()
     // 标题
@@ -35,7 +35,7 @@ class CLBaseImagePickerViewController: UIViewController {
     @objc lazy var backBtn: UIButton = {
         let btn = UIButton()
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: -12, bottom: 0, right: 0)
-        btn.setImage(UIImage(named: "btn_back2", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for:UIControlState())
+        btn.setImage(UIImage(named: "btn_back2", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for:UIControl.State())
         btn.addTarget(self, action: #selector(CLBaseImagePickerViewController.backBtnclick), for: .touchUpInside)
         return btn
     }()
@@ -69,33 +69,33 @@ class CLBaseImagePickerViewController: UIViewController {
         self.backBtn.translatesAutoresizingMaskIntoConstraints = false
 
         // 导航栏
-        self.customNavBar.addConstraint(NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: KNavgationBarHeight))
+        self.customNavBar.addConstraint(NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: KNavgationBarHeight))
         self.view.addConstraints([
-            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.customNavBar, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0)
             ])
         // toolbar
-        self.toobar.addConstraint(NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: KNavgationBarHeight))
+        self.toobar.addConstraint(NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: KNavgationBarHeight))
         self.customNavBar.addConstraints([
-            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.customNavBar, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.customNavBar, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.toobar, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.customNavBar, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0)
             ])
         // 右边的按钮
-        self.rightBtn.addConstraint(NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 44))
-        self.rightBtn.addConstraint(NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 64))
+        self.rightBtn.addConstraint(NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 44))
+        self.rightBtn.addConstraint(NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 64))
         self.customNavBar.addConstraints([
-            NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.top, multiplier: 1, constant: titleY),
-            NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+            NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.customNavBar, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: titleY),
+            NSLayoutConstraint.init(item: self.rightBtn, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.customNavBar, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0)
             ])
         
         // 返回按钮
-        self.backBtn.addConstraint(NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 44))
-        self.backBtn.addConstraint(NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 50))
+        self.backBtn.addConstraint(NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 44))
+        self.backBtn.addConstraint(NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 50))
         self.customNavBar.addConstraints([
-            NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.top, multiplier: 1, constant: titleY),
-            NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.customNavBar, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+            NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.customNavBar, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: titleY),
+            NSLayoutConstraint.init(item: self.backBtn, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.customNavBar, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
             ])
     }
     
@@ -108,7 +108,7 @@ class CLBaseImagePickerViewController: UIViewController {
         
         // 毛玻璃效果
         self.customNavBar.addSubview(self.toobar)
-        self.customNavBar.sendSubview(toBack: self.toobar)
+        self.customNavBar.sendSubviewToBack(self.toobar)
         
         self.customNavBar.addSubview(self.backBtn)
         self.backBtn.isHidden = true

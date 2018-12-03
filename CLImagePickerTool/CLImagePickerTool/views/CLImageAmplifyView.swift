@@ -97,60 +97,60 @@ class CLImageAmplifyView: UIView {
         self.circleBtn.translatesAutoresizingMaskIntoConstraints = false
 
         win?.addConstraints([
-            NSLayoutConstraint.init(item: self, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: win, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: win, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: win, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: win, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+            NSLayoutConstraint.init(item: self, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: win, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: win, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: win, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: win, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0)
             ])
         self.addConstraints([
-            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.scrollView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0)
             ])
         
         if self.selectBtn.superview == self {
-            self.selectBtn.addConstraint(NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 25))
-            self.selectBtn.addConstraint(NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 25))
+            self.selectBtn.addConstraint(NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 25))
+            self.selectBtn.addConstraint(NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 25))
             self.addConstraints([
-                NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 28),
-                NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -20)
+                NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 28),
+                NSLayoutConstraint.init(item: self.selectBtn, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -20)
                 ])
         }
         
         if self.bottomView.superview == self {
             let viewH: CGFloat = UIDevice.current.isX() == true ? 44+34:44
-            self.bottomView.addConstraint(NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: viewH))
+            self.bottomView.addConstraint(NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: viewH))
             self.addConstraints([
-                NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+                NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint.init(item: self.bottomView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0)
                 ])
         }
         
         if self.singleSureBtn.superview == self.bottomView {
-            self.singleSureBtn.addConstraint(NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 44))
-            self.singleSureBtn.addConstraint(NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 80))
+            self.singleSureBtn.addConstraint(NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 44))
+            self.singleSureBtn.addConstraint(NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 80))
             self.bottomView.addConstraints([
-                NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.bottomView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-                NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.bottomView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+                NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.bottomView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0),
+                NSLayoutConstraint.init(item: self.singleSureBtn, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.bottomView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0)
                 ])
         }
 
         if self.btnEditor.superview == self.bottomView {
-            self.btnEditor.addConstraint(NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 44))
-            self.btnEditor.addConstraint(NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 80))
+            self.btnEditor.addConstraint(NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 44))
+            self.btnEditor.addConstraint(NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 80))
             self.bottomView.addConstraints([
-                NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.bottomView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-                NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.bottomView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+                NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.bottomView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0),
+                NSLayoutConstraint.init(item: self.btnEditor, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.bottomView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
                 ])
         }
         if self.circleBtn.superview == self {
-            self.circleBtn.addConstraint(NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 30))
-            self.circleBtn.addConstraint(NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0, constant: 30))
+            self.circleBtn.addConstraint(NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 30))
+            self.circleBtn.addConstraint(NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 0, constant: 30))
             self.addConstraints([
-                NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -10),
-                NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -80)
+                NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -10),
+                NSLayoutConstraint.init(item: self.circleBtn, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: -80)
                 ])
         }
     }
@@ -222,7 +222,7 @@ class CLImageAmplifyView: UIView {
         } else {  // 多选
             self.addSubview(self.selectBtn)
             if isSelect {
-                self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+                self.setselectimg()
                 selectBtn.isSelected = true
             } else {
                 self.selectBtn.setBackgroundImage(UIImage(named: "", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
@@ -267,7 +267,7 @@ class CLImageAmplifyView: UIView {
                 })
                 return
             }
-            self.selectBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+            self.setselectimg()
             model.isCheck = true
             CLPickersTools.instence.savePicture(asset: (model.phAsset)!, isAdd: true)
         } else {
@@ -455,6 +455,12 @@ extension CLImageAmplifyView: CAAnimationDelegate {
     // Delegate 动画结束
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         
+    }
+    
+    func setselectimg() {
+        let img = UIImage(named: "photo_sel_photoPicker2", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        self.selectBtn.setBackgroundImage(img, for: .normal)
+        self.selectBtn.tintColor = CLPickersTools.instence.tineColor
     }
 }
 

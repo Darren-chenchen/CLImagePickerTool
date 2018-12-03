@@ -14,7 +14,7 @@ public class PopViewUtil: NSObject {
     @objc var activite: UIActivityIndicatorView?
     
     @objc func showLoading() {
-        activite = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        activite = UIActivityIndicatorView.init(style: .whiteLarge)
         activite?.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         activite?.center = (UIApplication.shared.keyWindow?.center)!
         activite?.color = UIColor.black
@@ -32,13 +32,13 @@ public class PopViewUtil: NSObject {
         let rootController = UIApplication.shared.keyWindow?.rootViewController
         if let tabController = rootController as? UITabBarController   {
             if let navController = tabController.selectedViewController as? UINavigationController{
-                return navController.childViewControllers.last
+                return navController.children.last
             }else{
                 return tabController
             }
         }else if let navController = rootController as? UINavigationController {
             
-            return navController.childViewControllers.last
+            return navController.children.last
         }else{
             
             return rootController

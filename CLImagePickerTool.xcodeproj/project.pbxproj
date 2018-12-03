@@ -58,6 +58,7 @@
 		951E43081F50005000E4C4A7 /* btn_back_w@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E43071F50005000E4C4A7 /* btn_back_w@3x.png */; };
 		951E430B1F53BE6500E4C4A7 /* btn_back2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E43091F53BE6500E4C4A7 /* btn_back2@2x.png */; };
 		951E430C1F53BE6500E4C4A7 /* btn_back2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951E430A1F53BE6500E4C4A7 /* btn_back2@3x.png */; };
+		95302DBB21B55E1D0022227E /* photo_sel_photoPicker2.png in Resources */ = {isa = PBXBuildFile; fileRef = 95302DBA21B55E1C0022227E /* photo_sel_photoPicker2.png */; };
 		95304E7C1F32F036001F76B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304E7B1F32F036001F76B6 /* AppDelegate.swift */; };
 		95304E7E1F32F036001F76B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95304E7D1F32F036001F76B6 /* ViewController.swift */; };
 		95304E811F32F036001F76B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95304E7F1F32F036001F76B6 /* Main.storyboard */; };
@@ -291,6 +292,7 @@
 		952447E31F4BBFCF0055F4CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		952447E41F4BBFD50055F4CD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		952447E51F4BBFD50055F4CD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		95302DBA21B55E1C0022227E /* photo_sel_photoPicker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_sel_photoPicker2.png; sourceTree = "<group>"; };
 		95304E781F32F036001F76B6 /* CLImagePickerTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CLImagePickerTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95304E7B1F32F036001F76B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95304E7D1F32F036001F76B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 				9514444F1F3D54C9006C7731 /* clr_black@2x.png */,
 				951444501F3D54C9006C7731 /* clr_black@3x.png */,
 				95304F3F1F3419A5001F76B6 /* photo_sel_photoPicker.png */,
+				95302DBA21B55E1C0022227E /* photo_sel_photoPicker2.png */,
 				95304EE11F3324BF001F76B6 /* cl_imagepickervedio.png */,
 				95304EE21F3324BF001F76B6 /* clvedioplaybtn.png */,
 				95304EE31F3324BF001F76B6 /* takePicture.png */,
@@ -706,13 +709,13 @@
 					95304E771F32F036001F76B6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = MB49F9C6PJ;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					958D2DE21F57E43200A0BB0D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = X3GVR7H4ML;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -759,6 +762,7 @@
 				951E430B1F53BE6500E4C4A7 /* btn_back2@2x.png in Resources */,
 				951444521F3D54C9006C7731 /* clr_black@3x.png in Resources */,
 				9514447A1F3D563D006C7731 /* ic_pre_grey@3x.png in Resources */,
+				95302DBB21B55E1D0022227E /* photo_sel_photoPicker2.png in Resources */,
 				951444791F3D563D006C7731 /* ic_pre_grey@2x.png in Resources */,
 				951444621F3D54F1006C7731 /* clr_purple@3x.png in Resources */,
 				951444391F3D4FBA006C7731 /* EditorViewController.xib in Resources */,
@@ -1136,7 +1140,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hd.CLImagePickerTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1152,7 +1156,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hd.CLImagePickerTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1174,7 +1178,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "hd.CLImagePickerTool-framework";
 				PRODUCT_NAME = ImagePickerTool;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1198,7 +1202,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "hd.CLImagePickerTool-framework";
 				PRODUCT_NAME = ImagePickerTool;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

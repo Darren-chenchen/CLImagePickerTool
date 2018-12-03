@@ -26,6 +26,8 @@ class CLPickersTools {
     // 配置状态栏的颜色
     public var statusBarType: CLImagePickerToolStatusBarType = .black
     
+    public var tineColor = UIColor.init(red: 85/255.0, green: 182/255.0, blue: 55/255.0, alpha: 1)
+
     fileprivate var dataArr = [[String:[CLImagePickerPhotoModel]]]()
     
     func loadData() -> Array<[String:[CLImagePickerPhotoModel]]>{
@@ -423,10 +425,10 @@ class CLPickersTools {
             PopViewUtil.alert(title: photoLimitStr, message: clickSetStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {
                 
             }, rightHandler: {
-                let url = URL(string: UIApplicationOpenSettingsURLString)
+                let url = URL(string: UIApplication.openSettingsURLString)
                 if let url = url, UIApplication.shared.canOpenURL(url) {
                     if #available(iOS 10, *) {
-                        UIApplication.shared.open(url, options: [:],
+                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
                                                   completionHandler: {
                                                     (success) in
                         })
@@ -456,10 +458,10 @@ class CLPickersTools {
             PopViewUtil.alert(title: cameraLimitStr, message: clickCameraStr, leftTitle: cancelStr, rightTitle: setStr, leftHandler: {
                 
             }, rightHandler: {
-                let url = URL(string: UIApplicationOpenSettingsURLString)
+                let url = URL(string: UIApplication.openSettingsURLString)
                 if let url = url, UIApplication.shared.canOpenURL(url) {
                     if #available(iOS 10, *) {
-                        UIApplication.shared.open(url, options: [:],
+                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
                                                   completionHandler: {
                                                     (success) in
                         })
@@ -487,4 +489,9 @@ class CLPickersTools {
     deinit {
         print("clpickertool释放")
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

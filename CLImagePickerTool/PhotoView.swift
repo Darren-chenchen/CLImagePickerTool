@@ -59,7 +59,7 @@ class PhotoView: UIView {
                 let imageX: CGFloat = magin + (magin + imageW)*CGFloat(i)
                 let imageY: CGFloat = 0
                 imageView.frame =  CGRect(x:imageX, y:imageY, width:imageW, height:imageH)
-                imageView.contentMode = UIViewContentMode.scaleAspectFill
+                imageView.contentMode = UIView.ContentMode.scaleAspectFill
                 imageView.clipsToBounds = true
                 imageView.isUserInteractionEnabled  = true
                 imageView.image = picArr[i]

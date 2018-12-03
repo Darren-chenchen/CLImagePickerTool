@@ -25,6 +25,7 @@
 - 本地化，支持英文
 - 支持git图展示
 - 优化collectionView的滚动效果
+- 支持改变主题色
 
 # 更新日志
 
@@ -33,6 +34,16 @@
 -2.3.0：优化命名规范问题（CLImagePickersTool统一改成CLImagePickerTool，中间的s去掉了）
 
 -2.3.2：fix bug
+
+-3.0.0: 重大升级
+
+- 支持swift4.2
+
+- 访问相册方法部分过期，新方法可以传入当前控制器，也可以不传，当不传入当前控制器时，CLImagePickerTool内部会获取当前窗口的控制器，建议当获取不到时，可传入当前控制器。
+
+- 支持设置tineColor(按钮颜色，图片颜色高度定制)
+
+- 增加相册中是否展示拍照图片，默认展示，public var showCamaroInPicture = true
 
 # 使用方式
 1.由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
@@ -62,6 +73,11 @@ github "Darren-chenchen/CLImagePickerTool"
 // superVC 当前的控制器 MaxImagesCount最多选择的照片数量
 let imagePickTool = CLImagePickerTool()
 imagePickTool.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,cutImage) in
+    print("返回的asset数组是\(asset)")		
+ }
+ 
+ 3.0.0 新增方式
+ imagePickTool.cl_setupImagePickerWith(MaxImagesCount: 6) { (asset,cutImage) in
     print("返回的asset数组是\(asset)")		
  }
 ```
@@ -188,6 +204,8 @@ public var navColor: UIColor? = nil
 public var navTitleColor: UIColor? = nil
 // 配置状态栏的颜色
 public var statusBarType: CLImagePickerToolStatusBarType = .black
+// 相册中是否展示拍照图片
+public var showCamaroInPicture = true
 ```		
 
 #### 注意点

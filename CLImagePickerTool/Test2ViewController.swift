@@ -15,6 +15,7 @@ class Test2ViewController: UIViewController {
     let imagePickTool2 = CLImagePickerTool()
     let imagePickTool3 = CLImagePickerTool()
     let imagePickTool4 = CLImagePickerTool()
+    let imagePickTool5 = CLImagePickerTool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class Test2ViewController: UIViewController {
     
     @IBAction func clickBtn1(_ sender: Any) {
         let imagePickTool = CLImagePickerTool()
-        imagePickTool.setupImagePickerAnotherWayWith(maxImagesCount: 1, superVC: self) { (asserArr, img) in
+        imagePickTool.cl_setupImagePickerAnotherWayWith(maxImagesCount: 1, superVC: self) { (asserArr, img) in
             print("成功返回\(asserArr)")
         }
         
@@ -44,7 +45,7 @@ class Test2ViewController: UIViewController {
     
     // 直接访问相机
     @IBAction func clickBtn2(_ sender: Any) {
-        imagePickTool.camera(superVC: self)
+        imagePickTool.cl_camera()
         imagePickTool.clPickerToolClouse = {(assetArr,img) in
             print(assetArr)
             print(img ?? "nil")
@@ -56,7 +57,7 @@ class Test2ViewController: UIViewController {
         imagePickTool2.isHiddenVideo = true
         imagePickTool2.singleImageChooseType = .singlePicture
         imagePickTool2.singleModelImageCanEditor = true
-        imagePickTool2.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+        imagePickTool2.cl_setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             self.imageView.image = editorImage
         }
     }
@@ -65,7 +66,7 @@ class Test2ViewController: UIViewController {
         imagePickTool3.isHiddenVideo = true
         imagePickTool3.singlePictureCropScale = 2
         imagePickTool3.singleImageChooseType = .singlePictureCrop
-        imagePickTool3.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+        imagePickTool3.cl_setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             self.imageView.image = editorImage
         }
     }
@@ -75,7 +76,13 @@ class Test2ViewController: UIViewController {
         imagePickTool4.singleImageChooseType = .singlePictureCrop
         imagePickTool4.singlePictureCropScale = 230/144.5
         imagePickTool4.singleModelImageCanEditor = true
-        imagePickTool4.setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+        imagePickTool4.cl_setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+            self.imageView.image = editorImage
+        }
+    }
+    @IBAction func clickTineBtn(_ sender: Any) {
+        imagePickTool5.tineColor = UIColor.red
+        imagePickTool5.cl_setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
             self.imageView.image = editorImage
         }
     }

@@ -47,7 +47,8 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
             self.chooseBtn.isSelected = self.model?.isSelect ?? false
             self.chooseImageBtn.isSelected = self.model?.isSelect ?? false
             if self.chooseImageBtn.isSelected {
-                self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+                self.setselectimg()
+                
             } else {
                 self.chooseImageBtn.setBackgroundImage(nil, for: .normal)
             }
@@ -78,8 +79,8 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         CLPickersTools.instence.setupBottomViewGradient(superView: self.bottomView)
-        self.bottomView.bringSubview(toFront: self.timerLable) // 防止渐变色同化label
-        self.bottomView.bringSubview(toFront: self.vedioImageView)
+        self.bottomView.bringSubviewToFront(self.timerLable) // 防止渐变色同化label
+        self.bottomView.bringSubviewToFront(self.vedioImageView)
         
         self.iconView.isUserInteractionEnabled = true
         
@@ -165,7 +166,8 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
                 imagePickerChooseImage!()
             }
             
-            self.chooseImageBtn.setBackgroundImage(UIImage(named: "photo_sel_photoPicker", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for: .normal)
+            self.setselectimg()
+
         } else {
             
             CLPickersTools.instence.savePicture(asset: (self.model?.phAsset)!, isAdd: false)
@@ -195,5 +197,11 @@ class ImagePickerChooseImageCell: UICollectionViewCell {
         shakeAnimation.toValue = 1
         shakeAnimation.autoreverses = true
         self.chooseImageBtn?.layer.add(shakeAnimation, forKey: nil)
+    }
+    
+    func setselectimg() {
+        let img = UIImage(named: "photo_sel_photoPicker2", in: BundleUtil.getCurrentBundle(), compatibleWith: nil)?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        self.chooseImageBtn.setBackgroundImage(img, for: .normal)
+        self.chooseImageBtn.tintColor = CLPickersTools.instence.tineColor
     }
 }

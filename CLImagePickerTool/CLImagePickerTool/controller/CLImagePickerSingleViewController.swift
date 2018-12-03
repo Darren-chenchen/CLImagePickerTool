@@ -36,6 +36,8 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
     var singlePictureCropScale: CGFloat?
     // 单选模式下图片可以编辑
     @objc var singleModelImageCanEditor: Bool = false
+    // 相册中是否展示相机
+    var showCamaroInPicture = true
     
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var flowout: UICollectionViewFlowLayout!
@@ -90,7 +92,7 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         }
         
         // 数组中新增一个数据代表相机图片
-        if self.isAllPhoto {
+        if self.isAllPhoto && showCamaroInPicture {
             let model = CLImagePickerPhotoModel()
             let assetArrResult = PHAsset.fetchAssets(withLocalIdentifiers: [(self.photoArr?.first?.phAsset?.localIdentifier)!], options: nil)
             model.phAsset = assetArrResult.firstObject
@@ -222,6 +224,12 @@ class CLImagePickerSingleViewController: CLBaseImagePickerViewController {
         self.lookBtn.setTitle(previewStr, for: .normal)
         self.resetBtn.setTitle(resetStr, for: .normal)
         self.sureBtn.setTitle(sureStr, for: .normal)
+        
+        self.rightBtn.setTitleColor(CLPickersTools.instence.tineColor, for: .normal)
+        self.lookBtn.setTitleColor(CLPickersTools.instence.tineColor, for: .normal)
+        self.resetBtn.setTitleColor(CLPickersTools.instence.tineColor, for: .normal)
+        self.sureBtn.setTitleColor(CLPickersTools.instence.tineColor, for: .normal)
+
 
         if CLPickersTools.instence.getSavePictureCount() > 0 {
             let title = "\(sureStr)(\(CLPickersTools.instence.getSavePictureCount()))"
@@ -364,7 +372,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // 相机
-        if indexPath.row == (self.photoArr?.count ?? 1) - 1 && self.isAllPhoto {
+        if indexPath.row == (self.photoArr?.count ?? 1) - 1 && self.isAllPhoto && showCamaroInPicture {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CLImagePickerCamaroCell", for: indexPath) as! CLImagePickerCamaroCell
             cell.clickCamaroCell = {[weak self]() in
 
@@ -464,24 +472,27 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
     }
     
     func isCameraAvailable() -> Bool{
-        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
+        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)
     }
 
 }
 
 extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
         self.dismiss(animated: true) {}
         
         PopViewUtil.share.showLoading()
 
         // 保存到相册
-        let type = info[UIImagePickerControllerMediaType] as? String
+        let type = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as? String
         if type == "public.image" {
             CLPickersTools.instence.authorizeSave { (state) in
                 if state == .authorized {
-                    let photo = info[UIImagePickerControllerOriginalImage]
+                    let photo = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]
                     UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLImagePickerSingleViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 } else {
                     DispatchQueue.main.async(execute: {
@@ -490,10 +501,10 @@ extension CLImagePickerSingleViewController:UIImagePickerControllerDelegate,UINa
                             PopViewUtil.share.stopLoading()
                             picker.dismiss(animated: true, completion: nil)
                         }, rightHandler: {
-                            let url = URL(string: UIApplicationOpenSettingsURLString)
+                            let url = URL(string: UIApplication.openSettingsURLString)
                             if let url = url, UIApplication.shared.canOpenURL(url) {
                                 if #available(iOS 10, *) {
-                                    UIApplication.shared.open(url, options: [:],
+                                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
                                                               completionHandler: {
                                                                 (success) in
                                     })
@@ -545,4 +556,19 @@ private extension UICollectionView {
         let allLayoutAttributes = collectionViewLayout.layoutAttributesForElements(in: rect)!
         return allLayoutAttributes.map { $0.indexPath }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

@@ -25,7 +25,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
         
     @objc var cameraPicker: UIImagePickerController!
     
-    private var  superVC: UIViewController?
+    private weak var superVC: UIViewController?
     
     public var clPickerToolClouse: CLPickerToolClouse?
     
@@ -49,8 +49,17 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
     public var navTitleColor: UIColor? = nil
     // 配置状态栏的颜色
     public var statusBarType: CLImagePickerToolStatusBarType = .black
+    // 相册中是否展示拍照图片
+    public var showCamaroInPicture = true
+    // 文字和图片的颜色 85 182 55
+    public var tineColor = UIColor.init(red: 85/255.0, green: 182/255.0, blue: 55/255.0, alpha: 1) {
+        didSet {
+            CLPickersTools.instence.tineColor = tineColor
+        }
+    }
     
     // 第二种弹出方式
+    @available(*, deprecated, message: "Use 'cl_setupImagePickerAnotherWayWith' instead.")
     func setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         CLPickersTools.instence.authorize(authorizeClouse: { (state) in
 
@@ -71,8 +80,34 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
             }
         })
     }
+    
+    func cl_setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController? = nil, didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+        CLPickersTools.instence.authorize(authorizeClouse: { (state) in
+            
+            self.superVC = superVC
+            if self.superVC == nil {
+                self.superVC = self.getCurrentViewcontroller()
+            }
+            if state == .authorized {
+                let anotherVC = CLImagePickerAnotherViewController.init(nibName: "CLImagePickerAnotherViewController", bundle: BundleUtil.getCurrentBundle())
+                anotherVC.modalPresentationStyle = .custom
+                anotherVC.transitioningDelegate = CLPresent.instance
+                
+                anotherVC.MaxImagesCount = maxImagesCount
+                anotherVC.isHiddenVideo = self.isHiddenVideo
+                anotherVC.isHiddenImage = self.isHiddenImage
+                anotherVC.onlyChooseImageOrVideo = self.onlyChooseImageOrVideo
+                
+                anotherVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
+                    didChooseImageSuccess(assetArr,image)
+                }
+                self.superVC?.present(anotherVC, animated: true, completion: nil)
+            }
+        })
+    }
 
     // 判断相机是放在外面还是内部
+    @available(*, deprecated, message: "Use 'cl_setupImagePickerWith' instead.")
     @objc public func setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.superVC = superVC
@@ -80,13 +115,13 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
 
         if self.cameraOut == true {  // 拍照功能在外面
             var alert: UIAlertController!
-            alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-            let cleanAction = UIAlertAction(title: cancelStr, style: UIAlertActionStyle.cancel,handler:nil)
-            let photoAction = UIAlertAction(title: tackPhotoStr, style: UIAlertActionStyle.default){ (action:UIAlertAction)in
+            alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+            let cleanAction = UIAlertAction(title: cancelStr, style: UIAlertAction.Style.cancel,handler:nil)
+            let photoAction = UIAlertAction(title: tackPhotoStr, style: UIAlertAction.Style.default){ (action:UIAlertAction)in
                 // 访问相机
                 self.camera(superVC:superVC)
             }
-            let choseAction = UIAlertAction(title: chooseStr, style: UIAlertActionStyle.default){ (action:UIAlertAction)in
+            let choseAction = UIAlertAction(title: chooseStr, style: UIAlertAction.Style.default){ (action:UIAlertAction)in
                 
                 self.gotoPhoto(MaxImagesCount: MaxImagesCount)
             }
@@ -96,6 +131,41 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
             alert.addAction(choseAction)
             superVC.present(alert, animated: true, completion: nil)
 
+        } else {
+            self.gotoPhoto(MaxImagesCount: MaxImagesCount)
+        }
+    }
+    
+    @objc public func cl_setupImagePickerWith(MaxImagesCount: Int,superVC:UIViewController? = nil,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+        
+        self.superVC = superVC
+        if self.superVC == nil {
+            self.superVC = self.getCurrentViewcontroller()
+        }
+        if self.superVC == nil {
+            print("未获取到当前控制器")
+            return
+        }
+        self.clPickerToolClouse = didChooseImageSuccess
+        
+        if self.cameraOut == true {  // 拍照功能在外面
+            var alert: UIAlertController!
+            alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+            let cleanAction = UIAlertAction(title: cancelStr, style: UIAlertAction.Style.cancel,handler:nil)
+            let photoAction = UIAlertAction(title: tackPhotoStr, style: UIAlertAction.Style.default){ (action:UIAlertAction)in
+                // 访问相机
+                self.cl_camera(superVC: self.superVC)
+            }
+            let choseAction = UIAlertAction(title: chooseStr, style: UIAlertAction.Style.default){ (action:UIAlertAction)in
+                
+                self.gotoPhoto(MaxImagesCount: MaxImagesCount)
+            }
+            
+            alert.addAction(cleanAction)
+            alert.addAction(photoAction)
+            alert.addAction(choseAction)
+            self.superVC!.present(alert, animated: true, completion: nil)
+            
         } else {
             self.gotoPhoto(MaxImagesCount: MaxImagesCount)
         }
@@ -114,6 +184,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
                     singlePictureCropScale:self.singlePictureCropScale,
                     onlyChooseImageOrVideo:self.onlyChooseImageOrVideo,
                     singleModelImageCanEditor:self.singleModelImageCanEditor,
+                    showCamaroInPicture: self.showCamaroInPicture,
                     isHiddenImage:self.isHiddenImage,
                     navColor:self.navColor,
                     navTitleColor:self.navTitleColor,
@@ -129,6 +200,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
     }
     
     // 访问相机
+    @available(*, deprecated, message: "Use 'cl_camera' instead.")
     @objc public func camera(superVC:UIViewController) {
         
         CLPickersTools.instence.authorizeCamaro { (state) in
@@ -144,9 +216,31 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
             }
         }
     }
+    @objc public func cl_camera(superVC:UIViewController? = nil) {
+        self.superVC = superVC
+        if self.superVC == nil {
+            self.superVC = self.getCurrentViewcontroller()
+        }
+        if self.superVC == nil {
+            print("未获取到当前控制器")
+            return
+        }
+        CLPickersTools.instence.authorizeCamaro { (state) in
+            if state == .authorized {
+                if self.isCameraAvailable() == false {
+                    PopViewUtil.alert(message: "相机不可用", leftTitle: "", rightTitle: "确定", leftHandler: nil, rightHandler: nil)
+                    return
+                }
+                self.cameraPicker = UIImagePickerController()
+                self.cameraPicker.delegate = self
+                self.cameraPicker.sourceType = .camera
+                self.superVC!.present((self.cameraPicker)!, animated: true, completion: nil)
+            }
+        }
+    }
     
     func isCameraAvailable() -> Bool{
-        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
+        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)
     }
     
     
@@ -158,9 +252,9 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
             CLImagePickerTool.getAssetOrigin(asset: item, dealImageSuccess: { (img, info) in
                 if img != nil {
                     // 对图片压缩
-                    if UIImageJPEGRepresentation(img!,scale) == nil {
+                    if img!.jpegData(compressionQuality: scale) == nil {
                     } else {
-                        let zipImageData = UIImageJPEGRepresentation(img!,scale)!
+                        let zipImageData = img!.jpegData(compressionQuality: scale)!
                         
                         let image = UIImage(data: zipImageData)
                         
@@ -274,15 +368,18 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
         }
     }
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
         PopViewUtil.share.showLoading()
         // 保存到相册
-        let type = info[UIImagePickerControllerMediaType] as? String
+        let type = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as? String
         if type == "public.image" {
             CLPickersTools.instence.authorizeSave { (state) in
                 if state == .authorized {
-                    let photo = info[UIImagePickerControllerOriginalImage]
+                    let photo = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]
                     UIImageWriteToSavedPhotosAlbum(photo as! UIImage, self, #selector(CLImagePickerTool.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 } else {
                     DispatchQueue.main.async(execute: {
@@ -293,10 +390,10 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
                         }, rightHandler: {
                             PopViewUtil.share.stopLoading()
                             picker.dismiss(animated: true, completion: nil)
-                            let url = URL(string: UIApplicationOpenSettingsURLString)
+                            let url = URL(string: UIApplication.openSettingsURLString)
                             if let url = url, UIApplication.shared.canOpenURL(url) {
                                 if #available(iOS 10, *) {
-                                    UIApplication.shared.open(url, options: [:],
+                                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
                                                               completionHandler: {
                                                                 (success) in
                                     })
@@ -391,6 +488,37 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
         self.cameraPicker.pushViewController(editorVC, animated: true)
     }
     
+    // 获取当前控制器
+    func getCurrentViewcontroller() -> UIViewController?{
+        let rootController = UIApplication.shared.keyWindow?.rootViewController
+        if let tabController = rootController as? UITabBarController   {
+            if let navController = tabController.selectedViewController as? UINavigationController{
+                return navController.children.last
+            }else{
+                return tabController
+            }
+        }else if let navController = rootController as? UINavigationController {
+            return navController.children.last
+        }else{
+            return rootController
+        }
+    }
+    
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}

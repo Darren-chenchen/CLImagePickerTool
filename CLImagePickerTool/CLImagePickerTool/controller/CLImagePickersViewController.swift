@@ -29,9 +29,10 @@ class CLImagePickersViewController: UINavigationController {
         singlePictureCropScale:CGFloat?,
         onlyChooseImageOrVideo:Bool,
         singleModelImageCanEditor: Bool,
+        showCamaroInPicture: Bool,
         isHiddenImage:Bool,
-        navColor:UIColor?,
-        navTitleColor:UIColor?,
+        navColor:UIColor? = nil,
+        navTitleColor:UIColor? = nil,
         statusBarType:CLImagePickerToolStatusBarType,
         didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) -> CLImagePickersViewController {
         
@@ -47,7 +48,7 @@ class CLImagePickersViewController: UINavigationController {
         UserDefaults.standard.set(0, forKey: UserChooserType)
         UserDefaults.standard.synchronize()
         
-        // CLPickersTools是一个单利，在这个单利中记录导航栏的信息，可以对导航栏进行设置,但是这种方式存在bug，如果一个项目中多个地方使用这个框架，就不好控制单利
+        // CLPickersTools是一个单利，在这个单利中记录导航栏的信息，可以对导航栏进行设置
         CLPickersTools.instence.isHiddenVideo = isHiddenVideo  // 是否隐藏视频文件赋值
         CLPickersTools.instence.isHiddenImage = isHiddenImage
         CLPickersTools.instence.navColor = navColor
@@ -71,6 +72,7 @@ class CLImagePickersViewController: UINavigationController {
                      singlePictureCropScale:singlePictureCropScale,
                      onlyChooseImageOrVideo:onlyChooseImageOrVideo,
                      singleModelImageCanEditor:singleModelImageCanEditor,
+                     showCamaroInPicture: showCamaroInPicture,
                      didChooseImageSuccess:didChooseImageSuccess)
         return vc
     }
@@ -80,6 +82,7 @@ class CLImagePickersViewController: UINavigationController {
                    singlePictureCropScale:CGFloat?,
                    onlyChooseImageOrVideo:Bool,
                    singleModelImageCanEditor:Bool,
+                   showCamaroInPicture: Bool,
                    didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         
         self.imageCompleteClouse = didChooseImageSuccess
@@ -88,6 +91,7 @@ class CLImagePickersViewController: UINavigationController {
         let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
+        singleVC.showCamaroInPicture = showCamaroInPicture
         if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 || singleVC.navTitle == allPhoto4 {
             if cameraOut == false {  // 相机不是放在外面
                 singleVC.isAllPhoto = true
@@ -130,6 +134,8 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
     // 单选模式下图片可以编辑
     @objc var singleModelImageCanEditor: Bool = false
     
+    var showCamaroInPicture: Bool = true
+    
     @objc lazy var tableView: UITableView = {
         let tableView = UITableView.init(frame: CGRect(x:0,y:KNavgationBarHeight,width:KScreenWidth,height:KScreenHeight-KNavgationBarHeight), style: .plain)
         tableView.tableFooterView = UIView()
@@ -167,10 +173,10 @@ class CLImageAlbumPickerController: CLBaseImagePickerViewController {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         let margin: CGFloat = UIDevice.current.isX() == true ? 34:0
         self.view.addConstraints([
-            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: KNavgationBarHeight),
-            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -margin)
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: KNavgationBarHeight),
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint.init(item: self.tableView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: -margin)
             ])
     }
     override func rightBtnClick() {
@@ -218,6 +224,7 @@ extension CLImageAlbumPickerController:UITableViewDelegate,UITableViewDataSource
         let singleVC = CLImagePickerSingleViewController.init(nibName: "CLImagePickerSingleViewController", bundle: BundleUtil.getCurrentBundle())
         singleVC.navTitle = rowData?.keys.first ?? ""
         singleVC.photoArr = rowData?.values.first
+        singleVC.showCamaroInPicture = showCamaroInPicture
         if singleVC.navTitle == allPhoto || singleVC.navTitle == allPhoto2 || singleVC.navTitle == allPhoto3 || singleVC.navTitle == allPhoto4 {
             if cameraOut == false {  // 相机不是放在外面
                 singleVC.isAllPhoto = true
