@@ -11,12 +11,12 @@ import UIKit
 class CLBaseImagePickerViewController: UIViewController {
     
     // 自定义导航栏
-    @objc lazy var customNavBar: CustomNavgationView = {
+    lazy var customNavBar: CustomNavgationView = {
         let nav = CustomNavgationView()
         return nav
     }()
     // 右边第一个按钮
-    @objc lazy var rightBtn: UIButton = {
+    lazy var rightBtn: UIButton = {
         let btn = UIButton()
         btn.adjustsImageWhenHighlighted = false
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
@@ -26,13 +26,13 @@ class CLBaseImagePickerViewController: UIViewController {
         return btn
     }()
     // 标题
-    @objc var navTitle = "" {
+    var navTitle = "" {
         didSet{
             customNavBar.titleLable.text = navTitle
         }
     }
     // 返回按钮
-    @objc lazy var backBtn: UIButton = {
+    lazy var backBtn: UIButton = {
         let btn = UIButton()
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: -12, bottom: 0, right: 0)
         btn.setImage(UIImage(named: "btn_back2", in: BundleUtil.getCurrentBundle(), compatibleWith: nil), for:UIControl.State())
@@ -40,7 +40,7 @@ class CLBaseImagePickerViewController: UIViewController {
         return btn
     }()
     
-    @objc lazy var toobar: UIToolbar = {
+    lazy var toobar: UIToolbar = {
         // 添加磨玻璃
         let toolBar = UIToolbar.init()
         toolBar.barStyle = .default
