@@ -45,6 +45,10 @@
 
 - 增加相册中是否展示拍照图片，默认展示，public var showCamaroInPicture = true
 
+-3.0.1
+
+- 修复相册底部弹出的问题。
+
 # 使用方式
 1.由于该库设计的图片较多，类也较多，为了避免和项目中的文件冲突建议使用pod管理，有什么问题和需求可及时提出。
 
@@ -260,6 +264,7 @@ CLImagePickerTool.convertAssetToAvPlayerItem(asset: self.asset!, successClouse: 
 
 4.关于状态的颜色配置
 在这个库中设置状态颜色改变需要2部操作
+
 1）在info.plist文件中设置View controller-based status bar appearance为yes。
 
 	<key>UIViewControllerBasedStatusBarAppearance</key>

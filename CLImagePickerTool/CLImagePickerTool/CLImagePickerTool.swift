@@ -60,7 +60,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
     
     // 第二种弹出方式
     @available(*, deprecated, message: "Use 'cl_setupImagePickerAnotherWayWith' instead.")
-    func setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+    public func setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         CLPickersTools.instence.authorize(authorizeClouse: { (state) in
 
             if state == .authorized {
@@ -81,7 +81,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
         })
     }
     
-    func cl_setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController? = nil, didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
+    public func cl_setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController? = nil, didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
         CLPickersTools.instence.authorize(authorizeClouse: { (state) in
             
             self.superVC = superVC

@@ -45,7 +45,7 @@ class Test2ViewController: UIViewController {
     
     // 直接访问相机
     @IBAction func clickBtn2(_ sender: Any) {
-        imagePickTool.cl_camera()
+        imagePickTool.cl_camera(superVC: self)
         imagePickTool.clPickerToolClouse = {(assetArr,img) in
             print(assetArr)
             print(img ?? "nil")
