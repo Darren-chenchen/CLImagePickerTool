@@ -147,11 +147,17 @@ extension UIView {
 
 extension UIDevice {
     @objc public func isX() -> Bool {
-        if UIScreen.main.bounds.height == 812 {
-            return true
+        let window = UIApplication.shared.keyWindow
+        if #available(iOS 11.0, *) {
+            let bottomSafeInset = window?.safeAreaInsets.bottom
+            if (bottomSafeInset == 34.0 || bottomSafeInset == 21.0) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
         }
-        
-        return false
     }
     
     @objc public func isIOS11() -> Bool{

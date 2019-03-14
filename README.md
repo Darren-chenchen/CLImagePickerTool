@@ -45,7 +45,7 @@
 
 - 增加相册中是否展示拍照图片，默认展示，public var showCamaroInPicture = true
 
--3.0.1
+-3.0.2 适配iphone XS
 
 - 修复相册底部弹出的问题。
 
