@@ -81,9 +81,21 @@ class Test2ViewController: UIViewController {
         }
     }
     @IBAction func clickTineBtn(_ sender: Any) {
+//        imagePickTool5.tineColor = UIColor.red
+//        imagePickTool5.cl_setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
+//            self.imageView.image = editorImage
+//        }
+        
+        imagePickTool5.cameraOut = true
+        imagePickTool5.singleImageChooseType = .singlePicture
+        imagePickTool5.isHiddenVideo = true
         imagePickTool5.tineColor = UIColor.red
-        imagePickTool5.cl_setupImagePickerWith(MaxImagesCount: 6, superVC: self) { (asset,editorImage) in
-            self.imageView.image = editorImage
+        imagePickTool5.cl_setupImagePickerWith(MaxImagesCount: 1, superVC: self) { (asset,cutImage) in
+            print("返回的asset数组是(asset)")
+            let imageArr = CLImagePickerTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
+            print(imageArr)
+            
         }
+
     }
 }

@@ -26,7 +26,11 @@ class CLPickersTools {
     // 配置状态栏的颜色
     public var statusBarType: CLImagePickerToolStatusBarType = .black
     
-    public var tineColor = UIColor.init(red: 85/255.0, green: 182/255.0, blue: 55/255.0, alpha: 1)
+    public var tineColor = UIColor.init(red: 85/255.0, green: 182/255.0, blue: 55/255.0, alpha: 1) {
+        didSet {
+            mainColor = tineColor
+        }
+    }
 
     fileprivate var dataArr = [[String:[CLImagePickerPhotoModel]]]()
     

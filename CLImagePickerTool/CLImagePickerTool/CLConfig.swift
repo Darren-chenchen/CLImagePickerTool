@@ -55,7 +55,7 @@ func CLViewsBorder(_ view:UIView, borderWidth:CGFloat, borderColor:UIColor?=nil,
 }
 
 // 主题色
-let mainColor = CoustomColor(85, g: 182, b: 55, a: 1)
+var mainColor = CoustomColor(85, g: 182, b: 55, a: 1)
 
 
 // 所有照片的可能情况
