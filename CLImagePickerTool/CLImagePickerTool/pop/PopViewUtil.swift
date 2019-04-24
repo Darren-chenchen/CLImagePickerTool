@@ -10,10 +10,10 @@ import UIKit
 
 public class PopViewUtil: NSObject {
     
-    @objc static let share = PopViewUtil()
+    @objc public static let share = PopViewUtil()
     @objc var activite: UIActivityIndicatorView?
     
-    @objc func showLoading() {
+    @objc public func showLoading() {
         activite = UIActivityIndicatorView.init(style: .whiteLarge)
         activite?.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         activite?.center = (UIApplication.shared.keyWindow?.center)!
@@ -21,7 +21,7 @@ public class PopViewUtil: NSObject {
         UIApplication.shared.keyWindow?.addSubview(activite!)
         self.activite?.startAnimating()
     }
-    @objc func stopLoading() {
+    @objc public func stopLoading() {
         self.activite?.stopAnimating()
         self.activite?.removeFromSuperview()
         self.activite = nil
@@ -46,7 +46,7 @@ public class PopViewUtil: NSObject {
     }
     
     //MARK: - 标准的样式(标题，内容，左按钮，右按钮)
-    @objc static func  alert(title: String!,message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
+    @objc public static func  alert(title: String!,message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
 //        let alertVC = HDAlertViewController()
 //        alertVC.alert(title: title, message: message, leftTitle: leftTitle, rightTitle: rightTitle, leftHandler: leftHandler, rightHandler: rightHandler)
         let alertView = HDAlertWindowView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height))
@@ -54,7 +54,7 @@ public class PopViewUtil: NSObject {
     }
     
     //MARK: - 只有内容，左按钮，右按钮 或者只显示一个按钮
-    @objc static func alert(message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
+    @objc public static func alert(message: String!,leftTitle: String!,rightTitle: String!,leftHandler: (() -> ())?,rightHandler: (() -> ())?){
 //        let alertVC = HDAlertViewController()
 //        alertVC.alert(message: message, leftTitle: leftTitle, rightTitle: rightTitle, leftHandler: leftHandler, rightHandler: rightHandler)
         let alertView = HDAlertWindowView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height))
