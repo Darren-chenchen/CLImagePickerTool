@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CLImagePickerAnotherViewController" customModule="CLImagePickerTool" customModuleProvider="target">
             <connections>
+                <outlet property="bottomHYS" destination="h4z-Eh-v45" id="dN8-dl-NCH"/>
                 <outlet property="cancelBtn" destination="Wfv-Go-ZI4" id="Waj-MB-2a4"/>
                 <outlet property="collectionView" destination="kZD-ea-d76" id="NeO-Td-W3N"/>
                 <outlet property="resetBtn" destination="Qux-Pt-1Gl" id="DM0-VU-56G"/>
@@ -41,7 +42,7 @@
                     </connections>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xA-bs-MxO">
-                    <rect key="frame" x="0.0" y="230" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                     <subviews>
                         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVR-cT-3cx">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -51,6 +52,7 @@
                             <rect key="frame" x="310" y="0.0" width="65" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="65" id="9qz-hP-4cK"/>
+                                <constraint firstAttribute="height" constant="50" id="ZLV-i4-cRU"/>
                             </constraints>
                             <state key="normal" title="确定">
                                 <color key="titleColor" red="0.33333333329999998" green="0.71372549019999998" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,6 +68,7 @@
                             <rect key="frame" x="245" y="0.0" width="65" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="65" id="6Qf-ic-YMS"/>
+                                <constraint firstAttribute="height" constant="50" id="UMw-d0-UsL"/>
                             </constraints>
                             <state key="normal" title="取消">
                                 <color key="titleColor" red="0.33333333329999998" green="0.71372549019999998" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,6 +84,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="65" id="62B-qN-e7G"/>
+                                <constraint firstAttribute="height" constant="50" id="z0x-3l-1dD"/>
                             </constraints>
                             <state key="normal" title="重置">
                                 <color key="titleColor" red="0.33333333329999998" green="0.71372549019999998" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,15 +101,12 @@
                     <constraints>
                         <constraint firstItem="Wfv-Go-ZI4" firstAttribute="top" secondItem="3xA-bs-MxO" secondAttribute="top" id="2YP-ge-Moy"/>
                         <constraint firstItem="NHh-F7-3ye" firstAttribute="top" secondItem="3xA-bs-MxO" secondAttribute="top" id="2Yu-M0-iwf"/>
-                        <constraint firstAttribute="bottom" secondItem="Qux-Pt-1Gl" secondAttribute="bottom" id="4E6-nB-fZk"/>
-                        <constraint firstAttribute="bottom" secondItem="Wfv-Go-ZI4" secondAttribute="bottom" id="8r1-Ac-rsB"/>
                         <constraint firstAttribute="trailing" secondItem="zVR-cT-3cx" secondAttribute="trailing" id="CdC-ky-bqR"/>
                         <constraint firstItem="zVR-cT-3cx" firstAttribute="top" secondItem="3xA-bs-MxO" secondAttribute="top" id="DiL-wG-C92"/>
                         <constraint firstAttribute="trailing" secondItem="Wfv-Go-ZI4" secondAttribute="trailing" constant="65" id="Fot-6c-DW3"/>
                         <constraint firstItem="zVR-cT-3cx" firstAttribute="leading" secondItem="3xA-bs-MxO" secondAttribute="leading" id="Hx8-r7-ceH"/>
                         <constraint firstAttribute="trailing" secondItem="NHh-F7-3ye" secondAttribute="trailing" id="Rwj-KH-hh7"/>
                         <constraint firstItem="Qux-Pt-1Gl" firstAttribute="top" secondItem="3xA-bs-MxO" secondAttribute="top" id="dYC-2t-Hpx"/>
-                        <constraint firstAttribute="bottom" secondItem="NHh-F7-3ye" secondAttribute="bottom" id="f7h-Eo-cXn"/>
                         <constraint firstAttribute="height" constant="50" id="h4z-Eh-v45"/>
                         <constraint firstAttribute="bottom" secondItem="zVR-cT-3cx" secondAttribute="bottom" id="qeO-wf-J9X"/>
                         <constraint firstItem="Qux-Pt-1Gl" firstAttribute="leading" secondItem="3xA-bs-MxO" secondAttribute="leading" id="t0F-ZH-zIv"/>
@@ -117,8 +118,8 @@
                 <constraint firstItem="3xA-bs-MxO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E1y-GE-Q2r"/>
                 <constraint firstItem="kZD-ea-d76" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lff-IJ-DUt"/>
                 <constraint firstItem="kZD-ea-d76" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="n6H-rz-Bhv"/>
-                <constraint firstItem="3xA-bs-MxO" firstAttribute="top" secondItem="kZD-ea-d76" secondAttribute="bottom" id="nBo-5Y-Yx8"/>
                 <constraint firstAttribute="trailing" secondItem="kZD-ea-d76" secondAttribute="trailing" id="r7L-p3-9Yn"/>
+                <constraint firstAttribute="bottom" secondItem="3xA-bs-MxO" secondAttribute="bottom" id="vlM-MK-ovA"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>

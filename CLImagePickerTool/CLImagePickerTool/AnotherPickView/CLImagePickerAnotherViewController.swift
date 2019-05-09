@@ -16,6 +16,7 @@ class CLImagePickerAnotherViewController: UIViewController {
     @IBOutlet weak var resetBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var bottomHYS: NSLayoutConstraint!
     @objc let imageCellID = "imagecellID"
 
     // 是否隐藏视频文件，默认不隐藏
@@ -35,6 +36,8 @@ class CLImagePickerAnotherViewController: UIViewController {
         super.viewDidLoad()
 
         self.initView()
+        
+        self.bottomHYS.constant = UIDevice.current.isX() == true ? 50 + 34:50
         
         CLNotificationCenter.addObserver(self, selector: #selector(CLImagePickerAnotherViewController.PreviewForSelectOrNotSelectedNoticFunc), name: NSNotification.Name(rawValue:PreviewForSelectOrNotSelectedNotic), object: nil)
     }
