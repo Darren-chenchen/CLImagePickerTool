@@ -150,16 +150,17 @@ extension CLPreviewCell: CAAnimationDelegate {
     func createKeyFram(imgData: Data) {
         
         let gifSource = CGImageSourceCreateWithData(imgData as CFData, nil)
-        if gifSource == nil {
+        
+        guard let gifSource_v = gifSource else {
             return
         }
-        let imageCount = CGImageSourceGetCount(gifSource!) // 总共图片张数
+        let imageCount = CGImageSourceGetCount(gifSource_v) // 总共图片张数
         
         for i in 0..<imageCount {
-            let imageRef = CGImageSourceCreateImageAtIndex(gifSource!, i, nil) // 取得每一帧的图
+            let imageRef = CGImageSourceCreateImageAtIndex(gifSource_v, i, nil) // 取得每一帧的图
             self.imageArr.append(imageRef!)
             
-            let sourceDict = CGImageSourceCopyPropertiesAtIndex(gifSource!, i, nil) as NSDictionary!
+            let sourceDict = CGImageSourceCopyPropertiesAtIndex(gifSource_v, i, nil) as NSDictionary?
             let gifDict = sourceDict![String(kCGImagePropertyGIFDictionary)] as! NSDictionary?
             let time = gifDict![String(kCGImagePropertyGIFUnclampedDelayTime)] as! NSNumber // 每一帧的动画时间
             self.timeArr.append(time)
