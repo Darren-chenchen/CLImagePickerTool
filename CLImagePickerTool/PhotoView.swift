@@ -78,13 +78,18 @@ class PhotoView: UIView {
                     closeBtn.addTarget(self, action: #selector(clickCloseBtn(btn:)), for: .touchUpInside)
                     self.imgView.addSubview(closeBtn)
                 }
+//                测试动画
+//                UIView.animate(withDuration: 2, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+//                    imageView.alpha = 0
+//                }) { (completion) in
+//                    imageView.alpha = 1
+//                }
             }
             if (picArr.count>=2) {
                 self.scrollView.contentSize = CGSize(width:CGFloat(picArr.count)*imageW + CGFloat((picArr.count+1)*5), height:0);
             } else {
                 self.scrollView.contentSize = CGSize(width:0, height:0);
             }
-
         }
     }
     

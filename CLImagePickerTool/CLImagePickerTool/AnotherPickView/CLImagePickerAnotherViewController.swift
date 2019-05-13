@@ -105,11 +105,12 @@ class CLImagePickerAnotherViewController: UIViewController {
     }
 
     @IBAction func clickSureBtn(_ sender: Any) {
-        if self.singleChooseImageCompleteClouse != nil {
-            self.singleChooseImageCompleteClouse!(CLPickersTools.instence.getChoosePictureArray(),nil)
-        }
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            if self.singleChooseImageCompleteClouse != nil {
+                self.singleChooseImageCompleteClouse!(CLPickersTools.instence.getChoosePictureArray(),nil)
+            }
+        }
 
     }
     @IBAction func clickResetBtn(_ sender: Any) {

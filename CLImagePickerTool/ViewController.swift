@@ -70,7 +70,6 @@ class ViewController: UIViewController {
         self.videoScrollView.visitPhotoBtnClickClouse = {[weak self] () in
             self?.setupVideo()
         }
-
     }
     
     // 异步原图
@@ -117,18 +116,17 @@ class ViewController: UIViewController {
     
     // 同步，缩略图
     private func setupPhoto2() {
-        let imagePickTool = CLImagePickerTool()
         imagePickTool.isHiddenVideo = true
         imagePickTool.cl_setupImagePickerWith(MaxImagesCount: 10) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
-            
+        
             //获取缩略图，耗时较短
             let imageArr = CLImagePickerTool.convertAssetArrToThumbnailImage(assetArr: asset, targetSize: CGSize(width: 80, height: 80))
             print(imageArr)
             
             self.photoScrollView2.picArr.removeAll()
             self.photoScrollView2.picArr.append(UIImage(named: "takePicture")!)
-            
+
             for item in imageArr {
                 self.photoScrollView2.picArr.append(item)
             }
