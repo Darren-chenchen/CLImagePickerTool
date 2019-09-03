@@ -58,6 +58,8 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
         }
     }
     
+    private let isPad: Bool = UIDevice.current.model == "iPad"
+    
     // 第二种弹出方式
     @available(*, deprecated, message: "Use 'cl_setupImagePickerAnotherWayWith' instead.")
     public func setupImagePickerAnotherWayWith(maxImagesCount: Int,superVC: UIViewController,didChooseImageSuccess:@escaping (Array<PHAsset>,UIImage?)->()) {
@@ -115,7 +117,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
 
         if self.cameraOut == true {  // 拍照功能在外面
             var alert: UIAlertController!
-            alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+            alert = UIAlertController(title: nil, message: nil, preferredStyle: isPad ? .alert : .actionSheet)
             let cleanAction = UIAlertAction(title: cancelStr, style: UIAlertAction.Style.cancel,handler:nil)
             let photoAction = UIAlertAction(title: tackPhotoStr, style: UIAlertAction.Style.default){ (action:UIAlertAction)in
                 // 访问相机
@@ -150,7 +152,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
         
         if self.cameraOut == true {  // 拍照功能在外面
             var alert: UIAlertController!
-            alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+            alert = UIAlertController(title: nil, message: nil, preferredStyle: isPad ? .alert : .actionSheet)
             let cleanAction = UIAlertAction(title: cancelStr, style: UIAlertAction.Style.cancel,handler:nil)
             let photoAction = UIAlertAction(title: tackPhotoStr, style: UIAlertAction.Style.default){ (action:UIAlertAction)in
                 // 访问相机
