@@ -50,6 +50,7 @@ class CLCropViewController: CLBaseImagePickerViewController {
         scroll.showsVerticalScrollIndicator = false
         scroll.layer.borderWidth = 1.5
         scroll.layer.borderColor = UIColor.white.cgColor
+        
         return scroll
     }()
     
