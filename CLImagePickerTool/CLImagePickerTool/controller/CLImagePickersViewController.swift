@@ -64,6 +64,7 @@ class CLImagePickersViewController: UINavigationController {
         albumVC.singlePictureCropScale = singlePictureCropScale
         albumVC.onlyChooseImageOrVideo = onlyChooseImageOrVideo
         albumVC.singleModelImageCanEditor = singleModelImageCanEditor
+        albumVC.showCamaroInPicture = showCamaroInPicture
         
         let vc = CLImagePickersViewController.init(rootViewController: albumVC)
         vc.setupOnce(array: dataArr,
