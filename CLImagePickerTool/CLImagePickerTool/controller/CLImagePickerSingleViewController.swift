@@ -381,10 +381,13 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
                             PopViewUtil.alert(message: "相机不可用", leftTitle: "", rightTitle: "确定", leftHandler: nil, rightHandler: nil)
                             return
                         }
-                        self?.cameraPicker = UIImagePickerController()
-                        self?.cameraPicker.delegate = self
-                        self?.cameraPicker.sourceType = .camera
-                        self?.present((self?.cameraPicker)!, animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            self?.cameraPicker = UIImagePickerController()
+                            self?.cameraPicker.delegate = self
+                            self?.cameraPicker.sourceType = .camera
+                            (self?.cameraPicker)!.modalPresentationStyle = .fullScreen
+                            self?.present((self?.cameraPicker)!, animated: true, completion: nil)
+                        }
                     }
                 }
 
@@ -463,6 +466,7 @@ extension CLImagePickerSingleViewController: UICollectionViewDelegate,UICollecti
                         self?.navigationController?.popViewController(animated: true)
                     }
                 }
+                editorVC.modalPresentationStyle = .fullScreen
                 self?.present(editorVC, animated: true, completion: nil)
             }
 

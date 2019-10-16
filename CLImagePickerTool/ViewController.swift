@@ -195,6 +195,7 @@ class ViewController: UIViewController {
     
     @IBAction func clickMoreBtn(_ sender: Any) {
         let test = TestViewController.init(nibName: "TestViewController", bundle: nil)
+        test.modalPresentationStyle = .fullScreen
         self.present(test, animated: true, completion: nil)
     }
     @IBAction func clickCamaroHiddenbtn(_ sender: Any) {

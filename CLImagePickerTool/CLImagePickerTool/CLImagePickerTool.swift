@@ -78,6 +78,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
                 anotherVC.singleChooseImageCompleteClouse = { (assetArr:Array<PHAsset>,image) in
                     didChooseImageSuccess(assetArr,image)
                 }
+                anotherVC.modalPresentationStyle = .fullScreen
                 superVC.present(anotherVC, animated: true, completion: nil)
             }
         })
@@ -131,6 +132,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
             alert.addAction(cleanAction)
             alert.addAction(photoAction)
             alert.addAction(choseAction)
+            alert.modalPresentationStyle = .fullScreen
             superVC.present(alert, animated: true, completion: nil)
 
         } else {
@@ -166,6 +168,8 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
             alert.addAction(cleanAction)
             alert.addAction(photoAction)
             alert.addAction(choseAction)
+            alert.modalPresentationStyle = .fullScreen
+
             self.superVC!.present(alert, animated: true, completion: nil)
             
         } else {
@@ -196,6 +200,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
                         self.clPickerToolClouse!(assetArr,cutImage)
                     }
                 }
+                photo.modalPresentationStyle = .fullScreen
                 self.superVC?.present(photo, animated: true, completion: nil)
             }
         })
@@ -214,6 +219,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
                 self.cameraPicker = UIImagePickerController()
                 self.cameraPicker.delegate = self
                 self.cameraPicker.sourceType = .camera
+                self.cameraPicker.modalPresentationStyle = .fullScreen
                 superVC.present((self.cameraPicker)!, animated: true, completion: nil)
             }
         }
@@ -236,6 +242,7 @@ public class CLImagePickerTool: NSObject,UIImagePickerControllerDelegate,UINavig
                 self.cameraPicker = UIImagePickerController()
                 self.cameraPicker.delegate = self
                 self.cameraPicker.sourceType = .camera
+                self.cameraPicker.modalPresentationStyle = .fullScreen
                 self.superVC!.present((self.cameraPicker)!, animated: true, completion: nil)
             }
         }
@@ -426,9 +433,11 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             if phasset.mediaType == .video {
                 return
             }
+            print("22222222222222")
             var cameroImage: UIImage?
             CLPickersTools.instence.getAssetOrigin(asset: phasset) { (img, info) in
                 PopViewUtil.share.stopLoading()
+                print("333333333333")
                 if img != nil {
                     cameroImage = img
                     if self.singleImageChooseType == .singlePictureCrop && self.singleModelImageCanEditor != true {  // 单选

@@ -63,6 +63,7 @@ let allPhoto = "所有照片"
 let allPhoto2 = "All Photos"
 let allPhoto3 = "Camera Roll"
 let allPhoto4 = "相机胶卷"
+let allPhoto5 = "最近项目"
 
 // 本地化
 let sureStr = BundleUtil.cl_localizedStringForKey(key: "确定")
