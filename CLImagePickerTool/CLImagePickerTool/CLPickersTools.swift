@@ -73,7 +73,7 @@ class CLPickersTools {
         var flagData: [String:[CLImagePickerPhotoModel]]?
         for i in 0..<self.dataArr.count {
             let dict = self.dataArr[i]
-            if dict.keys.first == allPhoto || dict.keys.first == allPhoto2 || dict.keys.first == allPhoto3 || dict.keys.first == allPhoto4 || dict.keys.first == allPhoto5{
+            if dict.keys.first == allPhoto || dict.keys.first == allPhoto2 || dict.keys.first == allPhoto3 || dict.keys.first == allPhoto4 || dict.keys.first == allPhoto5 {
                 flagData = dict
                 break
             }
@@ -153,7 +153,7 @@ class CLPickersTools {
                         }
                     }
                     // 部分设备打印出来的是中文，所以直接添加就好了
-                    dataArr.append([self.setupTitleStr(assetCollection: assetCollection):array])
+                    dataArr.append([self.setupTitleStr(assetCollection: assetCollection): array])
                 }
             }
         }
@@ -166,7 +166,7 @@ class CLPickersTools {
             title = favStr
         } else if assetCollection.localizedTitle == "Videos" {
             title = videoStr
-        } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" || assetCollection.localizedTitle == "最近项目" {
+        } else if assetCollection.localizedTitle == "All Photos" || assetCollection.localizedTitle == "Camera Roll" || assetCollection.localizedTitle == "最近项目" || assetCollection.localizedTitle == "Recents" {
             title = allPStr
         } else if assetCollection.localizedTitle == "Recently Added" {
             title = rencentStr

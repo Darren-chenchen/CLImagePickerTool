@@ -26,7 +26,9 @@ class ViewController: UIViewController {
     @IBAction func clickBtn2(_ sender: Any) {
         
         imagePickTool.cameraOut = true
-        
+        imagePickTool.isHiddenVideo = true
+        imagePickTool.singleImageChooseType = .singlePicture
+        imagePickTool.singleModelImageCanEditor = true
         imagePickTool.cl_setupImagePickerWith(MaxImagesCount: 6) { (asset,cutImage) in
             print("返回的asset数组是\(asset)")
         }
